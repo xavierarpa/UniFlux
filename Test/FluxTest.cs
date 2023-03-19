@@ -23,21 +23,41 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
-using Kingdox.Flux;
 namespace Kingdox.Flux.Test
 {
-    public class FluxTest : MonoBehaviour
+    public sealed class FluxTest : MonoFlux
     {
         public const string OnWait = "OnWait";
+        protected override void OnEnableDisable(bool condition)
+        {
+            //
+            // NORMAL
+            //
+            OnWait.Subscribe(Method,condition); // Method
+            OnWait.Subscribe<string>(MethodParam,condition); // Method Param
+            OnWait.Subscribe<string>(MethodReturn,condition); // Method Return
+            OnWait.Subscribe<string, string>(MethodParamReturn,condition); // Method Param Return
+            //
+            // IENUMERATOR
+            //
+            OnWait.Subscribe(Yield, condition); // Method
+            OnWait.Subscribe<string, IEnumerator>(YieldParam, condition); // Method Param
+            OnWait.Subscribe<IEnumerator<string>>(YieldReturn, condition); // Method Return
+            OnWait.Subscribe<string, IEnumerator<string>>(YieldParamReturn, condition); // Method Param Return
+            //
+            // TASK
+            //
+            OnWait.Subscribe(Await, condition); // Method
+            OnWait.Subscribe<string, Task>(AwaitParam, condition); // Method Param
+            OnWait.Subscribe<Task<string>>(AwaitReturn, condition); // Method Return
+            OnWait.Subscribe<string, Task<string>>(AwaitParamReturn, condition); // Method Param Return
+        }
+
         private async void Start()
         {
             //
             // NORMAL
             //
-            OnWait.Subscribe(Method,true); // Method
-            OnWait.Subscribe<string>(MethodParam,true); // Method Param
-            OnWait.Subscribe<string>(MethodReturn,true); // Method Return
-            OnWait.Subscribe<string, string>(MethodParamReturn,true); // Method Param Return
             OnWait.Invoke();
             OnWait.Invoke<string>("MethodParam");
             Debug.Log(OnWait.Invoke<string>());
@@ -45,10 +65,6 @@ namespace Kingdox.Flux.Test
             //
             // IENUMERATOR
             //
-            OnWait.Subscribe(Yield, true); // Method
-            OnWait.Subscribe<string, IEnumerator>(YieldParam, true); // Method Param
-            OnWait.Subscribe<IEnumerator<string>>(YieldReturn, true); // Method Return
-            OnWait.Subscribe<string, IEnumerator<string>>(YieldParamReturn, true); // Method Param Return
             StartCoroutine(OnWait.Invoke<IEnumerator>());
             StartCoroutine(OnWait.Invoke<string, IEnumerator>("a"));
             StartCoroutine(OnWait.Invoke<IEnumerator<string>>());
@@ -56,59 +72,52 @@ namespace Kingdox.Flux.Test
             //
             // TASK
             //
-            OnWait.Subscribe(Await, true); // Method
-            OnWait.Subscribe<string, Task>(AwaitParam, true); // Method Param
-            OnWait.Subscribe<Task<string>>(AwaitReturn, true); // Method Return
-            OnWait.Subscribe<string, Task<string>>(AwaitParamReturn, true); // Method Param Return
             await OnWait.Invoke<Task>();
             await OnWait.Invoke<string, Task>("a");
             await OnWait.Invoke<Task<string>>();
             await OnWait.Invoke<string, Task<string>>("a");
         }
-
-        private void Method() => Debug.Log("Method");
-        private void MethodParam(string a) => Debug.Log(a);
-        private string MethodReturn() => "MethodReturn";
-        private string MethodParamReturn(string a) => a;
-
-        private IEnumerator Yield() 
+        [Subscribe(OnWait)] private void Method() => Debug.Log("Method");
+        [Subscribe(OnWait)] private void MethodParam(string a) => Debug.Log(a);
+        [Subscribe(OnWait)] private string MethodReturn() => "MethodReturn";
+        [Subscribe(OnWait)] private string MethodParamReturn(string a) => a;
+        [Subscribe(OnWait)] private IEnumerator Yield() 
         {
             Debug.Log("Yield");
             yield return null;
         }
-        private IEnumerator YieldParam(string a) 
+        [Subscribe(OnWait)] private IEnumerator YieldParam(string a) 
         {
             Debug.Log("YieldParam");
             yield return null;
         }
-        private IEnumerator<string> YieldReturn() 
+        [Subscribe(OnWait)] private IEnumerator<string> YieldReturn() 
         {
             Debug.Log("YieldReturn");
             yield return null;
         }
-        private IEnumerator<string> YieldParamReturn(string data) 
+        [Subscribe(OnWait)] private IEnumerator<string> YieldParamReturn(string data) 
         {
             Debug.Log("YieldParamReturn");
             yield return null;
         }
-
-        private async Task Await() 
+        [Subscribe(OnWait)] private async Task Await() 
         {
             Debug.Log("Await");
             await Task.Yield();
         }
-        private async Task AwaitParam(string a) 
+        [Subscribe(OnWait)] private async Task AwaitParam(string a) 
         {
             Debug.Log("AwaitParam");
             await Task.Yield();
         }
-        private async Task<string> AwaitReturn() 
+        [Subscribe(OnWait)] private async Task<string> AwaitReturn() 
         {
             Debug.Log("AwaitReturn");
             await Task.Yield();
             return "a";
         }
-        private async Task<string> AwaitParamReturn(string data) 
+        [Subscribe(OnWait)] private async Task<string> AwaitParamReturn(string data) 
         {
             Debug.Log("AwaitParamReturn");
             await Task.Yield();
