@@ -1,0 +1,16 @@
+{
+    "name": "Kingdox.Flux.Test",
+    "rootNamespace": "",
+    "references": [
+        "GUID:5eab622f72b734023921bc4b52917d29"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
