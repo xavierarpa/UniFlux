@@ -1,28 +1,12 @@
 {
     "name": "com.kingdox.flux",
-    "version": "4.1.0",
-    "displayName": "Kingdox Flux",
-    "description": "System to Handle Comunication Flow",
+    "displayName": "Flux",
+    "author": { "name": "Xavier Thomas Peter Arpa López ('Kingdox')", "url": "https://github.com/kingdox" },
+    "version": "1.0.0",
     "unity": "2020.1",
-    "keywords": [
-        "unity",
-        "library",
-        "flux",
-        "gamedev"
-    ],
-    "author": {
-        "name": "Kingdox",
-        "email": "arpaxavier@gmail.com",
-        "url": "https://github.com/kingdox"
-    },
-    "hideInEditor": true,
-    "repository": {
-        "type": "git",
-        "url": "git+https://kingdox@github.com/KingdoxTools/flux.git"
-    },
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/kingdox"
-    },
-    "homepage": "https://github.com/kingdox"
+    "description": "Provides an method pub/sub flow integration to Unity.",
+    "keywords": [ "async/await", "async", "Task", "Library", "Unity", "Flux" ],
+    "license": "MIT",
+    "category": "Task",
+    "dependencies": {}
 }
