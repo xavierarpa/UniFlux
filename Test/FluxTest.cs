@@ -42,16 +42,16 @@ namespace Kingdox.Flux.Test
             // IENUMERATOR
             //
             OnWait.Subscribe(Yield, condition); // Method
-            OnWait.Subscribe<string, IEnumerator>(YieldParam, condition); // Method Param
-            OnWait.Subscribe<IEnumerator<string>>(YieldReturn, condition); // Method Return
-            OnWait.Subscribe<string, IEnumerator<string>>(YieldParamReturn, condition); // Method Param Return
+            OnWait.Subscribe<string>(YieldParam, condition); // Method Param
+            OnWait.Subscribe(YieldReturn, condition); // Method Return
+            OnWait.Subscribe<string>(YieldParamReturn, condition); // Method Param Return
             //
             // TASK
             //
             OnWait.Subscribe(Await, condition); // Method
-            OnWait.Subscribe<string, Task>(AwaitParam, condition); // Method Param
-            OnWait.Subscribe<Task<string>>(AwaitReturn, condition); // Method Return
-            OnWait.Subscribe<string, Task<string>>(AwaitParamReturn, condition); // Method Param Return
+            OnWait.Subscribe<string>(AwaitParam, condition); // Method Param
+            OnWait.Subscribe(AwaitReturn, condition); // Method Return
+            OnWait.Subscribe<string>(AwaitParamReturn, condition); // Method Param Return
         }
 
         private async void Start()
@@ -60,23 +60,23 @@ namespace Kingdox.Flux.Test
             // NORMAL
             //
             OnWait.Invoke();
-            OnWait.Invoke<string>("MethodParam");
-            Debug.Log(OnWait.Invoke<string>());
-            Debug.Log(OnWait.Invoke<string, string>("MethodParamReturn"));
+            OnWait.Invoke("MethodParam");
+            OnWait.Invoke<string>();
+            OnWait.Invoke<string, string>("MethodParamReturn");
             //
             // IENUMERATOR
             //
-            StartCoroutine(OnWait.Invoke<IEnumerator>());
-            StartCoroutine(OnWait.Invoke<string, IEnumerator>("a"));
-            StartCoroutine(OnWait.Invoke<IEnumerator<string>>());
-            StartCoroutine(OnWait.Invoke<string, IEnumerator<string>>("a"));
+            StartCoroutine(OnWait.Yield());
+            StartCoroutine(OnWait.Yield("a"));
+            StartCoroutine(OnWait.Yield<string>());
+            StartCoroutine(OnWait.Yield<string, string>("a"));
             //
             // TASK
             //
-            await OnWait.Invoke<Task>();
-            await OnWait.Invoke<string, Task>("a");
-            await OnWait.Invoke<Task<string>>();
-            await OnWait.Invoke<string, Task<string>>("a");
+            await OnWait.Await();
+            await OnWait.Await("a");
+            await OnWait.Await<string>();
+            await OnWait.Await<string, string>("a");
         }
         [Subscribe(OnWait)] private void Method() => Debug.Log("Method");
         [Subscribe(OnWait)] private void MethodParam(string a) => Debug.Log(a);

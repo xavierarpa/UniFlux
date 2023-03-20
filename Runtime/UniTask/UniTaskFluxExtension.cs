@@ -27,24 +27,18 @@ using Cysharp.Threading.Tasks;
 
 namespace Kingdox.Flux
 {
-    #region UniTask
+#region UniTask
     public static partial class FluxExtension //Action<UniTask>
     {
         public static void Subscribe(this string key, Action<UniTask> action, bool condition) => Core.Flux<UniTask>.SubscribeActionParam(key, action, condition);
-    }
-    public static partial class FluxExtension //Func<out UniTask>
-    {
         public static void Subscribe(this string key, Func<UniTask> action, bool condition) => Core.Flux<UniTask>.SubscribeFunc(key, action, condition);
-        public static UniTask Await(this string key) => Core.Flux<UniTask>.TriggerFunc(key);
-    }
-    public static partial class FluxExtension //Func<T, out UniTask>
-    {
+        public static void Subscribe<T>(this string key, Func<UniTask<T>> action, bool condition) => Core.Flux<UniTask<T>>.SubscribeFunc(key, action, condition);
         public static void Subscribe<T>(this string key, Func<T, UniTask> action, bool condition) => Core.Flux<T,UniTask>.SubscribeFuncParam(key, action, condition);
-        public static UniTask Await<T>(this string key, T @param) => Core.Flux<T, UniTask>.TriggerFuncParam(key, @param);
-    }
-    public static partial class FluxExtension //Func<T, out UniTask<T2>>
-    {
         public static void Subscribe<T,T2>(this string key, Func<T, UniTask<T2>> action, bool condition) => Core.Flux<T,UniTask<T2>>.SubscribeFuncParam(key, action, condition);
+
+        public static UniTask Await(this string key) => Core.Flux<UniTask>.TriggerFunc(key);
+        public static UniTask<T> Await<T>(this string key) => Core.Flux<UniTask<T>>.TriggerFunc(key);
+        public static UniTask Await<T>(this string key, T @param) => Core.Flux<T, UniTask>.TriggerFuncParam(key, @param);
         public static UniTask<T2> Await<T, T2>(this string key, T @param) => Core.Flux<T, UniTask<T2>>.TriggerFuncParam(key, @param);
     }
 #endregion

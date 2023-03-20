@@ -51,20 +51,14 @@ namespace Kingdox.Flux
     public static partial class FluxExtension //Action<IEnumerator>
     {
         public static void Subscribe(this string key, Action<IEnumerator> action, bool condition) => Core.Flux<IEnumerator>.SubscribeActionParam(key, action, condition);
-    }
-    public static partial class FluxExtension //Func<out IEnumerator>
-    {
         public static void Subscribe(this string key, Func<IEnumerator> action, bool condition) => Core.Flux<IEnumerator>.SubscribeFunc(key, action, condition);
-        public static IEnumerator Yield(this string key) => Core.Flux<IEnumerator>.TriggerFunc(key);
-    }
-    public static partial class FluxExtension //Func<T, out IEnumerator>
-    {
+        public static void Subscribe<T>(this string key, Func<IEnumerator<T>> action, bool condition) => Core.Flux<IEnumerator<T>>.SubscribeFunc(key, action, condition);
         public static void Subscribe<T>(this string key, Func<T, IEnumerator> action, bool condition) => Core.Flux<T,IEnumerator>.SubscribeFuncParam(key, action, condition);
-        public static IEnumerator Yield<T>(this string key, T @param) => Core.Flux<T, IEnumerator>.TriggerFuncParam(key, @param);
-    }
-    public static partial class FluxExtension //Func<T, out IEnumerator<T2>>
-    {
         public static void Subscribe<T,T2>(this string key, Func<T, IEnumerator<T2>> action, bool condition) => Core.Flux<T,IEnumerator<T2>>.SubscribeFuncParam(key, action, condition);
+
+        public static IEnumerator Yield(this string key) => Core.Flux<IEnumerator>.TriggerFunc(key);
+        public static IEnumerator<T> Yield<T>(this string key) => Core.Flux<IEnumerator<T>>.TriggerFunc(key);
+        public static IEnumerator Yield<T>(this string key, T @param) => Core.Flux<T, IEnumerator>.TriggerFuncParam(key, @param);
         public static IEnumerator<T2> Yield<T, T2>(this string key, T @param) => Core.Flux<T, IEnumerator<T2>>.TriggerFuncParam(key, @param);
     }
 #endregion
@@ -72,20 +66,14 @@ namespace Kingdox.Flux
     public static partial class FluxExtension //Action<Task>
     {
         public static void Subscribe(this string key, Action<Task> action, bool condition) => Core.Flux<Task>.SubscribeActionParam(key, action, condition);
-    }
-    public static partial class FluxExtension //Func<out Task>
-    {
         public static void Subscribe(this string key, Func<Task> action, bool condition) => Core.Flux<Task>.SubscribeFunc(key, action, condition);
-        public static Task Await(this string key) => Core.Flux<Task>.TriggerFunc(key);
-    }
-    public static partial class FluxExtension //Func<T, out Task>
-    {
+        public static void Subscribe<T>(this string key, Func<Task<T>> action, bool condition) => Core.Flux<Task<T>>.SubscribeFunc(key, action, condition);
         public static void Subscribe<T>(this string key, Func<T, Task> action, bool condition) => Core.Flux<T,Task>.SubscribeFuncParam(key, action, condition);
-        public static Task Await<T>(this string key, T @param) => Core.Flux<T, Task>.TriggerFuncParam(key, @param);
-    }
-    public static partial class FluxExtension //Func<T, out Task<T2>>
-    {
         public static void Subscribe<T,T2>(this string key, Func<T, Task<T2>> action, bool condition) => Core.Flux<T,Task<T2>>.SubscribeFuncParam(key, action, condition);
+
+        public static Task Await(this string key) => Core.Flux<Task>.TriggerFunc(key);
+        public static Task<T> Await<T>(this string key) => Core.Flux<Task<T>>.TriggerFunc(key);
+        public static Task Await<T>(this string key, T @param) => Core.Flux<T, Task>.TriggerFuncParam(key, @param);
         public static Task<T2> Await<T, T2>(this string key, T @param) => Core.Flux<T, Task<T2>>.TriggerFuncParam(key, @param);
     }
 #endregion
