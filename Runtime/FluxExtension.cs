@@ -24,22 +24,22 @@ namespace Kingdox.Flux
 {
     public static partial class FluxExtension //Action
     {
-        public static void Subscribe(this string key, Action action, bool condition) => Core.Flux.Subscribe(key, action, condition);
-        public static void Invoke(this string key) => Core.Flux.Trigger(key);
+        public static void Subscribe(this string key, Action action, bool condition) => Core.Flux.SubscribeAction(key, action, condition);
+        public static void Invoke(this string key) => Core.Flux.TriggerAction(key);
     }
     public static partial class FluxExtension //Action<T>
     {
-        public static void Subscribe<T>(this string key, Action<T> action, bool condition) => Core.Flux<T>.Subscribe(key, action, condition);
-        public static void Invoke<T>(this string key, T @param) => Core.Flux<T>.Trigger(key, @param);
+        public static void Subscribe<T>(this string key, Action<T> action, bool condition) => Core.Flux<T>.SubscribeActionParam(key, action, condition);
+        public static void Invoke<T>(this string key, T @param) => Core.Flux<T>.TriggerActionParam(key, @param);
     }
     public static partial class FluxExtension //Func<out T>
     {
-        public static void Subscribe<T>(this string key, Func<T> action, bool condition) => Core.Flux<T>.Subscribe(key, action, condition);
-        public static T Invoke<T>(this string key) => Core.Flux<T>.Trigger(key);
+        public static void Subscribe<T>(this string key, Func<T> action, bool condition) => Core.Flux<T>.SubscribeFunc(key, action, condition);
+        public static T Invoke<T>(this string key) => Core.Flux<T>.TriggerFunc(key);
     }
     public static partial class FluxExtension //Func<T, out T2>
     {
-        public static void Subscribe<T,T2>(this string key, Func<T, T2> action, bool condition) => Core.Flux<T,T2>.Subscribe(key, action, condition);
-        public static T2 Invoke<T, T2>(this string key, T @param) => Core.Flux<T, T2>.Trigger(key, @param);
+        public static void Subscribe<T,T2>(this string key, Func<T, T2> action, bool condition) => Core.Flux<T,T2>.SubscribeFuncParam(key, action, condition);
+        public static T2 Invoke<T, T2>(this string key, T @param) => Core.Flux<T, T2>.TriggerFuncParam(key, @param);
     }
 }

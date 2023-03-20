@@ -20,63 +20,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Threading.Tasks;
-using System.Linq;
-using System.Reflection;
-
 namespace Kingdox.Flux
 {
     [AttributeUsageAttribute(AttributeTargets.Method, AllowMultiple = false)]
     public class SubscribeAttribute : System.Attribute
     {
-        private static readonly Type m_type = typeof(SubscribeAttribute);
-        private static readonly Dictionary<MonoFlux, List<MethodInfo>> m_monofluxes = new Dictionary<MonoFlux, List<MethodInfo>>();
-        private static readonly Dictionary<MethodInfo, SubscribeAttribute> m_methods = new Dictionary<MethodInfo, SubscribeAttribute>();
         public readonly string key;
         public SubscribeAttribute(string key)
         {
             this.key = key;
-        }
-        private static void CheckMonoFlux(MonoFlux monoflux)
-        {
-            if (!m_monofluxes.ContainsKey(monoflux))
-            {
-                m_monofluxes.Add(
-                    monoflux, 
-                    monoflux.gameObject.GetComponent(typeof(MonoFlux)).GetType().GetMethods((BindingFlags)(-1)).Where(method => 
-                    {
-                        var attribute = System.Attribute.GetCustomAttributes(method).FirstOrDefault((_att) => _att is SubscribeAttribute) as SubscribeAttribute;
-                        if (attribute != null)
-                        {
-                            if(!m_methods.ContainsKey(method)) m_methods.Add(method, attribute); // ADD <Method, Attribute>!
-                            return true;
-                        }
-                        else return false;
-                    }).ToList()
-                );
-            }
-        }
-        public static void Subscribe(MonoFlux monoflux, bool condition)
-        {
-            CheckMonoFlux(monoflux); // ~First Check Monoflux Implementation
-            List<MethodInfo> methods = m_monofluxes[monoflux];
-            for (int i = 0; i < methods.Count; i++)
-            {
-                // var atr = m_methods[methods[i]];
-                // Debug.Log(atr.key);
-                // mInfo.Get_MethodName_Subscribe().Get_Method_Subscribe(mInfo).Invoke(
-                //     null, 
-                //     new object[]
-                //     {
-                //         condition,
-                //         atrb.Key,
-                //         mInfo.__Get_Delegate(instance)
-                //     }   
-                // );
-            }
         }
     }
 }

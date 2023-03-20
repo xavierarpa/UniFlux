@@ -26,12 +26,12 @@ namespace Kingdox.Flux
     {
         private void OnEnable() 
         {
-            SubscribeAttribute.Subscribe(this, true);
+            this.Subscribe(true);
             OnEnableDisable(true);
         }
         private void OnDisable() 
         {
-            SubscribeAttribute.Subscribe(this, false);
+            this.Subscribe(false);
             OnEnableDisable(false);
         }
         protected virtual void OnEnableDisable(bool condition) { }

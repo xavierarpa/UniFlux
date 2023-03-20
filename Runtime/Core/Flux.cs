@@ -29,8 +29,8 @@ namespace Kingdox.Flux.Core
     public static partial class Flux // TKey (Action)
     {
         private static readonly IFlux<string, Action> flux_action = new FluxAction<string>();
-        public static void Subscribe(string key, Action action, bool condition) => flux_action.Subscribe(in condition, in key, action);
-        public static void Trigger(string key) => flux_action.Trigger(key);
+        public static void SubscribeAction(string key, Action action, bool condition) => flux_action.Subscribe(in condition, in key, action);
+        public static void TriggerAction(string key) => flux_action.Trigger(key);
     }
     //<summary>
     // Flux Action<T>
@@ -38,8 +38,8 @@ namespace Kingdox.Flux.Core
     public static partial class Flux<T> // TKey TParam (Action<T>)
     {
         private static readonly IFluxParam<string, T, Action<T>> flux_action_param = new FluxActionParam<string,T>();
-        public static void Subscribe(string key, Action<T> action, bool condition) => flux_action_param.Subscribe(in condition, in key, action);
-        public static void Trigger(string key, T @param) => flux_action_param.Trigger(key, @param);
+        public static void SubscribeActionParam(string key, Action<T> action, bool condition) => flux_action_param.Subscribe(in condition, in key, action);
+        public static void TriggerActionParam(string key, T @param) => flux_action_param.Trigger(key, @param);
     }
     //<summary>
     // Flux Func<out T>
@@ -47,8 +47,8 @@ namespace Kingdox.Flux.Core
     public static partial class Flux<T> // TKey TReturn (Func<out T>)
     {
         private static readonly IFluxReturn<string, T, Func<T>> flux_func = new FluxFunc<string,T>();
-        public static void Subscribe(string key, Func<T> action, bool condition) => flux_func.Subscribe(in condition, in key, action);
-        public static T Trigger(string key) => flux_func.Trigger(key);
+        public static void SubscribeFunc(string key, Func<T> action, bool condition) => flux_func.Subscribe(in condition, in key, action);
+        public static T TriggerFunc(string key) => flux_func.Trigger(key);
     }
     //<summary>
     // Flux Func<T, out T>
@@ -56,7 +56,7 @@ namespace Kingdox.Flux.Core
     public static partial class Flux<T,T2> // TKey TReturn (Func<T, out T>)
     {
         private static readonly IFluxParamReturn<string, T, T2, Func<T,T2>> flux_func_param = new FluxFuncParam<string, T, T2>();
-        public static void Subscribe(string key, Func<T, T2> action, bool condition) => flux_func_param.Subscribe(in condition, in key, action);
-        public static T2 Trigger(string key, T @param) => flux_func_param.Trigger(key, @param);
+        public static void SubscribeFuncParam(string key, Func<T, T2> action, bool condition) => flux_func_param.Subscribe(in condition, in key, action);
+        public static T2 TriggerFuncParam(string key, T @param) => flux_func_param.Trigger(key, @param);
     }
 }

@@ -30,6 +30,7 @@ namespace Kingdox.Flux.Test
         public const string OnWait = "OnWait";
         protected override void OnEnableDisable(bool condition)
         {
+            Debug.Log("--------");
             //
             // NORMAL
             //
