@@ -8,5 +8,5 @@ using Kingdox.Flux;
 public sealed class #SCRIPTNAME# : MonoFlux
 {
     //protected override void OnEnableDisable(bool condition) {}
-    //[Subscribe()] private void Method() => ;
+    //[Flux()] private void Method() => ;
 }

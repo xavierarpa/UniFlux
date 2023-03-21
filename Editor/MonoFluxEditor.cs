@@ -41,7 +41,7 @@ namespace Kingdox.Flux.Editor
         {
             Type type = target.GetType();
             var methods = type.GetMethods((BindingFlags)(-1));
-            methods_subscribeAttrb = methods.Where(m => m.GetCustomAttributes(typeof(SubscribeAttribute), true).Length > 0).ToArray();
+            methods_subscribeAttrb = methods.Where(m => m.GetCustomAttributes(typeof(FluxAttribute), true).Length > 0).ToArray();
             dic_method_parameters = methods_subscribeAttrb.Select(m => new { Method = m, Parameters = new object[m.GetParameters().Length] }).ToDictionary(mp => mp.Method, mp => mp.Parameters);
         }
         
@@ -87,7 +87,7 @@ namespace Kingdox.Flux.Editor
 
             foreach (var item in methods_subscribeAttrb)
             {
-                var atribute = item.GetCustomAttribute<SubscribeAttribute>();
+                var atribute = item.GetCustomAttribute<FluxAttribute>();
                 var parameters = item.GetParameters();
                 var isParameters = parameters.Length > 0;
                 var isErr_return = item.ReturnType != typeof(void);

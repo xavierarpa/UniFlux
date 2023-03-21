@@ -1,13 +1,10 @@
 {
-    "name": "Kingdox.Flux.Editor",
+    "name": "Kingdox.Flux.String",
     "rootNamespace": "",
     "references": [
-        "GUID:5eab622f72b734023921bc4b52917d29",
         "GUID:2685e17443a71469b8a7d77c939a986e"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

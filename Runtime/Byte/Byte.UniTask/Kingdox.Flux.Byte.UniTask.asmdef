@@ -1,13 +1,13 @@
 {
-    "name": "Kingdox.Flux.Editor",
+    "name": "Kingdox.Flux.Byte.UniTask",
     "rootNamespace": "",
     "references": [
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:5eab622f72b734023921bc4b52917d29",
-        "GUID:2685e17443a71469b8a7d77c939a986e"
+        "GUID:2685e17443a71469b8a7d77c939a986e",
+        "GUID:df21e6469ee614f64a64d7cd44ed46a8"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

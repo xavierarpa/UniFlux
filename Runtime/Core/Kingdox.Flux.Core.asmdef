@@ -1,9 +1,7 @@
 {
     "name": "Kingdox.Flux.Core",
     "rootNamespace": "",
-    "references": [
-        "GUID:7499b8729e18b4904be6498eb230f89e"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
