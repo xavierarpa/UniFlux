@@ -24,22 +24,22 @@ namespace Kingdox.Flux.Core
 {
     public static partial class Flux // TKey (Action)
     {
-        public static void SubscribeAction(byte key, Action action, bool condition) => Internal.Flux<byte>.SubscribeAction(key, action, condition);
-        public static void TriggerAction(byte key) => Internal.Flux<byte>.TriggerAction(key);
+        public static void SubscribeAction(int key, Action action, bool condition) => Internal.Flux<int>.SubscribeAction(key, action, condition);
+        public static void TriggerAction(int key) => Internal.Flux<int>.TriggerAction(key);
     }
     public static partial class Flux<T> // TKey TParam (Action<T>)
     {
-        public static void SubscribeActionParam(byte key, Action<T> action, bool condition) => Internal.Flux<byte,T>.SubscribeActionParam(key, action, condition);
-        public static void TriggerActionParam(byte key, T @param) => Internal.Flux<byte,T>.TriggerActionParam(key, @param);
+        public static void SubscribeActionParam(int key, Action<T> action, bool condition) => Internal.Flux<int,T>.SubscribeActionParam(key, action, condition);
+        public static void TriggerActionParam(int key, T @param) => Internal.Flux<int,T>.TriggerActionParam(key, @param);
     }
     public static partial class Flux<T> // TKey TReturn (Func<out T>)
     {
-        public static void SubscribeFunc(byte key, Func<T> action, bool condition) => Internal.Flux<byte,T>.SubscribeFunc(key, action, condition);
-        public static T TriggerFunc(byte key) => Internal.Flux<byte, T>.TriggerFunc(key);
+        public static void SubscribeFunc(int key, Func<T> action, bool condition) => Internal.Flux<int,T>.SubscribeFunc(key, action, condition);
+        public static T TriggerFunc(int key) => Internal.Flux<int, T>.TriggerFunc(key);
     }
     public static partial class Flux<T,T2> // TKey TReturn (Func<T, out T>)
     {
-        public static void SubscribeFuncParam(byte key, Func<T, T2> action, bool condition) => Internal.Flux<byte,T,T2>.SubscribeFuncParam(key,action,condition);
-        public static T2 TriggerFuncParam(byte key, T @param) => Internal.Flux<byte,T,T2>.TriggerFuncParam(key, @param);
+        public static void SubscribeFuncParam(int key, Func<T, T2> action, bool condition) => Internal.Flux<int,T,T2>.SubscribeFuncParam(key,action,condition);
+        public static T2 TriggerFuncParam(int key, T @param) => Internal.Flux<int,T,T2>.TriggerFuncParam(key, @param);
     }    
 }
