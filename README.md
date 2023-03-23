@@ -22,7 +22,7 @@ Provides a convenient integration of the Flux pattern oriented for unity.
 Getting started
 ---
 ```csharp
-using Kingdox.Flux; // ----> required to enable common workflow
+using Kingdox.UniFlux; // ----> required to enable common workflow
 public sealed class ExampleFlux : MonoFlux // ----> required to subscribe auto Flux methods
 {
     [Flux("Test"] // ----> required to handle method subscription
