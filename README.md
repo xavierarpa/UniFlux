@@ -1,76 +1,104 @@
+
+![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+
 UniFlux
 ===
-Provides a convenient integration of the Flux pattern oriented for unity.
-* 0 references between methods. Allows to communicate methods between classes without anyone knowing each other.
-* Encourages Modular, Functional and Reactive Programming.
-* Integration of `IEnumerator, Task, IObservable<T>, IObserver<T>`. Also provides `UniTask`.
-* Under Learning Requirement, you usually use `MonoFlux`, `[Flux(X)]` and `X.Invoke()`.
-* Invoke that do not have a return behave like Fire and Forget, allowing you to disable GameObjects without affecting performance.
-* Allows scalability for long projects
-* Allows to create fast projects without worrying about communications
-* Extensible to create your own `Flux<TKey>,Flux<TKey,TParamOrReturn> and Flux<TKey,TParam,TReturn>` types.
+#### Provides a convenient integration of the Flux pattern oriented for unity.
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+[![Releases](https://img.shields.io/github/release/kingdox/UniFlux.svg)](https://github.com/kingdox/UniFlux/releases)
+
 ## Table of Contents
 
-- [Getting started](#getting-started)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage/Examples](#usage-examples)
+- [Special Content](#special-content)
+- [Contributing](#contributing)
+- [Author Info](#author-info)
 - [License](#license)
 
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+## Features
 
-Getting started
----
+- 0 references between methods. Allows to communicate methods between classes without anyone knowing each other.
+- Encourages Modular, Functional and Reactive Programming.
+- Integration of `IEnumerator, Task, IObservable<T>, IObserver<T>`. Also provides `UniTask`.
+- Under Learning Requirement, you usually use `MonoFlux`, `[Flux(X)]` and `X.Invoke()`.
+- Invoke that do not have a return behave like Fire and Forget, allowing you to disable GameObjects without affecting performance.
+- Allows scalability for long projects
+- Allows to create fast projects without worrying about communications
+- Extensible to create your own `Flux<TKey>,Flux<TKey,TParamOrReturn> and Flux<TKey,TParam,TReturn>` types.
+
+
+## Installation
+
+Soon
+
+## Usage/Examples
+
 ```csharp
-using Kingdox.UniFlux; // ----> required to enable common workflow
-public sealed class ExampleFlux : MonoFlux // ----> required to subscribe auto Flux methods
+namespace Data
 {
-    [Flux("Test"] // ----> required to handle method subscription
-    private void OnTest()
-    {
-        Debug.Log("Test");    
-    }
-    
-    private void Start()
-    {
-        "Test".invoke(); // ----> used to call OnTest method
-    }   
+  public static partial class Key
+  {
+    public const string OnTest = nameof(OnTest);
+  }
+}
+//...
+using Kingdox.UniFlux; // 1
+public sealed class StarterFlux : MonoFlux // 2
+{
+  private void Start() 
+  {
+    "StarterFlux.CastTest".Invoke(); // 3
+  }
+  [Flux("StarterFlux.CastTest"] private void CastTest()  // 4
+  {
+    Data.Key.OnTest.Invoke(42);
+  }
+  [Flux(42)] private void OnTestAnswer() // 6.1
+  {
+    Debug.Log($"OnTestAnswer on StarterFlux");
+  }
+}
+//...
+public sealed class TestFlux : MonoFlux 
+{
+  [Flux(Data.Key.OnTest] private void OnTest(int data) // 5
+  {
+    Debug.Log($"The answer of everithing {data}");
+    data.Invoke();
+  }
+  [Flux(42)] private void OnTestAnswer() //6.2
+  {
+    Debug.Log($"OnTestAnswer on TestFlux");
+  }
 }
 ```
 
-other things
 
-```cs
-// Flux With String and Int Keys 
-"1".Invoke();
-int _2 = "2".Invoke<int>();
-"3".Invoke<int>(42);
-int _4 = "4".Invoke<int,int>(42);
-//
-5.Invoke();
-int _6 = 2.Invoke<int>();
-7.Invoke<int>(42);
-int _8 = 4.Invoke<int,int>(42);
-//--------
-// Other Fluxes
-"9".IEnumerator();
-"10".Task();
-"11".IObservable<int>();
-"12".IObserver<int>();
-//--------
-// Also you can create new ways to use Flux
-Kingdox.UniFlux.Core.Internal.Flux<byte>.TriggerAction(13);
-string _14 = Kingdox.UniFlux.Core.Internal.Flux<bool,string>.TriggerFunc(true);
-Kingdox.UniFlux.Core.Internal.Flux<bool,string>.TriggerActionParam(true,"15");
-float _16 = Kingdox.UniFlux.Core.Internal.Flux<double,string, float>.TriggerFuncParam(Math.PI, "PI");
-//--------
-// #define UNIFLUX_UNITASK_SUPPORT
-"123".UniTask();
-//--------
-// Allow Anonimous Subscriptions
-"42".Subscribe(()=>{}, true);
-```
+## Special Content
 
-License
----
-This library is under the MIT License.
+To enable special content you must #define
+
+| Definition | Description                |
+| :-------- | :------------------------- |
+| `UNIFLUX_UNITASK_SUPPORT` | Enable [Cysharp/UniTask]("https://github.com/Cysharp/UniTask") integration |
+
+
+## Contributing
+
+Contributions are always welcome!
+
+
+
+## Author Info
+
+[@kingdox](https://github.com/kingdox/)
+
+For support, email arpaxavier@gmail.com
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
