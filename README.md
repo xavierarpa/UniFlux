@@ -1,5 +1,5 @@
 
-![Logo](https://kingdox.github.io/assets/img/uniflux_black.png)
+![Logo](https://kingdox.github.io/assets/img/uniflux.png)
 
 UniFlux
 ===
