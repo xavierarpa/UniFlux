@@ -1,14 +1,14 @@
 UniFlux
 ===
-Provee una integración comoda del patron Flux orientado para unity.
-* Referencias 0 entre metodos. Permite comunicar metodos entre clases sin que nadie se conozca
-* Favorece la Programación Modular, Funcional y Reactiva
-* Integración de `IEnumerator, Task, IObservable<T>, IObserver<T>`. Tambien provee `UniTask`.
-* Bajo Requerimiento de aprendizaje, sueles usar `MonoFlux`, `[Flux(X)]` y `X.Invoke()`
-* Los Invoke que no poseen un retorno se comportan como Fire and Forget, permitiendo desactivar GameObjects sin que afecte el funcionamiento
-* Permite una escalabilidad para proyectos largos
-* Permite Crear proyectos rapidos sin preocuparse de comunicaciones
-* Extensible a crear tus propios tipos de `Flux<TKey>,Flux<TKey,TParamOrReturn> y Flux<TKey,TParam,TReturn>`
+Provides a convenient integration of the Flux pattern oriented for unity.
+* 0 references between methods. Allows to communicate methods between classes without anyone knowing each other.
+* Encourages Modular, Functional and Reactive Programming.
+* Integration of `IEnumerator, Task, IObservable<T>, IObserver<T>`. Also provides `UniTask`.
+* Under Learning Requirement, you usually use `MonoFlux`, `[Flux(X)]` and `X.Invoke()`.
+* Invoke that do not have a return behave like Fire and Forget, allowing you to disable GameObjects without affecting performance.
+* Allows scalability for long projects
+* Allows to create fast projects without worrying about communications
+* Extensible to create your own `Flux<TKey>,Flux<TKey,TParamOrReturn> and Flux<TKey,TParam,TReturn>` types.
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
