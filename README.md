@@ -52,7 +52,7 @@ public sealed class StarterFlux : MonoFlux // 2
   {
     "StarterFlux.CastTest".Invoke(); // 3
   }
-  [Flux("StarterFlux.CastTest"] private void CastTest()  // 4
+  [Flux("StarterFlux.CastTest")] private void CastTest()  // 4
   {
     Data.Key.OnTest.Invoke(42);
   }
@@ -64,7 +64,7 @@ public sealed class StarterFlux : MonoFlux // 2
 //...
 public sealed class TestFlux : MonoFlux 
 {
-  [Flux(Data.Key.OnTest] private void OnTest(int data) // 5
+  [Flux(Data.Key.OnTest)] private void OnTest(int data) // 5
   {
     Debug.Log($"The answer of everithing {data}");
     data.Invoke();
