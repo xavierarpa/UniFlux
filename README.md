@@ -24,7 +24,7 @@ UniFlux
 - Encourages Modular, Functional and Reactive Programming.
 - Integration of `IEnumerator, Task, IObservable<T>, IObserver<T>`. Also provides `UniTask`.
 - Under Learning Requirement, you usually use `MonoFlux`, `[Flux(X)]` and `X.Invoke()`.
-- Invoke that do not have a return behave like Fire and Forget, allowing you to disable GameObjects without affecting performance.
+- Invoke that do not have a return behave like Fire and Forget, allowing you to disable GameObjects.
 - Allows scalability for long projects
 - Allows to create fast projects without worrying about communications
 - Extensible to create your own `Flux<TKey>,Flux<TKey,TParamOrReturn> and Flux<TKey,TParam,TReturn>` types.
