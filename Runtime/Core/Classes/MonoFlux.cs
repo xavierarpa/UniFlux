@@ -20,18 +20,38 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using UnityEngine;
-using Kingdox.Flux.Core.Internal;
-namespace Kingdox.Flux
+using Kingdox.UniFlux.Core.Internal;
+namespace Kingdox.UniFlux
 {
+    /// <summary>
+    /// The `MonoFlux` class is a base class that should be used for all Unity scripts that need to respond to changes in a flux state. 
+    /// It provides a helper method for subscribing and unsubscribing to flux state updates, and a virtual method that can be overriden to handle changes in subscription state. 
+    /// </summary>
     public abstract partial class MonoFlux : MonoBehaviour
     {
-        private void OnEnable()  => __OnSubscription(true);
-        private void OnDisable()  => __OnSubscription(false);
-        private void __OnSubscription(bool condition)
+        /// <summary>
+        /// Called when the script instance is being enabled.
+        /// </summary>
+        private void OnEnable()  => OnSubscription(true);
+        /// <summary>
+        /// Called when the script instance is being disabled.
+        /// </summary>
+        private void OnDisable()  => OnSubscription(false);
+        /// <summary>
+        /// Helper method to subscribe or unsubscribe from the flux state updates.
+        /// </summary>
+        /// <param name="condition">Whether to subscribe or unsubscribe.</param>
+        private void OnSubscription(bool condition)
         {
-            this.Subscribe(condition);
-            OnEnableDisable(condition);
+            // Subscribe or unsubscribe from flux state updates
+            this.Subscribe(in condition);
+            // Call OnFlux method with the new subscription state
+            OnFlux(in condition);
         }
-        protected virtual void OnEnableDisable(bool condition) { }
+        /// <summary>
+        /// Override this method to react to changes in subscription state.
+        /// </summary>
+        /// <param name="condition">Whether the object is being subscribed or unsubscribed.</param>
+        protected virtual void OnFlux(in bool condition) { }
     }
 }

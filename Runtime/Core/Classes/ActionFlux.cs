@@ -21,16 +21,28 @@ SOFTWARE.
 */
 using System;
 using System.Collections.Generic;
-namespace Kingdox.Flux.Core.Internal
+namespace Kingdox.UniFlux.Core.Internal
 {
-    //<summary>
-    // Flux Action
-    //<summary>
+    ///<summary>
+    /// This class represents an implementation of an IFlux interface with a TKey key and an action without parameters.
+    ///</summary>
     public partial class ActionFlux<TKey> :  IFlux<TKey, Action>
     {
+        /// <summary>
+        /// A dictionary that stores functions with no parameters
+        /// </summary>
         Dictionary<TKey, Action> dictionary = new Dictionary<TKey, Action>();
+        /// <summary>
+        /// Gets the dictionary that stores the functions with no parameters
+        /// </summary>
         Dictionary<TKey, Action> IDictionary<TKey, Action>.Dictionary => dictionary;
-        void ISubscribe<TKey, Action>.Subscribe(in bool condition, in TKey key, Action action)
+        ///<summary>
+        /// Subscribes an event to the action dictionary if the given condition is met
+        ///</summary>
+        ///<param name="condition">Condition that must be true to subscribe the event</param>
+        ///<param name="key">Key of the event to subscribe</param>
+        ///<param name="action">Action to execute when the event is triggered</param>
+        void ISubscribe<TKey, Action>.Subscribe(in bool condition, TKey key, Action action)
         {
             if (condition)
             {
@@ -43,21 +55,34 @@ namespace Kingdox.Flux.Core.Internal
                 if (dictionary[key] == null) dictionary.Remove(key);
             }
         }
+        ///<summary>
+        /// Triggers the function stored in the dictionary with the specified key. 
+        ///</summary>
         void ITrigger<TKey>.Trigger(TKey key)
         {
             if (dictionary.ContainsKey(key)) dictionary[key]?.Invoke();
         }
     }
-
-
-    //<summary>
-    // Flux Action<T>
-    //<summary>
+    ///<summary>
+    /// This class represents an implementation of an IFlux interface with a TKey key and an action without parameters.
+    ///</summary>
     public partial class ActionFluxParam<TKey, TValue> : IFluxParam<TKey, TValue, Action<TValue>>
     {
+        /// <summary>
+        /// A dictionary that stores functions with parameters
+        /// </summary>
         Dictionary<TKey, Action<TValue>> dictionary = new Dictionary<TKey, Action<TValue>>();
+        /// <summary>
+        /// Gets the dictionary that stores the functions with parameters
+        /// </summary>
         Dictionary<TKey, Action<TValue>> IDictionary<TKey, Action<TValue>>.Dictionary => dictionary;
-        void ISubscribe<TKey, Action<TValue>>.Subscribe(in bool condition, in TKey key, Action<TValue> action)
+        ///<summary>
+        /// Subscribes an event to the action dictionary if the given condition is met
+        ///</summary>
+        ///<param name="condition">Condition that must be true to subscribe the event</param>
+        ///<param name="key">Key of the event to subscribe</param>
+        ///<param name="action">Action to execute when the event is triggered</param>
+        void ISubscribe<TKey, Action<TValue>>.Subscribe(in bool condition, TKey key, Action<TValue> action)
         {
             if (condition)
             {
@@ -70,6 +95,9 @@ namespace Kingdox.Flux.Core.Internal
                 if (dictionary[key] == null) dictionary.Remove(key);
             }
         }
+        ///<summary>
+        /// Triggers the function stored in the dictionary with the specified key and set the parameter as argument 
+        ///</summary>
         void ITriggerParam<TKey, TValue>.Trigger(TKey key, TValue param)
         {
             if (dictionary.ContainsKey(key)) dictionary[key]?.Invoke(param);

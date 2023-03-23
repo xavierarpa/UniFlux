@@ -1,8 +1,9 @@
 {
-    "name": "Kingdox.Flux.String",
+    "name": "Kingdox.UniFlux.String",
     "rootNamespace": "",
     "references": [
-        "GUID:2685e17443a71469b8a7d77c939a986e"
+        "GUID:de019c8aab09b4d288cc87e3fd9c0b9e",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

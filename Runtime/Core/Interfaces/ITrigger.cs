@@ -19,34 +19,46 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-namespace Kingdox.Flux.Core.Internal
+namespace Kingdox.UniFlux.Core.Internal
 {
-    // <summary>
-    //  Trigger TKey
-    // <summary>
-    public interface ITrigger<in TKey> // TKey
+    /// <summary>
+    ///  Trigger TKey
+    /// </summary>
+    public interface ITrigger<in TKey> /// TKey
     {
+        /// <summary>
+        ///  Trigger the TKey
+        /// </summary>
         void Trigger(TKey key);
     }
-    // <summary>
-    //  TKey TParam
-    // <summary>
-    public interface ITriggerParam<in TKey, in TParam> // TKey TParam
+    /// <summary>
+    ///  TKey TParam
+    /// </summary>
+    public interface ITriggerParam<in TKey, in TParam> /// TKey TParam
     {
+        /// <summary>
+        ///  Trigger the TKey with TParam
+        /// </summary>
         void Trigger(TKey key, TParam param);
     }
-    // <summary>
-    //  TKey TReturn
-    // <summary>
-    public interface ITriggerReturn<in TKey, out TReturn> // TKey TReturn
+    /// <summary>
+    ///  TKey TReturn
+    /// </summary>
+    public interface ITriggerReturn<in TKey, out TReturn> /// TKey TReturn
     {
+        /// <summary>
+        ///  Trigger the TKey and return TReturn
+        /// </summary>
         TReturn Trigger(TKey key);
     }
-    // <summary>
-    //  TKey TParam TReturn
-    // <summary>
-    public interface ITriggerParamReturn<in TKey, in TParam, out TReturn> // TKey TParam TReturn
+    /// <summary>
+    ///  TKey TParam TReturn
+    /// </summary>
+    public interface ITriggerParamReturn<in TKey, in TParam, out TReturn> /// TKey TParam TReturn
     {
+        /// <summary>
+        ///  Trigger the TKey with TParam and return TReturn
+        /// </summary>
         TReturn Trigger(TKey key, TParam param);
     }
 }

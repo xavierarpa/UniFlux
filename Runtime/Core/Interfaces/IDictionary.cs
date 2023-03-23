@@ -20,13 +20,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System.Collections.Generic;
-namespace Kingdox.Flux.Core.Internal
+namespace Kingdox.UniFlux.Core.Internal
 {
-    // <summary>
-    //  Dictionary
-    // <summary>
+    ///<summary>
+    /// Dictionary Interface
+    ///</summary>
     public interface IDictionary<TKey, TValue>
     {
+        ///<summary>
+        /// Dictionary Storage
+        ///</summary>
         Dictionary<TKey, TValue> Dictionary {get;}
     }
 }

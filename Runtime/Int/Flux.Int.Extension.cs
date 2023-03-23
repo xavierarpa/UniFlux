@@ -23,7 +23,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-namespace Kingdox.Flux
+namespace Kingdox.UniFlux
 {
 #region Common
     public static partial class FluxExtension //Action

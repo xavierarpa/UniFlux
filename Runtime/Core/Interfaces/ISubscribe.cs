@@ -19,13 +19,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-namespace Kingdox.Flux.Core.Internal
+namespace Kingdox.UniFlux.Core.Internal
 {
-    // <summary>
-    //  Susbcriber
-    // <summary>
-    public interface ISubscribe<TKey, TSubscribe>
+    ///<summary>
+    /// Interface to Subscribe TSubscribe
+    ///</summary>
+    public interface ISubscribe<in TKey, in TSubscribe>
     {
-        void Subscribe(in bool condition, in TKey key, TSubscribe storage);
+        ///<summary>
+        /// Subscribe TSubscribe with TKey
+        ///</summary>
+        void Subscribe(in bool condition, TKey key, TSubscribe storage);
     }
 }

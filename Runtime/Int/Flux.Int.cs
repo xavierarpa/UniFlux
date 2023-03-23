@@ -20,7 +20,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
-namespace Kingdox.Flux.Core
+namespace Kingdox.UniFlux.Core
 {
     public static partial class Flux // TKey (Action)
     {

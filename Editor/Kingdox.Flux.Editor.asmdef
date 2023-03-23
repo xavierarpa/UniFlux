@@ -1,9 +1,9 @@
 {
-    "name": "Kingdox.Flux.Editor",
+    "name": "Kingdox.UniFlux.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:5eab622f72b734023921bc4b52917d29",
-        "GUID:2685e17443a71469b8a7d77c939a986e"
+        "GUID:c472dcd59d5e04635bcf7408c5b016e5",
+        "GUID:de019c8aab09b4d288cc87e3fd9c0b9e"
     ],
     "includePlatforms": [
         "Editor"

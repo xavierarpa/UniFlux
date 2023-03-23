@@ -20,26 +20,26 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
-namespace Kingdox.Flux.Core
+namespace Kingdox.UniFlux.Core
 {
     public static partial class Flux // TKey (Action)
     {
-        public static void SubscribeAction(string key, Action action, bool condition) => Internal.Flux<string>.SubscribeAction(key, action, condition);
-        public static void TriggerAction(string key) => Internal.Flux<string>.TriggerAction(key);
+        public static void SubscribeAction(in string key, in Action action, in bool condition) => Internal.Flux<string>.SubscribeAction(in key, in action, in condition);
+        public static void TriggerAction(in string key) => Internal.Flux<string>.TriggerAction(in key);
     }
     public static partial class Flux<T> // TKey TParam (Action<T>)
     {
-        public static void SubscribeActionParam(string key, Action<T> action, bool condition) => Internal.Flux<string,T>.SubscribeActionParam(key, action, condition);
-        public static void TriggerActionParam(string key, T @param) => Internal.Flux<string,T>.TriggerActionParam(key, @param);
+        public static void SubscribeActionParam(in string key, in Action<T> action, in bool condition) => Internal.Flux<string,T>.SubscribeActionParam(in key, in action, in condition);
+        public static void TriggerActionParam(in string key,in T @param) => Internal.Flux<string,T>.TriggerActionParam(in key, in @param);
     }
     public static partial class Flux<T> // TKey TReturn (Func<out T>)
     {
-        public static void SubscribeFunc(string key, Func<T> action, bool condition) => Internal.Flux<string,T>.SubscribeFunc(key, action, condition);
-        public static T TriggerFunc(string key) => Internal.Flux<string, T>.TriggerFunc(key);
+        public static void SubscribeFunc(in string key, in Func<T> action, in bool condition) => Internal.Flux<string,T>.SubscribeFunc(in key, in action, in condition);
+        public static T TriggerFunc(in string key) => Internal.Flux<string, T>.TriggerFunc(in key);
     }
     public static partial class Flux<T,T2> // TKey TReturn (Func<T, out T>)
     {
-        public static void SubscribeFuncParam(string key, Func<T, T2> action, bool condition) => Internal.Flux<string,T,T2>.SubscribeFuncParam(key,action,condition);
-        public static T2 TriggerFuncParam(string key, T @param) => Internal.Flux<string,T,T2>.TriggerFuncParam(key, @param);
+        public static void SubscribeFuncParam(in string key, in Func<T, T2> action, in bool condition) => Internal.Flux<string,T,T2>.SubscribeFuncParam(in key, in action, in condition);
+        public static T2 TriggerFuncParam(in string key,in T @param) => Internal.Flux<string,T,T2>.TriggerFuncParam(in key, in @param);
     }    
 }

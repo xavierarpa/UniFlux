@@ -23,26 +23,50 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-namespace Kingdox.Flux
+namespace Kingdox.UniFlux
 {
+    ///<summary>
+    /// Class FluxAttribute, a custom attribute that mark a method to be subscribed in a flux.
+    ///</summary>
     [AttributeUsageAttribute(AttributeTargets.Method, AllowMultiple = false)]
     public class FluxAttribute : System.Attribute
     {
+        ///<summary>
+        /// Key provided to the attribute's constructor.
+        ///</summary>
         public readonly object key;
+        ///<summary>
+        /// Constructor of the FluxAttribute class that takes a key as a parameter.
+        ///</summary>
         public FluxAttribute(object key)
         {
             this.key = key;
         }
     }
 }
-namespace Kingdox.Flux.Core.Internal
+namespace Kingdox.UniFlux.Core.Internal
 {
-    internal static partial class SubscribeFluxExtension
+    ///<summary>
+    /// static class that ensure to handle the FluxAttribute
+    ///</summary>
+    internal static partial class FluxAttributeExtension
     {
+        ///<summary>
+        /// typeof(void)
+        ///</summary>
         private static readonly Type m_type_void = typeof(void);
+        ///<summary>
+        /// Dictionary to cache each MonoFlux instance's methods
+        ///</summary>
         private static readonly Dictionary<MonoFlux, List<MethodInfo>> m_monofluxes = new Dictionary<MonoFlux, List<MethodInfo>>();
+        ///<summary>
+        /// Dictionary to cache the FluxAttribute of each MethodInfo
+        ///</summary>
         private static readonly Dictionary<MethodInfo, FluxAttribute> m_methods = new Dictionary<MethodInfo, FluxAttribute>();
-        internal static void Subscribe(this MonoFlux monoflux, bool condition)
+        ///<summary>
+        /// Allows subscribe methods using `FluxAttribute` by reflection
+        ///</summary>
+        internal static void Subscribe(this MonoFlux monoflux, in bool condition)
         {
             if (!m_monofluxes.ContainsKey(monoflux))
             {
@@ -50,12 +74,11 @@ namespace Kingdox.Flux.Core.Internal
                     monoflux, 
                     monoflux.gameObject.GetComponent(typeof(MonoFlux)).GetType().GetMethods((BindingFlags)(-1)).Where(method => 
                     {
-                        var attribute = System.Attribute.GetCustomAttributes(method).FirstOrDefault((_att) => _att is FluxAttribute) as FluxAttribute;
-                        if (attribute != null)
+                        if(System.Attribute.GetCustomAttributes(method).FirstOrDefault((_att) => _att is FluxAttribute) is FluxAttribute _attribute)
                         {
-                            if(!m_methods.ContainsKey(method)) m_methods.Add(method, attribute); // ADD <Method, Attribute>!
+                            if(!m_methods.ContainsKey(method)) m_methods.Add(method, _attribute); // ADD <Method, Attribute>!
                             return true;
-                        }
+                        } 
                         else return false;
                     }).ToList()
                 );

@@ -25,9 +25,7 @@ using System.Reflection;
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using Kingdox.Flux;
-
-namespace Kingdox.Flux.Editor
+namespace Kingdox.UniFlux.Editor
 {
     [CustomEditor(typeof(MonoFlux), true)]
     public partial class ElementEditor : UnityEditor.Editor
@@ -35,8 +33,6 @@ namespace Kingdox.Flux.Editor
         private MethodInfo[] methods_subscribeAttrb;
         private Dictionary<MethodInfo, object[]> dic_method_parameters;
         private static bool showBox = false;
-
-
         private void OnEnable()
         {
             Type type = target.GetType();
@@ -44,7 +40,6 @@ namespace Kingdox.Flux.Editor
             methods_subscribeAttrb = methods.Where(m => m.GetCustomAttributes(typeof(FluxAttribute), true).Length > 0).ToArray();
             dic_method_parameters = methods_subscribeAttrb.Select(m => new { Method = m, Parameters = new object[m.GetParameters().Length] }).ToDictionary(mp => mp.Method, mp => mp.Parameters);
         }
-        
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
@@ -60,13 +55,10 @@ namespace Kingdox.Flux.Editor
                     showBox = !showBox;
                 }
             }
-
-            
             if(showBox)
             {
                 _Draw();
             }
-            
         }
         private void _Draw()
         {
@@ -82,9 +74,6 @@ namespace Kingdox.Flux.Editor
             {
                 richText = true
             };
-
-
-
             foreach (var item in methods_subscribeAttrb)
             {
                 var atribute = item.GetCustomAttribute<FluxAttribute>();
@@ -94,23 +83,17 @@ namespace Kingdox.Flux.Editor
                 var isErr_static = item.IsStatic;
                 var isError = isParameters || isErr_return || isErr_static;
                 string key_color =  isError ? "yellow" : "white";
-
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox);
-
                 GUILayout.Label( $"<color={key_color}>{atribute.key}</color>", style_title);
                 GUILayout.Label(item.ToString(), EditorStyles.whiteMiniLabel);
                 GenerateButton(buttonStyle,item);
-                
                 EditorGUILayout.BeginVertical();
                 GenerateParameters(item, parameters);
                 EditorGUILayout.EndVertical();
-
                 EditorGUILayout.EndVertical();
-
                 GUILayout.Space(5);
             }
         }
-
         private void GenerateParameters(MethodInfo item, ParameterInfo[] parameters)
         {
             // var args = dic_method_parameters[item];
@@ -122,7 +105,6 @@ namespace Kingdox.Flux.Editor
             // }
             // dic_method_parameters[item] = args;
         }
-
         private void GenerateButton(GUIStyle buttonStyle, MethodInfo item)
         {
             GUI.enabled = Application.isPlaying;

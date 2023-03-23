@@ -19,22 +19,22 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-namespace Kingdox.Flux.Core.Internal
+namespace Kingdox.UniFlux.Core.Internal
 {
-    // <summary>
-    //  TKey
-    // <summary>
+    /// <summary>
+    ///  TKey
+    /// </summary>
     public interface IFlux<TKey, TStorage>:  IDictionary<TKey, TStorage>, ISubscribe<TKey, TStorage>, ITrigger<TKey>{}
-    // <summary>
-    //  TKey TParam
-    // <summary>
+    /// <summary>
+    ///  TKey TParam
+    /// </summary>
     public interface IFluxParam<TKey, TParam, TStorage> : IDictionary<TKey, TStorage>, ISubscribe<TKey, TStorage>, ITriggerParam<TKey, TParam>{}
-    // <summary>
-    //  TKey TReturn
-    // <summary>
+    /// <summary>
+    ///  TKey TReturn
+    /// </summary>
     public interface IFluxReturn<TKey, TReturn, TStorage> : IDictionary<TKey, TStorage>, ISubscribe<TKey, TStorage>, ITriggerReturn<TKey, TReturn>{}
-    // <summary>
-    //  TKey TParam TReturn
-    // <summary>
+    /// <summary>
+    ///  TKey TParam TReturn
+    /// </summary>
     public interface IFluxParamReturn<TKey, TParam, TReturn, TStorage> : IDictionary<TKey, TStorage>, ISubscribe<TKey, TStorage>, ITriggerParamReturn<TKey, TParam, TReturn>{}
 }
