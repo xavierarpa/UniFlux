@@ -1,12 +1,7 @@
 {
-    "name": "Kingdox.Flux.Int.UniTask",
+    "name": "Kingdox.UniFlux.Core",
     "rootNamespace": "",
-    "references": [
-        "GUID:f51ebe6a0ceec4240a699833d6309b23",
-        "GUID:5eab622f72b734023921bc4b52917d29",
-        "GUID:2685e17443a71469b8a7d77c939a986e",
-        "GUID:f2e693b28f7ac432ab674a99473ec09a"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

@@ -20,10 +20,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 // asmdef Version Defines, enabled when com.cysharp.unitask is imported.
-#if FLUX_UNITASK_SUPPORT
+#if UNIFLUX_UNITASK_SUPPORT
 using System;
 using Cysharp.Threading.Tasks;
-namespace Kingdox.Flux
+namespace Kingdox.UniFlux
 {
 #region UniTask
     public static partial class FluxExtension //Action<UniTask>
