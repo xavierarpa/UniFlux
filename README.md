@@ -8,6 +8,8 @@ UniFlux
 
 [![Releases](https://img.shields.io/github/release/kingdox/UniFlux.svg)](https://github.com/kingdox/UniFlux/releases)
 
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+
 ## Table of Contents
 
 - [Features](#features)
