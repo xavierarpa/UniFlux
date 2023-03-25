@@ -36,15 +36,15 @@ UniFlux
 
 ## Installation
 
-1. You can use the *.unityPackage* in releases
+- You can use the *.unityPackage* in releases
 
-2. You can use the *.tzg in releases and add in PackageManager
+- You can use the *.tzg in releases and add in PackageManager
 
-3. You can add in PackageManager
+- You can add in PackageManager
 ```bash
 https://github.com/kingdox/UniFlux.git
 ```
-4. You can install via openupm CLI
+- You can install via openupm CLI
 ```bash
 openupm add com.kingdox.uniflux
 ```
