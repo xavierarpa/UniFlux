@@ -8,6 +8,9 @@ UniFlux
 
 [![Releases](https://img.shields.io/github/release/kingdox/UniFlux.svg)](https://github.com/kingdox/UniFlux/releases)
 
+[![UPM](https://img.shields.io/npm/v/com.kingdox.uniflux?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.kingdox.uniflux/)
+
+
 ## Table of Contents
 
 - [Features](#features)
@@ -32,7 +35,13 @@ UniFlux
 
 ## Installation
 
-Soon
+You can install via openupm CLI
+```bash
+openupm add com.kingdox.uniflux
+```
+
+Also you can use the *.unityPackage* in releases
+
 
 ## Usage/Examples
 
