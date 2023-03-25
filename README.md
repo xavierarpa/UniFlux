@@ -10,6 +10,9 @@ UniFlux
 
 [![UPM](https://img.shields.io/npm/v/com.kingdox.uniflux?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.kingdox.uniflux/)
 
+[![UPM](https://img.shields.io/github/downloads/kingdox/UniFlux/total?style=social)](https://img.shields.io/github/downloads/kingdox/UniFlux/total?style=social)
+
+
 
 ## Table of Contents
 
