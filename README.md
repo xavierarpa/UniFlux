@@ -20,6 +20,7 @@ UniFlux
 - [Special Content](#special-content)
 - [Contributing](#contributing)
 - [Author Info](#author-info)
+- [Special Thanks](#special-thanks)
 - [License](#license)
 
 ## Features
@@ -92,6 +93,15 @@ public sealed class TestFlux : MonoFlux
 ```
 
 ```cs
+float _life;
+public float Life
+{
+    [Flux("Get_Life")] get => _life;
+    [Flux("Set_Life")] set => _life = value;
+}
+```
+
+```cs
 // Flux With String and Int Keys 
 "1".Invoke();
 int _2 = "2".Invoke<int>();
@@ -137,12 +147,15 @@ To enable special content you must #define
 Contributions are always welcome!
 
 
-
 ## Author Info
 
 [@kingdox](https://github.com/kingdox/)
 
 For support, email arpaxavier@gmail.com
+
+## Special Thanks
+
+[@Quinowl](https://github.com/Quinowl)
 
 ## License
 
