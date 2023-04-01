@@ -4,8 +4,8 @@
     "author": { "name": "Xavier Thomas Peter Arpa López ('Kingdox')", "url": "https://github.com/kingdox" },
     "version": "1.0.0",
     "unity": "2020.1",
-    "description": "Provides an method pub/sub flow integration to Unity.",
-    "keywords": [ "async/await", "async", "Task", "Unity", "Flux", "UniFlux" ],
+    "description": "Provides Flux flow integration to Unity.",
+    "keywords": [ "Flux", "Unity", "UniFlux", "async/await", "async", "Task" ],
     "license": "MIT",
     "category": "Flux",
     "dependencies": {}

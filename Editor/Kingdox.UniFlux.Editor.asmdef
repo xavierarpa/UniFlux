@@ -2,7 +2,6 @@
     "name": "Kingdox.UniFlux.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:c472dcd59d5e04635bcf7408c5b016e5",
         "GUID:de019c8aab09b4d288cc87e3fd9c0b9e"
     ],
     "includePlatforms": [

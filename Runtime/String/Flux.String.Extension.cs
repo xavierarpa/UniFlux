@@ -23,6 +23,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+
+// asmdef Version Defines, enabled when com.cysharp.unitask is imported.
+#if UNIFLUX_UNITASK_SUPPORT
+    using Cysharp.Threading.Tasks;
+    namespace Kingdox.UniFlux
+    {
+        public static partial class FluxExtension //Action<UniTask>
+        {
+            public static void Subscribe(this string key, Action<UniTask> action, bool condition) => Core.Flux<UniTask>.SubscribeActionParam(key, action, condition);
+            public static void Subscribe(this string key, Func<UniTask> action, bool condition) => Core.Flux<UniTask>.SubscribeFunc(key, action, condition);
+            public static void Subscribe<T>(this string key, Func<UniTask<T>> action, bool condition) => Core.Flux<UniTask<T>>.SubscribeFunc(key, action, condition);
+            public static void Subscribe<T>(this string key, Func<T, UniTask> action, bool condition) => Core.Flux<T,UniTask>.SubscribeFuncParam(key, action, condition);
+            public static void Subscribe<T,T2>(this string key, Func<T, UniTask<T2>> action, bool condition) => Core.Flux<T,UniTask<T2>>.SubscribeFuncParam(key, action, condition);
+
+            public static UniTask @UniTask(this string key) => Core.Flux<UniTask>.TriggerFunc(key);
+            public static UniTask<T> @UniTask<T>(this string key) => Core.Flux<UniTask<T>>.TriggerFunc(key);
+            public static UniTask @UniTask<T>(this string key, T @param) => Core.Flux<T, UniTask>.TriggerFuncParam(key, @param);
+            public static UniTask<T2> @UniTask<T, T2>(this string key, T @param) => Core.Flux<T, UniTask<T2>>.TriggerFuncParam(key, @param);
+        }
+    }
+#endif
+
 namespace Kingdox.UniFlux
 {
 #region Common
