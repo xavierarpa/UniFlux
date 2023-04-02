@@ -94,17 +94,76 @@ namespace Kingdox.UniFlux.Editor
                 GUILayout.Space(5);
             }
         }
+        // private void GenerateParameters(MethodInfo item, ParameterInfo[] parameters)
+        // {
+        //     // var args = dic_method_parameters[item];
+        //     // for (int i = 0; i < parameters.Length; i++)
+        //     // {
+        //     //     EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
+        //     //     GUILayout.Label(parameters[i].ToString());
+        //     //     EditorGUILayout.EndHorizontal();
+        //     // }
+        //     // dic_method_parameters[item] = args;
+        // }
         private void GenerateParameters(MethodInfo item, ParameterInfo[] parameters)
         {
             // var args = dic_method_parameters[item];
+
             // for (int i = 0; i < parameters.Length; i++)
             // {
-            //     EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
-            //     GUILayout.Label(parameters[i].ToString());
-            //     EditorGUILayout.EndHorizontal();
+            //     var parameter = parameters[i];
+
+            //     if (parameter.ParameterType.IsValueType)
+            //     {
+            //         // El parámetro es primitivo
+            //         object defaultValue = Activator.CreateInstance(parameter.ParameterType);
+            //         object value = args[i] ?? defaultValue;
+
+            //         EditorGUILayout.BeginHorizontal(EditorStyles.helpBox);
+            //         GUILayout.Label(parameter.Name, GUILayout.Width(150));
+
+            //         if (parameter.ParameterType == typeof(int))
+            //         {
+            //             value = EditorGUILayout.IntField((int)value);
+            //         }
+            //         else if (parameter.ParameterType == typeof(float))
+            //         {
+            //             value = EditorGUILayout.FloatField((float)value);
+            //         }
+            //         else if (parameter.ParameterType == typeof(bool))
+            //         {
+            //             value = EditorGUILayout.Toggle((bool)value);
+            //         }
+            //         else if (parameter.ParameterType == typeof(string))
+            //         {
+            //             value = EditorGUILayout.TextField((string)value);
+            //         }
+            //         else if (parameter.ParameterType == typeof(Vector2))
+            //         {
+            //             value = EditorGUILayout.Vector2Field("", (Vector2)value);
+            //         }
+            //         else if (parameter.ParameterType == typeof(Vector3))
+            //         {
+            //             value = EditorGUILayout.Vector3Field("", (Vector3)value);
+            //         }
+            //         else if (parameter.ParameterType == typeof(Vector4))
+            //         {
+            //             value = EditorGUILayout.Vector4Field("", (Vector4)value);
+            //         }
+
+            //         args[i] = Convert.ChangeType(value, parameter.ParameterType);
+            //         EditorGUILayout.EndHorizontal();
+            //     }
+            //     else
+            //     {
+            //         // El parámetro no es primitivo
+            //         GUILayout.Label(parameter.Name + " (no primitivo)", EditorStyles.whiteMiniLabel);
+            //     }
             // }
+
             // dic_method_parameters[item] = args;
         }
+
         private void GenerateButton(GUIStyle buttonStyle, MethodInfo item)
         {
             GUI.enabled = Application.isPlaying;
