@@ -115,7 +115,48 @@ namespace Kingdox.UniFlux.Core.Internal
                         throw new System.Exception($"Error '{methods[i].Name}' : Theres more than one parameter, please set 1 or 0 parameter. (if you need to add more than 1 argument use Tuples or create a struct, record o class...)");
                     }
                 #endif
+                                      // Activity
+                Type keyType = m_methods[methods[i]].key.GetType();
+                Type fluxType;
+                Type delegateType;
+                string methodName;
+                //
+                switch ((_Parameters.Length.Equals(1), !methods[i].ReturnType.Equals(m_type_void)))
+                {
+                    case (false, false): 
+                        fluxType = typeof(Core.Internal.Flux<>).MakeGenericType(keyType);
+                        delegateType = typeof(Action);
+                        methodName = nameof(Core.Internal.Flux<object>.SubscribeAction);
+                    break;
+                    case (true, false): 
+                        fluxType = typeof(Core.Internal.Flux<,>).MakeGenericType(keyType, _Parameters[0].ParameterType);
+                        delegateType = typeof(Action<>).MakeGenericType(_Parameters[0].ParameterType); 
+                        methodName = nameof(Core.Internal.Flux<object,object>.SubscribeActionParam);
+                    break;
+                    case (false, true): 
+                        fluxType = typeof(Core.Internal.Flux<,>).MakeGenericType(keyType, methods[i].ReturnType);
+                        delegateType = typeof(Func<>).MakeGenericType(methods[i].ReturnType); 
+                        methodName = nameof(Core.Internal.Flux<object,object>.SubscribeFunc);
+                    break;
+                    case (true, true): 
+                        fluxType = typeof(Core.Internal.Flux<,,>).MakeGenericType(keyType, _Parameters[0].ParameterType, methods[i].ReturnType);
+                        delegateType = typeof(Func<,>).MakeGenericType(_Parameters[0].ParameterType, methods[i].ReturnType); 
+                        methodName = nameof(Core.Internal.Flux<object,object,object>.SubscribeFuncParam);
+                    break;
+                }
+                //Execute
+                fluxType.GetMethod(methodName).Invoke(
+                    null, 
+                    new object[]
+                    {
+                        m_methods[methods[i]].key,
+                        methods[i].CreateDelegate(delegateType, monoflux),
+                        condition
+                    }   
+                );
+                
                 // Optimized 😎👍
+                /*
                 switch ((_Parameters.Length.Equals(1), !methods[i].ReturnType.Equals(m_type_void)))
                 {
                     case (false, false): // Flux
@@ -131,6 +172,7 @@ namespace Kingdox.UniFlux.Core.Internal
                         m_type_fluxparamreturn.MakeGenericType(m_methods[methods[i]].key.GetType(), _Parameters[0].ParameterType, methods[i].ReturnType).GetMethod(m_type_fluxparamreturn_method).Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_fluxparamreturn_delegate.MakeGenericType(_Parameters[0].ParameterType, methods[i].ReturnType), monoflux), condition});
                     break;
                 }
+                */
             }
         }
     }
