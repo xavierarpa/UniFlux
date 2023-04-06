@@ -1,0 +1,103 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Kingdox.UniFlux.Core;
+// asmdef Version Defines, enabled when com.cysharp.unitask is imported.
+#if UNIFLUX_UNITASK_SUPPORT
+    using Cysharp.Threading.Tasks;
+    namespace Kingdox.UniFlux
+    {
+        public static partial class FluxExtension //Action<UniTask>
+        {
+            public static void Store(this #SCRIPTNAME# key, Action<UniTask> action, bool condition) => Flux.Store(key, action, condition);
+            public static void Store(this #SCRIPTNAME# key, Func<UniTask> action, bool condition) => Flux.Store(key, action, condition);
+            public static void Store<T>(this #SCRIPTNAME# key, Func<UniTask<T>> action, bool condition) => Flux.Store(key, action, condition);
+            public static void Store<T>(this #SCRIPTNAME# key, Func<T, UniTask> action, bool condition) => Flux.Store(key, action, condition);
+            public static void Store<T,T2>(this #SCRIPTNAME# key, Func<T, UniTask<T2>> action, bool condition) => Flux.Store(key, action, condition);
+
+            public static UniTask @UniTask(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#, UniTask>(key);
+            public static UniTask<T> @UniTask<T>(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#, UniTask<T>>(key);
+            public static UniTask @UniTask<T>(this #SCRIPTNAME# key, T @param) => Flux.Dispatch<#SCRIPTNAME#, T, UniTask>(key, @param);
+            public static UniTask<T2> @UniTask<T, T2>(this #SCRIPTNAME# key, T @param) => Flux.Dispatch<#SCRIPTNAME#, T, UniTask<T2>>(key, @param);
+        }
+    }
+#endif
+
+namespace Kingdox.UniFlux
+{
+#region Common
+    public static partial class FluxExtension //Action
+    {
+        public static void Store(this #SCRIPTNAME# key, in Action action, in bool condition) => Flux.Store(in key, in action,in condition);
+        public static void Dispatch(this #SCRIPTNAME# key) => Flux.Dispatch(key);
+    }
+    public static partial class FluxExtension //Action<T>
+    {
+        public static void Store<T>(this #SCRIPTNAME# key, in Action<T> action,in bool condition) => Flux.Store(in key, in action, in condition);
+        public static void Dispatch<T>(this #SCRIPTNAME# key, in T @param) => Flux.Dispatch(in key, in @param);
+    }
+    public static partial class FluxExtension //Func<out T>
+    {
+        public static void Store<T>(this #SCRIPTNAME# key, in Func<T> action, in bool condition) => Flux.Store(in key, in action, in condition);
+        public static T Dispatch<T>(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#, T>(in key);
+    }
+    public static partial class FluxExtension //Func<T, out T2>
+    {
+        public static void Store<T,T2>(this #SCRIPTNAME# key, in Func<T, T2> action, in bool condition) => Flux.Store(in key, in action, in condition);
+        public static T2 Dispatch<T, T2>(this #SCRIPTNAME# key, in T @param) => Flux.Dispatch<#SCRIPTNAME#, T, T2>(in key, in @param);
+    }
+#endregion
+#region IEnumerator
+    public static partial class FluxExtension //Action<IEnumerator>
+    {
+        public static void Store(this #SCRIPTNAME# key, in Action<IEnumerator> action, in bool condition) => Flux.Store(in key, in action, in condition);
+        public static void Store(this #SCRIPTNAME# key, in Func<IEnumerator> action, in bool condition) => Flux.Store(in key, in action, in condition);
+        public static void Store<T>(this #SCRIPTNAME# key, in Func<IEnumerator<T>> action, in bool condition) => Flux.Store(in key, in action, in condition);
+        public static void Store<T>(this #SCRIPTNAME# key, in Func<T, IEnumerator> action, in bool condition) => Flux.Store(in key, in action, in condition);
+        public static void Store<T,T2>(this #SCRIPTNAME# key, in Func<T, IEnumerator<T2>> action, in bool condition) => Flux.Store(in key, in action, in condition);
+
+        public static IEnumerator @IEnumerator(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#, IEnumerator>(in key);
+        public static IEnumerator<T> @IEnumerator<T>(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#, IEnumerator<T>>(in key);
+        public static IEnumerator @IEnumerator<T>(this #SCRIPTNAME# key, in T @param) => Flux.Dispatch<#SCRIPTNAME#, T, IEnumerator>(in key, in @param);
+        public static IEnumerator<T2> @IEnumerator<T, T2>(this #SCRIPTNAME# key, in T @param) => Flux.Dispatch<#SCRIPTNAME#, T, IEnumerator<T2>>(in key, in @param);
+    }
+#endregion
+#region Task
+    public static partial class FluxExtension //Action<Task>
+    {
+        public static void Store(this #SCRIPTNAME# key, in Action<Task> action, in bool condition) => Flux.Store(in key,in action,in condition);
+        public static void Store(this #SCRIPTNAME# key, in Func<Task> action, in bool condition) => Flux.Store(in key,in action,in condition);
+        public static void Store<T>(this #SCRIPTNAME# key, in Func<Task<T>> action, in bool condition) => Flux.Store(in key,in action,in condition);
+        public static void Store<T>(this #SCRIPTNAME# key, in Func<T, Task> action, in bool condition) => Flux.Store(in key,in action,in condition);
+        public static void Store<T,T2>(this #SCRIPTNAME# key, in Func<T, Task<T2>> action, in bool condition) => Flux.Store(in key,in action,in condition);
+
+        public static Task @Task(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#, Task>(key);
+        public static Task<T> @Task<T>(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#, Task<T>>(key);
+        public static Task @Task<T>(this #SCRIPTNAME# key, in T @param) => Flux.Dispatch<#SCRIPTNAME#, T, Task>(key, in @param);
+        public static Task<T2> @Task<T, T2>(this #SCRIPTNAME# key, in T @param) => Flux.Dispatch<#SCRIPTNAME#, T, Task<T2>>(key, in @param);
+    }
+#endregion
+#region IObservable<T>
+    public static partial class FluxExtension //Action<IObservable<T>>
+    {
+        public static void Store<T>(this #SCRIPTNAME# key, Action<IObservable<T>> action, bool condition) => Flux.Store(key, action, condition);
+        public static void Store<T>(this #SCRIPTNAME# key, Func<IObservable<T>> action, bool condition) => Flux.Store(key, action, condition);
+        public static void Store<T,T2>(this #SCRIPTNAME# key, Func<T, IObservable<T2>> action, bool condition) => Flux.Store(key, action, condition);
+        public static void @IObservable<T>(this #SCRIPTNAME# key, IObservable<T> @param) => Flux.Dispatch(key, @param);
+        public static IObservable<T> @IObservable<T>(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#,IObservable<T>>(key);
+        public static IObservable<T2> @IObservable<T,T2>(this #SCRIPTNAME# key, T @param) => Flux.Dispatch<#SCRIPTNAME#, T, IObservable<T2>>(key, @param);
+    }
+#endregion
+#region IObserver<T>
+    public static partial class FluxExtension //Action<IObserver<T>>
+    {
+        public static void Store<T>(this #SCRIPTNAME# key, Action<IObserver<T>> action, bool condition) => Flux.Store(key, action, condition);
+        public static void Store<T>(this #SCRIPTNAME# key, Func<IObserver<T>> action, bool condition) => Flux.Store(key, action, condition);
+        public static void Store<T,T2>(this #SCRIPTNAME# key, Func<T, IObserver<T2>> action, bool condition) => Flux.Store(key, action, condition);
+        public static void @IObserver<T>(this #SCRIPTNAME# key, IObserver<T> @param) => Flux.Dispatch(key, @param);
+        public static IObserver<T> @IObserver<T>(this #SCRIPTNAME# key) => Flux.Dispatch<#SCRIPTNAME#, IObserver<T>>(key);
+        public static IObserver<T2> @IObserver<T,T2>(this #SCRIPTNAME# key, T @param) => Flux.Dispatch<#SCRIPTNAME#, T, IObserver<T2>>(key, @param);
+    }
+#endregion
+}

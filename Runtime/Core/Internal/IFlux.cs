@@ -24,17 +24,41 @@ namespace Kingdox.UniFlux.Core.Internal
     /// <summary>
     ///  TKey
     /// </summary>
-    public interface IFlux<TKey, TStorage>:  IDictionary<TKey, TStorage>, ISubscribe<TKey, TStorage>, ITrigger<TKey>{}
+    internal interface IFlux<TKey, TStorage>:  IStore<TKey, TStorage>
+    {
+        /// <summary>
+        ///  Dispatch the TKey
+        /// </summary>
+        void Dispatch(in TKey key);
+    }
     /// <summary>
     ///  TKey TParam
     /// </summary>
-    public interface IFluxParam<TKey, TParam, TStorage> : IDictionary<TKey, TStorage>, ISubscribe<TKey, TStorage>, ITriggerParam<TKey, TParam>{}
+    internal interface IFluxParam<TKey, TParam, TStorage> : IStore<TKey, TStorage>
+    {
+        /// <summary>
+        ///  Dispatch the TKey with TParam
+        /// </summary>
+        void Dispatch(TKey key, TParam param);
+    }
     /// <summary>
     ///  TKey TReturn
     /// </summary>
-    public interface IFluxReturn<TKey, TReturn, TStorage> : IDictionary<TKey, TStorage>, ISubscribe<TKey, TStorage>, ITriggerReturn<TKey, TReturn>{}
+    internal interface IFluxReturn<TKey, TReturn, TStorage> : IStore<TKey, TStorage>
+    {
+        /// <summary>
+        ///  Dispatch the TKey and return TReturn
+        /// </summary>
+        TReturn Dispatch(TKey key);   
+    }
     /// <summary>
     ///  TKey TParam TReturn
     /// </summary>
-    public interface IFluxParamReturn<TKey, TParam, TReturn, TStorage> : IDictionary<TKey, TStorage>, ISubscribe<TKey, TStorage>, ITriggerParamReturn<TKey, TParam, TReturn>{}
+    internal interface IFluxParamReturn<TKey, TParam, TReturn, TStorage> : IStore<TKey, TStorage>
+    {
+        /// <summary>
+        ///  Dispatch the TKey with TParam and return TReturn
+        /// </summary>
+        TReturn Dispatch(TKey key, TParam param);
+    }
 }

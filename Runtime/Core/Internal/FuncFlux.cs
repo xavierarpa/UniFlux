@@ -29,21 +29,21 @@ namespace Kingdox.UniFlux.Core.Internal
     /// </summary>
     /// <typeparam name="TKey">The type of the keys used to store the functions in the dictionary.</typeparam>
     /// <typeparam name="TReturn">The return type of the functions stored in the dictionary.</typeparam>
-    public partial class FuncFlux<TKey, TReturn> : IFluxReturn<TKey, TReturn, Func<TReturn>>
+    internal sealed class FuncFlux<TKey, TReturn> : IFluxReturn<TKey, TReturn, Func<TReturn>>
     {
         /// <summary>
         /// A dictionary that stores functions with no parameters and a return value of type `TReturn`.
         /// </summary>
-        Dictionary<TKey, Func<TReturn>> dictionary = new Dictionary<TKey, Func<TReturn>>();
+        internal readonly Dictionary<TKey, Func<TReturn>> dictionary = new Dictionary<TKey, Func<TReturn>>();
         /// <summary>
         /// Gets the dictionary that stores the functions with no parameters and a return value of type `TReturn`.
         /// </summary>
-        Dictionary<TKey, Func<TReturn>> IDictionary<TKey, Func<TReturn>>.Dictionary => dictionary;
+        IDictionary<TKey, Func<TReturn>> IStore<TKey, Func<TReturn>>.Storage => dictionary;
         /// <summary>
         /// Subscribes the provided function to the dictionary with the specified key when `condition` is true. 
         /// If `condition` is false and the dictionary contains the specified key, the function is removed from the dictionary.
         /// </summary>
-        void ISubscribe<TKey, Func<TReturn>>.Subscribe(in bool condition, TKey key, Func<TReturn> func)
+        void IStore<TKey, Func<TReturn>>.Store(in bool condition, in TKey key, in Func<TReturn> func)
         {
             if (condition)
             {
@@ -60,7 +60,7 @@ namespace Kingdox.UniFlux.Core.Internal
         /// Triggers the function stored in the dictionary with the specified key and returns its return value. 
         /// If the dictionary does not contain the specified key, returns the default value of type `TReturn`.
         /// </summary>
-        TReturn ITriggerReturn<TKey, TReturn>.Trigger(TKey key)
+        TReturn IFluxReturn<TKey, TReturn, Func<TReturn>>.Dispatch(TKey key)
         {
             if (dictionary.ContainsKey(key)) return dictionary[key].Invoke();
             return default;
@@ -73,21 +73,21 @@ namespace Kingdox.UniFlux.Core.Internal
     /// <typeparam name="TKey">The type of the keys used to store the functions in the dictionary.</typeparam>
     /// <typeparam name="TParam">The type of the parameter passed to the functions stored in the dictionary.</typeparam>
     /// <typeparam name="TReturn">The return type of the functions stored in the dictionary.</typeparam>
-    public partial class FuncFluxParam<TKey, TParam, TReturn> : IFluxParamReturn<TKey, TParam, TReturn, Func<TParam, TReturn>>
+    internal sealed class FuncFluxParam<TKey, TParam, TReturn> : IFluxParamReturn<TKey, TParam, TReturn, Func<TParam, TReturn>>
     {
         /// <summary>
         /// A dictionary that stores functions with one parameter of type `TParam` and a return value of type `TReturn`.
         /// </summary>
-        Dictionary<TKey, Func<TParam, TReturn>> dictionary = new Dictionary<TKey, Func<TParam, TReturn>>();
+        internal readonly Dictionary<TKey, Func<TParam, TReturn>> dictionary = new Dictionary<TKey, Func<TParam, TReturn>>();
         /// <summary>
         /// Gets the dictionary that stores the functions with one parameter of type `TParam` and a return value of type `TReturn`.
         /// </summary>
-        Dictionary<TKey, Func<TParam, TReturn>> IDictionary<TKey, Func<TParam, TReturn>>.Dictionary => dictionary;
+        IDictionary<TKey, Func<TParam, TReturn>> IStore<TKey, Func<TParam, TReturn>>.Storage => dictionary;
         /// <summary>
         /// Subscribes the provided function to the dictionary with the specified key when `condition` is true. 
         /// If `condition` is false and the dictionary contains the specified key, the function is removed from the dictionary.
         /// </summary>
-        void ISubscribe<TKey, Func<TParam, TReturn>>.Subscribe(in bool condition, TKey key, Func<TParam, TReturn> func)
+        void IStore<TKey, Func<TParam, TReturn>>.Store(in bool condition, in TKey key, in Func<TParam, TReturn> func)
         {
             if (condition)
             {
@@ -104,7 +104,7 @@ namespace Kingdox.UniFlux.Core.Internal
         /// Triggers the function stored in the dictionary with the specified key and parameter, and returns its return value. 
         /// If the dictionary does not contain the specified key, returns the default value of type `TReturn`.
         /// </summary>
-        TReturn ITriggerParamReturn<TKey, TParam, TReturn>.Trigger(TKey key, TParam param)
+        TReturn IFluxParamReturn<TKey, TParam, TReturn, Func<TParam, TReturn>>.Dispatch(TKey key, TParam param)
         {
             if (dictionary.ContainsKey(key)) return dictionary[key].Invoke(param);
             return default;

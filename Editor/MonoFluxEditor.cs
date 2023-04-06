@@ -28,11 +28,11 @@ using System.Collections.Generic;
 namespace Kingdox.UniFlux.Editor
 {
     [CustomEditor(typeof(MonoFlux), true)]
-    public partial class ElementEditor : UnityEditor.Editor
+    public partial class MonoFluxEditor : UnityEditor.Editor
     {
         private MethodInfo[] methods_subscribeAttrb;
         private Dictionary<MethodInfo, object[]> dic_method_parameters;
-        private static bool showBox = false;
+        private static bool showBox = true;
         private void OnEnable()
         {
             Type type = target.GetType();

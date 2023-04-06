@@ -1,0 +1,6 @@
+{
+    "name": "Kingdox.UniFlux.Test.PlayMode",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ]
+}

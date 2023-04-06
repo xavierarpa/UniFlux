@@ -27,8 +27,8 @@ UniFlux
 - 0 references between methods. Allows to communicate methods between classes without anyone knowing each other.
 - Encourages Modular, Functional and Reactive Programming.
 - Integration of `IEnumerator, Task, IObservable<T>, IObserver<T>`. Also provides `UniTask`.
-- Under Learning Requirement, you usually use `MonoFlux`, `[Flux(X)]` and `X.Invoke()`.
-- Invokes that do not have a return behave like Fire and Forget.
+- Under Learning Requirement, you usually use `MonoFlux`, `[Flux(X)]` and `X.Dispatch()`.
+- Dispatchs that do not have a return behave like Fire and Forget.
 - Allows scalability for long projects
 - Allows to create fast projects without worrying about communications
 - Extensible to create your own `Flux<TKey>,Flux<TKey,TParamOrReturn> and Flux<TKey,TParam,TReturn>` types.
@@ -55,29 +55,39 @@ openupm add com.kingdox.uniflux
 using Kingdox.UniFlux; // 1
 public sealed class StarterFlux : MonoFlux // 2
 {
-  private void Start() => "StarterFlux.CastTest".Invoke(); // 3
+  private void Start() => "StarterFlux.CastTest".Dispatch(); // 3
 }
 //...
 public sealed class TestFlux : MonoFlux 
 {
-  [Flux("StarterFlux.CastTest")] private void CastTest() =>   Debug.Log("Hola Mundo"); // 4
+  [Flux("StarterFlux.CastTest")] private void CastTest() =>   Debug.Log("Hello World"); // 4
 }
 ```
 
 ```cs
+using Kingdox.UniFlux;
 float _life;
 public float Life
 {
     [Flux("Get_Life")] get => _life;
-    [Flux("Set_Life")] set => _life = value;
+    [Flux("Set_Life")] set 
+    {
+      _life = value;
+      "OnChange_Life".Dispatch(value);
+    }
 }
+//...
+  [Flux("OnChange_Life")] private void OnChange_Life(float value)
+  {
+    // ...
+  }
 ```
 
 ```cs
-"1".Invoke();
-int _2 = "2".Invoke<int>();
-"3".Invoke<int>(42);
-int _4 = "4".Invoke<int,int>(42);
+"1".Dispatch();
+int _2 = "2".Dispatch<int>();
+"3".Dispatch<int>(42);
+int _4 = "4".Dispatch<int,int>(42);
 ```
 
 ```cs
@@ -95,13 +105,13 @@ int _4 = "4".Invoke<int,int>(42);
 ```cs
 using Kingdox.UniFlux.Core.Internal;
 //...
-Flux<byte>.TriggerAction(13); //byte as key
-string _14 = Flux<bool,string>.TriggerFunc(true); //bool as key
-float _16 = Flux<double,string, float>.TriggerFuncParam(Math.PI, "PI"); //double as key
+Flux<byte>.Dispatch(13); //byte as key
+string _14 = Flux<bool,string>.Dispatch(true); //bool as key
+float _16 = Flux<double,string, float>.Dispatch(Math.PI, "PI"); //double as key
 ```
 
 ```cs
-"42".Subscribe(()=>{}, true); // Anonimous Subscriptions
+"42".Store(()=>{}, true); // Anonimous Subscriptions
 ```
 
 

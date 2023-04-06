@@ -19,16 +19,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+using System.Collections.Generic;
 namespace Kingdox.UniFlux.Core.Internal
 {
     ///<summary>
-    /// Interface to Subscribe TSubscribe
+    /// Flux Storage Interface
     ///</summary>
-    public interface ISubscribe<in TKey, in TSubscribe>
+    internal interface IStore<TKey, TStorage>
     {
         ///<summary>
-        /// Subscribe TSubscribe with TKey
+        /// Store all the TStorage by TKey key
         ///</summary>
-        void Subscribe(in bool condition, TKey key, TSubscribe storage);
+        IDictionary<TKey, TStorage> Storage {get;}
+        ///<summary>
+        /// Store TStorage with TKey
+        ///</summary>
+        void Store(in bool condition, in TKey key, in TStorage storage);
     }
 }

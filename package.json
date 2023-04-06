@@ -2,7 +2,7 @@
     "name": "com.kingdox.uniflux",
     "displayName": "UniFlux",
     "author": { "name": "Xavier Thomas Peter Arpa López ('Kingdox')", "url": "https://github.com/kingdox" },
-    "version": "1.0.0",
+    "version": "1.1.0",
     "unity": "2020.1",
     "description": "Provides Flux flow integration to Unity.",
     "keywords": [ "Flux", "Unity", "UniFlux", "async/await", "async", "Task" ],

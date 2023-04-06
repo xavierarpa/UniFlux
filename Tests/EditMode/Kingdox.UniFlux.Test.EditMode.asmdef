@@ -1,0 +1,9 @@
+{
+    "name": "Kingdox.UniFlux.Test.EditMode",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}
