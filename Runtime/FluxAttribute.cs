@@ -52,6 +52,8 @@ namespace Kingdox.UniFlux.Core.Internal
     ///</summary>
     internal static class FluxAttributeExtension
     {
+        internal static readonly BindingFlags m_bindingflag_all = (BindingFlags)(-1);
+        //
         internal static readonly Type m_type_monoflux = typeof(MonoFlux);
         //
         internal static readonly Type m_type_flux = typeof(Core.Internal.Flux<>);
@@ -92,7 +94,7 @@ namespace Kingdox.UniFlux.Core.Internal
             {
                 m_monofluxes.Add(
                     monoflux, 
-                    monoflux.gameObject.GetComponent(m_type_monoflux).GetType().GetMethods((BindingFlags)(-1)).Where(method => 
+                    monoflux.gameObject.GetComponent(m_type_monoflux).GetType().GetMethods(m_bindingflag_all).Where(method => 
                     {
                         if(System.Attribute.GetCustomAttributes(method).FirstOrDefault((_att) => _att is FluxAttribute) is FluxAttribute _attribute)
                         {
@@ -115,64 +117,78 @@ namespace Kingdox.UniFlux.Core.Internal
                         throw new System.Exception($"Error '{methods[i].Name}' : Theres more than one parameter, please set 1 or 0 parameter. (if you need to add more than 1 argument use Tuples or create a struct, record o class...)");
                     }
                 #endif
-                                      // Activity
-                Type keyType = m_methods[methods[i]].key.GetType();
-                Type fluxType;
-                Type delegateType;
-                string methodName;
+                // Activity
+                // Type keyType = m_methods[methods[i]].key.GetType();
+                // Type fluxType;
+                // Type delegateType;
+                // string methodName;
                 //
-                switch ((_Parameters.Length.Equals(1), !methods[i].ReturnType.Equals(m_type_void)))
-                {
-                    case (false, false): 
-                        fluxType = typeof(Core.Internal.Flux<>).MakeGenericType(keyType);
-                        delegateType = typeof(Action);
-                        methodName = nameof(Core.Internal.Flux<object>.SubscribeAction);
-                    break;
-                    case (true, false): 
-                        fluxType = typeof(Core.Internal.Flux<,>).MakeGenericType(keyType, _Parameters[0].ParameterType);
-                        delegateType = typeof(Action<>).MakeGenericType(_Parameters[0].ParameterType); 
-                        methodName = nameof(Core.Internal.Flux<object,object>.SubscribeActionParam);
-                    break;
-                    case (false, true): 
-                        fluxType = typeof(Core.Internal.Flux<,>).MakeGenericType(keyType, methods[i].ReturnType);
-                        delegateType = typeof(Func<>).MakeGenericType(methods[i].ReturnType); 
-                        methodName = nameof(Core.Internal.Flux<object,object>.SubscribeFunc);
-                    break;
-                    case (true, true): 
-                        fluxType = typeof(Core.Internal.Flux<,,>).MakeGenericType(keyType, _Parameters[0].ParameterType, methods[i].ReturnType);
-                        delegateType = typeof(Func<,>).MakeGenericType(_Parameters[0].ParameterType, methods[i].ReturnType); 
-                        methodName = nameof(Core.Internal.Flux<object,object,object>.SubscribeFuncParam);
-                    break;
-                }
+                // switch ((_Parameters.Length.Equals(1), !methods[i].ReturnType.Equals(m_type_void)))
+                // {
+                //     case (false, false): 
+                //         fluxType = typeof(Core.Internal.Flux<>).MakeGenericType(keyType);
+                //         delegateType = typeof(Action);
+                //         methodName = nameof(Core.Internal.Flux<object>.Store);
+                //     break;
+                //     case (true, false): 
+                //         fluxType = typeof(Core.Internal.FluxParam<,>).MakeGenericType(keyType, _Parameters[0].ParameterType);
+                //         delegateType = typeof(Action<>).MakeGenericType(_Parameters[0].ParameterType); 
+                //         methodName = nameof(Core.Internal.FluxParam<object,object>.Store);
+                //     break;
+                //     case (false, true): 
+                //         fluxType = typeof(Core.Internal.FluxReturn<,>).MakeGenericType(keyType, methods[i].ReturnType);
+                //         delegateType = typeof(Func<>).MakeGenericType(methods[i].ReturnType); 
+                //         methodName = nameof(Core.Internal.FluxReturn<object,object>.Store);
+                //     break;
+                //     case (true, true): 
+                //         fluxType = typeof(Core.Internal.FluxParamReturn<,,>).MakeGenericType(keyType, _Parameters[0].ParameterType, methods[i].ReturnType);
+                //         delegateType = typeof(Func<,>).MakeGenericType(_Parameters[0].ParameterType, methods[i].ReturnType); 
+                //         methodName = nameof(Core.Internal.FluxParamReturn<object,object,object>.Store);
+                //     break;
+                // }
                 //Execute
-                fluxType.GetMethod(methodName).Invoke(
-                    null, 
-                    new object[]
-                    {
-                        m_methods[methods[i]].key,
-                        methods[i].CreateDelegate(delegateType, monoflux),
-                        condition
-                    }   
-                );
+                // fluxType.GetMethod(methodName, (BindingFlags)(-1)).Invoke(
+                //     null, 
+                //     new object[]
+                //     {
+                //         m_methods[methods[i]].key,
+                //         methods[i].CreateDelegate(delegateType, monoflux),
+                //         condition
+                //     }   
+                // );
                 
                 // Optimized 😎👍
-                /*
                 switch ((_Parameters.Length.Equals(1), !methods[i].ReturnType.Equals(m_type_void)))
                 {
                     case (false, false): // Flux
-                        m_type_flux.MakeGenericType(m_methods[methods[i]].key.GetType()).GetMethod(m_type_flux_method).Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_flux_delegate, monoflux), condition});
+                        m_type_flux
+                            .MakeGenericType(m_methods[methods[i]].key.GetType())
+                            .GetMethod(m_type_flux_method, m_bindingflag_all)
+                            .Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_flux_delegate, monoflux), condition})
+                        ;
                     break;
                     case (true, false): // FluxParam
-                        m_type_fluxparam.MakeGenericType(m_methods[methods[i]].key.GetType(), _Parameters[0].ParameterType).GetMethod(m_type_fluxparam_method).Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_fluxparam_delegate.MakeGenericType(_Parameters[0].ParameterType), monoflux), condition});
+                        m_type_fluxparam
+                            .MakeGenericType(m_methods[methods[i]].key.GetType(), _Parameters[0].ParameterType)
+                            .GetMethod(m_type_fluxparam_method, m_bindingflag_all)
+                            .Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_fluxparam_delegate.MakeGenericType(_Parameters[0].ParameterType), monoflux), condition})
+                        ;
                     break;
                     case (false, true): //FluxReturn
-                        m_type_fluxreturn.MakeGenericType(m_methods[methods[i]].key.GetType(), methods[i].ReturnType).GetMethod(m_type_fluxreturn_method).Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_fluxreturn_delegate.MakeGenericType(methods[i].ReturnType), monoflux), condition});
+                        m_type_fluxreturn
+                            .MakeGenericType(m_methods[methods[i]].key.GetType(), methods[i].ReturnType)
+                            .GetMethod(m_type_fluxreturn_method, m_bindingflag_all)
+                            .Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_fluxreturn_delegate.MakeGenericType(methods[i].ReturnType), monoflux), condition})
+                        ;
                     break;
                     case (true, true): //FluxParamReturn
-                        m_type_fluxparamreturn.MakeGenericType(m_methods[methods[i]].key.GetType(), _Parameters[0].ParameterType, methods[i].ReturnType).GetMethod(m_type_fluxparamreturn_method).Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_fluxparamreturn_delegate.MakeGenericType(_Parameters[0].ParameterType, methods[i].ReturnType), monoflux), condition});
+                        m_type_fluxparamreturn
+                            .MakeGenericType(m_methods[methods[i]].key.GetType(), _Parameters[0].ParameterType, methods[i].ReturnType)
+                            .GetMethod(m_type_fluxparamreturn_method, m_bindingflag_all)
+                            .Invoke( null, new object[]{ m_methods[methods[i]].key, methods[i].CreateDelegate(m_type_fluxparamreturn_delegate.MakeGenericType(_Parameters[0].ParameterType, methods[i].ReturnType), monoflux), condition})
+                        ;
                     break;
                 }
-                */
             }
         }
     }
