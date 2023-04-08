@@ -1,0 +1,27 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Kingdox.UniFlux;
+
+namespace Service 
+{
+    private static partial class #SCRIPTNAME# // Data
+    {
+        private static partial class Data
+        {
+
+        }
+    }
+    public static partial class #SCRIPTNAME# // Key
+    {
+        public static partial class Key
+        {
+            private const string _#SCRIPTNAME# =  nameof(#SCRIPTNAME#) + ".";
+            // public const string Example = _#SCRIPTNAME# + "Example";
+        }
+    }
+    public static partial class #SCRIPTNAME# // Methods
+    {
+        // public static void Example() => Key.Example.Dispatch();
+    }
+}
