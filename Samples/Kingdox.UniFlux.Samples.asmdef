@@ -1,0 +1,16 @@
+{
+    "name": "Kingdox.UniFlux.Samples",
+    "rootNamespace": "",
+    "references": [
+        "GUID:deccb46461c684b399bd2ef983966192"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
