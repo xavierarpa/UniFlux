@@ -43,7 +43,7 @@ namespace Kingdox.UniFlux.Core.Internal
         /// Subscribes the provided function to the dictionary with the specified key when `condition` is true. 
         /// If `condition` is false and the dictionary contains the specified key, the function is removed from the dictionary.
         /// </summary>
-        void IStore<TKey, Func<TReturn>>.Store(in bool condition, in TKey key, in Func<TReturn> func)
+        void IStore<TKey, Func<TReturn>>.Store(in bool condition, in TKey key, in Func<TReturn> func) 
         {
             if (condition)
             {
