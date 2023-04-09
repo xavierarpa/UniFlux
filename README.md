@@ -51,7 +51,10 @@ https://github.com/kingdox/UniFlux.git
 ```bash
 openupm add com.kingdox.uniflux
 ```
-
+- You can install via npm
+```bash
+npm i com.kingdox.uniflux
+```
 ## Usage/Examples
 #### Common Scenarios
 ```csharp
