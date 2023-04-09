@@ -43,7 +43,7 @@ Created by Xavier Arpa (kingdox)
 
 - You can use the *.tzg in releases and add in PackageManager
 
-- You can add in PackageManager
+- You can add in PackageManager ([How to install package from git URL](https://docs.unity3d.com/Manual/upm-ui-giturl.html))
 ```bash
 https://github.com/kingdox/UniFlux.git
 ```
