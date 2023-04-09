@@ -1,26 +1,50 @@
+/*
+Copyright (c) 2023 Xavier Arpa López Thomas Peter ('Kingdox')
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+*/
 using UnityEngine;
 using Kingdox.UniFlux;
-public sealed class Sample_4 : MonoFlux
+namespace Kingdox.UniFlux.Sample
 {
-    [SerializeField] private int _shots;
-    private void Update()
+    public sealed class Sample_4 : MonoFlux
     {
-        Kingdox.UniFlux.Core.Flux.Dispatch(_shots < 10);
-    }
-    [Flux(true)]private void CanShot()
-    {
-        if(Time.frameCount % 60 == 0)
+        [SerializeField] private int _shots;
+        private void Update()
         {
-            "Shot".Dispatch(Time.frameCount);
+            Kingdox.UniFlux.Core.Flux.Dispatch(_shots < 10);
         }
-    }
-    [Flux("Shot")] private void Shot(int frameCount)
-    {
-        _shots++;
-        "LogShot".Dispatch((frameCount, _shots));
-    }
-    [Flux("LogShot")] private void LogShot((int frameCount, int shots) data)
-    {
-        Debug.Log(data);
+        [Flux(true)]private void CanShot()
+        {
+            if(Time.frameCount % 60 == 0)
+            {
+                "Shot".Dispatch(Time.frameCount);
+            }
+        }
+        [Flux("Shot")] private void Shot(int frameCount)
+        {
+            _shots++;
+            "LogShot".Dispatch((frameCount, _shots));
+        }
+        [Flux("LogShot")] private void LogShot((int frameCount, int shots) data)
+        {
+            Debug.Log(data);
+        }
     }
 }
