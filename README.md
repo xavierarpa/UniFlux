@@ -3,6 +3,8 @@
 
 UniFlux - Flux Integration for Unity
 ===
+Created by Xavier Arpa (kingdox)
+
 #### Provides a convenient integration of the Flux pattern oriented for unity.
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
