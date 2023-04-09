@@ -18,16 +18,13 @@ public sealed class Sample_3 : MonoFlux
     }
     private void Update()
     {
-        if (Time.frameCount % 60 == 0)
+        (Time.frameCount % 60).Dispatch();
+    }
+    [Flux(0)] private void OnUpdate() 
+    {
+        if("Get_Life".Dispatch<int>() > 0)
         {
-            if("Get_Life".Dispatch<int>() > 0)
-            {
-                "Set_Life".Dispatch("Get_Life".Dispatch<int>()-1);
-            }
-            else
-            {
-                //You're Dead !
-            }
+            "Set_Life".Dispatch("Get_Life".Dispatch<int>()-1);
         }
     }
     [Flux("OnChange_Life")] private void OnChange_Life(int life) 
