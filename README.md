@@ -1,7 +1,7 @@
 
 <!-- ![Logo](https://kingdox.github.io/assets/img/uniflux.png) -->
 
-UniFlux
+UniFlux - Flux Integration for Unity
 ===
 #### Provides a convenient integration of the Flux pattern oriented for unity.
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
