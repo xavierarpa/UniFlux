@@ -26,23 +26,23 @@ namespace Kingdox.UniFlux.Core.Internal
     ///<summary>
     /// This class represents an implementation of an IFlux interface with a TKey key and an action without parameters.
     ///</summary>
-    internal sealed class ActionFlux<TKey> :  IFlux<TKey, Action>
+    internal sealed class ActionFluxParam<TKey, TValue> : IFluxParam<TKey, TValue, Action<TValue>>
     {
         /// <summary>
-        /// A dictionary that stores functions with no parameters
+        /// A dictionary that stores functions with parameters
         /// </summary>
-        internal readonly Dictionary<TKey, Action> dictionary = new Dictionary<TKey, Action>();
+        internal readonly Dictionary<TKey, Action<TValue>> dictionary = new Dictionary<TKey, Action<TValue>>();
         /// <summary>
-        /// Gets the dictionary that stores the functions with no parameters
+        /// Gets the dictionary that stores the functions with parameters
         /// </summary>
-        IDictionary<TKey, Action> IStore<TKey, Action>.Storage => dictionary;
+        IDictionary<TKey, Action<TValue>> IStore<TKey, Action<TValue>>.Storage => dictionary;
         ///<summary>
         /// Subscribes an event to the action dictionary if the given condition is met
         ///</summary>
         ///<param name="condition">Condition that must be true to subscribe the event</param>
         ///<param name="key">Key of the event to subscribe</param>
         ///<param name="action">Action to execute when the event is triggered</param>
-        void IStore<TKey, Action>.Store(in bool condition, in TKey key, in Action action)
+        void IStore<TKey, Action<TValue>>.Store(in bool condition, in TKey key, in Action<TValue> action)
         {
             if (condition)
             {
@@ -56,11 +56,11 @@ namespace Kingdox.UniFlux.Core.Internal
             }
         }
         ///<summary>
-        /// Triggers the function stored in the dictionary with the specified key. 
+        /// Triggers the function stored in the dictionary with the specified key and set the parameter as argument 
         ///</summary>
-        void IFlux<TKey, Action>.Dispatch(in TKey key)
+        void IFluxParam<TKey, TValue, Action<TValue>>.Dispatch(TKey key, TValue param)
         {
-            if (dictionary.ContainsKey(key)) dictionary[key]?.Invoke();
+            if (dictionary.ContainsKey(key)) dictionary[key]?.Invoke(param);
         }
     }
 }

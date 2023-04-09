@@ -20,7 +20,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using UnityEngine;
-using Kingdox.UniFlux.Core.Internal;
 namespace Kingdox.UniFlux
 {
     /// <summary>
