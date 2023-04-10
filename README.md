@@ -110,7 +110,7 @@ int _4 = "4".Dispatch<int,int>(42);
 #### Advanced features
 
 ```cs
-using Kingdox.UniFlux.Core.Internal;
+using Kingdox.UniFlux.Core;
 //...
 Flux<byte>.Dispatch(13); //byte as key
 string _14 = Flux<bool,string>.Dispatch(true); //bool as key
