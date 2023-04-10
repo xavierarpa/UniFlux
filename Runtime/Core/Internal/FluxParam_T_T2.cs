@@ -22,7 +22,6 @@ SOFTWARE.
 using System;
 namespace Kingdox.UniFlux.Core.Internal
 {
-    
     ///<summary>
     /// Flux<T> Action<T2>
     ///</summary>
