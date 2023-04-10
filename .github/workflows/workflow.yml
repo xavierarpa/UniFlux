@@ -1,0 +1,17 @@
+name: CodeCove Test
+
+on: [push, pull_request]
+
+jobs:
+  run:
+    runs-on: ${{ ubuntu-latest }}
+    steps:
+    - name: Upload coverage reports to Codecov
+    - uses: codecov/codecov-action@v3
+    - uses: actions/checkout@master
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        files: ./coverage1.xml,./coverage2.xml # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: true # optional (default = false)
+        verbose: true # optional (default = false)
