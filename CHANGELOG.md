@@ -1,6 +1,19 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.1.1] - 2023-04-09
+
+### Added
+- Added "Architecture.io" to get a tiny view of perspective
+- Added Service Template
+- Added Samples of how to use the Package
+- Added Unit testing for Unity EditMode (WIP PlayMode)
+- Added a tiny documentation
+
+### Changed
+- Changed FluxAttribute.cs in Subscribe Method (And also removing the old structure)
+- Changed Scripts with more of one class into a single script to use different scripts
+
 ## [1.1.0] - 2023-04-06
 
 UniTask for Unity is now available ! You can use MonoFlux and [Flux("Hello World")] to create your own Action, then use "Hello World".Dispatch() and see the magic!
