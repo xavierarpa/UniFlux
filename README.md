@@ -9,6 +9,7 @@ Created by Xavier Arpa (kingdox)
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Build status](https://ci.appveyor.com/api/projects/status/712fvbpoio49ee91?svg=true)](https://ci.appveyor.com/project/kingdox/uniflux)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](https://makeapullrequest.com)
 
 [![Releases](https://img.shields.io/github/release/kingdox/UniFlux.svg)](https://github.com/kingdox/UniFlux/releases)
 [![UPM](https://img.shields.io/npm/v/com.kingdox.uniflux?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.kingdox.uniflux/)
@@ -16,12 +17,11 @@ Created by Xavier Arpa (kingdox)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/kingdox/uniflux/badge)](https://www.codefactor.io/repository/github/kingdox/uniflux)
 
-
 ## Table of Contents
 
 - [Features](#features)
 - [Installation](#installation)
-- [Usage/Examples](#usage-examples)
+- [Examples](#examples)
 - [Special Content](#special-content)
 - [Contributing](#contributing)
 - [Author Info](#author-info)
@@ -58,8 +58,8 @@ openupm add com.kingdox.uniflux
 ```bash
 npm i com.kingdox.uniflux
 ```
-## Usage/Examples
-#### Common Scenarios
+
+## Examples
 ```csharp
 using Kingdox.UniFlux; // 1
 public sealed class StarterFlux : MonoFlux // 2
