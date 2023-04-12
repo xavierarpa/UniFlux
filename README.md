@@ -144,6 +144,10 @@ Contributions are always welcome!
 
 For support, email arpaxavier@gmail.com
 
+[![Twitter](https://img.shields.io/twitter/follow/_kingdox_.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=_kingdox_)  
+
+[![LinkedIn](https://img.shields.io/badge/Linkedin-%0332301a0.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/xavier-arpa-0332301a0/)  
+
 ## Special Thanks
 
 [@Quinowl](https://github.com/Quinowl)
