@@ -37,25 +37,28 @@ namespace Kingdox.UniFlux.Core.Internal
         /// </summary>
         internal readonly Dictionary<TKey, Func<TParam, TReturn>> dictionary = new Dictionary<TKey, Func<TParam, TReturn>>();
         /// <summary>
-        /// Gets the dictionary that stores the functions with one parameter of type `TParam` and a return value of type `TReturn`.
+        /// A Read Only dictionary wich contains dictionary field
         /// </summary>
-        IDictionary<TKey, Func<TParam, TReturn>> IStore<TKey, Func<TParam, TReturn>>.Storage => dictionary;
+        internal readonly IReadOnlyDictionary<TKey, Func<TParam, TReturn>> dictionary_read = null;
+        /// <summary>
+        /// Constructor of FuncFlux
+        /// </summary>
+        public FuncFluxParam()
+        {
+            dictionary_read = dictionary;
+        }
         /// <summary>
         /// Subscribes the provided function to the dictionary with the specified key when `condition` is true. 
         /// If `condition` is false and the dictionary contains the specified key, the function is removed from the dictionary.
         /// </summary>
         void IStore<TKey, Func<TParam, TReturn>>.Store(in bool condition, in TKey key, in Func<TParam, TReturn> func)
         {
-            if (condition)
+            if(dictionary_read.TryGetValue(key, out var _functions))
             {
-                if (!dictionary.ContainsKey(key)) dictionary.Add(key, default);
-                dictionary[key] += func;
+                if (condition) _functions += func;
+                else _functions -= func;
             }
-            else if (dictionary.ContainsKey(key))
-            {
-                dictionary[key] -= func;
-                if (dictionary[key] == null) dictionary.Remove(key);
-            }   
+            else if (condition) dictionary.Add(key, func);
         }
         /// <summary>
         /// Triggers the function stored in the dictionary with the specified key and parameter, and returns its return value. 
@@ -63,7 +66,7 @@ namespace Kingdox.UniFlux.Core.Internal
         /// </summary>
         TReturn IFluxParamReturn<TKey, TParam, TReturn, Func<TParam, TReturn>>.Dispatch(TKey key, TParam param)
         {
-            if (dictionary.ContainsKey(key)) return dictionary[key].Invoke(param);
+            if(dictionary_read.TryGetValue(key, out var _actions)) return _actions.Invoke(param);
             return default;
         }
     }

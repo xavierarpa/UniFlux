@@ -32,45 +32,76 @@ namespace Kingdox.UniFlux.Tests
 {
     public class EditMode_Test_1
     {
-        [Test] public void EditMode_Test_2_UniFlux_Subscribe_Pass()
+        [Test] public void _0_EntireWorkFlow()
         {
             //Subscribe
-            Flux.Store("OnTest", OnTest_Action, true); // Action
-            Flux.Store<string,bool>("OnTest", OnTest_ActionParam, true); // ActionParam
-            Flux.Store<string, int>("OnTest", OnTest_Func, true); // Func
-            Flux.Store<string,float,float>("OnTest", OnTest_FuncPatam, true); // FuncParam
-        }
-        [Test] public void EditMode_Test_3_UniFlux_Action_Pass()
-        {
-            //Action
-            Flux.Dispatch("OnTest"); // Action
-            Flux.Dispatch("OnTest", true); // ActionParamal
-            var val = Flux.Dispatch<string,int>("OnTest"); // Func
-            var val_2 = Flux.Dispatch<string, float, float>("OnTest", 3f); // FuncParam
-        }
-        [Test] public void EditMode_Test_4_UniFlux_Unsubscribe_Pass()
-        {
+            SubscribeAction();
+            SubscribeActionParam();
+            SubscribeFunc();
+            SubscribeFuncParam();
+            //Dispatch
+            DispatchAction();
+            DispatchActionParam();
+            DispatchFunc();
+            DispatchFuncParam();
             //Unsubscribe
-            Flux.Store("OnTest", OnTest_Action, false); // Action
-            Flux.Store<string, bool>("OnTest", OnTest_ActionParam, false); // ActionParam
-            Flux.Store<string, int>("OnTest", OnTest_Func, false); // Func
-            Flux.Store<string, float, float>("OnTest", OnTest_FuncPatam, false); // FuncParam
+            UnsubscribeAction();
+            UnsubscribeActionParam();
+            UnsubscribeFunc();
+            UnsubscribeFuncParam();
         }
-        public void OnTest_Action() 
+        [Test] public void SubscribeAction()
         {
-            Debug.Log("OnTest");
+            Flux.Store("OnTest", OnTest_Action, true);
         }
-        public void OnTest_ActionParam(bool condition) 
+        [Test] public void SubscribeActionParam()
         {
-            Debug.Log($"ActionParam: {condition}");
+            Flux.Store<string,bool>("OnTest", OnTest_ActionParam, true);
         }
-        public int OnTest_Func() 
+        [Test] public void SubscribeFunc()
         {
-            return 42;
+            Flux.Store<string, int>("OnTest", OnTest_Func, true);
         }
-        public float OnTest_FuncPatam(float value) 
+        [Test] public void SubscribeFuncParam()
         {
-            return value;
+            Flux.Store<string,float,float>("OnTest", OnTest_FuncPatam, true);
         }
+        [Test] public void DispatchAction()
+        {
+            Flux.Dispatch("OnTest");
+        }
+        [Test] public void DispatchActionParam()
+        {
+            Flux.Dispatch("OnTest", true);
+        }
+        [Test] public void DispatchFunc()
+        {
+            var val = Flux.Dispatch<string,int>("OnTest");
+        }
+        [Test] public void DispatchFuncParam()
+        {
+            var val_2 = Flux.Dispatch<string, float, float>("OnTest", 3f);
+        }
+        [Test] public void UnsubscribeAction()
+        {
+            Flux.Store("OnTest", OnTest_Action, false);
+        }
+        [Test] public void UnsubscribeActionParam()
+        {
+            Flux.Store<string, bool>("OnTest", OnTest_ActionParam, false);
+        }
+        [Test] public void UnsubscribeFunc()
+        {
+            Flux.Store<string, int>("OnTest", OnTest_Func, false);
+        }
+        [Test] public void UnsubscribeFuncParam()
+        {
+            Flux.Store<string, float, float>("OnTest", OnTest_FuncPatam, false);
+        }
+        public void OnTest_Action() {}
+        public void OnTest_ActionParam(bool condition) {}
+        public int OnTest_Func() => 1;
+        public float OnTest_FuncPatam(float value) => value;
     }
 }
+//Assert.AreNotEqual(0, val);

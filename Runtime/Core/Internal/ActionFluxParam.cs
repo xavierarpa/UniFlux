@@ -33,9 +33,16 @@ namespace Kingdox.UniFlux.Core.Internal
         /// </summary>
         internal readonly Dictionary<TKey, Action<TValue>> dictionary = new Dictionary<TKey, Action<TValue>>();
         /// <summary>
-        /// Gets the dictionary that stores the functions with parameters
+        /// A Read Only dictionary wich contains dictionary field
         /// </summary>
-        IDictionary<TKey, Action<TValue>> IStore<TKey, Action<TValue>>.Storage => dictionary;
+        internal readonly IReadOnlyDictionary<TKey, Action<TValue>> dictionary_read = null;
+        /// <summary>
+        /// Constructor of ActionFluxParam
+        /// </summary>
+        public ActionFluxParam()
+        {
+            dictionary_read = dictionary;
+        }
         ///<summary>
         /// Subscribes an event to the action dictionary if the given condition is met
         ///</summary>
@@ -44,23 +51,19 @@ namespace Kingdox.UniFlux.Core.Internal
         ///<param name="action">Action to execute when the event is triggered</param>
         void IStore<TKey, Action<TValue>>.Store(in bool condition, in TKey key, in Action<TValue> action)
         {
-            if (condition)
+            if(dictionary_read.TryGetValue(key, out var _actions))
             {
-                if (!dictionary.ContainsKey(key)) dictionary.Add(key, default);
-                dictionary[key] += action;
+                if (condition) _actions += action;
+                else _actions -= action;
             }
-            else if (dictionary.ContainsKey(key))
-            {
-                dictionary[key] -= action;
-                if (dictionary[key] == null) dictionary.Remove(key);
-            }
+            else if (condition) dictionary.Add(key, action);
         }
         ///<summary>
         /// Triggers the function stored in the dictionary with the specified key and set the parameter as argument 
         ///</summary>
         void IFluxParam<TKey, TValue, Action<TValue>>.Dispatch(TKey key, TValue param)
         {
-            if (dictionary.ContainsKey(key)) dictionary[key]?.Invoke(param);
+            if(dictionary_read.TryGetValue(key, out var _actions)) _actions?.Invoke(param);
         }
     }
 }

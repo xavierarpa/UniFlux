@@ -36,25 +36,28 @@ namespace Kingdox.UniFlux.Core.Internal
         /// </summary>
         internal readonly Dictionary<TKey, Func<TReturn>> dictionary = new Dictionary<TKey, Func<TReturn>>();
         /// <summary>
-        /// Gets the dictionary that stores the functions with no parameters and a return value of type `TReturn`.
+        /// A Read Only dictionary wich contains dictionary field
         /// </summary>
-        IDictionary<TKey, Func<TReturn>> IStore<TKey, Func<TReturn>>.Storage => dictionary;
+        internal readonly IReadOnlyDictionary<TKey, Func<TReturn>> dictionary_read = null;
+        /// <summary>
+        /// Constructor of FuncFlux
+        /// </summary>
+        public FuncFlux()
+        {
+            dictionary_read = dictionary;
+        }
         /// <summary>
         /// Subscribes the provided function to the dictionary with the specified key when `condition` is true. 
         /// If `condition` is false and the dictionary contains the specified key, the function is removed from the dictionary.
         /// </summary>
         void IStore<TKey, Func<TReturn>>.Store(in bool condition, in TKey key, in Func<TReturn> func) 
         {
-            if (condition)
+            if(dictionary_read.TryGetValue(key, out var _functions))
             {
-                if (!dictionary.ContainsKey(key)) dictionary.Add(key, default);
-                dictionary[key] += func;
+                if (condition) _functions += func;
+                else _functions -= func;
             }
-            else if (dictionary.ContainsKey(key))
-            {
-                dictionary[key] -= func;
-                if (dictionary[key] == null) dictionary.Remove(key);
-            }
+            else if (condition) dictionary.Add(key, func);
         }
         // <summary>
         /// Triggers the function stored in the dictionary with the specified key and returns its return value. 
@@ -62,7 +65,7 @@ namespace Kingdox.UniFlux.Core.Internal
         /// </summary>
         TReturn IFluxReturn<TKey, TReturn, Func<TReturn>>.Dispatch(TKey key)
         {
-            if (dictionary.ContainsKey(key)) return dictionary[key].Invoke();
+            if(dictionary_read.TryGetValue(key, out var _actions)) return _actions.Invoke();
             return default;
         }
     }

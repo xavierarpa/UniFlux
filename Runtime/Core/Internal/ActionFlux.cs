@@ -33,9 +33,16 @@ namespace Kingdox.UniFlux.Core.Internal
         /// </summary>
         internal readonly Dictionary<TKey, Action> dictionary = new Dictionary<TKey, Action>();
         /// <summary>
-        /// Gets the dictionary that stores the functions with no parameters
+        /// A Read Only dictionary wich contains dictionary field
         /// </summary>
-        IDictionary<TKey, Action> IStore<TKey, Action>.Storage => dictionary;
+        internal readonly IReadOnlyDictionary<TKey, Action> dictionary_read = null;
+        /// <summary>
+        /// Constructor of ActionFLux
+        /// </summary>
+        public ActionFlux()
+        {
+            dictionary_read = dictionary;
+        }
         ///<summary>
         /// Subscribes an event to the action dictionary if the given condition is met
         ///</summary>
@@ -44,23 +51,19 @@ namespace Kingdox.UniFlux.Core.Internal
         ///<param name="action">Action to execute when the event is triggered</param>
         void IStore<TKey, Action>.Store(in bool condition, in TKey key, in Action action)
         {
-            if (condition)
+            if(dictionary_read.TryGetValue(key, out var _actions))
             {
-                if (!dictionary.ContainsKey(key)) dictionary.Add(key, default);
-                dictionary[key] += action;
+                if (condition) _actions += action;
+                else _actions -= action;
             }
-            else if (dictionary.ContainsKey(key))
-            {
-                dictionary[key] -= action;
-                if (dictionary[key] == null) dictionary.Remove(key);
-            }
+            else if (condition) dictionary.Add(key, action);
         }
         ///<summary>
         /// Triggers the function stored in the dictionary with the specified key. 
         ///</summary>
         void IFlux<TKey, Action>.Dispatch(in TKey key)
         {
-            if (dictionary.ContainsKey(key)) dictionary[key]?.Invoke();
+            if(dictionary_read.TryGetValue(key, out var _actions)) _actions?.Invoke();
         }
     }
 }

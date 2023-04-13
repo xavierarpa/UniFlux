@@ -1,6 +1,25 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.2.0] - 2023-04-09
+
+Now UniFlux is more optimized than before
+
+### Added
+- Added in ActionFlux dictionary_read for optimization purposes
+- Added in ActionParamFlux dictionary_read for optimization purposes
+- Added in FuncFLux dictionary_read for optimization purposes
+- Added in FuncParamFLux dictionary_read for optimization purposes
+
+### Removed
+- Removed Dictionary contract in IStore
+- Removed Test PlayMode for no test included yet
+
+### Optimized
+- Optimized Dispatching from ~100.000 iteration string key => 25ms to ~15ms
+- Optimized Storing Add from ~10.000 iteration string key => [300ms GC.Alloc 380MB] to [~15ms GC.Alloc 2.9MB]
+- Optimized Storing Remove from ~10.000 iteration string key => [300ms GC.Alloc 380MB] to [~15ms GC.Alloc 2.9MB]
+
 ## [1.1.1] - 2023-04-09
 
 ### Added
@@ -16,7 +35,7 @@ All notable changes to this package will be documented in this file.
 
 ## [1.1.0] - 2023-04-06
 
-UniTask for Unity is now available ! You can use MonoFlux and [Flux("Hello World")] to create your own Action, then use "Hello World".Dispatch() and see the magic!
+UniFlux for Unity is now available ! You can use MonoFlux and [Flux("Hello World")] to create your own Action, then use "Hello World".Dispatch() and see the magic!
 Summary:
 - using Kingdox.UniFlux
 - YourMonoBehaviour : MonoFlux
@@ -58,6 +77,7 @@ This is the first release of *UniFlux*.
     This is the a commit
 
     ### Added
+    ### Removed
     ### Fixed
     ### Changed
     ### Unreleased
