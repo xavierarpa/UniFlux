@@ -19,7 +19,6 @@ Created by Xavier Arpa (kingdox)
 
 ## Table of Contents
 
-- [Features](#features)
 - [Installation](#installation)
 - [Examples](#examples)
 - [Special Content](#special-content)
@@ -27,18 +26,6 @@ Created by Xavier Arpa (kingdox)
 - [Author Info](#author-info)
 - [Special Thanks](#special-thanks)
 - [License](#license)
-
-## Features
-
-- 0 references between methods. Allows to communicate methods between classes without anyone knowing each other.
-- Encourages Modular, Functional and Reactive Programming.
-- Integration of `IEnumerator, Task, IObservable<T>, IObserver<T>`. Also provides `UniTask`.
-- Under Learning Requirement, you usually use `MonoFlux`, `[Flux(X)]` and `X.Dispatch()`.
-- Dispatchs that do not have a return behave like Fire and Forget.
-- Allows scalability for long projects
-- Allows to create fast projects without worrying about communications
-- Extensible to create your own `Flux<TKey>,Flux<TKey,TParamOrReturn> and Flux<TKey,TParam,TReturn>` types.
-
 
 ## Installation
 
