@@ -44,6 +44,31 @@ using Kingdox.UniFlux.Core;
         }
     }
 #endif
+#if UNIFLUX_UNIRX_SUPPORT
+    namespace Kingdox.UniFlux
+    {
+        #if !(NETFX_CORE || NET_4_6 || NET_STANDARD_2_0 || UNITY_WSA_10_0)
+        public static partial class FluxExtension //Action<UniRx.IObservable<T>>
+        {
+            public static void Store<T>(this string key, Action<UniRx.IObservable<T>> action, bool condition) => Flux.Store(key, action, condition);
+            public static void Store<T>(this string key, Func<UniRx.IObservable<T>> action, bool condition) => Flux.Store(key, action, condition);
+            public static void Store<T,T2>(this string key, Func<T, UniRx.IObservable<T2>> action, bool condition) => Flux.Store(key, action, condition);
+            public static void @IObservable<T>(this string key, UniRx.IObservable<T> @param) => Flux.Dispatch(key, @param);
+            public static UniRx.IObservable<T> @IObservable<T>(this string key) => Flux.Dispatch<int,UniRx.IObservable<T>>(key);
+            public static UniRx.IObservable<T2> @IObservable<T,T2>(this string key, T @param) => Flux.Dispatch<int, T, UniRx.IObservable<T2>>(key, @param);
+        }
+        public static partial class FluxExtension //Action<UniRx.IObserver<T>>
+        {
+            public static void Store<T>(this string key, Action<UniRx.IObserver<T>> action, bool condition) => Flux.Store(key, action, condition);
+            public static void Store<T>(this string key, Func<UniRx.IObserver<T>> action, bool condition) => Flux.Store(key, action, condition);
+            public static void Store<T,T2>(this string key, Func<T, UniRx.IObserver<T2>> action, bool condition) => Flux.Store(key, action, condition);
+            public static void @IObserver<T>(this string key, UniRx.IObserver<T> @param) => Flux.Dispatch(key, @param);
+            public static UniRx.IObserver<T> @IObserver<T>(this string key) => Flux.Dispatch<int,UniRx.IObserver<T>>(key);
+            public static UniRx.IObserver<T2> @IObserver<T,T2>(this string key, T @param) => Flux.Dispatch<int, T, UniRx.IObserver<T2>>(key, @param);
+        }
+        #endif
+    }
+#endif
 namespace Kingdox.UniFlux
 {
 #region Common
