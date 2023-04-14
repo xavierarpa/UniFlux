@@ -128,5 +128,161 @@ namespace Kingdox.UniFlux
                 }
             }
         }
+        // internal static void Subscribe_v2(this MonoFlux monoflux, in bool condition)
+        // {
+        //     var methods = new List<(MethodInfo Method, FluxAttribute Attribute)>();
+        //     var methods_raw  = monoflux.GetType().GetMethods(m_bindingflag_all);
+        //     foreach (var method in methods_raw)
+        //     {
+        //         var attribute = method.GetCustomAttribute<FluxAttribute>();
+        //         if (attribute != null)
+        //         {
+        //             #if UNITY_EDITOR
+        //             if (method.GetParameters().Length > 1)
+        //             {
+        //                 throw new System.Exception($"Error '{method.Name}' : Theres more than one parameter, please set 1 or 0 parameter. (if you need to add more than 1 argument use Tuples or create a struct, record o class...)");
+        //             }
+        //             #endif
+        //             methods.Add((method, attribute));
+        //         }
+        //     }
+
+        //     foreach (var (method, attribute) in methods)
+        //     {
+        //         var parameters = method.GetParameters();
+        //         var returnType = method.ReturnType;
+
+        //         switch ((parameters.Length == 1, returnType != m_type_void))
+        //         {
+        //             case (false, false):
+        //                 m_type_flux.MakeGenericType(attribute.key.GetType())
+        //                     .GetMethod(m_type_flux_method, m_bindingflag_all)
+        //                     .Invoke(null, new object[] { attribute.key, Delegate.CreateDelegate(m_type_flux_delegate, monoflux, method), condition });
+        //                 break;
+        //             case (true, false):
+        //                 m_type_fluxparam.MakeGenericType(attribute.key.GetType(), parameters[0].ParameterType)
+        //                     .GetMethod(m_type_fluxparam_method, m_bindingflag_all)
+        //                     .Invoke(null, new object[] { attribute.key, Delegate.CreateDelegate(m_type_fluxparam_delegate.MakeGenericType(parameters[0].ParameterType), monoflux, method), condition });
+        //                 break;
+        //             case (false, true):
+        //                 m_type_fluxreturn.MakeGenericType(attribute.key.GetType(), returnType)
+        //                     .GetMethod(m_type_fluxreturn_method, m_bindingflag_all)
+        //                     .Invoke(null, new object[] { attribute.key, Delegate.CreateDelegate(m_type_fluxreturn_delegate.MakeGenericType(returnType), monoflux, method), condition });
+        //                 break;
+        //             case (true, true):
+        //                 m_type_fluxparamreturn.MakeGenericType(attribute.key.GetType(), parameters[0].ParameterType, returnType)
+        //                     .GetMethod(m_type_fluxparamreturn_method, m_bindingflag_all)
+        //                     .Invoke(null, new object[] { attribute.key, Delegate.CreateDelegate(m_type_fluxparamreturn_delegate.MakeGenericType(parameters[0].ParameterType, returnType), monoflux, method), condition });
+        //                 break;
+        //         }
+        //     }
+        // }
+        // internal static void Subscribe_v3(this MonoFlux monoflux, in bool condition)
+        // {
+        //     var methods_raw = monoflux.GetType().GetMethods(m_bindingflag_all);
+        //     var methods = new (MethodInfo Method, FluxAttribute Attribute)[methods_raw.Length];
+        //     var method_count = 0;
+
+        //     for (int i = 0; i < methods_raw.Length; i++)
+        //     {
+        //         var attribute = methods_raw[i].GetCustomAttribute<FluxAttribute>();
+        //         if (attribute != null)
+        //         {
+        //             #if UNITY_EDITOR
+        //             if (methods_raw[i].GetParameters().Length > 1) throw new System.Exception($"Error '{methods_raw[i].Name}' : Theres more than one parameter, please set 1 or 0 parameter. (if you need to add more than 1 argument use Tuples or create a struct, record o class...)");
+        //             #endif
+        //             methods[method_count++] = (methods_raw[i], attribute);
+        //         }
+        //     }
+
+        //     for (int i = 0; i < method_count; i++)
+        //     {
+        //         var method = methods[i].Method;
+        //         var attribute = methods[i].Attribute;
+        //         var parameters = method.GetParameters();
+        //         var returnType = method.ReturnType;
+
+        //         switch ((parameters.Length == 1, returnType != m_type_void))
+        //         {
+        //             case (false, false):
+        //                 m_type_flux.MakeGenericType(attribute.key.GetType())
+        //                     .GetMethod(m_type_flux_method, m_bindingflag_all)
+        //                     .Invoke(null, new object[] { attribute.key, Delegate.CreateDelegate(m_type_flux_delegate, monoflux, method), condition }.ToArray());
+        //                 break;
+        //             case (true, false):
+        //                 m_type_fluxparam.MakeGenericType(attribute.key.GetType(), parameters[0].ParameterType)
+        //                     .GetMethod(m_type_fluxparam_method, m_bindingflag_all)
+        //                     .Invoke(null, new object[] { attribute.key, Delegate.CreateDelegate(m_type_fluxparam_delegate.MakeGenericType(parameters[0].ParameterType), monoflux, method), condition }.ToArray());
+        //                 break;
+        //             case (false, true):
+        //                 m_type_fluxreturn.MakeGenericType(attribute.key.GetType(), returnType)
+        //                     .GetMethod(m_type_fluxreturn_method, m_bindingflag_all)
+        //                     .Invoke(null, new object[] { attribute.key, Delegate.CreateDelegate(m_type_fluxreturn_delegate.MakeGenericType(returnType), monoflux, method), condition }.ToArray());
+        //                 break;
+        //             case (true, true):
+        //                 m_type_fluxparamreturn.MakeGenericType(attribute.key.GetType(), parameters[0].ParameterType, returnType)
+        //                     .GetMethod(m_type_fluxparamreturn_method, m_bindingflag_all)
+        //                     .Invoke(null, new object[] { attribute.key, Delegate.CreateDelegate(m_type_fluxparamreturn_delegate.MakeGenericType(parameters[0].ParameterType, returnType), monoflux, method), condition }.ToArray());
+        //                 break;
+        //         }
+        //     }
+        // }
+        // internal static void Subscribe_v4(this MonoFlux monoflux, in bool condition)
+        // {
+        //     var methods_raw = monoflux.GetType().GetMethods(m_bindingflag_all);
+        //     var methods = new (MethodInfo Method, FluxAttribute Attribute)[methods_raw.Length];
+        //     var method_count = 0;
+        //     for (int i = 0; i < methods_raw.Length; i++)
+        //     {
+        //         var attribute = methods_raw[i].GetCustomAttribute<FluxAttribute>();
+        //         if (attribute != null)
+        //         {
+        //             methods[method_count++] = (methods_raw[i], attribute);
+        //         }
+        //     }
+        //     for (int i = 0; i < method_count; i++)
+        //     {
+        //         var method = methods[i].Method;
+        //         var attribute = methods[i].Attribute;
+        //         var parameters = method.GetParameters();
+        //         var returnType = method.ReturnType;
+
+        //         switch ((parameters.Length == 1, returnType != m_type_void))
+        //         {
+        //             case (false, false):
+        //                 var genericType = m_type_flux.MakeGenericType(attribute.key.GetType());
+        //                 var methodInfo = genericType.GetMethod(m_type_flux_method, m_bindingflag_all);
+        //                 var delegateType = m_type_flux_delegate;
+        //                 var delegateMethod = Delegate.CreateDelegate(delegateType, monoflux, method);
+        //                 var arguments = new object[] { attribute.key, delegateMethod, condition };
+        //                 methodInfo.Invoke(null, arguments);
+        //                 break;
+        //             case (true, false):
+        //                 genericType = m_type_fluxparam.MakeGenericType(attribute.key.GetType(), parameters[0].ParameterType);
+        //                 methodInfo = genericType.GetMethod(m_type_fluxparam_method, m_bindingflag_all);
+        //                 delegateType = m_type_fluxparam_delegate.MakeGenericType(parameters[0].ParameterType);
+        //                 delegateMethod = Delegate.CreateDelegate(delegateType, monoflux, method);
+        //                 arguments = new object[] { attribute.key, delegateMethod, condition };
+        //                 methodInfo.Invoke(null, arguments);
+        //                 break;
+        //             case (false, true):
+        //                 genericType = m_type_fluxreturn.MakeGenericType(attribute.key.GetType(), returnType);
+        //                 methodInfo = genericType.GetMethod(m_type_fluxreturn_method, m_bindingflag_all);
+        //                 delegateType = m_type_fluxreturn_delegate.MakeGenericType(returnType);
+        //                 delegateMethod = Delegate.CreateDelegate(delegateType, monoflux, method);
+        //                 arguments = new object[] { attribute.key, delegateMethod, condition };
+        //                 methodInfo.Invoke(null, arguments);
+        //                 break;
+        //             case (true, true):
+        //                 genericType = m_type_fluxparamreturn.MakeGenericType(attribute.key.GetType(), parameters[0].ParameterType, returnType);
+        //                 methodInfo = genericType.GetMethod(m_type_fluxparamreturn_method, m_bindingflag_all);
+        //                 delegateType = m_type_fluxparamreturn_delegate.MakeGenericType(parameters[0].ParameterType, returnType);
+        //                 delegateMethod = Delegate.CreateDelegate(delegateType, monoflux, method);
+        //                 arguments = new object[] { attribute.key, delegateMethod, condition };
+        //                 methodInfo.Invoke(null, arguments);
+        //                 break;
+        //         }
+        //     }
+        // }
     }
 }

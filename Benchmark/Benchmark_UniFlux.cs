@@ -20,25 +20,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Profiling;
-using Kingdox.UniFlux;
 using Kingdox.UniFlux.Core;
-namespace Kingdox.UniFlux
+namespace Kingdox.UniFlux.Benchmark
 {
-    [Serializable]
-    public class Marker
-    {
-        [SerializeField] public bool Execute=true;
-        [HideInInspector] public int iteration = 1;
-		[HideInInspector] public readonly Stopwatch sw = new Stopwatch();
-        [HideInInspector] public string K = "?";
-        public string Visual => $"{K} --- {iteration} iteration --- {sw.ElapsedMilliseconds} ms";
-    }
     public class Benchmark_UniFlux : MonoFlux
     {
         [SerializeField] private Marker _m_store_string_add = new Marker()
@@ -254,6 +241,10 @@ namespace Kingdox.UniFlux
         {
             // String Key Example
         }
+        [Flux("UniFlux.Dispatch")] private void Example_Dispatch_String2()
+        {
+            // String Key Example
+        }
         [Flux(0)] private void Example_Dispatch_Int()
         {
             // Int Key Example
@@ -262,6 +253,11 @@ namespace Kingdox.UniFlux
         {
             // Byte Key Example
         }
+        [Flux(false)] private void Example_Dispatch_Boolean_2(){}
+        [Flux(false)] private void Example_Dispatch_Boolean_3(){}
+        [Flux(false)] private void Example_Dispatch_Boolean_4(){}
+        [Flux(false)] private void Example_Dispatch_Boolean_5(){}
+        [Flux(false)] private void Example_Dispatch_Boolean_6(){}
         [Flux(true)] private void Example_Dispatch_Boolean()
         {
             // Boolean Key Example

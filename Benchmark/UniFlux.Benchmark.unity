@@ -167,60 +167,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e139bfc3d45574518a2463bf205e3296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _m_store_string_add:
+  _m_subscribe_attributes:
     Execute: 1
+    iteration: 1
+    K: OnFluxSubscribe
+  _m_store_string_add:
+    Execute: 0
     iteration: 1
     K: store<string,Action> ADD
   _m_store_int_add:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: store<int,Action> ADD
   _m_store_byte_add:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: store<byte,Action> ADD
   _m_store_bool_add:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: store<bool,Action> ADD
   _m_store_string_remove:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: store<string,Action> REMOVE
   _m_store_int_remove:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: store<int,Action> REMOVE
   _m_store_byte_remove:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: store<byte,Action> REMOVE
   _m_store_bool_remove:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: store<bool,Action> REMOVE
   _m_dispatch_string:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: dispatch<string>
   _m_dispatch_int:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: dispatch<int>
   _m_dispatch_byte:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: dispatch<byte>
   _m_dispatch_bool:
-    Execute: 1
+    Execute: 0
     iteration: 1
     K: dispatch<bool>
-  _iterations: 10000
+  _iterations: 100000
   _Results: []
   draw: 1
-  isUpdated: 1
-  isUpdated_store: 1
-  isUpdated_dispatch: 1
+  isUpdated: 0
+  isUpdated_store: 0
+  isUpdated_dispatch: 0
 --- !u!1 &1665547722
 GameObject:
   m_ObjectHideFlags: 0
