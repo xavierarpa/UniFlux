@@ -1,5 +1,4 @@
-
-<!-- ![Logo](https://kingdox.github.io/assets/img/uniflux.png) -->
+![Logo](https://kingdox.github.io/assets/img/uniflux.png)
 
 UniFlux - Flux Integration for Unity
 ===
@@ -19,6 +18,7 @@ Created by Xavier Arpa (kingdox)
 
 ## Table of Contents
 
+- [Performance](#performance)
 - [Examples](#examples)
 - [Installation](#installation)
 - [Special Content](#special-content)
@@ -26,6 +26,25 @@ Created by Xavier Arpa (kingdox)
 - [Author Info](#author-info)
 - [Special Thanks](#special-thanks)
 - [License](#license)
+
+## Performance
+Compared with others...
+| Name      | Iterations    | GC    | Time |
+|-----------|--------------:|------:|-----:|
+| UniFlux   | 10.000        | 0B    | 0ms  | 
+| Reflex    | 10.000        | 140KB | 1ms  |
+| Zenject   | 10.000        | 900KB | 7ms  |
+| VContainer| 10.000        | 257KB | 2ms  |
+
+Compared methods of UniFlux
+| Name      | Iterations    | GC    | Time |
+|-----------|--------------:|------:|-----:|
+| UniFlux (Dispatch<int>)           | 10.000        | 0b        | 0ms  | 
+| UniFlux (Dispatch<string>)        | 10.000        | 0b        | 1ms  | 
+| UniFlux (Store<int> ADD)          | 10.000        | 2.9MB     | ~8ms  |
+| UniFlux (Store<string> ADD)       | 10.000        | 2.9MB     | ~9ms  | 
+| UniFlux (Store<int> REMOVE)       | 10.000        | 1.2MB     | ~4ms  |
+| UniFlux (Store<string> REMOVE)    | 10.000        | 1.2MB     | ~4ms  | 
 
 ## Examples
 ```csharp
