@@ -2,7 +2,7 @@
 
 UniFlux - Flux Integration for Unity
 ===
-Created by Xavier Arpa (kingdox)
+Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
 #### Provides an efficient Flux integration for Unity.
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
