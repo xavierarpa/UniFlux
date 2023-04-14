@@ -33,5 +33,4 @@ namespace Kingdox.UniFlux.Benchmark
         [HideInInspector] public string K = "?";
         public string Visual => $"{K} --- {iteration} iteration --- {sw.ElapsedMilliseconds} ms";
     }
-
 }
