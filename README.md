@@ -5,7 +5,7 @@ UniFlux - Flux Integration for Unity
 ===
 Created by Xavier Arpa (kingdox)
 
-#### Provides a convenient integration of the Flux pattern oriented for unity.
+#### Provides an efficient Flux integration for Unity.
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Build status](https://ci.appveyor.com/api/projects/status/712fvbpoio49ee91?svg=true)](https://ci.appveyor.com/project/kingdox/uniflux)
@@ -19,45 +19,13 @@ Created by Xavier Arpa (kingdox)
 
 ## Table of Contents
 
-- [Features](#features)
-- [Installation](#installation)
 - [Examples](#examples)
+- [Installation](#installation)
 - [Special Content](#special-content)
 - [Contributing](#contributing)
 - [Author Info](#author-info)
 - [Special Thanks](#special-thanks)
 - [License](#license)
-
-## Features
-
-- 0 references between methods. Allows to communicate methods between classes without anyone knowing each other.
-- Encourages Modular, Functional and Reactive Programming.
-- Integration of `IEnumerator, Task, IObservable<T>, IObserver<T>`. Also provides `UniTask`.
-- Under Learning Requirement, you usually use `MonoFlux`, `[Flux(X)]` and `X.Dispatch()`.
-- Dispatchs that do not have a return behave like Fire and Forget.
-- Allows scalability for long projects
-- Allows to create fast projects without worrying about communications
-- Extensible to create your own `Flux<TKey>,Flux<TKey,TParamOrReturn> and Flux<TKey,TParam,TReturn>` types.
-
-
-## Installation
-
-- You can use the *.unityPackage* in releases
-
-- You can use the *.tzg in releases and add in PackageManager
-
-- You can add in PackageManager ([How to install package from git URL](https://docs.unity3d.com/Manual/upm-ui-giturl.html))
-```bash
-https://github.com/kingdox/UniFlux.git
-```
-- You can install via openupm CLI
-```bash
-openupm add com.kingdox.uniflux
-```
-- You can install via npm
-```bash
-npm i com.kingdox.uniflux
-```
 
 ## Examples
 ```csharp
@@ -123,6 +91,24 @@ float _16 = Flux<double,string, float>.Dispatch(Math.PI, "PI"); //double as key
 "42".Store(()=>{}, true); // Anonimous Subscriptions
 ```
 
+## Installation
+
+- You can use the *.unityPackage* in releases
+
+- You can use the *.tzg in releases and add in PackageManager
+
+- You can add in PackageManager ([How to install package from git URL](https://docs.unity3d.com/Manual/upm-ui-giturl.html))
+```bash
+https://github.com/kingdox/UniFlux.git
+```
+- You can install via openupm CLI
+```bash
+openupm add com.kingdox.uniflux
+```
+- You can install via npm
+```bash
+npm i com.kingdox.uniflux
+```
 
 ## Special Content
 
