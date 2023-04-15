@@ -28,6 +28,9 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 - [License](#license)
 
 ## Performance
+<details>
+ <summary><b>Performance</b></summary>
+ 
 Compared with others...
 | Name      | Iterations    | GC    | Time |
 |-----------|--------------:|------:|-----:|
@@ -45,8 +48,12 @@ Compared methods of UniFlux
 | UniFlux (Store string  ADD)       | 10.000        | 2.9MB     | ~9ms  | 
 | UniFlux (Store int  REMOVE)       | 10.000        | 1.2MB     | ~4ms  |
 | UniFlux (Store string  REMOVE)    | 10.000        | 1.2MB     | ~4ms  | 
+</details>
 
 ## Examples
+<details>
+ <summary><b>Examples</b></summary>
+ 
 ```csharp
 using Kingdox.UniFlux; // 1
 public sealed class StarterFlux : MonoFlux // 2
@@ -109,9 +116,12 @@ float _16 = Flux<double,string, float>.Dispatch(Math.PI, "PI"); //double as key
 ```cs
 "42".Store(()=>{}, true); // Anonimous Subscriptions
 ```
-
+</details>
+ 
 ## Installation
-
+<details>
+ <summary><b>Installation</b></summary>
+ 
 - You can use the *.unityPackage* in releases
 
 - You can use the *.tzg in releases and add in PackageManager
@@ -128,15 +138,18 @@ openupm add com.kingdox.uniflux
 ```bash
 npm i com.kingdox.uniflux
 ```
+</details>
 
 ## Special Content
-
+<details>
+ <summary><b>Special Content</b></summary>
+ 
 To enable special content you must #define
 
 | Definition | Description                |
 | :-------- | :------------------------- |
 | `UNIFLUX_UNITASK_SUPPORT` | Enable [Cysharp/UniTask]("https://github.com/Cysharp/UniTask") integration |
-
+</details>
 
 ## Contributing
 
