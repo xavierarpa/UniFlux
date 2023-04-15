@@ -18,6 +18,7 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
 ## Table of Contents
 
+- [Modules](#modules)
 - [Performance](#performance)
 - [Examples](#examples)
 - [Installation](#installation)
@@ -27,6 +28,17 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 - [Special Thanks](#special-thanks)
 - [License](#license)
 
+## Modules
+<details>
+ <summary><b>Modules</b></summary>
+
+ [![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)
+ [![Unity](https://img.shields.io/badge/Module-UniFlux.Input-black.svg)](https://github.com/kingdox/UniFlux.Input)
+[![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)
+[![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase-black.svg)](https://github.com/kingdox/UniFlux.Firebase) [![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase.Firestore-black.svg)](https://github.com/kingdox/UniFlux.Firebase.Firestore)
+
+</details>
+ 
 ## Performance
 <details>
  <summary><b>Performance</b></summary>
