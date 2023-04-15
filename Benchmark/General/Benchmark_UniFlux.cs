@@ -22,7 +22,6 @@ SOFTWARE.
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Profiling;
 using Kingdox.UniFlux.Core;
 namespace Kingdox.UniFlux.Benchmark
 {
@@ -103,7 +102,6 @@ namespace Kingdox.UniFlux.Benchmark
         private void Update()
         {
             if(!isUpdated) return;
-            _Results.Clear();
             if(isUpdated_store) StoreTest_Add();
             if(isUpdated_store) StoreTest_Remove();
             if(isUpdated_dispatch) DispatchTest();
@@ -114,45 +112,45 @@ namespace Kingdox.UniFlux.Benchmark
             if(_m_store_string_add.Execute)
             {
                 _m_store_string_add.iteration=_iterations;
-                Clock(_m_store_string_add);
+                _m_store_string_add.Begin();
                 for (int i = 0; i < _iterations; i++) 
                 {
                     "Store".Store(Example_OnFlux, true);
                 }
-                Clock(_m_store_string_add);
+                _m_store_string_add.End();
             }
             // Store Int
             if(_m_store_int_add.Execute)
             {
                 _m_store_int_add.iteration=_iterations;
-                Clock(_m_store_int_add);
+                _m_store_int_add.Begin();
                 for (int i = 0; i < _iterations; i++) 
                 {
                     42.Store(Example_OnFlux, true);
                 }
-                Clock(_m_store_int_add);
+                _m_store_int_add.End();
             }
             // Store Byte
             if(_m_store_byte_add.Execute)
             {
                 _m_store_byte_add.iteration=_iterations;
-                Clock(_m_store_byte_add);
+                _m_store_byte_add.Begin();
                 for (int i = 0; i < _iterations; i++) 
                 {
                     Flux.Store(__m_store, Example_OnFlux, true);
                 }
-                Clock(_m_store_byte_add);
+                _m_store_byte_add.End();
             }
             // Store Bool
             if(_m_store_bool_add.Execute)
             {
                 _m_store_bool_add.iteration=_iterations;
-                Clock(_m_store_bool_add);
+                _m_store_bool_add.Begin();
                 for (int i = 0; i < _iterations; i++) 
                 {
                     Flux.Store(true, Example_OnFlux, true);
                 }
-                Clock(_m_store_bool_add);
+                _m_store_bool_add.End();
             }
         }
         private void StoreTest_Remove()
@@ -161,45 +159,45 @@ namespace Kingdox.UniFlux.Benchmark
             if(_m_store_string_remove.Execute)
             {
                 _m_store_string_remove.iteration=_iterations;
-                Clock(_m_store_string_remove);
+                _m_store_string_remove.Begin();
                 for (int i = 0; i < _iterations; i++) 
                 {
                     "Store".Store(Example_OnFlux, false);
                 }
-                Clock(_m_store_string_remove);
+                _m_store_string_remove.End();
             }
             // Store Int
             if(_m_store_int_remove.Execute)
             {
                 _m_store_int_remove.iteration=_iterations;
-                Clock(_m_store_int_remove);
+                _m_store_int_remove.Begin();
                 for (int i = 0; i < _iterations; i++) 
                 {
                     42.Store(Example_OnFlux, false);
                 }
-                Clock(_m_store_int_remove);
+                _m_store_int_remove.End();
             }
             // Store Byte
             if(_m_store_byte_remove.Execute)
             {
                 _m_store_byte_remove.iteration=_iterations;
-                Clock(_m_store_byte_remove);
+                _m_store_byte_remove.Begin();
                 for (int i = 0; i < _iterations; i++) 
                 {
                     Flux.Store(__m_store, Example_OnFlux, false);
                 }
-                Clock(_m_store_byte_remove);
+                _m_store_byte_remove.End();
             }
             // Store Bool
             if(_m_store_bool_remove.Execute)
             {
                 _m_store_bool_remove.iteration=_iterations;
-                Clock(_m_store_bool_remove);
+                _m_store_bool_remove.Begin();
                 for (int i = 0; i < _iterations; i++) 
                 {
                     Flux.Store(true, Example_OnFlux, false);
                 }
-                Clock(_m_store_bool_remove);
+                _m_store_bool_remove.End();
             }
         }
         private void DispatchTest()
@@ -208,81 +206,64 @@ namespace Kingdox.UniFlux.Benchmark
             if(_m_dispatch_string.Execute)
             {
                 _m_dispatch_string.iteration=_iterations;
-                Clock(_m_dispatch_string);
+                _m_dispatch_string.Begin();
                 for (int i = 0; i < _iterations; i++) "UniFlux.Dispatch".Dispatch();
-                Clock(_m_dispatch_string);
+                _m_dispatch_string.End();
             }
             // Dispatch Int
             if(_m_dispatch_int.Execute)
             {
                 _m_dispatch_int.iteration=_iterations;
-                Clock(_m_dispatch_int);
+                _m_dispatch_int.Begin();
                 for (int i = 0; i < _iterations; i++) 0.Dispatch();
-                Clock(_m_dispatch_int);
+                _m_dispatch_int.End();
             }
             // Dispatch Byte
             if(_m_dispatch_byte.Execute)
             {
                 _m_dispatch_byte.iteration=_iterations;
-                Clock(_m_dispatch_byte);
+                _m_dispatch_byte.Begin();
                 for (int i = 0; i < _iterations; i++) Flux.Dispatch(__m_dispatch);
-                Clock(_m_dispatch_byte);
+                _m_dispatch_byte.End();
             }
             // Dispatch Boolean
             if(_m_dispatch_bool.Execute)
             {
                 _m_dispatch_bool.iteration=_iterations;
-                Clock(_m_dispatch_bool);
+                _m_dispatch_bool.Begin();
                 for (int i = 0; i < _iterations; i++) Flux.Dispatch(true);
-                Clock(_m_dispatch_bool);
+                _m_dispatch_bool.End();
             }
         }
-        [Flux("UniFlux.Dispatch")] private void Example_Dispatch_String()
-        {
-            // String Key Example
-        }
-        [Flux("UniFlux.Dispatch")] private void Example_Dispatch_String2()
-        {
-            // String Key Example
-        }
-        [Flux(0)] private void Example_Dispatch_Int()
-        {
-            // Int Key Example
-        }
-        [Flux(__m_dispatch)] private void Example_Dispatch_Byte()
-        {
-            // Byte Key Example
-        }
+        [Flux("UniFlux.Dispatch")] private void Example_Dispatch_String(){}
+        [Flux("UniFlux.Dispatch")] private void Example_Dispatch_String2(){}
+        [Flux(0)] private void Example_Dispatch_Int(){}
+        [Flux(__m_dispatch)] private void Example_Dispatch_Byte(){}
         [Flux(false)] private void Example_Dispatch_Boolean_2(){}
         [Flux(false)] private void Example_Dispatch_Boolean_3(){}
         [Flux(false)] private void Example_Dispatch_Boolean_4(){}
         [Flux(false)] private void Example_Dispatch_Boolean_5(){}
         [Flux(false)] private void Example_Dispatch_Boolean_6(){}
-        [Flux(true)] private void Example_Dispatch_Boolean()
-        {
-            // Boolean Key Example
-        }
-        private void Example_OnFlux()
-        {
-            // Example to Stores
-        }
-        private void Clock(Marker marker)
-        {
-            if(!marker.sw.IsRunning)
-            {
-                marker.sw.Restart();
-                Profiler.BeginSample(marker.K);
-            }
-            else
-            {
-                Profiler.EndSample();
-                marker.sw.Stop();
-                _Results.Add(marker.Visual);
-            }
-        }
+        [Flux(true)] private void Example_Dispatch_Boolean(){}
+        private void Example_OnFlux(){}
         private void OnGUI()
 		{
+
             if(!draw)return;
+
+            _Results.Clear();
+            _Results.Add(_m_store_string_add.Visual);
+            _Results.Add(_m_store_int_add.Visual);
+            _Results.Add(_m_store_byte_add.Visual);
+            _Results.Add(_m_store_bool_add.Visual);
+            _Results.Add(_m_store_string_remove.Visual);
+            _Results.Add(_m_store_int_remove.Visual);
+            _Results.Add(_m_store_byte_remove.Visual);
+            _Results.Add(_m_store_bool_remove.Visual);
+            _Results.Add(_m_dispatch_string.Visual);
+            _Results.Add(_m_dispatch_int.Visual);
+            _Results.Add(_m_dispatch_byte.Visual);
+            _Results.Add(_m_dispatch_bool.Visual);
             var height = (float) Screen.height / 2;
             for (int i = 0; i < _Results.Count; i++)
             {

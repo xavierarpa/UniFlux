@@ -22,6 +22,7 @@ SOFTWARE.
 using System;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Profiling;
 namespace Kingdox.UniFlux.Benchmark
 {
     [Serializable]
@@ -32,5 +33,15 @@ namespace Kingdox.UniFlux.Benchmark
 		[HideInInspector] public readonly Stopwatch sw = new Stopwatch();
         [HideInInspector] public string K = "?";
         public string Visual => $"{K} --- {iteration} iteration --- {sw.ElapsedMilliseconds} ms";
+        public void Begin()
+        {
+            sw.Restart();
+            Profiler.BeginSample(K);
+        }
+        public void End()
+        {
+            Profiler.EndSample();
+            sw.Stop();
+        }
     }
 }
