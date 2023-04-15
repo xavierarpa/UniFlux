@@ -248,9 +248,7 @@ namespace Kingdox.UniFlux.Benchmark
         private void Example_OnFlux(){}
         private void OnGUI()
 		{
-
             if(!draw)return;
-
             _Results.Clear();
             _Results.Add(_m_store_string_add.Visual);
             _Results.Add(_m_store_int_add.Visual);
