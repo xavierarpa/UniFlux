@@ -5,7 +5,7 @@ using Kingdox.UniFlux;
 
 namespace Service 
 {
-    private static partial class #SCRIPTNAME# // Data
+    public static partial class #SCRIPTNAME# // Data
     {
         private static partial class Data
         {
