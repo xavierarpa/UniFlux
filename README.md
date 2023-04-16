@@ -34,7 +34,8 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
  [![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)
  [![Unity](https://img.shields.io/badge/Module-UniFlux.Input-black.svg)](https://github.com/kingdox/UniFlux.Input)
-[![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)
+ [![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)
+ [![Unity](https://img.shields.io/badge/Module-UniFlux.Addressables-black.svg)](https://github.com/kingdox/UniFlux.Addressables)
 [![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase-black.svg)](https://github.com/kingdox/UniFlux.Firebase) [![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase.Firestore-black.svg)](https://github.com/kingdox/UniFlux.Firebase.Firestore)
 
 </details>
