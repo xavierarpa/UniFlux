@@ -46,14 +46,6 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 ## Performance
 <details>
  <summary><b>Performance</b></summary>
- 
-Compared with others...
-| Name      | Iterations    | GC    | Time |
-|-----------|--------------:|------:|-----:|
-| UniFlux   | 10.000        | 0B    | 0ms  | 
-| Reflex    | 10.000        | 140KB | 1ms  |
-| Zenject   | 10.000        | 900KB | 7ms  |
-| VContainer| 10.000        | 257KB | 2ms  |
 
 Compared methods of UniFlux
 | Name      | Iterations    | GC    | Time |
