@@ -24,11 +24,11 @@ namespace Kingdox.UniFlux.Core.Internal
     ///<summary>
     /// Flux Storage Interface
     ///</summary>
-    internal interface IStore<TKey, TStorage>
+    internal interface IStore<in TKey, in TStorage>
     {
         ///<summary>
         /// Store TStorage with TKey
         ///</summary>
-        void Store(in bool condition, in TKey key, in TStorage storage);
+        void Store(in bool condition, TKey key, TStorage storage);
     }
 }

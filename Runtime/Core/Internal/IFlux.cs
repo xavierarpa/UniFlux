@@ -24,17 +24,17 @@ namespace Kingdox.UniFlux.Core.Internal
     /// <summary>
     ///  TKey
     /// </summary>
-    internal interface IFlux<TKey, TStorage>:  IStore<TKey, TStorage>
+    internal interface IFlux<in TKey, in TStorage>:  IStore<TKey, TStorage>
     {
         /// <summary>
         ///  Dispatch the TKey
         /// </summary>
-        void Dispatch(in TKey key);
+        void Dispatch(TKey key);
     }
     /// <summary>
     ///  TKey TParam
     /// </summary>
-    internal interface IFluxParam<TKey, TParam, TStorage> : IStore<TKey, TStorage>
+    internal interface IFluxParam<in TKey, in TParam, in TStorage> : IStore<TKey, TStorage>
     {
         /// <summary>
         ///  Dispatch the TKey with TParam
@@ -44,7 +44,7 @@ namespace Kingdox.UniFlux.Core.Internal
     /// <summary>
     ///  TKey TReturn
     /// </summary>
-    internal interface IFluxReturn<TKey, TReturn, TStorage> : IStore<TKey, TStorage>
+    internal interface IFluxReturn<in TKey, out TReturn, in TStorage> : IStore<TKey, TStorage>
     {
         /// <summary>
         ///  Dispatch the TKey and return TReturn
@@ -54,7 +54,7 @@ namespace Kingdox.UniFlux.Core.Internal
     /// <summary>
     ///  TKey TParam TReturn
     /// </summary>
-    internal interface IFluxParamReturn<TKey, TParam, TReturn, TStorage> : IStore<TKey, TStorage>
+    internal interface IFluxParamReturn<in TKey, in TParam, out TReturn, in TStorage> : IStore<TKey, TStorage>
     {
         /// <summary>
         ///  Dispatch the TKey with TParam and return TReturn

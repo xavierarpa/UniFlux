@@ -34,11 +34,11 @@ namespace Kingdox.UniFlux.Core.Internal
         /// <summary>
         /// A dictionary that stores functions with no parameters and a return value of type `TReturn`.
         /// </summary>
-        internal readonly Dictionary<TKey, Func<TReturn>> dictionary = new Dictionary<TKey, Func<TReturn>>();
+        internal readonly Dictionary<TKey, List<Func<TReturn>>> dictionary = new Dictionary<TKey, List<Func<TReturn>>>();
         /// <summary>
         /// A Read Only dictionary wich contains dictionary field
         /// </summary>
-        internal readonly IReadOnlyDictionary<TKey, Func<TReturn>> dictionary_read = null;
+        internal readonly IReadOnlyDictionary<TKey, List<Func<TReturn>>> dictionary_read = null;
         /// <summary>
         /// Constructor of FuncFlux
         /// </summary>
@@ -50,14 +50,20 @@ namespace Kingdox.UniFlux.Core.Internal
         /// Subscribes the provided function to the dictionary with the specified key when `condition` is true. 
         /// If `condition` is false and the dictionary contains the specified key, the function is removed from the dictionary.
         /// </summary>
-        void IStore<TKey, Func<TReturn>>.Store(in bool condition, in TKey key, in Func<TReturn> func) 
+        void IStore<TKey, Func<TReturn>>.Store(in bool condition, TKey key, Func<TReturn> func) 
         {
-            if(dictionary_read.TryGetValue(key, out var _functions))
+            // if(dictionary_read.ContainsKey(key))
+            // {
+            //     if (condition) dictionary[key] += func;
+            //     else dictionary[key] -= func;
+            // }
+            // else if (condition) dictionary.Add(key, func);
+            if(dictionary_read.TryGetValue(key, out var values))
             {
-                if (condition) _functions += func;
-                else _functions -= func;
+                if (condition) values.Add(func);
+                else values.Remove(func);
             }
-            else if (condition) dictionary.Add(key, func);
+            else if (condition) dictionary.Add(key, new List<Func<TReturn>>(){func});
         }
         // <summary>
         /// Triggers the function stored in the dictionary with the specified key and returns its return value. 
@@ -65,7 +71,16 @@ namespace Kingdox.UniFlux.Core.Internal
         /// </summary>
         TReturn IFluxReturn<TKey, TReturn, Func<TReturn>>.Dispatch(TKey key)
         {
-            if(dictionary_read.TryGetValue(key, out var _actions)) return _actions.Invoke();
+            // if(dictionary_read.TryGetValue(key, out var _actions)) return _actions.Invoke();
+            if(dictionary_read.TryGetValue(key, out var _actions)) 
+            {
+                for (int i = 0; i < _actions.Count - 1; i++)
+                {
+                    _actions[i].Invoke();
+                }
+                return _actions[_actions.Count-1].Invoke();
+                UnityEngine.Debug.Log("_actions.Count");
+            }
             return default;
         }
     }

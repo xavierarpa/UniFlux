@@ -56,12 +56,12 @@ Soon
 Compared methods of UniFlux
 | Name      | Iterations    | GC    | Time |
 |-----------|--------------:|------:|-----:|
-| UniFlux (Dispatch int )           | 10.000        | 0B        | 0ms   | 
-| UniFlux (Dispatch string )        | 10.000        | 0B        | 1ms   | 
-| UniFlux (Store int  ADD)          | 10.000        | 2.9MB     | ~8ms  |
-| UniFlux (Store string  ADD)       | 10.000        | 2.9MB     | ~9ms  | 
-| UniFlux (Store int  REMOVE)       | 10.000        | 1.2MB     | ~4ms  |
-| UniFlux (Store string  REMOVE)    | 10.000        | 1.2MB     | ~4ms  | 
+| UniFlux (Dispatch int )           | 10.000        | 0B        | 0ms    | 
+| UniFlux (Dispatch string )        | 10.000        | 0B        | 1ms    | 
+| UniFlux (Store int  ADD)          | 10.000        | 1.2MB     | ~5ms   |
+| UniFlux (Store string  ADD)       | 10.000        | 1.2MB     | ~5ms   | 
+| UniFlux (Store int  REMOVE)       | 10.000        | 1.2MB     | ~30ms  |
+| UniFlux (Store string  REMOVE)    | 10.000        | 1.2MB     | ~30ms  | 
 </details>
 
 ## Examples

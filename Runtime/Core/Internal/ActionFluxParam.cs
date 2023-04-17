@@ -31,11 +31,11 @@ namespace Kingdox.UniFlux.Core.Internal
         /// <summary>
         /// A dictionary that stores functions with parameters
         /// </summary>
-        internal readonly Dictionary<TKey, Action<TValue>> dictionary = new Dictionary<TKey, Action<TValue>>();
+        internal readonly Dictionary<TKey, HashSet<Action<TValue>>> dictionary = new Dictionary<TKey, HashSet<Action<TValue>>>();
         /// <summary>
         /// A Read Only dictionary wich contains dictionary field
         /// </summary>
-        internal readonly IReadOnlyDictionary<TKey, Action<TValue>> dictionary_read = null;
+        internal readonly IReadOnlyDictionary<TKey, HashSet<Action<TValue>>> dictionary_read = null;
         /// <summary>
         /// Constructor of ActionFluxParam
         /// </summary>
@@ -49,21 +49,35 @@ namespace Kingdox.UniFlux.Core.Internal
         ///<param name="condition">Condition that must be true to subscribe the event</param>
         ///<param name="key">Key of the event to subscribe</param>
         ///<param name="action">Action to execute when the event is triggered</param>
-        void IStore<TKey, Action<TValue>>.Store(in bool condition, in TKey key, in Action<TValue> action)
+        void IStore<TKey, Action<TValue>>.Store(in bool condition, TKey key, Action<TValue> action)
         {
-            if(dictionary_read.TryGetValue(key, out var _actions))
+            // if(dictionary_read.ContainsKey(key))
+            // {
+            //     if (condition) dictionary[key] += action;
+            //     else dictionary[key] -= action;
+            // }
+            // else if (condition) dictionary.Add(key, action);
+            if(dictionary_read.TryGetValue(key, out var values))
             {
-                if (condition) _actions += action;
-                else _actions -= action;
+                if (condition) values.Add(action);
+                else values.Remove(action);
             }
-            else if (condition) dictionary.Add(key, action);
+            else if (condition) dictionary.Add(key, new HashSet<Action<TValue>>(){action});
         }
         ///<summary>
         /// Triggers the function stored in the dictionary with the specified key and set the parameter as argument 
         ///</summary>
         void IFluxParam<TKey, TValue, Action<TValue>>.Dispatch(TKey key, TValue param)
         {
-            if(dictionary_read.TryGetValue(key, out var _actions)) _actions?.Invoke(param);
+            // if(dictionary_read.TryGetValue(key, out var _actions)) _actions?.Invoke(param);
+            // if(dictionary_read.TryGetValue(key, out var _actions)) 
+            // {
+            //     for (int i = 0; i < _actions.Count; i++) _actions[i].Invoke(param);
+            // }
+            if(dictionary_read.TryGetValue(key, out var _actions)) 
+            {
+                foreach (var item in _actions) item.Invoke(param);
+            }
         }
     }
 }

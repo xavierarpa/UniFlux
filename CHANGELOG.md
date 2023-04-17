@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.2.1] - 2023-04-17
+
+### Fixed
+- The Store methods have been fixed so that when unsubscribing they remove it from the storage, before it allowed to add the first one but not to subscribe or unsubscribe the following ones.
+
 ## [1.2.0] - 2023-04-09
 
 Now UniFlux is more optimized than before

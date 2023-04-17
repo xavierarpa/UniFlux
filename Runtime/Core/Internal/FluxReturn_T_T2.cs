@@ -34,7 +34,7 @@ namespace Kingdox.UniFlux.Core.Internal
         ///<summary>
         /// Defines a static method that subscribes a function that returns a value to a key with a condition
         ///</summary>
-        internal static void Store(in T key,in  Func<T2> action,in  bool condition) => flux_func.Store(in condition, key, action);
+        internal static void Store(in T key, in Func<T2> action, in bool condition) => flux_func.Store(in condition, key, action);
         ///<summary>
         /// Defines a static method that triggers a function with a key and returns the result
         ///</summary>
