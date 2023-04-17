@@ -79,7 +79,6 @@ namespace Kingdox.UniFlux.Core.Internal
                     _actions[i].Invoke();
                 }
                 return _actions[_actions.Count-1].Invoke();
-                UnityEngine.Debug.Log("_actions.Count");
             }
             return default;
         }
