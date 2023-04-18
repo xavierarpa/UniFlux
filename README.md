@@ -34,6 +34,8 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
 Soon
 
+![Architecture](https://github.com/kingdox/UniFlux/blob/main/Contents/Architecture.drawio.png)
+
 ## Modules
 <details>
  <summary><b>Modules</b></summary>
