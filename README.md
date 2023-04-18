@@ -1,6 +1,6 @@
 ![Logo](https://kingdox.github.io/assets/img/uniflux.png)
 
-UniFlux - Stateless Flux Integration for Unity
+UniFlux - Flux Integration for Unity
 ===
 Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
