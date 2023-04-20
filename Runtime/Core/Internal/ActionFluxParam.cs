@@ -51,12 +51,6 @@ namespace Kingdox.UniFlux.Core.Internal
         ///<param name="action">Action to execute when the event is triggered</param>
         void IStore<TKey, Action<TValue>>.Store(in bool condition, TKey key, Action<TValue> action)
         {
-            // if(dictionary_read.ContainsKey(key))
-            // {
-            //     if (condition) dictionary[key] += action;
-            //     else dictionary[key] -= action;
-            // }
-            // else if (condition) dictionary.Add(key, action);
             if(dictionary_read.TryGetValue(key, out var values))
             {
                 if (condition) values.Add(action);
@@ -69,11 +63,6 @@ namespace Kingdox.UniFlux.Core.Internal
         ///</summary>
         void IFluxParam<TKey, TValue, Action<TValue>>.Dispatch(TKey key, TValue param)
         {
-            // if(dictionary_read.TryGetValue(key, out var _actions)) _actions?.Invoke(param);
-            // if(dictionary_read.TryGetValue(key, out var _actions)) 
-            // {
-            //     for (int i = 0; i < _actions.Count; i++) _actions[i].Invoke(param);
-            // }
             if(dictionary_read.TryGetValue(key, out var _actions)) 
             {
                 foreach (var item in _actions) item.Invoke(param);

@@ -2,7 +2,7 @@
     "name": "com.kingdox.uniflux",
     "displayName": "UniFlux",
     "author": "Xavier Thomas Peter Arpa López ('Kingdox')",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "unity": "2019.1",
     "description": "Provides Flux flow integration to Unity.",
     "keywords": [

@@ -34,18 +34,6 @@ namespace Kingdox.UniFlux.Core.Internal
         // internal Dictionary<TKey, Action> dictionary = new Dictionary<TKey, Action>();
         // internal Dictionary<TKey, List<Action>> dictionary = new Dictionary<TKey, List<Action>>();
         internal Dictionary<TKey, HashSet<Action>> dictionary = new Dictionary<TKey, HashSet<Action>>();
-        /// <summary>
-        /// A Read Only dictionary wich contains dictionary field
-        /// </summary>
-        // internal readonly IReadOnlyDictionary<TKey, Action> dictionary_read = null;
-        internal readonly IReadOnlyDictionary<TKey, HashSet<Action>> dictionary_read = null;
-        /// <summary>
-        /// Constructor of ActionFLux
-        /// </summary>
-        public ActionFlux()
-        {
-            dictionary_read = dictionary;
-        }
         ///<summary>
         /// Subscribes an event to the action dictionary if the given condition is met
         ///</summary>
@@ -54,36 +42,19 @@ namespace Kingdox.UniFlux.Core.Internal
         ///<param name="action">Action to execute when the event is triggered</param>
         void IStore<TKey, Action>.Store(in bool condition, TKey key, Action action)
         {
-            if(dictionary_read.TryGetValue(key, out var values))
+            if(dictionary.TryGetValue(key, out var values))
             {
                 if (condition) values.Add(action);
                 else values.Remove(action);
             }
             else if (condition) dictionary.Add(key, new HashSet<Action>(){action});
-            // if(dictionary_read.TryGetValue(key, out var values))
-            // {
-            //     if (condition) values.Add(action);
-            //     else values.Remove(action);
-            // }
-            // else if (condition) dictionary.Add(key, new List<Action>(){action});
-            // if(dictionary_read.ContainsKey(key))
-            // {
-            //     if (condition) dictionary[key] += action;
-            //     else dictionary[key] -= action;
-            // }
-            // else if (condition) dictionary.Add(key, action);
         }
         ///<summary>
         /// Triggers the function stored in the dictionary with the specified key. 
         ///</summary>
         void IFlux<TKey, Action>.Dispatch(TKey key)
         {
-            // if(dictionary_read.TryGetValue(key, out var _actions)) _actions?.Invoke();
-            // if(dictionary_read.TryGetValue(key, out var _actions)) 
-            // {
-            //     for (int i = 0; i < _actions.Count; i++) _actions[i].Invoke();
-            // }
-            if(dictionary_read.TryGetValue(key, out var _actions)) 
+            if(dictionary.TryGetValue(key, out var _actions)) 
             {
                 foreach (var item in _actions) item.Invoke();
             }

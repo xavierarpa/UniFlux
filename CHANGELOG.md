@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.2.2] - 2023-04-20
+
+### Fixed
+- The FuncFlux and FuncFluxParam as design is planned to only add one per key, but you can add multiple keys instead, thats why we reduce the complexity of optimization to just use Func< TResult > as TStorage
+
+### Removed
+- Removed dictionary_read in ActionFlux, ActionFluxParam, FuncFlux and FuncFluxParam
+
 ## [1.2.1] - 2023-04-17
 
 ### Fixed
