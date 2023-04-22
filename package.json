@@ -4,7 +4,7 @@
   "version": "1.2.2",
   "author": "Kingdox",
   "unity": "2019.3",
-  "unityRelease": "0a8",
+  "documentation": "README.md",
   "description": "Provides Flux flow integration to Unity.",
   "keywords": [
     "flux",
