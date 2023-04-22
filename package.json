@@ -17,27 +17,27 @@
     {
       "displayName": "Benchmark",
       "description": "Experimental",
-      "path": "Benchmark~"
+      "path": "Benchmark"
     },
     {
       "displayName": "Sample 01",
-      "description": "Experimental",
+      "description": "Simplified sample of how to use UniFlux",
       "path": "Samples/UniFlux.Sample.1"
     },
     {
       "displayName": "Sample 02",
       "description": "Experimental",
-      "path": "Samples~/UniFlux.Sample.2"
+      "path": "Samples/UniFlux.Sample.2"
     },
     {
       "displayName": "Sample 03",
       "description": "Experimental",
-      "path": "Samples~/UniFlux.Sample.3"
+      "path": "Samples/UniFlux.Sample.3"
     },
     {
       "displayName": "Sample 04",
       "description": "Experimental",
-      "path": "Samples~/UniFlux.Sample.4"
+      "path": "Samples/UniFlux.Sample.4"
     },
     {
       "displayName": "Test",
