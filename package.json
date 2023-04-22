@@ -1,31 +1,62 @@
 {
-    "name": "com.kingdox.uniflux",
-    "displayName": "UniFlux",
-    "author": "Xavier Thomas Peter Arpa López ('Kingdox')",
-    "version": "1.2.2",
-    "unity": "2019.1",
-    "description": "Provides Flux flow integration to Unity.",
-    "keywords": [
-      "Flux",
-      "Unity",
-      "UniFlux",
-      "async/await",
-      "async",
-      "Task"
-    ],
-    "license": "MIT",
-    "category": "Flux",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "com.kingdox.uniflux",
+  "displayName": "UniFlux",
+  "version": "1.2.2",
+  "author": "Xavier Thomas Peter Arpa López ('Kingdox')",
+  "unity": "2019.3",
+  "unityRelease": "0a8",
+  "description": "Provides Flux flow integration to Unity.",
+  "keywords": [
+    "flux",
+    "unity",
+    "uniflux"
+  ],
+  "dependencies": {
+  },
+  "samples": [
+    {
+      "displayName": "Benchmark",
+      "description": "Experimental",
+      "path": "Benchmark~"
     },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/kingdox/UniFlux.git"
+    {
+      "displayName": "Sample 01",
+      "description": "Experimental",
+      "path": "Samples~/UniFlux.Sample.1"
     },
-    "bugs": {
-      "url": "https://github.com/kingdox/UniFlux/issues"
+    {
+      "displayName": "Sample 02",
+      "description": "Experimental",
+      "path": "Samples~/UniFlux.Sample.2"
     },
-    "homepage": "https://github.com/kingdox/UniFlux#readme"
-  }
-  
+    {
+      "displayName": "Sample 03",
+      "description": "Experimental",
+      "path": "Samples~/UniFlux.Sample.3"
+    },
+    {
+      "displayName": "Sample 04",
+      "description": "Experimental",
+      "path": "Samples~/UniFlux.Sample.4"
+    },
+    {
+      "displayName": "Test",
+      "description": "Experimental",
+      "path": "Tests~"
+    }
+  ],
+  "license": "MIT",
+  "category": "Flux",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kingdox/UniFlux.git"
+  },
+  "bugs": {
+    "url": "https://github.com/kingdox/UniFlux/issues"
+  },
+  "homepage": "https://github.com/kingdox/UniFlux#readme"
+}
