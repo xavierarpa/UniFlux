@@ -38,11 +38,6 @@
       "displayName": "Sample 04",
       "description": "Experimental",
       "path": "Samples/UniFlux.Sample.4"
-    },
-    {
-      "displayName": "Test",
-      "description": "Experimental",
-      "path": "Tests~"
     }
   ],
   "license": "MIT",
