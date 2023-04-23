@@ -1,7 +1,7 @@
 ![Logo](https://kingdox.github.io/assets/img/uniflux.png)
 
-UniFlux - Event Bus with Flux Integration for Unity
 
+UniFlux - Event Bus with Flux Integration for Unity
 ===
 Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
