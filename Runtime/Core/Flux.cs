@@ -1,5 +1,4 @@
 using System;
-
 namespace Kingdox.UniFlux.Core
 {
     public static class Flux 
