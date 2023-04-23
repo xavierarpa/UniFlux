@@ -1,10 +1,11 @@
 ![Logo](https://kingdox.github.io/assets/img/uniflux.png)
 
-UniFlux - Flux Integration for Unity
+UniFlux - Event Bus with Flux Integration for Unity
+
 ===
 Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
-#### Provides an efficient Flux integration for Unity.
+#### Provides an efficient Event Bus with Flux integration for Unity.
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Build status](https://ci.appveyor.com/api/projects/status/712fvbpoio49ee91?svg=true)](https://ci.appveyor.com/project/kingdox/uniflux)
