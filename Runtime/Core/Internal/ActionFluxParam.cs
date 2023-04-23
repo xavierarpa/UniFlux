@@ -32,17 +32,6 @@ namespace Kingdox.UniFlux.Core.Internal
         /// A dictionary that stores functions with parameters
         /// </summary>
         internal readonly Dictionary<TKey, HashSet<Action<TValue>>> dictionary = new Dictionary<TKey, HashSet<Action<TValue>>>();
-        /// <summary>
-        /// A Read Only dictionary wich contains dictionary field
-        /// </summary>
-        internal readonly IReadOnlyDictionary<TKey, HashSet<Action<TValue>>> dictionary_read = null;
-        /// <summary>
-        /// Constructor of ActionFluxParam
-        /// </summary>
-        public ActionFluxParam()
-        {
-            dictionary_read = dictionary;
-        }
         ///<summary>
         /// Subscribes an event to the action dictionary if the given condition is met
         ///</summary>
@@ -51,7 +40,7 @@ namespace Kingdox.UniFlux.Core.Internal
         ///<param name="action">Action to execute when the event is triggered</param>
         void IStore<TKey, Action<TValue>>.Store(in bool condition, TKey key, Action<TValue> action)
         {
-            if(dictionary_read.TryGetValue(key, out var values))
+            if(dictionary.TryGetValue(key, out var values))
             {
                 if (condition) values.Add(action);
                 else values.Remove(action);
@@ -63,7 +52,7 @@ namespace Kingdox.UniFlux.Core.Internal
         ///</summary>
         void IFluxParam<TKey, TValue, Action<TValue>>.Dispatch(TKey key, TValue param)
         {
-            if(dictionary_read.TryGetValue(key, out var _actions)) 
+            if(dictionary.TryGetValue(key, out var _actions)) 
             {
                 foreach (var item in _actions) item.Invoke(param);
             }

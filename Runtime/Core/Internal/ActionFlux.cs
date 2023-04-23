@@ -31,8 +31,6 @@ namespace Kingdox.UniFlux.Core.Internal
         /// <summary>
         /// A dictionary that stores functions with no parameters
         /// </summary>
-        // internal Dictionary<TKey, Action> dictionary = new Dictionary<TKey, Action>();
-        // internal Dictionary<TKey, List<Action>> dictionary = new Dictionary<TKey, List<Action>>();
         internal Dictionary<TKey, HashSet<Action>> dictionary = new Dictionary<TKey, HashSet<Action>>();
         ///<summary>
         /// Subscribes an event to the action dictionary if the given condition is met

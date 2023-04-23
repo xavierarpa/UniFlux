@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.3.0] - 2023-04-23
+
+### Experimental
+- Allowing use of Scriptable objects as Key to Store and Dispatch. this allow modules become more modular, but also brings more boilerplate
+
+### Removed
+- removed dictionary_read for ActionFluxParam
+
 ## [1.2.2] - 2023-04-20
 
 ### Fixed
@@ -80,19 +88,3 @@ This is the first release of *UniFlux*.
 - Added Extensions to Invoke and subscribe with string and int as keys
 - Added support for UniTask from 'Cysharp'
 - Editor to Invoke Flux Methods by Inspector (no available with parameters or return value)
-
-
-
-
-<!-- 
-    Template 
-    ## [1.0.0] - 2023-12-31 
-    This is the a commit
-
-    ### Added
-    ### Removed
-    ### Fixed
-    ### Changed
-    ### Unreleased
-    # Changelog
--->
