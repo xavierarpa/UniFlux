@@ -19,18 +19,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using UnityEngine;
-namespace Kingdox.UniFlux.Sample
+using System;
+using System.Collections.Generic;
+namespace Kingdox.UniFlux.Core.Internal
 {
-    public sealed class Sample_1 : MonoFlux
+    internal sealed class State<TValue>
     {
-        private void Start() 
+        private TValue state = default;
+        private readonly HashSet<Action<TValue>> actions = new HashSet<Action<TValue>>();
+        public State(Action<TValue> action)
         {
-            "Sample_1".Dispatch();
+            Store(true, action);
         }
-        [Flux("Sample_1")] private void Method() 
+        public State(TValue value)
         {
-            Debug.Log("Sample_1 !");
+            Dispatch(value);
+        }
+        public void Store(in bool condition, in Action<TValue> action)
+        {
+            if (condition)
+            {
+                actions.Add(action);
+                action.Invoke(state);
+            }
+            else actions.Remove(action);
+        }
+        public void Dispatch(in TValue value)
+        {
+            state = value;
+            foreach (var item in actions) item.Invoke(value);
         }
     }
 }

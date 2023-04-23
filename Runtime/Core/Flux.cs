@@ -19,5 +19,9 @@ namespace Kingdox.UniFlux.Core
         public static void Store<T, T2, T3>(in T key, in Func<T2, T3> callback, in bool condition) => Internal.FluxParamReturn<T,T2,T3>.Store(in key, in callback, in condition);
         public static T3 Dispatch<T, T2, T3>(in T key, in T2 @param) => Internal.FluxParamReturn<T,T2,T3>.Dispatch(in key, in @param);
 #endregion
+#region // FluxState
+        public static void StoreState<T,T2>(in T key, in Action<T2> callback, in bool condition) => Internal.FluxState<T,T2>.Store(in key, in callback, in condition);
+        public static void DispatchState<T, T2>(in T key, in T2 @param) => Internal.FluxState<T,T2>.Dispatch(in key, in @param);
+#endregion
     }
 }

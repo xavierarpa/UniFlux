@@ -31,10 +31,12 @@ namespace Kingdox.UniFlux.Experimental
         public virtual void Store(in Action callback, in bool condition) => Core.Flux.Store(Key, callback, condition);
         public virtual void Dispatch() => Core.Flux.Dispatch(Key);
         public virtual void Store<T2>(in Action<T2> callback, in bool condition) => Core.Flux.Store<object,T2>(Key, in callback, in condition);
-        public virtual void Dispatch<T2>(in T2 @param) => Core.Flux.Dispatch(in @param);
+        public virtual void Dispatch<T2>(in T2 @param) => Core.Flux.Dispatch(Key, in @param);
         public virtual void Store<T2>(in Func<T2> callback, in bool condition) => Core.Flux.Store<object,T2>(Key, in callback, in condition);
         public virtual T2 Dispatch<T2>() => Core.Flux.Dispatch<object, T2>(Key);
         public virtual void Store<T2, T3>(in Func<T2, T3> callback, in bool condition) => Core.Flux.Store<object,T2,T3>(Key, in callback, in condition);
         public virtual T3 Dispatch<T2, T3>(in T2 @param) => Core.Flux.Dispatch<object,T2,T3>(Key, in @param);
+        public virtual void StoreState<T2>(in Action<T2> callback, in bool condition) => Core.Flux.StoreState<object,T2>(Key, in callback, in condition);
+        public virtual void DispatchState<T2>(in T2 @param) => Core.Flux.DispatchState(Key, in @param);
     }
 }

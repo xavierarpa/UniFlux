@@ -3,6 +3,11 @@ All notable changes to this package will be documented in this file.
 
 ## [1.3.0] - 2023-04-23
 
+### Added
+- Added FluxState, State and StateFlux to handle Store with State
+- Added in Core.Flux StoreState and DispatchState to handle State Management methods
+- implemented StoreState and DispatchState in extensions
+
 ### Experimental
 - Allowing use of Scriptable objects as Key to Store and Dispatch. this allow modules become more modular, but also brings more boilerplate
 

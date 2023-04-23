@@ -19,18 +19,34 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using UnityEngine;
-namespace Kingdox.UniFlux.Sample
+using System;
+using System.Collections.Generic;
+namespace Kingdox.UniFlux.Core.Internal
 {
-    public sealed class Sample_1 : MonoFlux
+    internal sealed class StateFlux<TKey, TValue> : IFluxParam<TKey, TValue, Action<TValue>>
     {
-        private void Start() 
+        internal readonly Dictionary<TKey, State<TValue>> dictionary = new Dictionary<TKey, State<TValue>>();
+        void IStore<TKey, Action<TValue>>.Store(in bool condition, TKey key, Action<TValue> action)
         {
-            "Sample_1".Dispatch();
+            if(dictionary.TryGetValue(key, out var state)) 
+            {
+                state.Store(condition,action);
+            }
+            else if (condition)
+            {
+                dictionary.Add(key, new State<TValue>(action));
+            }
         }
-        [Flux("Sample_1")] private void Method() 
+        void IFluxParam<TKey, TValue, Action<TValue>>.Dispatch(TKey key, TValue param)
         {
-            Debug.Log("Sample_1 !");
+            if(dictionary.TryGetValue(key, out var state)) 
+            {
+                state.Dispatch(param);
+            }
+            else
+            {
+                dictionary.Add(key, new State<TValue>(param));
+            }
         }
     }
 }

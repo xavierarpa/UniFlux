@@ -16,28 +16,38 @@
   "samples": [
     {
       "displayName": "Benchmark",
-      "description": "Experimental",
+      "description": "",
       "path": "Benchmark"
     },
     {
-      "displayName": "Sample 01",
+      "displayName": "Sample 01 - Common Use of UniFlux",
       "description": "Simplified sample of how to use UniFlux",
       "path": "Samples/UniFlux.Sample.1"
     },
     {
-      "displayName": "Sample 02",
-      "description": "Experimental",
+      "displayName": "Sample 02 - Simplified Sample, Store and Dispatch",
+      "description": "Simplified sample of how to use UniFlux",
       "path": "Samples/UniFlux.Sample.2"
     },
     {
-      "displayName": "Sample 03",
-      "description": "Experimental",
+      "displayName": "Sample 03 - Using keys of different types",
+      "description": "Simplified sample of how to use UniFlux",
       "path": "Samples/UniFlux.Sample.3"
     },
     {
-      "displayName": "Sample 04",
-      "description": "Experimental",
+      "displayName": "Sample 04 - Passing more than one argument",
+      "description": "Simplified sample of how to use UniFlux",
       "path": "Samples/UniFlux.Sample.4"
+    },
+    {
+      "displayName": "Sample 05 - StoreState and DispatchState",
+      "description": "Simplified sample of how to use UniFlux",
+      "path": "Samples/UniFlux.Sample.5"
+    },
+    {
+      "displayName": "Sample Experimental - KeyFlux, ScriptableObject as Key",
+      "description": "Experimental",
+      "path": "Samples/UniFlux.Sample.Experimental"
     }
   ],
   "license": "MIT",

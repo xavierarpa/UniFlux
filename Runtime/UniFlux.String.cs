@@ -92,6 +92,11 @@ namespace Kingdox.UniFlux
         public static void Store<T,T2>(this string key, in Func<T, T2> action, in bool condition) => Flux.Store(in key, in action, in condition);
         public static T2 Dispatch<T, T2>(this string key, in T @param) => Flux.Dispatch<string, T, T2>(in key, in @param);
     }
+    public static partial class FluxExtension //State Action<T>
+    {
+        public static void StoreState<T>(this string key, in Action<T> action,in bool condition) => Flux.StoreState(in key, in action, in condition);
+        public static void DispatchState<T>(this string key, in T state) => Flux.DispatchState(in key, in state);
+    }
 #endregion
 #region IEnumerator
     public static partial class FluxExtension //Action<IEnumerator>

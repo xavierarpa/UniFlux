@@ -20,7 +20,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using UnityEngine;
-using Kingdox.UniFlux;
 namespace Kingdox.UniFlux.Sample
 {
     public sealed class Sample_2 : MonoFlux

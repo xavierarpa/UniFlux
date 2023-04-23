@@ -20,17 +20,30 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using UnityEngine;
+using System.Collections.Generic;
 namespace Kingdox.UniFlux.Sample
 {
-    public sealed class Sample_1 : MonoFlux
+    public sealed class Sample_5 : MonoFlux
     {
-        private void Start() 
+        public const string K_Primary = "primary";
+        [SerializeField] private Color color_1;
+        [SerializeField] private Color color_2;
+        [Space]
+        [SerializeField] private Color color_current;
+        [Space]
+        [SerializeField] private List<Color> history_colors;
+        private void Awake() 
         {
-            "Sample_1".Dispatch();
+            history_colors.Clear();
         }
-        [Flux("Sample_1")] private void Method() 
+        protected override void OnFlux(in bool condition) => K_Primary.StoreState<Color>(OnPrimaryChange, condition); // 1 - Subscribe OnPrimaryChange and invokes automatically
+        private void Start() => K_Primary.DispatchState(color_2); // 2 - Change to secondary color state
+        private void OnPrimaryChange(Color color) 
         {
-            Debug.Log("Sample_1 !");
+            color_current = color;
+            history_colors.Add(color);
         }
+        [Flux(nameof(Sample_5) + ".ChangePrimary_Color1")] private void _ChangePrimary_Color1() => K_Primary.DispatchState(color_1);
+        [Flux(nameof(Sample_5) + ".ChangePrimary_Color2")] private void _ChangePrimary_Color2() => K_Primary.DispatchState(color_2);
     }
 }
