@@ -17,6 +17,9 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
 [![CodeFactor](https://www.codefactor.io/repository/github/kingdox/uniflux/badge)](https://www.codefactor.io/repository/github/kingdox/uniflux)
 
+![GitHub all releases](https://shields.io./github/downloads/kingdox/UniFlux/total?logo=github)
+![npm](https://shields.io./npm/dt/com.kingdox.uniflux?logo=npm)
+
 ## Table of Contents
 
 - [Introduction](#intro)
