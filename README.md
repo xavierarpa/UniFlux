@@ -15,10 +15,10 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 [![UPM](https://img.shields.io/npm/v/com.kingdox.uniflux?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.kingdox.uniflux/)
 <span class="badge-npmversion"><a href="https://npmjs.org/package/com.kingdox.uniflux" title="View this project on NPM"><img src="https://img.shields.io/npm/v/com.kingdox.uniflux.svg" alt="NPM version" /></a></span>
 
-[![CodeFactor](https://www.codefactor.io/repository/github/kingdox/uniflux/badge)](https://www.codefactor.io/repository/github/kingdox/uniflux)
-
 ![GitHub all releases](https://shields.io./github/downloads/kingdox/UniFlux/total?logo=github)
 ![npm](https://shields.io./npm/dt/com.kingdox.uniflux?logo=npm)
+
+[![CodeFactor](https://www.codefactor.io/repository/github/kingdox/uniflux/badge)](https://www.codefactor.io/repository/github/kingdox/uniflux)
 
 ## Table of Contents
 
