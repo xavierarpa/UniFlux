@@ -35,6 +35,8 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
 Soon
 
+![WorkFlow](https://www.websequencediagrams.com/files/render?link=lpHvFEnOec3XJH2t8AnKG2yrZDncSgC2IVJ8WIoVqDWCdvF7PThHRiEAVR7UBgRJ)
+
 <details>
  <summary><b>Architecture</b></summary>
  
