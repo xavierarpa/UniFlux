@@ -37,6 +37,8 @@ Soon
 
 ![WorkFlow](https://www.websequencediagrams.com/files/render?link=lpHvFEnOec3XJH2t8AnKG2yrZDncSgC2IVJ8WIoVqDWCdvF7PThHRiEAVR7UBgRJ)
 
+![Example_1](https://www.websequencediagrams.com/files/render?link=4t7a1KKbQLUGYJlwuv6r58a63GbmFoMJtwsVLS60scZNp1nlcxElJg1Ch6pfLypQ)
+
 <details>
  <summary><b>Architecture</b></summary>
  
