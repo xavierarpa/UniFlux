@@ -25,7 +25,6 @@ namespace Kingdox.UniFlux.Netcode.Rollback
     {
         private static partial class Data
         {
-
         }
     }
     public static partial class RollbackService // Key
