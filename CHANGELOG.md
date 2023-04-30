@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [1.3.1] - 2023-04-30
+
+### Fixed
+- Fixed Internal.State to invoke in store if it was dispatched before
+- Fixed Internal.State to Invoke in Dispatch when state changes
+
 ## [1.3.0] - 2023-04-23
 
 ### Added

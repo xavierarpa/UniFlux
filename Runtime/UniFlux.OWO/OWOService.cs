@@ -19,44 +19,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using System;
 using System.Collections.Generic;
-namespace Kingdox.UniFlux.Core.Internal
+using System.Linq;
+using OWOGame;
+
+namespace Kingdox.UniFlux.OWO
 {
-    internal sealed class State<TValue>
+    public static partial class OWOService // Data
     {
-        private bool inited = false;
-        private TValue state = default;
-        private readonly HashSet<Action<TValue>> actions = new HashSet<Action<TValue>>();
-        public State(Action<TValue> action)
+        public static partial class Data
         {
-            Store(true, action);
+            internal static readonly Dictionary<int, Muscle> MUSCLES = Muscle.All.Select(value => new { value.id, value }).ToDictionary(x => x.id, x => x.value);
         }
-        public State(TValue value)
+    }
+    public static partial class OWOService // Key
+    {
+        public static partial class Key
         {
-            Dispatch(value);
+            private const string _K =  nameof(OWO) + ".";
+            public const string Module = _K + nameof(Module);
+            public const string OnConnectionState = _K + nameof(OnConnectionState);
+            public const string AutoConnect = _K + nameof(AutoConnect);
+            public const string Connect = _K + nameof(Connect);
+            public const string Disconnect = _K + nameof(Disconnect);
+            public const string Send = _K + nameof(Send);
+            public const string Stop = _K + nameof(Stop);
         }
-        public void Store(in bool condition, in Action<TValue> action)
-        {
-            if (condition)
-            {
-                actions.Add(action);
-                if(inited)
-                {
-                    action.Invoke(state);
-                }
-            }
-            else actions.Remove(action);
-        }
-        private bool IsDifferentState(in TValue value) => !Object.Equals(value, state);
-        public void Dispatch(in TValue value)
-        {
-            if (IsDifferentState(value))
-            {
-                state = value;
-                foreach (var item in actions) item.Invoke(value);
-            }
-            inited=true;
-        }
+    }
+    public static partial class OWOService // Methods
+    {
+        public static IOWO Module => Key.Module.Dispatch<IOWO>();
     }
 }
