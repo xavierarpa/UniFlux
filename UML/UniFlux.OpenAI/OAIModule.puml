@@ -1,0 +1,8 @@
+@startuml
+class OAIModule <<sealed>> {
+}
+MonoFlux <|-- OAIModule
+IOpenAI <|-- OAIModule
+OAIModule --> "api" OpenAIApi
+OAIModule --> "API" OpenAIApi
+@enduml

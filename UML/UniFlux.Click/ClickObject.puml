@@ -1,0 +1,11 @@
+@startuml
+class ClickObject {
+    + IsClicking : bool <<set>>
+}
+ClickObject o-> "OnClickEnterNew" Action
+ClickObject o-> "OnClickExitNew" Action
+ClickObject o-> "OnClickEnterOld" Action
+ClickObject o-> "OnClickExitOld" Action
+ClickObject o-> "OnClickEnter" Action
+ClickObject o-> "OnClickExit" Action
+@enduml

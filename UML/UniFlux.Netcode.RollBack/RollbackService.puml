@@ -1,0 +1,26 @@
+@startuml
+class RollbackService <<static>> <<partial>> {
+}
+class RollbackService <<static>> <<partial>> {
+}
+class RollbackService <<static>> <<partial>> {
+    + {static} OnSave(data:(int fps, object state)) : void
+    + {static} OnReverse(data:(int fps, object state)) : void
+    + {static} OnReverseError(data:(int fps, int fpsToReverse)) : void
+    + {static} OnUndoError() : void
+    + {static} OnUndo(data:(int fps, object state)) : void
+}
+class Data <<static>> <<partial>> {
+}
+class Key <<static>> <<partial>> {
+    + <<const>> RollbackFlux : string
+    + <<const>> OnSave : string
+    + <<const>> OnReverse : string
+    + <<const>> OnReverseError : string
+    + <<const>> OnUndoError : string
+    + <<const>> OnUndo : string
+}
+RollbackService --> "RollbackFlux" IRollbackFlux
+RollbackService +-- Data
+RollbackService +-- Key
+@enduml

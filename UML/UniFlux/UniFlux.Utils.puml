@@ -1,0 +1,5 @@
+@startuml
+class Utils <<static>> {
+    + {static} Subscribe(condition:bool, action:T, callback:T) : void
+}
+@enduml

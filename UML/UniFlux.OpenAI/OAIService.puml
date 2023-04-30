@@ -1,0 +1,20 @@
+@startuml
+class OAIService <<static>> <<partial>> {
+}
+class OAIService <<static>> <<partial>> {
+}
+class OAIService <<static>> <<partial>> {
+    + {static} Module() : IOpenAI
+}
+class Data <<static>> <<partial>> {
+}
+class Key <<static>> <<partial>> {
+    + <<const>> Module : string
+    + <<const>> OnConnection : string
+}
+class Model <<static>> <<partial>> {
+}
+OAIService +-- Data
+OAIService +-- Key
+Data +-- Model
+@enduml

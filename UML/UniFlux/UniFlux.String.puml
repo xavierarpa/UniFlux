@@ -1,0 +1,60 @@
+@startuml
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:string, action:Action, condition:bool) : void
+    + {static} Dispatch(key:string) : void
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:string, action:Action<T>, condition:bool) : void
+    + {static} Dispatch(key:string, @param:T) : void
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:string, action:Func<T>, condition:bool) : void
+    + {static} Dispatch(key:string) : T
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:string, action:Func<T, T2>, condition:bool) : void
+    + {static} Dispatch(key:string, @param:T) : T2
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} StoreState(key:string, action:Action<T>, condition:bool) : void
+    + {static} DispatchState(key:string, state:T) : void
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:string, action:Action<IEnumerator>, condition:bool) : void
+    + {static} Store(key:string, action:Func<IEnumerator>, condition:bool) : void
+    + {static} Store(key:string, action:Func<IEnumerator<T>>, condition:bool) : void
+    + {static} Store(key:string, action:Func<T, IEnumerator>, condition:bool) : void
+    + {static} Store(key:string, action:Func<T, IEnumerator<T2>>, condition:bool) : void
+    + {static} @IEnumerator(key:string) : IEnumerator
+    + {static} @IEnumerator(key:string) : IEnumerator<T>
+    + {static} @IEnumerator(key:string, @param:T) : IEnumerator
+    + {static} @IEnumerator(key:string, @param:T) : IEnumerator<T2>
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:string, action:Action<Task>, condition:bool) : void
+    + {static} Store(key:string, action:Func<Task>, condition:bool) : void
+    + {static} Store(key:string, action:Func<Task<T>>, condition:bool) : void
+    + {static} Store(key:string, action:Func<T, Task>, condition:bool) : void
+    + {static} Store(key:string, action:Func<T, Task<T2>>, condition:bool) : void
+    + {static} @Task(key:string) : Task
+    + {static} @Task(key:string) : Task<T>
+    + {static} @Task(key:string, @param:T) : Task
+    + {static} @Task(key:string, @param:T) : Task<T2>
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:string, action:Action<IObservable<T>>, condition:bool) : void
+    + {static} Store(key:string, action:Func<IObservable<T>>, condition:bool) : void
+    + {static} Store(key:string, action:Func<T, IObservable<T2>>, condition:bool) : void
+    + {static} @IObservable(key:string, @param:IObservable<T>) : void
+    + {static} @IObservable(key:string) : IObservable<T>
+    + {static} @IObservable(key:string, @param:T) : IObservable<T2>
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:string, action:Action<IObserver<T>>, condition:bool) : void
+    + {static} Store(key:string, action:Func<IObserver<T>>, condition:bool) : void
+    + {static} Store(key:string, action:Func<T, IObserver<T2>>, condition:bool) : void
+    + {static} @IObserver(key:string, @param:IObserver<T>) : void
+    + {static} @IObserver(key:string) : IObserver<T>
+    + {static} @IObserver(key:string, @param:T) : IObserver<T2>
+}
+@enduml

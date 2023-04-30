@@ -1,0 +1,14 @@
+@startuml
+class Flux <<static>> {
+    + {static} Store(key:T, callback:Action, condition:bool) : void
+    + {static} Dispatch(key:T) : void
+    + {static} Store(key:T, callback:Action<T2>, condition:bool) : void
+    + {static} Dispatch(key:T, @param:T2) : void
+    + {static} Store(key:T, callback:Func<T2>, condition:bool) : void
+    + {static} Dispatch(key:T) : T2
+    + {static} Store(key:T, callback:Func<T2, T3>, condition:bool) : void
+    + {static} Dispatch(key:T, @param:T2) : T3
+    + {static} StoreState(key:T, callback:Action<T2>, condition:bool) : void
+    + {static} DispatchState(key:T, @param:T2) : void
+}
+@enduml

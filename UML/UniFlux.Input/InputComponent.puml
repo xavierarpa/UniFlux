@@ -1,0 +1,9 @@
+@startuml
+class InputComponent {
+    + Subscribe(condition:bool, callback:Action<string>) : void
+    + Update() : void
+    + Add(data:(string id, KeyCode code, string method)) : void
+    + Remove(id:string) : void
+    + Clear() : void
+}
+@enduml

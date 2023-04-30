@@ -1,0 +1,9 @@
+@startuml
+interface IOWO {
+    AutoConnect() : Task
+    Connect(ip:string) : Task
+    Disconnect() : Task
+    Send(f:int, durationSeconds:float, intensityPercentage:int, rampUpMillis:float, rampDownMillis:float, exitDelaySeconds:float, muscles:(int id, int intensity)[]) : Task
+    Stop() : Task
+}
+@enduml

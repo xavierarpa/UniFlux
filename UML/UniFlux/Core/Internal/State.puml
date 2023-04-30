@@ -1,0 +1,8 @@
+@startuml
+class "State`1"<TValue> <<sealed>> {
+    + State(action:Action<TValue>)
+    + State(value:TValue)
+    + Store(condition:bool, action:Action<TValue>) : void
+    + Dispatch(value:TValue) : void
+}
+@enduml

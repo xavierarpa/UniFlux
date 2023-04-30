@@ -1,0 +1,6 @@
+@startuml
+class FluxAttribute {
+    + <<readonly>> key : object
+    + FluxAttribute(key:object)
+}
+@enduml
