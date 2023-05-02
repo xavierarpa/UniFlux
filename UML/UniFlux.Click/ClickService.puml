@@ -1,0 +1,21 @@
+@startuml
+class Click <<static>> <<partial>> {
+}
+class Click <<static>> <<partial>> {
+    + {static} OnClickEnterNew() : void
+    + {static} OnClickEnterOld() : void
+    + {static} OnClickEnter() : void
+    + {static} OnClickExitNew() : void
+    + {static} OnClickExitOld() : void
+    + {static} OnClickExit() : void
+}
+class Key <<static>> <<partial>> {
+    + <<const>> OnClickEnterNew : string
+    + <<const>> OnClickEnterOld : string
+    + <<const>> OnClickEnter : string
+    + <<const>> OnClickExitNew : string
+    + <<const>> OnClickExitOld : string
+    + <<const>> OnClickExit : string
+}
+Click +-- Key
+@enduml

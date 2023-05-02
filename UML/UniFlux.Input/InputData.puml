@@ -1,0 +1,12 @@
+@startuml
+class InputData <<static>> {
+    + <<const>> SCENE : string = "UniFlux.Input"
+    + <<const>> Add : string
+    + <<const>> Remove : string
+    + <<const>> Clear : string
+    + <<const>> OnInput : string
+}
+class "Dictionary`2"<T1,T2> {
+}
+InputData o-> "FUNCTIONS<string,Func<KeyCode, bool>>" "Dictionary`2"
+@enduml

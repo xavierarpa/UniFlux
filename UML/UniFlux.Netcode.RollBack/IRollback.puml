@@ -1,0 +1,7 @@
+@startuml
+interface IRollback {
+    Save(_state:object) : void
+    Reverse(fpsToReverse:int) : void
+    Undo() : void
+}
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+class "ActionFlux`1"<TKey> <<sealed>> {
+    Store(condition:bool, key:TKey, action:Action) : void
+    Dispatch(key:TKey) : void
+}
+class "IFlux`2"<T1,T2> {
+}
+"IFlux`2" "<TKey,Action>" <|-- "ActionFlux`1"
+@enduml

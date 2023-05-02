@@ -1,0 +1,4 @@
+@startuml
+class "FluxParamReturn`3"<T,T2,T3> <<static>> {
+}
+@enduml

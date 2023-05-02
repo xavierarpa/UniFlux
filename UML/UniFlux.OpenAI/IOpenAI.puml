@@ -1,0 +1,4 @@
+@startuml
+interface IOpenAI {
+}
+@enduml

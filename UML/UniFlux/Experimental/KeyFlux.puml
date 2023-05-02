@@ -1,0 +1,7 @@
+@startuml
+class KeyFlux <<sealed>> {
+}
+class "KeyFlux`1"<T> {
+}
+"KeyFlux`1" "<KeyFlux>" <|-- KeyFlux
+@enduml

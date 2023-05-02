@@ -1,0 +1,10 @@
+@startuml
+class InputModule <<sealed>> <<partial>> {
+    Update() : void
+    OnInput(id:string) : void
+    Add(data:(string id, KeyCode code, string inputType)) : void
+    Remove(id:string) : void
+    Clear() : void
+}
+MonoFlux <|-- InputModule
+@enduml
