@@ -1,5 +1,0 @@
-@startuml
-interface IRollbackFlux {
-}
-IRollbackFlux --> "rollback" IRollback
-@enduml

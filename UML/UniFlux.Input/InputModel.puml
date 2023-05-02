@@ -1,7 +1,0 @@
-@startuml
-class InputModel <<struct>> {
-    + Id : string <<get>>
-    + InputModel(data:(string id, KeyCode code, string method), onInput:Action<string>)
-    + CheckInput() : void
-}
-@enduml

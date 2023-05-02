@@ -1,5 +1,0 @@
-@startuml
-class ClickFlux <<sealed>> {
-}
-MonoFlux <|-- ClickFlux
-@enduml
