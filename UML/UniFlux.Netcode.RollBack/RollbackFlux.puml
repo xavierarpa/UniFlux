@@ -1,8 +1,0 @@
-@startuml
-class RollbackFlux <<sealed>> {
-}
-MonoFlux <|-- RollbackFlux
-IRollbackFlux <|-- RollbackFlux
-RollbackFlux o-> "rollback" RollbackObject
-RollbackFlux --> "rollback" IRollback
-@enduml
