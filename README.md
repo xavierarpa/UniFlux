@@ -19,8 +19,9 @@ UniFlux - Unidirectional Event Driven for Unity
 [![CodeFactor](https://www.codefactor.io/repository/github/kingdox/uniflux/badge)](https://www.codefactor.io/repository/github/kingdox/uniflux)
 
 
-#### Modules
-
+<details>
+ <summary><b>Modules</b></summary>
+ 
 | Module | Description |
 | - | - |
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)|(Recomended👍) Manage the scenes and emit messages|
@@ -35,6 +36,8 @@ UniFlux - Unidirectional Event Driven for Unity
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.OpenAI-gold.svg)](https://github.com/kingdox/UniFlux.OpenAI)|(Working ! 🔨) Manages OpenAI API|
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.OWO-black.svg)](https://github.com/kingdox/UniFlux.OWO)|Manages OWO API|
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Netcode.RollBack-gold.svg)](https://github.com/kingdox/UniFlux.Netcode.RollBack)|(Working ! 🔨) Handle Network States, allowing netcode Rollback|
+
+</details>
 
 <!-- Intro -->
 <details>
