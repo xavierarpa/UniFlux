@@ -30,12 +30,9 @@ UniFlux - Event Bus with Flux Integration for Unity
 
 [![CodeFactor](https://www.codefactor.io/repository/github/kingdox/uniflux/badge)](https://www.codefactor.io/repository/github/kingdox/uniflux)
 
-## Introduction
-
-Soon
-
+<!-- Intro -->
 <details>
- <summary><b>Introduction</b></summary>
+ <summary><b>Workflow</b></summary>
  
 ![Example_1 Event Bus](https://www.websequencediagrams.com/files/render?link=4t7a1KKbQLUGYJlwuv6r58a63GbmFoMJtwsVLS60scZNp1nlcxElJg1Ch6pfLypQ)
  
@@ -44,7 +41,7 @@ Soon
 </details>
 
 <details>
- <summary><b>Here an overview of how I Handle the project, not required.</b></summary>
+ <summary><b>Advanced Workflow</b></summary>
  
 ![WorkFlow](https://www.websequencediagrams.com/files/render?link=lpHvFEnOec3XJH2t8AnKG2yrZDncSgC2IVJ8WIoVqDWCdvF7PThHRiEAVR7UBgRJ)
  
@@ -167,7 +164,7 @@ To enable special content you must #define
 | `UNIFLUX_UNITASK_SUPPORT` | Enable [Cysharp/UniTask]("https://github.com/Cysharp/UniTask") integration |
 </details>
 
-## Contributing
+## Contibutions
 Contributions are always welcome!
 
 ## Author Info
