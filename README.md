@@ -51,7 +51,7 @@ Soon
 ![Architecture](https://github.com/kingdox/UniFlux/blob/main/Contents/Architecture.drawio.png)
 </details>
 
-## Performance
+<!-- Performance -->
 <details>
  <summary><b>Performance</b></summary>
 
@@ -156,7 +156,6 @@ npm i com.kingdox.uniflux
 ```
 </details>
 
-## Special Content
 <details>
  <summary><b>Special Content</b></summary>
  
@@ -168,12 +167,9 @@ To enable special content you must #define
 </details>
 
 ## Contributing
-
 Contributions are always welcome!
 
-
 ## Author Info
-
 [@kingdox](https://github.com/kingdox/)
 
 For support, email arpaxavier@gmail.com
@@ -181,10 +177,7 @@ For support, email arpaxavier@gmail.com
 [![Twitter](https://img.shields.io/twitter/follow/_kingdox_.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=_kingdox_)   [![LinkedIn](https://img.shields.io/badge/Linkedin-0af.svg?&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/xavier-arpa-0332301a0/)  
 
 ## Special Thanks
-
 [@Quinowl](https://github.com/Quinowl)
 
 ## License
-
 [MIT](https://choosealicense.com/licenses/mit/)
-
