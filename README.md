@@ -42,16 +42,21 @@ Soon
 | Nombre | Descripción | #Define? |
 | Nombre | Descripción | #Define? | -->
 
-
-![WorkFlow](https://www.websequencediagrams.com/files/render?link=lpHvFEnOec3XJH2t8AnKG2yrZDncSgC2IVJ8WIoVqDWCdvF7PThHRiEAVR7UBgRJ)
-
-![Example_1](https://www.websequencediagrams.com/files/render?link=4t7a1KKbQLUGYJlwuv6r58a63GbmFoMJtwsVLS60scZNp1nlcxElJg1Ch6pfLypQ)
+<details>
+ <summary><b>Introduction</b></summary>
+ 
+![Example_1 Event Bus](https://www.websequencediagrams.com/files/render?link=4t7a1KKbQLUGYJlwuv6r58a63GbmFoMJtwsVLS60scZNp1nlcxElJg1Ch6pfLypQ)
+ 
+![Example_2 States](https://www.websequencediagrams.com/files/render?link=9rRV2Rfdmw1wAdCdeq0UfgVDEUVxdNXLY7tw6oO5QW7M2MKOlYGKkrVOCSeHSXOR)
+ 
+</details>
 
 <details>
- <summary><b>Architecture</b></summary>
+ <summary><b>Here an overview of how I Handle the project, not required.</b></summary>
+ 
+![WorkFlow](https://www.websequencediagrams.com/files/render?link=lpHvFEnOec3XJH2t8AnKG2yrZDncSgC2IVJ8WIoVqDWCdvF7PThHRiEAVR7UBgRJ)
  
 ![Architecture](https://github.com/kingdox/UniFlux/blob/main/Contents/Architecture.drawio.png)
-
 </details>
 
 ## Modules
@@ -60,7 +65,7 @@ Soon
 
  [![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)
  [![Unity](https://img.shields.io/badge/Module-UniFlux.Input-black.svg)](https://github.com/kingdox/UniFlux.Input)
- [![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)
+ [![Unity](https://img.shields.io/badge/Module-UniFlux.Click-black.svg)](https://github.com/kingdox/UniFlux.Click)
  [![Unity](https://img.shields.io/badge/Module-UniFlux.Binary-black.svg)](https://github.com/kingdox/UniFlux.Binary)
  [![Unity](https://img.shields.io/badge/Module-UniFlux.Updates-black.svg)](https://github.com/kingdox/UniFlux.Updates) 
  [![Unity](https://img.shields.io/badge/Module-UniFlux.Addressables-black.svg)](https://github.com/kingdox/UniFlux.Addressables)
