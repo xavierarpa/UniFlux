@@ -66,7 +66,7 @@ Compared methods of UniFlux
 | UniFlux (Store string  REMOVE)    | 10.000        | 1.2MB     | ~30ms  | 
 </details>
 
-## Examples
+<!-- Examples -->
 <details>
  <summary><b>Examples</b></summary>
  
@@ -134,7 +134,7 @@ float _16 = Flux<double,string, float>.Dispatch(Math.PI, "PI"); //double as key
 ```
 </details>
  
-## Installation
+ <!-- Instalation -->
 <details>
  <summary><b>Installation</b></summary>
  
@@ -156,6 +156,7 @@ npm i com.kingdox.uniflux
 ```
 </details>
 
+ <!-- Special Content -->
 <details>
  <summary><b>Special Content</b></summary>
  
