@@ -1,7 +1,7 @@
 ![Logo](https://kingdox.github.io/assets/img/uniflux.png)
 
 
-UniFlux - Unidirectional Event Driven with Flux Integration for Unity
+UniFlux - Unidirectional Event Driven for Unity
 ===
 
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
