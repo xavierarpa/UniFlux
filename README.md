@@ -3,8 +3,8 @@
 
 UniFlux - Event Bus with Flux Integration for Unity
 ===
-Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 
+#### Modules
 [![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)
 [![Unity](https://img.shields.io/badge/Module-UniFlux.Input-black.svg)](https://github.com/kingdox/UniFlux.Input)
 [![Unity](https://img.shields.io/badge/Module-UniFlux.Click-black.svg)](https://github.com/kingdox/UniFlux.Click)
@@ -15,7 +15,7 @@ Created by Xavier Arpa ([kingdox](https://github.com/kingdox/))
 [![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase.Firestore-black.svg)](https://github.com/kingdox/UniFlux.Firebase.Firestore) 
 [![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase.Database-black.svg)](https://github.com/kingdox/UniFlux.Firebase.Database)
 
-#### Provides an efficient Event Bus with Flux integration for Unity.
+#### Content
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 [![Build status](https://ci.appveyor.com/api/projects/status/712fvbpoio49ee91?svg=true)](https://ci.appveyor.com/project/kingdox/uniflux)
@@ -195,9 +195,7 @@ Contributions are always welcome!
 
 For support, email arpaxavier@gmail.com
 
-[![Twitter](https://img.shields.io/twitter/follow/_kingdox_.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=_kingdox_)  
-
-[![LinkedIn](https://img.shields.io/badge/Linkedin-0af.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/xavier-arpa-0332301a0/)  
+[![Twitter](https://img.shields.io/twitter/follow/_kingdox_.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=_kingdox_)   [![LinkedIn](https://img.shields.io/badge/Linkedin-0af.svg?&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/xavier-arpa-0332301a0/)  
 
 ## Special Thanks
 
