@@ -30,26 +30,9 @@ UniFlux - Event Bus with Flux Integration for Unity
 
 [![CodeFactor](https://www.codefactor.io/repository/github/kingdox/uniflux/badge)](https://www.codefactor.io/repository/github/kingdox/uniflux)
 
-## Table of Contents
-
-- [Introduction](#intro)
-- [Performance](#performance)
-- [Examples](#examples)
-- [Installation](#installation)
-- [Special Content](#special-content)
-- [Contributing](#contributing)
-- [Author Info](#author-info)
-- [Special Thanks](#special-thanks)
-- [License](#license)
-
-
 ## Introduction
 
 Soon
-<!-- | Nombre | Descripción | #Define? |
-|-----------|--------------:|------:|
-| Nombre | Descripción | #Define? |
-| Nombre | Descripción | #Define? | -->
 
 <details>
  <summary><b>Introduction</b></summary>
