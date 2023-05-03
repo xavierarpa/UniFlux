@@ -32,6 +32,9 @@ UniFlux - Unidirectional Event Driven with Flux Integration for Unity
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase-black.svg)](https://github.com/kingdox/UniFlux.Firebase)|Firebase Core of other UniFlux's modules|
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase.Firestore-black.svg)](https://github.com/kingdox/UniFlux.Firebase.Firestore)|Manages Firebase Cloud Firestore simplified|
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase.Database-black.svg)](https://github.com/kingdox/UniFlux.Firebase.Database)|Manages Firebase Realtime Database simplified|
+|[![Unity](https://img.shields.io/badge/Module-UniFlux.OpenAI-gold.svg)](https://github.com/kingdox/UniFlux.OpenAI)|(Working ! 🔨) Manages OpenAI API|
+|[![Unity](https://img.shields.io/badge/Module-UniFlux.OWO-black.svg)](https://github.com/kingdox/UniFlux.OWO)|Manages OWO API|
+|[![Unity](https://img.shields.io/badge/Module-UniFlux.Netcode.RollBack-gold.svg)](https://github.com/kingdox/UniFlux.Netcode.RollBack)|(Working ! 🔨) Handle Network States, allowing netcode Rollback|
 
 <!-- Intro -->
 <details>
