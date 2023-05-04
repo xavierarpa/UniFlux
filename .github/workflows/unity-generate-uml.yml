@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CODE_PATH: "./Runtime"
-      UML_OUTPUT_PATH: "./UML/"
+      UML_OUTPUT_PATH: "./~UML/"
       UMP_GENERATION_PARAMETERS: -public -createAssociation -allInOne
     steps:
       - uses: actions/checkout@v2
