@@ -1,9 +1,0 @@
-@startuml
-class "FuncFlux`2"<TKey,TReturn> <<sealed>> {
-    Store(condition:bool, key:TKey, func:Func<TReturn>) : void
-    Dispatch(key:TKey) : TReturn
-}
-class "IFluxReturn`3"<T1,T2,T3> {
-}
-"IFluxReturn`3" "<TKey,TReturn,Func<TReturn>>" <|-- "FuncFlux`2"
-@enduml
