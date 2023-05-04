@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="71px" preserveAspectRatio="none" style="width:108px;height:71px;" version="1.1" viewBox="0 0 108 71" width="108px" zoomAndPan="magnify"><defs><filter height="300%" id="f1h7h7900gf7os" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[6c80e4187fc3887c63cbaf1381ce6ea0]
+class Flux`1--><rect fill="#FEFECE" filter="url(#f1h7h7900gf7os)" height="53.9375" id="Flux`1" style="stroke: #A80036; stroke-width: 1.5;" width="87" x="7" y="7"/><ellipse cx="22" cy="25.9688" fill="#ADD1B2" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M24.9688,31.6094 Q24.3906,31.9063 23.75,32.0469 Q23.1094,32.2031 22.4063,32.2031 Q19.9063,32.2031 18.5781,30.5625 Q17.2656,28.9063 17.2656,25.7813 Q17.2656,22.6563 18.5781,21 Q19.9063,19.3438 22.4063,19.3438 Q23.1094,19.3438 23.75,19.5 Q24.4063,19.6563 24.9688,19.9531 L24.9688,22.6719 Q24.3438,22.0938 23.75,21.8281 Q23.1563,21.5469 22.5313,21.5469 Q21.1875,21.5469 20.5,22.625 Q19.8125,23.6875 19.8125,25.7813 Q19.8125,27.875 20.5,28.9531 Q21.1875,30.0156 22.5313,30.0156 Q23.1563,30.0156 23.75,29.75 Q24.3438,29.4688 24.9688,28.8906 L24.9688,31.6094 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="48" x="34" y="23.1387">«static»</text><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="38" x="39" y="37.1074">Flux`1</text><rect fill="#FFFFFF" height="15.9688" style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" width="9" x="88" y="4"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="7" x="89" y="16.1387">T</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="8" x2="93" y1="44.9375" y2="44.9375"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="8" x2="93" y1="52.9375" y2="52.9375"/><!--MD5=[54a1dc1c0d5e103bf3d9340e8ccebe8e]
+@startuml
+class "Flux`1"<T> <<static>> {
+}
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 10:22:07 GMT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.9+11-Ubuntu-0ubuntu1
+Operating System: Linux
+Default Encoding: ANSI_X3.4-1968
+Language: en
+Country: US
+--></g></svg>

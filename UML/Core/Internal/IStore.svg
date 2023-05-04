@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="78px" preserveAspectRatio="none" style="width:352px;height:78px;" version="1.1" viewBox="0 0 352 78" width="352px" zoomAndPan="magnify"><defs><filter height="300%" id="f1hg8rgwr6g7c3" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--MD5=[6e861dc95fbadc48e8e4224582f13d4e]
+class IStore`2--><rect fill="#FEFECE" filter="url(#f1hg8rgwr6g7c3)" height="60.8047" id="IStore`2" style="stroke: #A80036; stroke-width: 1.5;" width="331" x="7" y="7"/><ellipse cx="79.75" cy="23" fill="#B4A7E5" rx="11" ry="11" style="stroke: #A80036; stroke-width: 1.0;"/><path d="M75.6719,18.7656 L75.6719,16.6094 L83.0625,16.6094 L83.0625,18.7656 L80.5938,18.7656 L80.5938,26.8438 L83.0625,26.8438 L83.0625,29 L75.6719,29 L75.6719,26.8438 L78.1406,26.8438 L78.1406,18.7656 L75.6719,18.7656 Z "/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="52" x="100.25" y="27.1543">IStore`2</text><rect fill="#FFFFFF" height="15.9688" style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" width="123" x="218" y="4"/><text fill="#000000" font-family="sans-serif" font-size="12" font-style="italic" lengthAdjust="spacingAndGlyphs" textLength="121" x="219" y="16.1387">in TKey,in TStorage</text><line style="stroke: #A80036; stroke-width: 1.5;" x1="8" x2="337" y1="39" y2="39"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="8" x2="337" y1="47" y2="47"/><text fill="#000000" font-family="sans-serif" font-size="11" lengthAdjust="spacingAndGlyphs" textLength="319" x="13" y="61.2104">Store(condition:bool, key:TKey, storage:TStorage) : void</text><!--MD5=[274a8cf5c53a65728dc1dad13a689551]
+@startuml
+interface "IStore`2"<in TKey,in TStorage> {
+    Store(condition:bool, key:TKey, storage:TStorage) : void
+}
+@enduml
+
+PlantUML version 1.2020.02(Sun Mar 01 10:22:07 GMT 2020)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 11.0.9+11-Ubuntu-0ubuntu1
+Operating System: Linux
+Default Encoding: ANSI_X3.4-1968
+Language: en
+Country: US
+--></g></svg>

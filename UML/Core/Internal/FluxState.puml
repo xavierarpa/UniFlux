@@ -1,0 +1,4 @@
+@startuml
+class "FluxState`2"<T,T2> <<static>> {
+}
+@enduml
