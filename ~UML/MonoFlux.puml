@@ -1,0 +1,5 @@
+@startuml
+abstract class MonoFlux <<partial>> {
+}
+MonoBehaviour <|-- MonoFlux
+@enduml
