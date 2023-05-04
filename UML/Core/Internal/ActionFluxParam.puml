@@ -1,9 +1,0 @@
-@startuml
-class "ActionFluxParam`2"<TKey,TValue> <<sealed>> {
-    Store(condition:bool, key:TKey, action:Action<TValue>) : void
-    Dispatch(key:TKey, param:TValue) : void
-}
-class "IFluxParam`3"<T1,T2,T3> {
-}
-"IFluxParam`3" "<TKey,TValue,Action<TValue>>" <|-- "ActionFluxParam`2"
-@enduml

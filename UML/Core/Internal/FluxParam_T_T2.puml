@@ -1,4 +1,0 @@
-@startuml
-class "FluxParam`2"<T,T2> <<static>> {
-}
-@enduml

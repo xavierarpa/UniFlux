@@ -1,5 +1,0 @@
-@startuml
-interface IKeyFlux {
-    Key : object <<get>>
-}
-@enduml

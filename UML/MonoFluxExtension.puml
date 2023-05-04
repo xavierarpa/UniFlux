@@ -1,4 +1,0 @@
-@startuml
-class MonoFluxExtension <<static>> {
-}
-@enduml

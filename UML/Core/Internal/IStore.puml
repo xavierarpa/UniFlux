@@ -1,5 +1,0 @@
-@startuml
-interface "IStore`2"<in TKey,in TStorage> {
-    Store(condition:bool, key:TKey, storage:TStorage) : void
-}
-@enduml

@@ -1,4 +1,0 @@
-@startuml
-class "Flux`1"<T> <<static>> {
-}
-@enduml
