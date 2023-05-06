@@ -1,5 +1,4 @@
-![Logo](https://kingdox.github.io/assets/img/uniflux.png)
-
+![Logo](https://repository-images.githubusercontent.com/616052596/1a10ad21-e1ef-4a8f-a05a-64df9b02411f)
 
 UniFlux - Unidirectional Event Driven for Unity
 ===
