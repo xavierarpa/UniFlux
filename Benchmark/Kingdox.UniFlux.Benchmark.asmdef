@@ -7,7 +7,6 @@
     "includePlatforms": [
         "Android",
         "Editor",
-        "EmbeddedLinux",
         "GameCoreScarlett",
         "GameCoreXboxOne",
         "iOS",
