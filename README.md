@@ -1,6 +1,6 @@
 ![Logo](https://repository-images.githubusercontent.com/616052596/1a10ad21-e1ef-4a8f-a05a-64df9b02411f)
 
-UniFlux - Unidirectional Event Driven for Unity
+UniFlux - Flexible Event Driven and Flux for Unity
 ===
 
 [![Unity](https://img.shields.io/badge/Unity-2019+-black.svg)](https://unity3d.com/pt/get-unity/download/archive)
@@ -41,6 +41,8 @@ UniFlux - Unidirectional Event Driven for Unity
 <!-- Intro -->
 <details>
  <summary><b>Workflow</b></summary>
+ 
+ Here you can find a Unity Project to take a try => https://github.com/kingdox/UniFluxShowcaseProject
  
 ![Example_1 Event Bus](https://www.websequencediagrams.com/files/render?link=4t7a1KKbQLUGYJlwuv6r58a63GbmFoMJtwsVLS60scZNp1nlcxElJg1Ch6pfLypQ)
  
