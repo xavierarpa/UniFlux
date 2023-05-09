@@ -51,7 +51,7 @@
     }
   ],
   "license": "MIT",
-  "category": "Flux",
+  "category": "Tools",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
