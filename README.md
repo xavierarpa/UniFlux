@@ -26,6 +26,7 @@ UniFlux - Flexible Event Driven and Flux for Unity
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)|(Recomended👍) Manage the scenes and emit messages|
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Input-black.svg)](https://github.com/kingdox/UniFlux.Input)|Manage "Input items" and then dispatch if conditions is right|
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Click-black.svg)](https://github.com/kingdox/UniFlux.Click)|Manage Player Click interaction|
+|[![Unity](https://img.shields.io/badge/Module-UniFlux.Swipe-black.svg)](https://github.com/kingdox/UniFlux.Swipe)|(Recomended👍) Manage Player Swipe interaction (Mouse and Mobile)|
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Binary-black.svg)](https://github.com/kingdox/UniFlux.Binary)|(Recomended👍) Save/Load Files in Binary |
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Updates-black.svg)](https://github.com/kingdox/UniFlux.Updates) |(Recomended👍) Subscribe and Unsubscribe Actions/Methods in a concrete framerate|
 |[![Unity](https://img.shields.io/badge/Module-UniFlux.Addressables-black.svg)](https://github.com/kingdox/UniFlux.Addressables)|(Experimental🧪) Manages Addressables with primitive types|
