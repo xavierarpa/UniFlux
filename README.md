@@ -183,7 +183,7 @@ To enable special content you must #define
 
 For support, email arpaxavier@gmail.com
 
-[![Twitter](https://img.shields.io/twitter/follow/_kingdox_.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=xavier_arpa)   [![LinkedIn](https://img.shields.io/badge/Linkedin-0af.svg?&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/xavier-arpa-0332301a0/)  
+[![Twitter](https://img.shields.io/twitter/follow/xavier_arpa.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=xavier_arpa)   [![LinkedIn](https://img.shields.io/badge/Linkedin-0af.svg?&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/xavier-arpa-0332301a0/)  
 
 </details>
 
