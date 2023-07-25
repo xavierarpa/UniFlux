@@ -18,6 +18,7 @@ class FluxExtension <<static>> <<partial>> {
 class FluxExtension <<static>> <<partial>> {
     + {static} StoreState(key:string, action:Action<T>, condition:bool) : void
     + {static} DispatchState(key:string, state:T) : void
+    + {static} GetState(key:string, state:T) : bool
 }
 class FluxExtension <<static>> <<partial>> {
     + {static} Store(key:string, action:Action<IEnumerator>, condition:bool) : void

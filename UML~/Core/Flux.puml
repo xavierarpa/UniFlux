@@ -10,5 +10,6 @@ class Flux <<static>> {
     + {static} Dispatch(key:T, @param:T2) : T3
     + {static} StoreState(key:T, callback:Action<T2>, condition:bool) : void
     + {static} DispatchState(key:T, @param:T2) : void
+    + {static} GetState(key:T, @state:T2) : bool
 }
 @enduml

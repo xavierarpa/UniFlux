@@ -4,5 +4,6 @@ class "State`1"<TValue> <<sealed>> {
     + State(value:TValue)
     + Store(condition:bool, action:Action<TValue>) : void
     + Dispatch(value:TValue) : void
+    + Get(_value:TValue) : bool
 }
 @enduml

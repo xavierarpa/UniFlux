@@ -21,6 +21,7 @@ class FluxExtension <<static>> <<partial>> {
 class FluxExtension <<static>> <<partial>> {
     + {static} StoreState(key:string, action:Action<T>, condition:bool) : void
     + {static} DispatchState(key:string, state:T) : void
+    + {static} GetState(key:string, state:T) : bool
 }
 class FluxExtension <<static>> <<partial>> {
     + {static} Store(key:string, action:Action<IEnumerator>, condition:bool) : void
@@ -84,6 +85,7 @@ class FluxExtension <<static>> <<partial>> {
 class FluxExtension <<static>> <<partial>> {
     + {static} StoreState(key:int, action:Action<T>, condition:bool) : void
     + {static} DispatchState(key:int, state:T) : void
+    + {static} GetState(key:int, state:T) : bool
 }
 class FluxExtension <<static>> <<partial>> {
     + {static} Store(key:int, action:Action<IEnumerator>, condition:bool) : void
@@ -182,6 +184,7 @@ class Flux <<static>> {
     + {static} Dispatch(key:T, @param:T2) : T3
     + {static} StoreState(key:T, callback:Action<T2>, condition:bool) : void
     + {static} DispatchState(key:T, @param:T2) : void
+    + {static} GetState(key:T, @state:T2) : bool
 }
 class "FluxReturn`2"<T,T2> <<static>> {
 }
@@ -229,6 +232,7 @@ class "State`1"<TValue> <<sealed>> {
     + State(value:TValue)
     + Store(condition:bool, action:Action<TValue>) : void
     + Dispatch(value:TValue) : void
+    + Get(_value:TValue) : bool
 }
 class "FuncFluxParam`3"<TKey,TParam,TReturn> <<sealed>> {
     Store(condition:bool, key:TKey, func:Func<TParam, TReturn>) : void
