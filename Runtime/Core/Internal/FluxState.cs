@@ -27,5 +27,18 @@ namespace Kingdox.UniFlux.Core.Internal
         internal static readonly IFluxParam<T, T2, Action<T2>> flux_action_param = new StateFlux<T,T2>();
         internal static void Store(in T key, in  Action<T2> action, in  bool condition) => flux_action_param.Store(in condition, key, action);
         internal static void Dispatch(in T key,in  T2 @param) => flux_action_param.Dispatch(key, @param);
+        internal static bool Get(in T key, out T2 _state)
+        {
+            //TODO TEMP
+            if((flux_action_param as StateFlux<T,T2>).dictionary.TryGetValue(key, out var state)) 
+            {
+                return state.Get(out _state);
+            }
+            else
+            {
+                _state = default;
+                return false;
+            }
+        } 
     }
 }

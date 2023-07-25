@@ -58,5 +58,10 @@ namespace Kingdox.UniFlux.Core.Internal
             }
             inited=true;
         }
+        public bool Get(out TValue _value) 
+        {
+            _value = state;
+            return inited;
+        }
     }
 }

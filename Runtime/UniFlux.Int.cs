@@ -96,6 +96,8 @@ namespace Kingdox.UniFlux
     {
         public static void StoreState<T>(this int key, in Action<T> action,in bool condition) => Flux.StoreState(in key, in action, in condition);
         public static void DispatchState<T>(this int key, in T state) => Flux.DispatchState(in key, in state);
+        public static bool GetState<T>(this int key, out T state) => Flux.GetState(in key, out state);
+
     }
 #endregion
 #region IEnumerator
