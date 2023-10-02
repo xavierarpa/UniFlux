@@ -1,6 +1,62 @@
 @startuml
-class Utils <<static>> {
-    + {static} Subscribe(condition:bool, action:T, callback:T) : void
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:int, action:Action, condition:bool) : void
+    + {static} Dispatch(key:int) : void
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:int, action:Action<T>, condition:bool) : void
+    + {static} Dispatch(key:int, @param:T) : void
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:int, action:Func<T>, condition:bool) : void
+    + {static} Dispatch(key:int) : T
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:int, action:Func<T, T2>, condition:bool) : void
+    + {static} Dispatch(key:int, @param:T) : T2
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} StoreState(key:int, action:Action<T>, condition:bool) : void
+    + {static} DispatchState(key:int, state:T) : void
+    + {static} GetState(key:int, state:T) : bool
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:int, action:Action<IEnumerator>, condition:bool) : void
+    + {static} Store(key:int, action:Func<IEnumerator>, condition:bool) : void
+    + {static} Store(key:int, action:Func<IEnumerator<T>>, condition:bool) : void
+    + {static} Store(key:int, action:Func<T, IEnumerator>, condition:bool) : void
+    + {static} Store(key:int, action:Func<T, IEnumerator<T2>>, condition:bool) : void
+    + {static} @IEnumerator(key:int) : IEnumerator
+    + {static} @IEnumerator(key:int) : IEnumerator<T>
+    + {static} @IEnumerator(key:int, @param:T) : IEnumerator
+    + {static} @IEnumerator(key:int, @param:T) : IEnumerator<T2>
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:int, action:Action<Task>, condition:bool) : void
+    + {static} Store(key:int, action:Func<Task>, condition:bool) : void
+    + {static} Store(key:int, action:Func<Task<T>>, condition:bool) : void
+    + {static} Store(key:int, action:Func<T, Task>, condition:bool) : void
+    + {static} Store(key:int, action:Func<T, Task<T2>>, condition:bool) : void
+    + {static} @Task(key:int) : Task
+    + {static} @Task(key:int) : Task<T>
+    + {static} @Task(key:int, @param:T) : Task
+    + {static} @Task(key:int, @param:T) : Task<T2>
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:int, action:Action<IObservable<T>>, condition:bool) : void
+    + {static} Store(key:int, action:Func<IObservable<T>>, condition:bool) : void
+    + {static} Store(key:int, action:Func<T, IObservable<T2>>, condition:bool) : void
+    + {static} @IObservable(key:int, @param:IObservable<T>) : void
+    + {static} @IObservable(key:int) : IObservable<T>
+    + {static} @IObservable(key:int, @param:T) : IObservable<T2>
+}
+class FluxExtension <<static>> <<partial>> {
+    + {static} Store(key:int, action:Action<IObserver<T>>, condition:bool) : void
+    + {static} Store(key:int, action:Func<IObserver<T>>, condition:bool) : void
+    + {static} Store(key:int, action:Func<T, IObserver<T2>>, condition:bool) : void
+    + {static} @IObserver(key:int, @param:IObserver<T>) : void
+    + {static} @IObserver(key:int) : IObserver<T>
+    + {static} @IObserver(key:int, @param:T) : IObserver<T2>
 }
 class FluxExtension <<static>> <<partial>> {
     + {static} Store(key:string, action:Action, condition:bool) : void
@@ -61,100 +117,35 @@ class FluxExtension <<static>> <<partial>> {
     + {static} @IObserver(key:string) : IObserver<T>
     + {static} @IObserver(key:string, @param:T) : IObserver<T2>
 }
-class MonoFluxExtension <<static>> {
-}
-abstract class MonoFlux <<partial>> {
-}
-MonoBehaviour <|-- MonoFlux
-class FluxExtension <<static>> <<partial>> {
-    + {static} Store(key:int, action:Action, condition:bool) : void
-    + {static} Dispatch(key:int) : void
-}
-class FluxExtension <<static>> <<partial>> {
-    + {static} Store(key:int, action:Action<T>, condition:bool) : void
-    + {static} Dispatch(key:int, @param:T) : void
-}
-class FluxExtension <<static>> <<partial>> {
-    + {static} Store(key:int, action:Func<T>, condition:bool) : void
-    + {static} Dispatch(key:int) : T
-}
-class FluxExtension <<static>> <<partial>> {
-    + {static} Store(key:int, action:Func<T, T2>, condition:bool) : void
-    + {static} Dispatch(key:int, @param:T) : T2
-}
-class FluxExtension <<static>> <<partial>> {
-    + {static} StoreState(key:int, action:Action<T>, condition:bool) : void
-    + {static} DispatchState(key:int, state:T) : void
-    + {static} GetState(key:int, state:T) : bool
-}
-class FluxExtension <<static>> <<partial>> {
-    + {static} Store(key:int, action:Action<IEnumerator>, condition:bool) : void
-    + {static} Store(key:int, action:Func<IEnumerator>, condition:bool) : void
-    + {static} Store(key:int, action:Func<IEnumerator<T>>, condition:bool) : void
-    + {static} Store(key:int, action:Func<T, IEnumerator>, condition:bool) : void
-    + {static} Store(key:int, action:Func<T, IEnumerator<T2>>, condition:bool) : void
-    + {static} @IEnumerator(key:int) : IEnumerator
-    + {static} @IEnumerator(key:int) : IEnumerator<T>
-    + {static} @IEnumerator(key:int, @param:T) : IEnumerator
-    + {static} @IEnumerator(key:int, @param:T) : IEnumerator<T2>
-}
-class FluxExtension <<static>> <<partial>> {
-    + {static} Store(key:int, action:Action<Task>, condition:bool) : void
-    + {static} Store(key:int, action:Func<Task>, condition:bool) : void
-    + {static} Store(key:int, action:Func<Task<T>>, condition:bool) : void
-    + {static} Store(key:int, action:Func<T, Task>, condition:bool) : void
-    + {static} Store(key:int, action:Func<T, Task<T2>>, condition:bool) : void
-    + {static} @Task(key:int) : Task
-    + {static} @Task(key:int) : Task<T>
-    + {static} @Task(key:int, @param:T) : Task
-    + {static} @Task(key:int, @param:T) : Task<T2>
-}
-class FluxExtension <<static>> <<partial>> {
-    + {static} Store(key:int, action:Action<IObservable<T>>, condition:bool) : void
-    + {static} Store(key:int, action:Func<IObservable<T>>, condition:bool) : void
-    + {static} Store(key:int, action:Func<T, IObservable<T2>>, condition:bool) : void
-    + {static} @IObservable(key:int, @param:IObservable<T>) : void
-    + {static} @IObservable(key:int) : IObservable<T>
-    + {static} @IObservable(key:int, @param:T) : IObservable<T2>
-}
-class FluxExtension <<static>> <<partial>> {
-    + {static} Store(key:int, action:Action<IObserver<T>>, condition:bool) : void
-    + {static} Store(key:int, action:Func<IObserver<T>>, condition:bool) : void
-    + {static} Store(key:int, action:Func<T, IObserver<T2>>, condition:bool) : void
-    + {static} @IObserver(key:int, @param:IObserver<T>) : void
-    + {static} @IObserver(key:int) : IObserver<T>
-    + {static} @IObserver(key:int, @param:T) : IObserver<T2>
-}
 class FluxAttribute {
     + <<readonly>> key : object
     + FluxAttribute(key:object)
 }
-abstract class "KeyFlux`1"<T> {
-    KeyT : T <<get>>
-    + <<sealed>> <<override>> Store(callback:Action, condition:bool) : void
-    + <<sealed>> <<override>> Dispatch() : void
-    + <<sealed>> <<override>> Store(callback:Action<T2>, condition:bool) : void
-    + <<sealed>> <<override>> Dispatch(@param:T2) : void
-    + <<sealed>> <<override>> Store(callback:Func<T2>, condition:bool) : void
-    + <<sealed>> <<override>> Dispatch() : T2
-    + <<sealed>> <<override>> Store(callback:Func<T2, T3>, condition:bool) : void
-    + <<sealed>> <<override>> Dispatch(@param:T2) : T3
-    + <<sealed>> <<override>> StoreState(callback:Action<T2>, condition:bool) : void
-    + <<sealed>> <<override>> DispatchState(@param:T2) : void
+abstract class MonoFlux <<partial>> {
 }
-class "IKeyFlux`1"<T> {
+MonoBehaviour <|-- MonoFlux
+class Utils <<static>> {
+    + {static} Subscribe(condition:bool, action:T, callback:T) : void
 }
-KeyFluxBase <|-- "KeyFlux`1"
-"IKeyFlux`1" "<T>" <|-- "KeyFlux`1"
+class MonoFluxExtension <<static>> {
+}
+class Flux <<static>> {
+    + {static} Store(key:T, callback:Action, condition:bool) : void
+    + {static} Dispatch(key:T) : void
+    + {static} Store(key:T, callback:Action<T2>, condition:bool) : void
+    + {static} Dispatch(key:T, @param:T2) : void
+    + {static} Store(key:T, callback:Func<T2>, condition:bool) : void
+    + {static} Dispatch(key:T) : T2
+    + {static} Store(key:T, callback:Func<T2, T3>, condition:bool) : void
+    + {static} Dispatch(key:T, @param:T2) : T3
+    + {static} StoreState(key:T, callback:Action<T2>, condition:bool) : void
+    + {static} DispatchState(key:T, @param:T2) : void
+    + {static} GetState(key:T, @state:T2) : bool
+}
 interface "IKeyFlux`1"<T> {
     KeyT : T <<get>>
 }
 IKeyFlux <|-- "IKeyFlux`1"
-class KeyFlux <<sealed>> {
-}
-class "KeyFlux`1"<T> {
-}
-"KeyFlux`1" "<KeyFlux>" <|-- KeyFlux
 abstract class KeyFluxBase {
     Key : object <<get>>
     + <<virtual>> Store(callback:Action, condition:bool) : void
@@ -173,22 +164,39 @@ IKeyFlux <|-- KeyFluxBase
 interface IKeyFlux {
     Key : object <<get>>
 }
-class Flux <<static>> {
-    + {static} Store(key:T, callback:Action, condition:bool) : void
-    + {static} Dispatch(key:T) : void
-    + {static} Store(key:T, callback:Action<T2>, condition:bool) : void
-    + {static} Dispatch(key:T, @param:T2) : void
-    + {static} Store(key:T, callback:Func<T2>, condition:bool) : void
-    + {static} Dispatch(key:T) : T2
-    + {static} Store(key:T, callback:Func<T2, T3>, condition:bool) : void
-    + {static} Dispatch(key:T, @param:T2) : T3
-    + {static} StoreState(key:T, callback:Action<T2>, condition:bool) : void
-    + {static} DispatchState(key:T, @param:T2) : void
-    + {static} GetState(key:T, @state:T2) : bool
+abstract class "KeyFlux`1"<T> {
+    KeyT : T <<get>>
+    + <<sealed>> <<override>> Store(callback:Action, condition:bool) : void
+    + <<sealed>> <<override>> Dispatch() : void
+    + <<sealed>> <<override>> Store(callback:Action<T2>, condition:bool) : void
+    + <<sealed>> <<override>> Dispatch(@param:T2) : void
+    + <<sealed>> <<override>> Store(callback:Func<T2>, condition:bool) : void
+    + <<sealed>> <<override>> Dispatch() : T2
+    + <<sealed>> <<override>> Store(callback:Func<T2, T3>, condition:bool) : void
+    + <<sealed>> <<override>> Dispatch(@param:T2) : T3
+    + <<sealed>> <<override>> StoreState(callback:Action<T2>, condition:bool) : void
+    + <<sealed>> <<override>> DispatchState(@param:T2) : void
 }
-class "FluxReturn`2"<T,T2> <<static>> {
+class "IKeyFlux`1"<T> {
 }
-class "FluxParam`2"<T,T2> <<static>> {
+KeyFluxBase <|-- "KeyFlux`1"
+"IKeyFlux`1" "<T>" <|-- "KeyFlux`1"
+class KeyFlux <<sealed>> {
+}
+class "KeyFlux`1"<T> {
+}
+"KeyFlux`1" "<KeyFlux>" <|-- KeyFlux
+interface "IStore`2"<in TKey,in TStorage> {
+    Store(condition:bool, key:TKey, storage:TStorage) : void
+}
+class "ActionFlux`1"<TKey> <<sealed>> {
+    Store(condition:bool, key:TKey, action:Action) : void
+    Dispatch(key:TKey) : void
+}
+class "IFlux`2"<T1,T2> {
+}
+"IFlux`2" "<TKey,Action>" <|-- "ActionFlux`1"
+class "Flux`1"<T> <<static>> {
 }
 class "ActionFluxParam`2"<TKey,TValue> <<sealed>> {
     Store(condition:bool, key:TKey, action:Action<TValue>) : void
@@ -197,6 +205,24 @@ class "ActionFluxParam`2"<TKey,TValue> <<sealed>> {
 class "IFluxParam`3"<T1,T2,T3> {
 }
 "IFluxParam`3" "<TKey,TValue,Action<TValue>>" <|-- "ActionFluxParam`2"
+class "FluxReturn`2"<T,T2> <<static>> {
+}
+class "FluxParamReturn`3"<T,T2,T3> <<static>> {
+}
+class "StateFlux`2"<TKey,TValue> <<sealed>> {
+    Store(condition:bool, key:TKey, action:Action<TValue>) : void
+    Dispatch(key:TKey, param:TValue) : void
+}
+class "IFluxParam`3"<T1,T2,T3> {
+}
+"IFluxParam`3" "<TKey,TValue,Action<TValue>>" <|-- "StateFlux`2"
+class "State`1"<TValue> <<sealed>> {
+    + State(action:Action<TValue>)
+    + State(value:TValue)
+    + Store(condition:bool, action:Action<TValue>) : void
+    + Dispatch(value:TValue) : void
+    + Get(_value:TValue) : bool
+}
 interface "IFlux`2"<in TKey,in TStorage> {
     Dispatch(key:TKey) : void
 }
@@ -215,25 +241,6 @@ class "IStore`2"<T1,T2> {
 "IStore`2" "<TKey,TStorage>" <|-- "IFluxParam`3"
 "IStore`2" "<TKey,TStorage>" <|-- "IFluxReturn`3"
 "IStore`2" "<TKey,TStorage>" <|-- "IFluxParamReturn`4"
-interface "IStore`2"<in TKey,in TStorage> {
-    Store(condition:bool, key:TKey, storage:TStorage) : void
-}
-class "FluxParamReturn`3"<T,T2,T3> <<static>> {
-}
-class "StateFlux`2"<TKey,TValue> <<sealed>> {
-    Store(condition:bool, key:TKey, action:Action<TValue>) : void
-    Dispatch(key:TKey, param:TValue) : void
-}
-class "IFluxParam`3"<T1,T2,T3> {
-}
-"IFluxParam`3" "<TKey,TValue,Action<TValue>>" <|-- "StateFlux`2"
-class "State`1"<TValue> <<sealed>> {
-    + State(action:Action<TValue>)
-    + State(value:TValue)
-    + Store(condition:bool, action:Action<TValue>) : void
-    + Dispatch(value:TValue) : void
-    + Get(_value:TValue) : bool
-}
 class "FuncFluxParam`3"<TKey,TParam,TReturn> <<sealed>> {
     Store(condition:bool, key:TKey, func:Func<TParam, TReturn>) : void
     Dispatch(key:TKey, param:TParam) : TReturn
@@ -241,14 +248,7 @@ class "FuncFluxParam`3"<TKey,TParam,TReturn> <<sealed>> {
 class "IFluxParamReturn`4"<T1,T2,T3,T4> {
 }
 "IFluxParamReturn`4" "<TKey,TParam,TReturn,Func<TParam, TReturn>>" <|-- "FuncFluxParam`3"
-class "ActionFlux`1"<TKey> <<sealed>> {
-    Store(condition:bool, key:TKey, action:Action) : void
-    Dispatch(key:TKey) : void
-}
-class "IFlux`2"<T1,T2> {
-}
-"IFlux`2" "<TKey,Action>" <|-- "ActionFlux`1"
-class "FluxState`2"<T,T2> <<static>> {
+class "FluxParam`2"<T,T2> <<static>> {
 }
 class "FuncFlux`2"<TKey,TReturn> <<sealed>> {
     Store(condition:bool, key:TKey, func:Func<TReturn>) : void
@@ -257,6 +257,6 @@ class "FuncFlux`2"<TKey,TReturn> <<sealed>> {
 class "IFluxReturn`3"<T1,T2,T3> {
 }
 "IFluxReturn`3" "<TKey,TReturn,Func<TReturn>>" <|-- "FuncFlux`2"
-class "Flux`1"<T> <<static>> {
+class "FluxState`2"<T,T2> <<static>> {
 }
 @enduml
