@@ -15,7 +15,7 @@ UniFlux - Flexible Event Driven and Flux for Unity
 ![GitHub all releases](https://shields.io./github/downloads/kingdox/UniFlux/total?logo=github)
 ![npm](https://shields.io./npm/dt/com.kingdox.uniflux?logo=npm)
 
-[![CodeFactor](https://www.codefactor.io/repository/github/kingdox/uniflux/badge)](https://www.codefactor.io/repository/github/kingdox/uniflux)
+[![CodeFactor](https://www.codefactor.io/repository/github/xavierarpa/uniflux/badge)](https://www.codefactor.io/repository/github/xavierarpa/uniflux)
 
 
 <details>
