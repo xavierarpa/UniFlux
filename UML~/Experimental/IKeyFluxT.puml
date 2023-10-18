@@ -1,6 +1,0 @@
-@startuml
-interface "IKeyFlux`1"<T> {
-    KeyT : T <<get>>
-}
-IKeyFlux <|-- "IKeyFlux`1"
-@enduml
