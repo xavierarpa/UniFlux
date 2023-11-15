@@ -1,4 +1,8 @@
 @startuml
+class StateFluxAttribute {
+    + StateFluxAttribute(key:object)
+}
+MethodFluxAttribute <|-- StateFluxAttribute
 class FluxExtension <<static>> <<partial>> {
     + {static} Store(key:int, action:Action, condition:bool) : void
     + {static} Dispatch(key:int) : void
@@ -58,6 +62,10 @@ class FluxExtension <<static>> <<partial>> {
     + {static} @IObserver(key:int) : IObserver<T>
     + {static} @IObserver(key:int, @param:T) : IObserver<T2>
 }
+class MethodFluxAttribute {
+    + MethodFluxAttribute(key:object)
+}
+FluxAttribute <|-- MethodFluxAttribute
 class FluxExtension <<static>> <<partial>> {
     + {static} Store(key:string, action:Action, condition:bool) : void
     + {static} Dispatch(key:string) : void
@@ -117,18 +125,19 @@ class FluxExtension <<static>> <<partial>> {
     + {static} @IObserver(key:string) : IObserver<T>
     + {static} @IObserver(key:string, @param:T) : IObserver<T2>
 }
-class FluxAttribute {
-    + <<readonly>> key : object
-    + FluxAttribute(key:object)
+class Utils <<static>> {
+    + {static} Subscribe(condition:bool, action:T, callback:T) : void
 }
 abstract class MonoFlux <<partial>> {
 }
 MonoBehaviour <|-- MonoFlux
-class Utils <<static>> {
-    + {static} Subscribe(condition:bool, action:T, callback:T) : void
-}
 class MonoFluxExtension <<static>> {
 }
+class FluxAttribute {
+    + <<readonly>> key : object
+    + FluxAttribute(key:object)
+}
+Attribute <|-- FluxAttribute
 class Flux <<static>> {
     + {static} Store(key:T, callback:Action, condition:bool) : void
     + {static} Dispatch(key:T) : void
@@ -145,15 +154,6 @@ class Flux <<static>> {
 interface "IStore`2"<in TKey,in TStorage> {
     Store(condition:bool, key:TKey, storage:TStorage) : void
 }
-class "ActionFlux`1"<TKey> <<sealed>> {
-    Store(condition:bool, key:TKey, action:Action) : void
-    Dispatch(key:TKey) : void
-}
-class "IFlux`2"<T1,T2> {
-}
-"IFlux`2" "<TKey,Action>" <|-- "ActionFlux`1"
-class "Flux`1"<T> <<static>> {
-}
 class "ActionFluxParam`2"<TKey,TValue> <<sealed>> {
     Store(condition:bool, key:TKey, action:Action<TValue>) : void
     Dispatch(key:TKey, param:TValue) : void
@@ -161,23 +161,9 @@ class "ActionFluxParam`2"<TKey,TValue> <<sealed>> {
 class "IFluxParam`3"<T1,T2,T3> {
 }
 "IFluxParam`3" "<TKey,TValue,Action<TValue>>" <|-- "ActionFluxParam`2"
-class "FluxReturn`2"<T,T2> <<static>> {
-}
 class "FluxParamReturn`3"<T,T2,T3> <<static>> {
 }
-class "StateFlux`2"<TKey,TValue> <<sealed>> {
-    Store(condition:bool, key:TKey, action:Action<TValue>) : void
-    Dispatch(key:TKey, param:TValue) : void
-}
-class "IFluxParam`3"<T1,T2,T3> {
-}
-"IFluxParam`3" "<TKey,TValue,Action<TValue>>" <|-- "StateFlux`2"
-class "State`1"<TValue> <<sealed>> {
-    + State(action:Action<TValue>)
-    + State(value:TValue)
-    + Store(condition:bool, action:Action<TValue>) : void
-    + Dispatch(value:TValue) : void
-    + Get(_value:TValue) : bool
+class "FluxParam`2"<T,T2> <<static>> {
 }
 interface "IFlux`2"<in TKey,in TStorage> {
     Dispatch(key:TKey) : void
@@ -197,14 +183,12 @@ class "IStore`2"<T1,T2> {
 "IStore`2" "<TKey,TStorage>" <|-- "IFluxParam`3"
 "IStore`2" "<TKey,TStorage>" <|-- "IFluxReturn`3"
 "IStore`2" "<TKey,TStorage>" <|-- "IFluxParamReturn`4"
-class "FuncFluxParam`3"<TKey,TParam,TReturn> <<sealed>> {
-    Store(condition:bool, key:TKey, func:Func<TParam, TReturn>) : void
-    Dispatch(key:TKey, param:TParam) : TReturn
-}
-class "IFluxParamReturn`4"<T1,T2,T3,T4> {
-}
-"IFluxParamReturn`4" "<TKey,TParam,TReturn,Func<TParam, TReturn>>" <|-- "FuncFluxParam`3"
-class "FluxParam`2"<T,T2> <<static>> {
+class "State`1"<TValue> <<sealed>> {
+    + State(action:Action<TValue>)
+    + State(value:TValue)
+    + Store(condition:bool, action:Action<TValue>) : void
+    + Dispatch(value:TValue) : void
+    + Get(_value:TValue) : bool
 }
 class "FuncFlux`2"<TKey,TReturn> <<sealed>> {
     Store(condition:bool, key:TKey, func:Func<TReturn>) : void
@@ -213,6 +197,31 @@ class "FuncFlux`2"<TKey,TReturn> <<sealed>> {
 class "IFluxReturn`3"<T1,T2,T3> {
 }
 "IFluxReturn`3" "<TKey,TReturn,Func<TReturn>>" <|-- "FuncFlux`2"
+class "StateFlux`2"<TKey,TValue> <<sealed>> {
+    Store(condition:bool, key:TKey, action:Action<TValue>) : void
+    Dispatch(key:TKey, param:TValue) : void
+}
+class "IFluxParam`3"<T1,T2,T3> {
+}
+"IFluxParam`3" "<TKey,TValue,Action<TValue>>" <|-- "StateFlux`2"
+class "ActionFlux`1"<TKey> <<sealed>> {
+    Store(condition:bool, key:TKey, action:Action) : void
+    Dispatch(key:TKey) : void
+}
+class "IFlux`2"<T1,T2> {
+}
+"IFlux`2" "<TKey,Action>" <|-- "ActionFlux`1"
+class "FluxReturn`2"<T,T2> <<static>> {
+}
+class "Flux`1"<T> <<static>> {
+}
+class "FuncFluxParam`3"<TKey,TParam,TReturn> <<sealed>> {
+    Store(condition:bool, key:TKey, func:Func<TParam, TReturn>) : void
+    Dispatch(key:TKey, param:TParam) : TReturn
+}
+class "IFluxParamReturn`4"<T1,T2,T3,T4> {
+}
+"IFluxParamReturn`4" "<TKey,TParam,TReturn,Func<TParam, TReturn>>" <|-- "FuncFluxParam`3"
 class "FluxState`2"<T,T2> <<static>> {
 }
 @enduml

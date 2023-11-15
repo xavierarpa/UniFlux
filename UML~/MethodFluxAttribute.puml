@@ -1,0 +1,6 @@
+@startuml
+class MethodFluxAttribute {
+    + MethodFluxAttribute(key:object)
+}
+FluxAttribute <|-- MethodFluxAttribute
+@enduml

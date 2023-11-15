@@ -1,0 +1,6 @@
+@startuml
+class StateFluxAttribute {
+    + StateFluxAttribute(key:object)
+}
+MethodFluxAttribute <|-- StateFluxAttribute
+@enduml

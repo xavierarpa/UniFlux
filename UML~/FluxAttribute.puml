@@ -3,4 +3,5 @@ class FluxAttribute {
     + <<readonly>> key : object
     + FluxAttribute(key:object)
 }
+Attribute <|-- FluxAttribute
 @enduml
