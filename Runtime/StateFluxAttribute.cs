@@ -19,27 +19,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-using System;
 namespace Kingdox.UniFlux
 {
     ///<summary>
-    /// Class FluxAttribute, a custom attribute that mark a method to be subscribed in a flux.
-    /// AllowMultiple is false to keep legibility
+    /// Class StateFluxAttribute, is like MethodFluxAttribute but stores the last saved data
     ///</summary>
-    [Obsolete("Naming has been changed, use instead [MethodFlux]")]
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class FluxAttribute : Attribute
+    public class StateFluxAttribute : MethodFluxAttribute
     {
-        ///<summary>
-        /// Key provided to the attribute's constructor.
-        ///</summary>
-        public readonly object key;
-        ///<summary>
-        /// Constructor of the FluxAttribute class that takes a key as a parameter.
-        ///</summary>
-        public FluxAttribute(object key)
+        public StateFluxAttribute(object key) : base(key)
         {
-            this.key = key;
+            // Nada temporalmente
         }
     }
 }

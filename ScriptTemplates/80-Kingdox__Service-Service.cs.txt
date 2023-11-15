@@ -11,9 +11,6 @@ namespace Service
         {
 
         }
-    }
-    public static partial class #SCRIPTNAME# // Key
-    {
         public static partial class Key
         {
             private const string _#SCRIPTNAME# =  nameof(#SCRIPTNAME#) + ".";

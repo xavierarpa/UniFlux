@@ -19,6 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+#pragma warning disable CS0618
 using System;
 namespace Kingdox.UniFlux
 {
@@ -26,21 +27,13 @@ namespace Kingdox.UniFlux
     /// Class FluxAttribute, a custom attribute that mark a method to be subscribed in a flux.
     /// AllowMultiple is false to keep legibility
     ///</summary>
-    [Obsolete("Naming has been changed, use instead [MethodFlux]")]
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
-    public class FluxAttribute : Attribute
+    public class MethodFluxAttribute : FluxAttribute
     {
-        ///<summary>
-        /// Key provided to the attribute's constructor.
-        ///</summary>
-        public readonly object key;
-        ///<summary>
-        /// Constructor of the FluxAttribute class that takes a key as a parameter.
-        ///</summary>
-        public FluxAttribute(object key)
+        public MethodFluxAttribute(object key) : base(key)
         {
-            this.key = key;
+            // Nada temporalmente
         }
     }
 }
 //TODO: C# 11 allow Attribute<T>, instead of object key
+
