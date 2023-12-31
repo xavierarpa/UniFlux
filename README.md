@@ -153,15 +153,15 @@ float _16 = Flux<double,string, float>.Dispatch(Math.PI, "PI"); //double as key
 
 - You can add in PackageManager ([How to install package from git URL](https://docs.unity3d.com/Manual/upm-ui-giturl.html))
 ```bash
-https://github.com/kingdox/UniFlux.git
+https://github.com/xavierarpa/UniFlux.git
 ```
 - You can install via openupm CLI
 ```bash
-openupm add com.kingdox.uniflux
+openupm add com.xavierarpa.uniflux
 ```
 - You can install via npm
 ```bash
-npm i com.kingdox.uniflux
+npm i com.xavierarpa.uniflux
 ```
 </details>
 
