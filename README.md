@@ -179,7 +179,7 @@ To enable special content you must #define
 <details>
  <summary><b>Author Info</b></summary>
  
-[@kingdox](https://github.com/kingdox/)
+[@xavierarpa](https://github.com/xavierarpa/)
 
 For support, email arpaxavier@gmail.com
 
