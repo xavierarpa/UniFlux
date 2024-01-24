@@ -26,7 +26,7 @@ namespace Kingdox.UniFlux
     /// The `MonoFlux` class is a base class that should be used for all Unity scripts that need to respond to changes in a flux state. 
     /// It provides a helper method for subscribing and unsubscribing to flux state updates, and a virtual method that can be overriden to handle changes in subscription state. 
     /// </summary>
-    public abstract partial class MonoFlux : MonoBehaviour
+    [DisallowMultipleComponent] public abstract partial class MonoFlux : MonoBehaviour
     {
         /// <summary>
         /// Called when the script instance is being enabled.
