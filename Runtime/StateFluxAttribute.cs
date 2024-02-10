@@ -24,6 +24,7 @@ namespace Kingdox.UniFlux
     ///<summary>
     /// Class StateFluxAttribute, is like MethodFluxAttribute but stores the last saved data
     ///</summary>
+    [UnityEngine.Scripting.Preserve]
     public class StateFluxAttribute : MethodFluxAttribute
     {
         public StateFluxAttribute(object key) : base(key)
