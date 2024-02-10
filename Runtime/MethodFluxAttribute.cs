@@ -27,6 +27,7 @@ namespace Kingdox.UniFlux
     /// Class FluxAttribute, a custom attribute that mark a method to be subscribed in a flux.
     /// AllowMultiple is false to keep legibility
     ///</summary>
+    [UnityEngine.Scripting.Preserve]
     public class MethodFluxAttribute : FluxAttribute
     {
         public MethodFluxAttribute(object key) : base(key)
