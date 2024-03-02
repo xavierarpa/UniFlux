@@ -17,13 +17,76 @@ UniFlux - Flexible Event Driven and Flux for Unity
 
 [![CodeFactor](https://www.codefactor.io/repository/github/xavierarpa/uniflux/badge)](https://www.codefactor.io/repository/github/xavierarpa/uniflux)
 
-<!-- How to Use -->
+  <!-- Examples -->
 <details>
- <summary><b>How to use</b></summary>
+ <summary><b>Examples</b></summary>
 
- bla
+ In this example, we call CastTest via "StarterFlux.CastTest" key
+```csharp
+using Kingdox.UniFlux; // 1
+public sealed class StarterFlux : MonoFlux // 2
+{
+  private void Start() => "StarterFlux.CastTest".Dispatch(); // 3
+}
+//...
+public sealed class TestFlux : MonoFlux 
+{
+  [MethodFlux("StarterFlux.CastTest")] private void CastTest() =>   Debug.Log("Hello World"); // 4
+}
+```
+
+Here we can use a local state and get's a reactive behaviour using "OnChange_Life", also we can call it using "Set_Life" or get the current state with "Get_Life"...
+```cs
+using Kingdox.UniFlux;
+float _life;
+public float Life
+{
+    [MethodFlux("Get_Life")] get => _life;
+    [MethodFlux("Set_Life")] set 
+    {
+      _life = value;
+      "OnChange_Life".Dispatch(value);
+    }
+}
+//...
+  [MethodFlux("OnChange_Life")] private void OnChange_Life(float value)
+  {
+    // ...
+  }
+```
+
+Here are examples of what you can do:
+```cs
+"1".Dispatch(); // - Send a Message
+int _2 = "2".Dispatch<int>(); // - Send a Message and return a value
+"3".Dispatch<int>(42); // - Send a Message with an argument
+int _4 = "4".Dispatch<int,int>(42); // - Send a Message with an argument and return a value
+```
+
+Also we made easily handle IEnumerators, Task and UniTask
+```cs
+"9".IEnumerator();
+"10".Task();
+
+// #define UNIFLUX_UNITASK_SUPPORT
+// To enable UniTask integration from https://github.com/Cysharp/UniTask"
+"123".UniTask();
+```
+
+You can use the KEY type as an TaskAwaiter, calling Task cast implicit !
+```cs
+private static async Task Example()
+{
+  await "KEY"; // Calls "KEY".Task();
+}
+```
+
+Also can create anonimous subscriptions in case you don't want to do a method (not recommended)
+```cs
+"42".Store(()=>{}, true); // Anonimous Subscriptions
+```
 </details>
-  
+
 <!-- Performance -->
 <details>
  <summary><b>Performance</b></summary>
@@ -37,80 +100,8 @@ Compared methods of UniFlux
 | UniFlux (Store string  ADD)       | 10.000        | 1.2MB     | ~3ms   | 
 | UniFlux (Store int  REMOVE)       | 10.000        | 1.2MB     | ~30ms  |
 | UniFlux (Store string  REMOVE)    | 10.000        | 1.2MB     | ~30ms  | 
-</details>
 
-<!-- Examples -->
-<details>
- <summary><b>Examples</b></summary>
- 
-```csharp
-using Kingdox.UniFlux; // 1
-public sealed class StarterFlux : MonoFlux // 2
-{
-  private void Start() => "StarterFlux.CastTest".Dispatch(); // 3
-}
-//...
-public sealed class TestFlux : MonoFlux 
-{
-  [Flux("StarterFlux.CastTest")] private void CastTest() =>   Debug.Log("Hello World"); // 4
-}
-```
-
-```cs
-using Kingdox.UniFlux;
-float _life;
-public float Life
-{
-    [Flux("Get_Life")] get => _life;
-    [Flux("Set_Life")] set 
-    {
-      _life = value;
-      "OnChange_Life".Dispatch(value);
-    }
-}
-//...
-  [Flux("OnChange_Life")] private void OnChange_Life(float value)
-  {
-    // ...
-  }
-```
-
-```cs
-"1".Dispatch();
-int _2 = "2".Dispatch<int>();
-"3".Dispatch<int>(42);
-int _4 = "4".Dispatch<int,int>(42);
-```
-
-```cs
-"9".IEnumerator();
-"10".Task();
-```
-
-```cs
-// #define UNIFLUX_UNITASK_SUPPORT
-"123".UniTask();
-```
-
-#### Advanced features
-
-```cs
-using Kingdox.UniFlux.Core;
-//...
-Flux<byte>.Dispatch(13); //byte as key
-string _14 = Flux<bool,string>.Dispatch(true); //bool as key
-float _16 = Flux<double,string, float>.Dispatch(Math.PI, "PI"); //double as key
-```
-```cs
-private static async Task Example()
-{
-  await "KEY"; // Calls "KEY".Task();
-}
-```
-
-```cs
-"42".Store(()=>{}, true); // Anonimous Subscriptions
-```
+look how nice work Dispatching interger and string, Storing by design is planned to do it once so there's no problem in performance.
 </details>
  
  <!-- Instalation -->
@@ -133,17 +124,6 @@ openupm add com.xavierarpa.uniflux
 ```bash
 npm i com.xavierarpa.uniflux
 ```
-</details>
-
- <!-- Special Content -->
-<details>
- <summary><b>Special Content</b></summary>
- 
-To enable special content you must #define
-
-| Definition | Description                |
-| :-------- | :------------------------- |
-| `UNIFLUX_UNITASK_SUPPORT` | Enable [Cysharp/UniTask]("https://github.com/Cysharp/UniTask") integration |
 </details>
 
 <details>
