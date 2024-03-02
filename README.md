@@ -17,29 +17,6 @@ UniFlux - Flexible Event Driven and Flux for Unity
 
 [![CodeFactor](https://www.codefactor.io/repository/github/xavierarpa/uniflux/badge)](https://www.codefactor.io/repository/github/xavierarpa/uniflux)
 
-
-<details>
- <summary><b>Modules</b></summary>
- 
-| Module | Description |
-| - | - |
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Scene-black.svg)](https://github.com/kingdox/UniFlux.Scene)|(Recomended👍) Manage the scenes and emit messages|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Input-black.svg)](https://github.com/kingdox/UniFlux.Input)|Manage "Input items" and then dispatch if conditions is right|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Click-black.svg)](https://github.com/kingdox/UniFlux.Click)|Manage Player Click interaction|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Swipe-black.svg)](https://github.com/kingdox/UniFlux.Swipe)|(Recomended👍) Manage Player Swipe interaction (Mouse and Mobile)|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Drag-black.svg)](https://github.com/kingdox/UniFlux.Drag)|Manage Player UI Drag interaction|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Binary-black.svg)](https://github.com/kingdox/UniFlux.Binary)|(Recomended👍) Save/Load Files in Binary |
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Updates-black.svg)](https://github.com/kingdox/UniFlux.Updates) |(Recomended👍) Subscribe and Unsubscribe Actions/Methods in a concrete framerate|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Addressables-black.svg)](https://github.com/kingdox/UniFlux.Addressables)|(Experimental🧪) Manages Addressables with primitive types|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase-black.svg)](https://github.com/kingdox/UniFlux.Firebase)|Firebase Core of other UniFlux's modules|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase.Firestore-black.svg)](https://github.com/kingdox/UniFlux.Firebase.Firestore)|Manages Firebase Cloud Firestore simplified|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Firebase.Database-black.svg)](https://github.com/kingdox/UniFlux.Firebase.Database)|Manages Firebase Realtime Database simplified|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.OpenAI-gold.svg)](https://github.com/kingdox/UniFlux.OpenAI)|(Working ! 🔨) Manages OpenAI API|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.OWO-black.svg)](https://github.com/kingdox/UniFlux.OWO)|Manages OWO API|
-|[![Unity](https://img.shields.io/badge/Module-UniFlux.Netcode.RollBack-gold.svg)](https://github.com/kingdox/UniFlux.Netcode.RollBack)|(Working ! 🔨) Handle Network States, allowing netcode Rollback|
-
-</details>
-
 <!-- Intro -->
 <details>
  <summary><b>Workflow</b></summary>
