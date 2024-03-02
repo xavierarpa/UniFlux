@@ -137,6 +137,12 @@ Flux<byte>.Dispatch(13); //byte as key
 string _14 = Flux<bool,string>.Dispatch(true); //bool as key
 float _16 = Flux<double,string, float>.Dispatch(Math.PI, "PI"); //double as key
 ```
+```cs
+private static async Task Example()
+{
+  await "KEY"; // Calls "KEY".Task();
+}
+```
 
 ```cs
 "42".Store(()=>{}, true); // Anonimous Subscriptions
