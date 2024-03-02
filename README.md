@@ -17,26 +17,13 @@ UniFlux - Flexible Event Driven and Flux for Unity
 
 [![CodeFactor](https://www.codefactor.io/repository/github/xavierarpa/uniflux/badge)](https://www.codefactor.io/repository/github/xavierarpa/uniflux)
 
-<!-- Intro -->
+<!-- How to Use -->
 <details>
- <summary><b>Workflow</b></summary>
- 
- Here you can find a Unity Project to take a try => https://github.com/kingdox/UniFluxShowcaseProject
- 
-![Example_1 Event Bus](https://www.websequencediagrams.com/files/render?link=4t7a1KKbQLUGYJlwuv6r58a63GbmFoMJtwsVLS60scZNp1nlcxElJg1Ch6pfLypQ)
- 
-![Example_2 States](https://www.websequencediagrams.com/files/render?link=9rRV2Rfdmw1wAdCdeq0UfgVDEUVxdNXLY7tw6oO5QW7M2MKOlYGKkrVOCSeHSXOR)
- 
-</details>
+ <summary><b>How to use</b></summary>
 
-<details>
- <summary><b>Advanced Workflow</b></summary>
- 
-![WorkFlow](https://www.websequencediagrams.com/files/render?link=lpHvFEnOec3XJH2t8AnKG2yrZDncSgC2IVJ8WIoVqDWCdvF7PThHRiEAVR7UBgRJ)
- 
-![Architecture](https://github.com/kingdox/UniFlux/blob/main/Contents/Architecture.drawio.png)
+ bla
 </details>
-
+  
 <!-- Performance -->
 <details>
  <summary><b>Performance</b></summary>
