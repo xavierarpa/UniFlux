@@ -97,6 +97,7 @@ namespace Kingdox.UniFlux
 #region Task
     public static partial class FluxExtension //Action<Task>
     {
+        public static System.Runtime.CompilerServices.TaskAwaiter GetAwaiter(this #SCRIPTNAME# key) => key.Task().GetAwaiter();
         public static void Store(this #SCRIPTNAME# key, in Action<Task> action, in bool condition) => Flux.Store(in key,in action,in condition);
         public static void Store(this #SCRIPTNAME# key, in Func<Task> action, in bool condition) => Flux.Store(in key,in action,in condition);
         public static void Store<T>(this #SCRIPTNAME# key, in Func<Task<T>> action, in bool condition) => Flux.Store(in key,in action,in condition);
