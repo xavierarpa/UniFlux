@@ -8,12 +8,12 @@ UniFlux - Flexible Event Driven and Flux for Unity
 [![Build status](https://ci.appveyor.com/api/projects/status/712fvbpoio49ee91?svg=true)](https://ci.appveyor.com/project/kingdox/uniflux)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-blueviolet)](https://makeapullrequest.com)
 
-[![Releases](https://img.shields.io/github/release/kingdox/UniFlux.svg)](https://github.com/kingdox/UniFlux/releases)
-[![UPM](https://img.shields.io/npm/v/com.kingdox.uniflux?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.kingdox.uniflux/)
-<span class="badge-npmversion"><a href="https://npmjs.org/package/com.kingdox.uniflux" title="View this project on NPM"><img src="https://img.shields.io/npm/v/com.kingdox.uniflux.svg" alt="NPM version" /></a></span>
+[![Releases](https://img.shields.io/github/release/xavierarpa/UniFlux.svg)](https://github.com/xavierarpa/UniFlux/releases)
+[![UPM](https://img.shields.io/npm/v/com.xavierarpa.uniflux?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.xavierarpa.uniflux/)
+<span class="badge-npmversion"><a href="https://npmjs.org/package/com.xavierarpa.uniflux" title="View this project on NPM"><img src="https://img.shields.io/npm/v/com.xavierarpa.uniflux.svg" alt="NPM version" /></a></span>
 
-![GitHub all releases](https://shields.io./github/downloads/kingdox/UniFlux/total?logo=github)
-![npm](https://shields.io./npm/dt/com.kingdox.uniflux?logo=npm)
+![GitHub all releases](https://shields.io./github/downloads/xavierarpa/UniFlux/total?logo=github)
+![npm](https://shields.io./npm/dt/com.xavierarpa.uniflux?logo=npm)
 
 [![CodeFactor](https://www.codefactor.io/repository/github/xavierarpa/uniflux/badge)](https://www.codefactor.io/repository/github/xavierarpa/uniflux)
 
