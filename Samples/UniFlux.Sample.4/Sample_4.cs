@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 Xavier Arpa López Thomas Peter ('Kingdox')
+Copyright (c) 2023 Xavier Arpa López Thomas Peter ('xavierarpa')
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,28 +20,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using UnityEngine;
-namespace Kingdox.UniFlux.Sample
+namespace UniFlux.Sample
 {
     public sealed class Sample_4 : MonoFlux
     {
         [SerializeField] private int _shots;
         private void Update()
         {
-            Kingdox.UniFlux.Core.Flux.Dispatch(_shots < 10);
+            UniFlux.Core.Flux.Dispatch(_shots < 10);
         }
-        [Flux(true)]private void CanShot()
+        [MethodFlux(true)]private void CanShot()
         {
             if(Time.frameCount % 60 == 0)
             {
                 "Shot".Dispatch(Time.frameCount);
             }
         }
-        [Flux("Shot")] private void Shot(int frameCount)
+        [MethodFlux("Shot")] private void Shot(int frameCount)
         {
             _shots++;
             "LogShot".Dispatch((frameCount, _shots));
         }
-        [Flux("LogShot")] private void LogShot((int frameCount, int shots) data)
+        [MethodFlux("LogShot")] private void LogShot((int frameCount, int shots) data)
         {
             Debug.Log(data);
         }

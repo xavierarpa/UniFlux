@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 Xavier Arpa López Thomas Peter ('Kingdox')
+Copyright (c) 2023 Xavier Arpa López Thomas Peter ('xavierarpa')
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,17 +20,28 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using UnityEngine;
-namespace Kingdox.UniFlux.Sample
+namespace UniFlux.Sample
 {
+    /// <summary>
+    /// In Sample_1 we explain how to implement easily. 
+    /// In this case we only need to inherit from MonoFlux and include MethodFlux Attribute in the selected method
+    /// Then we can use Dispatch extension methods to call the methods subscribed with the specified key, in this case "Sample_1"
+    /// </summary>
     public sealed class Sample_1 : MonoFlux
     {
+        /// <summary>
+        /// Used as an example for calling methods subscribed with key "Sample_1"
+        /// </summary>
         private void Start() 
         {
             "Sample_1".Dispatch();
         }
-        [Flux("Sample_1")] private void Method() 
+        /// <summary>
+        /// Used as an example method subscribed with key "Sample_1"
+        /// </summary>
+        [MethodFlux("Sample_1")] private void OnDispatchKeySample_1()
         {
-            Debug.Log("Sample_1 !");
+            Debug.Log("Sample_1 called !");
         }
     }
 }

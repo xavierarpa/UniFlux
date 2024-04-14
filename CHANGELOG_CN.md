@@ -48,12 +48,12 @@
 ## [1.1.0] - 2023-04-06
 Unity的UniFlux现在可以使用了 ! 你可以使用MonoFlux和[Flux("Hello World")]来创建你自己的Action, 然后使用 "Hello World".Dispatch(), 就可以看到神奇的效果了!
 摘要:
-- 使用Kingdox.UniFlux
+- 使用UniFlux
 - YourMonoBehaviour : MonoFlux
 - [Flux("Key")] void MethodExamples() => Debug.Log("Hello World");
 - "Key".Dispatch();
 ### 固定
-- 修正了Kingdox.UniFlux.Core.Internal.Flux<T, T2>的问题, 它不必要地创建ActionFluxParam和FuncFlux, 现在只实例化指定的Flux。
+- 修正了UniFlux.Core.Internal.Flux<T, T2>的问题, 它不必要地创建ActionFluxParam和FuncFlux, 现在只实例化指定的Flux。
 ### 改变了
 - 删除了 ISubscribe
 - 删除了 IDictionary
@@ -63,7 +63,7 @@ Unity的UniFlux现在可以使用了 ! 你可以使用MonoFlux和[Flux("Hello Wo
 - 重新命名了方法, 以保持标准的设计惯例(在扩展类中, 我们保留了@IEnumerator, @ITask, 等等, 以保持兼容性)。
 ### 添加
 - 添加了IStore, 做了ISubscribe和IDictionary的工作, 简化了。
-- 添加了Kingdox.UniFlux.Core.Flux作为公共静态类来访问内部Flux类, 就像管道一样。
+- 添加了UniFlux.Core.Flux作为公共静态类来访问内部Flux类, 就像管道一样。
 - 添加了UniFlux扩展的字符串和int类型
 - 添加了ScriptTemplate来创建你自己的UniFlux扩展键类型
 ## [1.0.0] - 2023-03-24

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 Xavier Arpa López Thomas Peter ('Kingdox')
+Copyright (c) 2023 Xavier Arpa López Thomas Peter ('xavierarpa')
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -25,10 +25,10 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
-using Kingdox.UniFlux;
-using Kingdox.UniFlux.Core;
+using UniFlux;
+using UniFlux.Core;
 
-namespace Kingdox.UniFlux.Tests
+namespace UniFlux.Tests
 {
     public class EditMode_Test_1
     {

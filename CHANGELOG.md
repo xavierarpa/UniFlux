@@ -69,13 +69,13 @@ Now UniFlux is more optimized than before
 
 UniFlux for Unity is now available ! You can use MonoFlux and [Flux("Hello World")] to create your own Action, then use "Hello World".Dispatch() and see the magic!
 Summary:
-- using Kingdox.UniFlux
+- using UniFlux
 - YourMonoBehaviour : MonoFlux
 - [Flux("Key")] void MethodExamples() => Debug.Log("Hello World");
 - "Key".Dispatch();
 
 ### Fixed
-- Fixed Bug with Kingdox.UniFlux.Core.Internal.Flux<T, T2> where it create ActionFluxParam and FuncFlux innecessarily, now only instantiate the specified
+- Fixed Bug with UniFlux.Core.Internal.Flux<T, T2> where it create ActionFluxParam and FuncFlux innecessarily, now only instantiate the specified
 
 ### Changed
 - Removed ISubscribe
@@ -87,7 +87,7 @@ Summary:
 
 ### Added
 - Added IStore to do what ISubscribe and IDictionary does, simplified
-- Added Kingdox.UniFlux.Core.Flux as public static class to access internal Flux class, like a pipeline
+- Added UniFlux.Core.Flux as public static class to access internal Flux class, like a pipeline
 - Added UniFlux Extension for string and int types
 - Added ScriptTemplate to create your own UniFlux Extension key type
 

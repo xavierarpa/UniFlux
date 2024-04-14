@@ -23,7 +23,7 @@ UniFlux - Flexible Event Driven and Flux for Unity
 
  In this example, we call CastTest via "StarterFlux.CastTest" key
 ```csharp
-using Kingdox.UniFlux; // 1
+using UniFlux; // 1
 public sealed class StarterFlux : MonoFlux // 2
 {
   private void Start() => "StarterFlux.CastTest".Dispatch(); // 3
@@ -37,7 +37,7 @@ public sealed class TestFlux : MonoFlux
 
 Here we can use a local state and get's a reactive behaviour using "OnChange_Life", also we can call it using "Set_Life" or get the current state with "Get_Life"...
 ```cs
-using Kingdox.UniFlux;
+using UniFlux;
 float _life;
 public float Life
 {

@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 Xavier Arpa López Thomas Peter ('Kingdox')
+Copyright (c) 2023 Xavier Arpa López Thomas Peter ('xavierarpa')
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,8 @@ SOFTWARE.
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Kingdox.UniFlux.Core;
-namespace Kingdox.UniFlux.Benchmark
+using UniFlux.Core;
+namespace UniFlux.Benchmark
 {
     public class Benchmark_UniFlux : MonoFlux
     {

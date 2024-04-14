@@ -1,11 +1,13 @@
 using System;
-namespace Kingdox.UniFlux.Core
+namespace UniFlux.Core
 {
     public static class Flux 
     {
 #region // Flux
         public static void Store<T>(in T key, in Action callback, in bool condition) => Internal.Flux<T>.Store(in key, in callback, in condition);
         public static void Dispatch<T>(in T key) => Internal.Flux<T>.Dispatch(in key);
+        // public static void Store<T>(in T key, in Action callback, in bool condition) => Internal.Flux<T>.actionFlux.Store(in condition, key, in callback);
+        // public static void Dispatch<T>(in T key) => Internal.Flux<T>.actionFlux.Dispatch(key);
 #endregion
 #region // FluxParam
         public static void Store<T,T2>(in T key, in Action<T2> callback, in bool condition) => Internal.FluxParam<T,T2>.Store(in key, in callback, in condition);

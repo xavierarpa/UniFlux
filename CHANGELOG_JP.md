@@ -48,12 +48,12 @@ UniFluxが以前よりも最適化されました。
 ## [1.1.0] - 2023-04-06
 UniFlux for Unityがリリースされました ！MonoFluxと[Flux("Hello World")]でActionを作り、"Hello World".Dispatch() で魔法を見ることができます！
 まとめです：
-- Kingdox.UniFluxを使用しています。
+- UniFluxを使用しています。
 - YourMonoBehaviour ： MonoFlux
 - Flux("Key")] void MethodExamples() => Debug.Log("Hello World")；
 - "Key".Dispatch()を実行します；
 ### 固定
-- Kingdox.UniFlux.Core.Internal.Flux<T,T2>でActionFluxParamとFuncFluxを不必要に生成するバグを修正し、特定のインスタンスのみを生成するようになりました。
+- UniFlux.Core.Internal.Flux<T,T2>でActionFluxParamとFuncFluxを不必要に生成するバグを修正し、特定のインスタンスのみを生成するようになりました。
 ### を変更しました。
 - ISubscribeを削除しました。
 - 削除されたIDictionary
@@ -63,7 +63,7 @@ UniFlux for Unityがリリースされました ！MonoFluxと[Flux("Hello World
 - 標準的な設計規約を維持するためにMethodsの名前を変更（拡張クラスでは互換性のために@IEnumerator、@ITaskなどを残しています。）
 ### 追加
 - ISubscribeやIDictionaryが行っていたことを行うIStoreを追加し、簡略化した。
-- パイプラインのように内部のFluxクラスにアクセスするために、Kingdox.UniFlux.Core.Fluxをpublic staticクラスとして追加した
+- パイプラインのように内部のFluxクラスにアクセスするために、UniFlux.Core.Fluxをpublic staticクラスとして追加した
 - 文字列型とint型に対応したUniFlux Extensionの追加
 - 独自のUniFlux Extensionキータイプを作成するためのScriptTemplateを追加しました。
 ## [1.0.0] - 2023-03-24

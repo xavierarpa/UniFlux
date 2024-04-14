@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 Xavier Arpa López Thomas Peter ('Kingdox')
+Copyright (c) 2023 Xavier Arpa López Thomas Peter ('xavierarpa')
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +20,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using UnityEngine;
-namespace Kingdox.UniFlux.Sample
+namespace UniFlux.Sample
 {
     public sealed class Sample_3 : MonoFlux
     {
         [SerializeField] private int _life;
         public int Life
         {
-            [Flux("Get_Life")] get => _life;
-            [Flux("Set_Life")] set 
+            [MethodFlux("Get_Life")] get => _life;
+            [MethodFlux("Set_Life")] set 
             {
                 _life = value;
                 "OnChange_Life".Dispatch(value);
@@ -42,21 +42,21 @@ namespace Kingdox.UniFlux.Sample
         {
             (Time.frameCount % 60).Dispatch();
         }
-        [Flux(0)] private void OnUpdate() 
+        [MethodFlux(0)] private void OnUpdate() 
         {
             if("Get_Life".Dispatch<int>() > 0)
             {
                 "Set_Life".Dispatch("Get_Life".Dispatch<int>()-1);
             }
         }
-        [Flux("OnChange_Life")] private void OnChange_Life(int life) 
+        [MethodFlux("OnChange_Life")] private void OnChange_Life(int life) 
         {
             if(life == 0)
             {
                 "OnDeath".Dispatch();
             }   
         }
-        [Flux("OnDeath")] private void OnDeath()
+        [MethodFlux("OnDeath")] private void OnDeath()
         {
             Debug.Log("You're Dead !");
         }

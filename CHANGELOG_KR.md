@@ -49,12 +49,12 @@
 ## [1.1.0] - 2023-04-06
 유니티용 UniFlux가 출시되었습니다! MonoFlux와 [Flux("Hello World")]를 사용하여 자신만의 액션을 만든 다음 "Hello World".Dispatch()를 사용하면 마법을 볼 수 있습니다!
 요약:
-- Kingdox.UniFlux 사용
+- UniFlux 사용
 - YourMonoBehaviour : MonoFlux
 - [Flux("Key")] void MethodExamples() => Debug.Log("Hello World");
 - "Key".Dispatch();
 ### Fixed
-- Kingdox.UniFlux.Core.Internal.Flux<T, T2>에서 불필요하게 ActionFluxParam과 FuncFlux를 생성하던 버그가 수정되어, 이제 지정된 것만 인스턴스화합니다.
+- UniFlux.Core.Internal.Flux<T, T2>에서 불필요하게 ActionFluxParam과 FuncFlux를 생성하던 버그가 수정되어, 이제 지정된 것만 인스턴스화합니다.
 ### 변경됨
 - ISubscribe 제거
 - IDictionary 제거
@@ -64,6 +64,6 @@
 - 표준 디자인 규칙을 유지하기 위해 메서드 이름 변경 (확장 클래스에서는 호환성을 위해 @IEnumerator, @ITask 등을 유지)
 ### 추가됨
 - IStore를 추가하여 ISubscribe 및 IDictionary가 수행하는 작업을 단순화했습니다.
-- 파이프라인처럼 내부 Flux 클래스에 접근하기 위해 공용 정적 클래스로 Kingdox.UniFlux.Core.Flux를 추가했습니다.
+- 파이프라인처럼 내부 Flux 클래스에 접근하기 위해 공용 정적 클래스로 UniFlux.Core.Flux를 추가했습니다.
 - 문자열 및 정수 유형에 대한 UniFlux 확장 추가
 - 스크립트 템플릿을 추가하여 자신만의 UniFlux 확장 키 유형을 생성할 수 있습니다.

@@ -28,7 +28,7 @@
         <mxCell id="2c_V3igSBwsv665nDBpx-24" value="Module" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="2c_V3igSBwsv665nDBpx-18" vertex="1">
           <mxGeometry y="50" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="2c_V3igSBwsv665nDBpx-25" value="Kingdox.UniFlux" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="2c_V3igSBwsv665nDBpx-25" value="UniFlux" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-525" y="-200" width="200" height="140" as="geometry" />
         </mxCell>
         <mxCell id="2c_V3igSBwsv665nDBpx-5" value="Flux" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="2c_V3igSBwsv665nDBpx-25" vertex="1">

@@ -1,10 +1,10 @@
 {
-    "name": "Kingdox.UniFlux.Test.EditMode",
+    "name": "UniFlux.Test.EditMode",
     "rootNamespace": "",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Kingdox.UniFlux"
+        "UniFlux"
     ],
     "includePlatforms": [
         "Editor"

@@ -1,5 +1,5 @@
 {
-    "name": "Kingdox.UniFlux.Benchmark",
+    "name": "UniFlux.Benchmark",
     "rootNamespace": "",
     "references": [
         "GUID:deccb46461c684b399bd2ef983966192"

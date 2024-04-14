@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-namespace Kingdox.UniFlux.Benchmark
+namespace UniFlux.Benchmark
 {
     public sealed class Benchmark_Nest_UniFlux : MonoFlux
     {

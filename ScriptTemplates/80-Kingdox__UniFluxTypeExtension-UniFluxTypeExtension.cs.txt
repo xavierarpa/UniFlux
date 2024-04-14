@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Kingdox.UniFlux.Core;
+using UniFlux.Core;
 // asmdef Version Defines, enabled when com.cysharp.unitask is imported.
 #if UNIFLUX_UNITASK_SUPPORT
     using Cysharp.Threading.Tasks;
-    namespace Kingdox.UniFlux
+    namespace UniFlux
     {
         public static partial class FluxExtension //Action<UniTask>
         {
@@ -24,7 +24,7 @@ using Kingdox.UniFlux.Core;
     }
 #endif
 #if UNIFLUX_UNIRX_SUPPORT
-    namespace Kingdox.UniFlux
+    namespace UniFlux
     {
         #if !(NETFX_CORE || NET_4_6 || NET_STANDARD_2_0 || UNITY_WSA_10_0)
         public static partial class FluxExtension //Action<UniRx.IObservable<T>>
@@ -49,7 +49,7 @@ using Kingdox.UniFlux.Core;
     }
 #endif
 
-namespace Kingdox.UniFlux
+namespace UniFlux
 {
 #region Common
     public static partial class FluxExtension //Action

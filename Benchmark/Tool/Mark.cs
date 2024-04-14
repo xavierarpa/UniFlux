@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2023 Xavier Arpa López Thomas Peter ('Kingdox')
+Copyright (c) 2023 Xavier Arpa López Thomas Peter ('xavierarpa')
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,7 +23,7 @@ using System;
 using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Profiling;
-namespace Kingdox.UniFlux.Benchmark
+namespace UniFlux.Benchmark
 {
     [Serializable]
     public class Marker
