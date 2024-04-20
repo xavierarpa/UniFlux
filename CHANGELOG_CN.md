@@ -46,11 +46,11 @@
 - 更改了订阅方法中的FluxAttribute.cs (同时删除了旧的结构)
 - 改变了将多个类的脚本放入一个脚本中, 以使用不同的脚本
 ## [1.1.0] - 2023-04-06
-Unity的UniFlux现在可以使用了 ! 你可以使用MonoFlux和[Flux("Hello World")]来创建你自己的Action, 然后使用 "Hello World".Dispatch(), 就可以看到神奇的效果了!
+Unity的UniFlux现在可以使用了 ! 你可以使用MonoFlux和[MethodFlux("Hello World")]来创建你自己的Action, 然后使用 "Hello World".Dispatch(), 就可以看到神奇的效果了!
 摘要:
 - 使用UniFlux
 - YourMonoBehaviour : MonoFlux
-- [Flux("Key")] void MethodExamples() => Debug.Log("Hello World");
+- [MethodFlux("Key")] void MethodExamples() => Debug.Log("Hello World");
 - "Key".Dispatch();
 ### 固定
 - 修正了UniFlux.Core.Internal.Flux<T, T2>的问题, 它不必要地创建ActionFluxParam和FuncFlux, 现在只实例化指定的Flux。

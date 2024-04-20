@@ -21,16 +21,14 @@ SOFTWARE.
 */
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using UniFlux.Core.Internal;
-namespace UniFlux
+namespace UniFlux.Core.Internal
 {
     ///<summary>
     /// static class that ensure to handle the FluxAttribute
     ///</summary>
-    internal static class MonoFluxExtension
+    internal static class FluxAttributeUtils
     {
         internal static readonly BindingFlags m_bindingflag_all = (BindingFlags)(-1);
         //
@@ -61,25 +59,28 @@ namespace UniFlux
         ///<summary>
         /// Dictionary to cache each MonoFlux instance's methods
         ///</summary>
-        internal static readonly Dictionary<MonoFlux, List<MethodInfo>> m_monofluxes = new Dictionary<MonoFlux, List<MethodInfo>>();
+        internal static readonly Dictionary<object, List<MethodInfo>> m_monofluxes = new Dictionary<object, List<MethodInfo>>();
         ///<summary>
         /// Dictionary to cache the FluxAttribute of each MethodInfo
         ///</summary>
+        #pragma warning disable CS0618
         internal static readonly Dictionary<MethodInfo, FluxAttribute> m_methods = new Dictionary<MethodInfo, FluxAttribute>();
+        #pragma warning restore CS0618
         ///<summary>
         /// Allows subscribe methods using `FluxAttribute` by reflection
         /// ~ where magic happens ~
         ///</summary>
-        internal static void Subscribe(this MonoFlux monoflux, in bool condition)
+        internal static void SubscribeAttributes(in object monoflux, in bool condition)
         {
             if (!m_monofluxes.ContainsKey(monoflux))
             {
-                m_monofluxes.Add(
-                    monoflux, 
-                    monoflux.gameObject.GetComponent(m_type_monoflux).GetType().GetMethods(m_bindingflag_all).Where(method => 
+                m_monofluxes.Add(monoflux,monoflux.GetType().GetMethods(m_bindingflag_all).Where(method =>
                     {
+                        #pragma warning disable CS0618
                         if(System.Attribute.GetCustomAttributes(method).FirstOrDefault((_att) => _att is FluxAttribute) is FluxAttribute _attribute)
                         {
+                        #pragma warning restore CS0618
+                        
                             if(!m_methods.ContainsKey(method)) m_methods.Add(method, _attribute); // ADD <Method, Attribute>!
                             return true;
                         } 
@@ -153,64 +154,5 @@ namespace UniFlux
                 }
             }
         }
-        // public static void Subscribe_obj(this object obj, in bool condition)
-        // {
-        //     // Type GetType() => obj.GetType();
-        //     // MethodInfo[] GetMethods(in Type type) => type.GetMethods(m_bindingflag_all);
-        //     // Attribute[] GetAttributes(MethodInfo info) => System.Attribute.GetCustomAttributes(info);
-
-        //     // UnityEngine.Debug.Log(obj.GetType());
-        //     // UnityEngine.Debug.Log(obj.GetType().GetMethods(m_bindingflag_all));
-        //     var _type = obj.GetType();
-        //     var _methods = _type.GetMethods(m_bindingflag_all);
-        //     int attributeCount = 0;
-
-        //     // Recorremos la lista de Metodos
-        //     for (int i = 0; i < _methods.Length; i++)
-        //     {
-        //         // Asignamos la cantidad de atributos.
-        //         attributeCount = _methods[i].CustomAttributes.Count();
-        //         // El metodo tiene atributos?
-        //         if(attributeCount.Equals(0))
-        //         {
-        //             // Nada
-        //         }
-        //         else
-        //         {
-                    
-        //             // Recorremos los atributos
-        //             foreach (CustomAttributeData attributeData in _methods[i].CustomAttributes)
-        //             {
-        //                 UnityEngine.Debug.Log(attributeData);
-        //                 // if(attributeData is FluxAttribute _attribute)
-        //                 // {
-                            
-        //                 // }
-        //             }
-
-        //             // for (int j = 0; j < attributeCount; j++)
-        //             // {
-        //             //     // el atributo es "[FluxAttribute]"
-        //             //     if(_methods[i].CustomAttributes.GetEnumerator().Current is FluxAttribute _attribute)
-        //             //     {
-        //             //         if(!m_methods.ContainsKey(method)) m_methods.Add(method, _attribute); // ADD <Method, Attribute>!
-        //             //         {
-
-        //             //         }
-        //             //         else
-        //             //         {
-
-        //             //         }
-        //             //     }
-        //             //     else
-        //             //     {
-
-        //             //     }
-                        
-        //             // }   
-                    
-        //         }
-        //     }
-        // }
     }
 }

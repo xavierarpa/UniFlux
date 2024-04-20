@@ -235,16 +235,16 @@ namespace UniFlux.Benchmark
                 _m_dispatch_bool.End();
             }
         }
-        [Flux("UniFlux.Dispatch")] private void Example_Dispatch_String(){}
-        [Flux("UniFlux.Dispatch")] private void Example_Dispatch_String2(){}
-        [Flux(0)] private void Example_Dispatch_Int(){}
-        [Flux(__m_dispatch)] private void Example_Dispatch_Byte(){}
-        [Flux(false)] private void Example_Dispatch_Boolean_2(){}
-        [Flux(false)] private void Example_Dispatch_Boolean_3(){}
-        [Flux(false)] private void Example_Dispatch_Boolean_4(){}
-        [Flux(false)] private void Example_Dispatch_Boolean_5(){}
-        [Flux(false)] private void Example_Dispatch_Boolean_6(){}
-        [Flux(true)] private void Example_Dispatch_Boolean(){}
+        [MethodFlux("UniFlux.Dispatch")] private void Example_Dispatch_String(){}
+        [MethodFlux("UniFlux.Dispatch")] private void Example_Dispatch_String2(){}
+        [MethodFlux(0)] private void Example_Dispatch_Int(){}
+        [MethodFlux(__m_dispatch)] private void Example_Dispatch_Byte(){}
+        [MethodFlux(false)] private void Example_Dispatch_Boolean_2(){}
+        [MethodFlux(false)] private void Example_Dispatch_Boolean_3(){}
+        [MethodFlux(false)] private void Example_Dispatch_Boolean_4(){}
+        [MethodFlux(false)] private void Example_Dispatch_Boolean_5(){}
+        [MethodFlux(false)] private void Example_Dispatch_Boolean_6(){}
+        [MethodFlux(true)] private void Example_Dispatch_Boolean(){}
         private void Example_OnFlux(){}
         private void OnGUI()
 		{

@@ -28,5 +28,6 @@ namespace UniFlux
             if(condition) action = (T)System.Delegate.Combine(action, callback);
             else action = (T)System.Delegate.Remove(action, callback);
         }
+        public static void SubscribeAttributes(in object monoflux, in bool condition) => Core.Internal.FluxAttributeUtils.SubscribeAttributes(in monoflux, in condition);
     }
 }

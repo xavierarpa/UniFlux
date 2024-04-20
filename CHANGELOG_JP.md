@@ -46,7 +46,7 @@ UniFluxが以前よりも最適化されました。
 - SubscribeメソッドのFluxAttribute.csを変更（同時に旧構造も削除）。
 - 複数のクラスを持つスクリプトを1つのスクリプトにまとめ、異なるスクリプトを使用するように変更した
 ## [1.1.0] - 2023-04-06
-UniFlux for Unityがリリースされました ！MonoFluxと[Flux("Hello World")]でActionを作り、"Hello World".Dispatch() で魔法を見ることができます！
+UniFlux for Unityがリリースされました ！MonoFluxと[MethodFlux("Hello World")]でActionを作り、"Hello World".Dispatch() で魔法を見ることができます！
 まとめです：
 - UniFluxを使用しています。
 - YourMonoBehaviour ： MonoFlux

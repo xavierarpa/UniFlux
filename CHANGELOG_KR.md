@@ -47,11 +47,11 @@
 - 구독 메서드에서 FluxAttribute.cs 변경(이전 구조도 제거)
 - 두 개 이상의 클래스가 있는 스크립트를 단일 스크립트로 변경하여 다른 스크립트를 사용하도록 변경했습니다.
 ## [1.1.0] - 2023-04-06
-유니티용 UniFlux가 출시되었습니다! MonoFlux와 [Flux("Hello World")]를 사용하여 자신만의 액션을 만든 다음 "Hello World".Dispatch()를 사용하면 마법을 볼 수 있습니다!
+유니티용 UniFlux가 출시되었습니다! MonoFlux와 [MethodFlux("Hello World")]를 사용하여 자신만의 액션을 만든 다음 "Hello World".Dispatch()를 사용하면 마법을 볼 수 있습니다!
 요약:
 - UniFlux 사용
 - YourMonoBehaviour : MonoFlux
-- [Flux("Key")] void MethodExamples() => Debug.Log("Hello World");
+- [MethodFlux("Key")] void MethodExamples() => Debug.Log("Hello World");
 - "Key".Dispatch();
 ### Fixed
 - UniFlux.Core.Internal.Flux<T, T2>에서 불필요하게 ActionFluxParam과 FuncFlux를 생성하던 버그가 수정되어, 이제 지정된 것만 인스턴스화합니다.

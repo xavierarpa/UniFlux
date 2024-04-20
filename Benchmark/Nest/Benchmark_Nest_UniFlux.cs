@@ -33,11 +33,11 @@ namespace UniFlux.Benchmark
             Sample();
             Sample_2();
         }
-        [Flux("A")] private void A() => "B".Dispatch();
-        [Flux("B")] private void B() => "C".Dispatch();
-        [Flux("C")] private void C() => "D".Dispatch();
-        [Flux("D")] private void D() => "E".Dispatch();
-        [Flux("E")] private void E() {}
+        [MethodFlux("A")] private void A() => "B".Dispatch();
+        [MethodFlux("B")] private void B() => "C".Dispatch();
+        [MethodFlux("C")] private void C() => "D".Dispatch();
+        [MethodFlux("D")] private void D() => "E".Dispatch();
+        [MethodFlux("E")] private void E() {}
         private void Store_1() => "2".Dispatch();
         private void Store_2() => "3".Dispatch();
         private void Store_3() => "4".Dispatch();

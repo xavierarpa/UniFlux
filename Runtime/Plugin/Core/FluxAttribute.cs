@@ -19,20 +19,28 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-#pragma warning disable CS0618
-namespace UniFlux
+using System;
+namespace UniFlux.Core
 {
     ///<summary>
-    /// Class FluxAttribute, a custom attribute that mark a method to be subscribed in a flux.
+    /// Base class to detect the Target as an Item to being handled
     /// AllowMultiple is false to keep legibility
     ///</summary>
-    public class MethodFluxAttribute : FluxAttribute
+    [Obsolete("Naming has been changed, use instead [MethodFlux]")]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+    public class FluxAttribute : Attribute
     {
-        public MethodFluxAttribute(object key) : base(key)
+        ///<summary>
+        /// Key provided to handle the subscription
+        ///</summary>
+        public readonly object key;
+        ///<summary>
+        /// Constructor of the FluxAttribute class that takes a key as a parameter.
+        ///</summary>
+        public FluxAttribute(object key)
         {
-            // Nada temporalmente
+            this.key = key;
         }
     }
 }
 //TODO: C# 11 allow Attribute<T>, instead of object key
-

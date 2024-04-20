@@ -43,7 +43,7 @@ namespace UniFlux
         private void OnSubscription(bool condition)
         {
             // Subscribe or unsubscribe from flux state updates
-            this.Subscribe(in condition);
+            Utils.SubscribeAttributes(this, in condition);
             // Call OnFlux method with the new subscription state
             OnFlux(in condition);
         }

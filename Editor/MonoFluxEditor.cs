@@ -25,6 +25,8 @@ using System.Reflection;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using UniFlux.Core;
+
 namespace UniFlux.Editor
 {
     [CustomEditor(typeof(MonoFlux), true)]
@@ -37,7 +39,9 @@ namespace UniFlux.Editor
         {
             Type type = target.GetType();
             var methods = type.GetMethods((BindingFlags)(-1));
+            #pragma warning disable CS0618
             methods_subscribeAttrb = methods.Where(m => m.GetCustomAttributes(typeof(FluxAttribute), true).Length > 0).ToArray();
+            #pragma warning restore CS0618
             dic_method_parameters = methods_subscribeAttrb.Select(m => new { Method = m, Parameters = new object[m.GetParameters().Length] }).ToDictionary(mp => mp.Method, mp => mp.Parameters);
         }
         public override void OnInspectorGUI()
@@ -76,7 +80,9 @@ namespace UniFlux.Editor
             };
             foreach (var item in methods_subscribeAttrb)
             {
+                #pragma warning disable CS0618
                 var atribute = item.GetCustomAttribute<FluxAttribute>();
+                #pragma warning restore CS0618
                 var parameters = item.GetParameters();
                 var isParameters = parameters.Length > 0;
                 var isErr_return = item.ReturnType != typeof(void);

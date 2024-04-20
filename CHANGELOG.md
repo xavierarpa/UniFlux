@@ -67,11 +67,11 @@ Now UniFlux is more optimized than before
 
 ## [1.1.0] - 2023-04-06
 
-UniFlux for Unity is now available ! You can use MonoFlux and [Flux("Hello World")] to create your own Action, then use "Hello World".Dispatch() and see the magic!
+UniFlux for Unity is now available ! You can use MonoFlux and [MethodFlux("Hello World")] to create your own Action, then use "Hello World".Dispatch() and see the magic!
 Summary:
 - using UniFlux
 - YourMonoBehaviour : MonoFlux
-- [Flux("Key")] void MethodExamples() => Debug.Log("Hello World");
+- [MethodFlux("Key")] void MethodExamples() => Debug.Log("Hello World");
 - "Key".Dispatch();
 
 ### Fixed
