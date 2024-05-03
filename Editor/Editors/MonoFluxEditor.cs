@@ -96,6 +96,10 @@ namespace UniFlux.Editor
                 var isErr_static = item.IsStatic;
                 var isError = isErr_static;
                 string key_color =  isError ? "yellow" : "white";
+                #pragma warning disable CS0618
+                var atrbtype = item.GetCustomAttributes(typeof(FluxAttribute), true)[0];
+                #pragma warning restore CS0618
+
                 
                 int opt_status = (param: isParameters, rtrn: isReturn) switch
                 {
@@ -110,7 +114,8 @@ namespace UniFlux.Editor
                 // KEY
                 GUILayout.Label( $"<color={key_color}>{atribute.key}</color>", style_title);
                 // Method Name
-                GUILayout.Label(item.ToString(), EditorStyles.whiteMiniLabel);
+                GUILayout.Label($"[{atrbtype.ToString().Replace("UniFlux.","").Replace("Attribute","")}] {item}", EditorStyles.whiteMiniLabel); 
+                
 
                 if(isParameters)
                 {
