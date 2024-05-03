@@ -36,7 +36,6 @@ namespace UniFlux.Editor
         private MethodInfo[] methods_subscribeAttrb;
         private Dictionary<MethodInfo, object> dic_method_parameters;
         private Dictionary<MethodInfo, object> dic_method_outputs;
-        public object obj_input;
         private static bool ShowMethods
         { 
             get => PlayerPrefs.GetInt("__UniFlux.MonoFluxEditor.ShowBox", default) == default;
