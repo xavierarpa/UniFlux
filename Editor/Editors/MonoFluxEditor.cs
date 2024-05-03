@@ -116,24 +116,33 @@ namespace UniFlux.Editor
                 // Method Name
                 GUILayout.Label($"[{atrbtype.ToString().Replace("UniFlux.","").Replace("Attribute","")}] {item}", EditorStyles.whiteMiniLabel); 
                 
-
-                if(isParameters)
+                if(Application.isPlaying)
                 {
-                    // INPUT
-                    GenerateInput(item, parameters);
+                    EditorGUILayout.BeginVertical(EditorStyles.helpBox);
+
+                    if(isParameters)
+                    {
+                        // INPUT
+                        GenerateInput(item, parameters);
+                    }
+
+                    // INVOKE BUTTON
+                    GenerateButton(buttonStyle, item, opt_status);
+
+                    if(isReturn)
+                    {
+                        // OUTPUT
+                        GenerateOutput(item, parameters);
+                    }
+
+                    EditorGUILayout.EndVertical();
+                }
+                else
+                {
+
                 }
 
-                // INVOKE BUTTON
-                GenerateButton(buttonStyle, item, opt_status);
 
-                if(isReturn)
-                {
-                    // OUTPUT
-                    GenerateOutput(item, parameters);
-                }
-
-                EditorGUILayout.BeginVertical();
-                EditorGUILayout.EndVertical();
                 EditorGUILayout.EndVertical();
                 GUILayout.Space(5);
             }
