@@ -12,7 +12,7 @@ namespace UniFlux.Editor
         public Texture Icon { get; }
         public string[] Contracts { get; }
         public string ResolutionType { get; }
-        public List<object> Callsite { get; }
+        public List<CallSite> Callsite { get; }
         public string Kind { get; }
 
         public MyTreeElement(
@@ -23,7 +23,7 @@ namespace UniFlux.Editor
             Func<string> resolutions,
             string[] contracts,
             string resolutionType,
-            List<object> callsite,
+            List<CallSite> callsite,
             string kind = ""
             ) : base(name, depth, id)
         {

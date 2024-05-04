@@ -101,83 +101,59 @@ namespace UniFlux.Editor
                 _isInitialized = true;
             }
         }
-
-        // private static List<(IResolver, Type[])> BuildMatrix(Container container)
-        // {
-        //     var resolvers = container.ResolversByContract.Values.SelectMany(r => r).Distinct();
-        //     return resolvers.Select(resolver => (resolver, GetContracts(resolver, container))).ToList();
-        // }
-
-        // private static Type[] GetContracts(IResolver resolver, Container container)
-        // {
-        //     var result = new List<Type>();
-
-        //     foreach (var pair in container.ResolversByContract)
-        //     {
-        //         if (pair.Value.Contains(resolver))
-        //         {
-        //             result.Add(pair.Key);
-        //         }
-        //     }
-
-        //     return result.ToArray();
-        // }
-
-        // private void BuildDataRecursively(MyTreeElement parent, Container container)
-        // {
-        //     if (container == null)
-        //     {
-        //         return;
-        //     }
-
-        //     var containerTreeElement = new MyTreeElement(container.Name, parent.Depth + 1, ++_id, ContainerIcon, () => string.Empty, Array.Empty<string>(), string.Empty, container.GetDebugProperties().BuildCallsite, kind: string.Empty);
-        //     parent.Children.Add(containerTreeElement);
-        //     containerTreeElement.Parent = parent;
-
-        //     foreach (var pair in BuildMatrix(container))
-        //     {
-        //         // var resolverTreeElement = new MyTreeElement(
-        //         //     string.Join(", ", pair.Item2.Select(x => x.GetName())), // In this case Name is not used for rendering, but for searching
-        //         //     containerTreeElement.Depth + 1,
-        //         //     ++_id,
-        //         //     ResolverIcon,
-        //         //     () => pair.Item1.GetDebugProperties().Resolutions.ToString(),
-        //         //     pair.Item2.Select(x => x.GetName()).OrderBy(x => x).ToArray(),
-        //         //     pair.Item1.Lifetime.ToString(),
-        //         //     pair.Item1.GetDebugProperties().BindingCallsite,
-        //         //     kind: pair.Item1.GetType().Name.Replace("Singleton", string.Empty).Replace("Transient", string.Empty).Replace("Resolver", string.Empty)
-        //         // );
-
-        //         // foreach (var (instance, callsite) in pair.Item1.GetDebugProperties().Instances)
-        //         // {
-        //         //     var instanceTreeElement = new MyTreeElement(
-        //         //         instance.GetType().GetName(),
-        //         //         resolverTreeElement.Depth + 1,
-        //         //         ++_id,
-        //         //         InstanceIcon,
-        //         //         () => string.Empty,
-        //         //         Array.Empty<string>(),
-        //         //         string.Empty,
-        //         //         callsite,
-        //         //         string.Empty
-        //         //     );
-            
-        //         //     instanceTreeElement.SetParent(resolverTreeElement);
-        //         // }
-        
-        //         // resolverTreeElement.SetParent(containerTreeElement);
-        //     }
-
-        //     foreach (var scopedContainer in container.Children)
-        //     {
-        //         BuildDataRecursively(containerTreeElement, scopedContainer);
-        //     }
-        // }
-
         private IList<MyTreeElement> GetData()
         {
             var root = new MyTreeElement("Root", -1, ++_id, ContainerIcon, () => string.Empty, Array.Empty<string>(), string.Empty, null, string.Empty);
-            // BuildDataRecursively(root, UnityInjector.ProjectContainer);
+
+            #region GENERATE ITEMS IN DA LIST
+            void AddElement(MyTreeElement element)
+            {
+                root.Children.Add(element);
+                element.Parent = root;
+            }
+
+            AddElement(
+                new MyTreeElement(
+                    "// this thing still in testing beep boop", 
+                    root.Depth + 1, 
+                    ++_id, 
+                    ContainerIcon, 
+                    () => string.Empty, 
+                    Array.Empty<string>(), 
+                    string.Empty, 
+                    default, 
+                    kind: string.Empty
+                )
+            );
+
+            AddElement(
+                new MyTreeElement(
+                    "ActionFlux<string>",
+                    root.Depth + 1, 
+                    ++_id, 
+                    ContainerIcon, 
+                    () => string.Empty, 
+                    Array.Empty<string>(), 
+                    string.Empty, 
+                    default, 
+                    kind: string.Empty
+                )
+            );
+            AddElement(
+                new MyTreeElement(
+                    "ActionFlux<bool>",
+                    root.Depth + 1, 
+                    ++_id, 
+                    ContainerIcon, 
+                    () => string.Empty, 
+                    Array.Empty<string>(), 
+                    string.Empty, 
+                    default, 
+                    kind: string.Empty
+                )
+            );
+
+            #endregion
 
             var list = new List<MyTreeElement>();
             TreeElementUtility.TreeToList(root, list);
@@ -272,7 +248,7 @@ namespace UniFlux.Editor
 
             foreach (var callSite in item.Callsite)
             {
-                // PresentStackFrame(callSite.ClassName, callSite.FunctionName, callSite.Path, callSite.Line);
+                PresentStackFrame(callSite.ClassName, callSite.FunctionName, callSite.Path, callSite.Line);
             }
         }
 
