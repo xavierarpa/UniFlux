@@ -35,7 +35,7 @@ namespace UniFlux.Editor
         {
             if (_treeModel.Root == null)
             {
-                // ReflexLogger.Log("tree model root is null. did you call SetData()?", LogLevel.Error);
+                
             }
 
             _rows.Clear();
