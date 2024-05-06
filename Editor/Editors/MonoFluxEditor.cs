@@ -26,7 +26,6 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UniFlux.Core;
-using Unity.Properties;
 
 namespace UniFlux.Editor
 {
@@ -116,7 +115,7 @@ namespace UniFlux.Editor
                 // Method Name
                 GUILayout.Label($"[{atrbtype.ToString().Replace("UniFlux.","").Replace("Attribute","")}] {item}", EditorStyles.whiteMiniLabel); 
                 
-                if(Application.isPlaying)
+                if(true)//(Application.isPlaying)
                 {
                     EditorGUILayout.BeginVertical(EditorStyles.helpBox);
 
@@ -139,7 +138,7 @@ namespace UniFlux.Editor
                 }
                 else
                 {
-
+                    // Nothing
                 }
 
 
@@ -150,7 +149,8 @@ namespace UniFlux.Editor
         private void GenerateInput(MethodInfo item, ParameterInfo[] parameters)
         {
             GUI.enabled = Application.isPlaying;
-            dic_method_parameters[item] = GUILayouts.SuperField(item.GetParameters()[0].Name, parameters[0].ParameterType, dic_method_parameters[item]);
+            // item.GetParameters()[0].Name
+            dic_method_parameters[item] = GUILayouts.SuperField($"Input: {item.GetParameters()[0].ParameterType}", parameters[0].ParameterType, dic_method_parameters[item]);
             GUI.enabled = true;
         }
         private void GenerateOutput(MethodInfo item, ParameterInfo[] parameters)

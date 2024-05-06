@@ -112,6 +112,9 @@ namespace UniFlux.Editor
                 element.Parent = root;
             }
 
+            
+            // AddElement(UniFluxDebuggerUtils.Test_GetFluxItem());
+
             AddElement(
                 new MyTreeElement(
                     "// this thing still in testing beep boop", 
@@ -162,11 +165,19 @@ namespace UniFlux.Editor
 
         private void OnGUI()
         {
+            GUI.enabled = Application.isPlaying;
+            //
             Repaint();
             InitIfNeeded();
-
+            //
             PresentDebuggerEnabled();
-
+            //
+            GUILayout.Label("[X] 1 Conocer los objetos creados");
+            GUILayout.Label("[X] 2 Conocer los diccionarios de los objetos creados");
+            GUILayout.Label("[X] 3 Conocer las suscripciones de los diccionarios creados");
+            GUILayout.Space(10);
+            GUILayout.Label("[X] 4 Poder ejecutar una clave de un diccionario");
+            GUILayout.Label("[X] 5 Poder ejecutar una suscripción del diccionario");
             GUILayout.FlexibleSpace();
             PresentStatusBar();
         }
@@ -218,6 +229,15 @@ namespace UniFlux.Editor
         {
             using (new EditorGUILayout.HorizontalScope(Styles.AppToolbar))
             {
+                if(Application.isPlaying)
+                {
+                }
+                else
+                {
+                    GUI.enabled = true;
+                    GUILayout.Label("This only works in Play mode");
+                    GUI.enabled = false;
+                }
                 GUILayout.FlexibleSpace();
 
                 var refreshIcon = EditorGUIUtility.IconContent("d_TreeEditor.Refresh");

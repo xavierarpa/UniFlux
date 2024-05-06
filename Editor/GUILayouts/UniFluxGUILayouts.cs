@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -71,21 +72,36 @@ namespace UniFlux.Editor
             }
             else if (type.IsInterface)
             {
-                return EditorGUILayout.ObjectField(title, value as UnityEngine.Object, type, true);
+                    value = EditorGUILayout.ObjectField(title, value as UnityEngine.Object, typeof(Component), true);
+                    if(value != null && (value as Component).TryGetComponent(type, out var component)) 
+                    {
+                        value = component;
+                    }
+                    else
+                    {
+                        value = null;
+                    }
+                return value;
             }
             else if (type.IsEnum)
             {
                 return EditorGUILayout.EnumFlagsField(title, (Enum)value);
             }
-            else if (type.IsClass)
+            else if (type.IsSubclassOf(typeof(UnityEngine.Object)))
             {
                 // Si el tipo no está en el diccionario y no es un tipo de valor, usa ObjectField
                 return EditorGUILayout.ObjectField(title, value as UnityEngine.Object, type, true);
             }
+            else if (false)//(type.IsArray)
+            {
+            }
+            else if (false)//(type.IsClass)
+            {
+            }
             else
             {
-                // EditorGUILayout.ser 
                 // Si no se reconoce el tipo, devuelve el valor sin modificar
+                EditorGUILayout.LabelField($"Type not handled yet: '{type}'. Sorry :(");
                 return value;
             }
         }
