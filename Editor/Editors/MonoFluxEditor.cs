@@ -60,7 +60,8 @@ namespace UniFlux.Editor
             }
             else
             {
-                if(GUILayout.Button( ShowMethods ? "Close" : $"Open ({methods_subscribeAttrb.Length})", GUI.skin.box))
+                GUILayout.Space(10);
+                if(GUILayout.Button( ShowMethods ? $"Close MonoFlux Tool ({methods_subscribeAttrb.Length})" : $"Open MonoFlux Tool ({methods_subscribeAttrb.Length})"))
                 {
                     ShowMethods = !ShowMethods;
                 }
