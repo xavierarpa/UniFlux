@@ -22,7 +22,7 @@ SOFTWARE.
 namespace UniFlux.Core.Internal
 {
     ///<summary>
-    /// Storage interface, which provides access to Store with TKey a specified TStorage
+    /// Store interface, which provides access to Store with TKey a specified TStorage
     ///</summary>
     internal interface IStore<in TKey, in TStorage>
     {

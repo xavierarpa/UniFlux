@@ -172,6 +172,13 @@ namespace UniFlux.Editor
             //
             PresentDebuggerEnabled();
             //
+            GUI.enabled = true;
+            if(GUILayout.Button("TEST"))
+            {
+                UniFlux.Editor.UniFluxDebuggerUtils.Test();
+            }
+            GUI.enabled = false;
+
             GUILayout.Label("[X] 1 Conocer los objetos creados");
             GUILayout.Label("[X] 2 Conocer los diccionarios de los objetos creados");
             GUILayout.Label("[X] 3 Conocer las suscripciones de los diccionarios creados");
