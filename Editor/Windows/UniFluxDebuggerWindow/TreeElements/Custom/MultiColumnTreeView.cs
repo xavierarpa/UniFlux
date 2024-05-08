@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 namespace UniFlux.Editor
 {
-    internal class MultiColumnTreeView : TreeViewWithTreeModel<MyTreeElement>
+    internal class MultiColumnTreeView : TreeViewWithTreeModel<UniFluxTreeElement>
     {
         private const float RowHeight = 20f;
         private const float ToggleWidth = 18f;
@@ -19,7 +19,7 @@ namespace UniFlux.Editor
             // Calls,
         }
 
-        public MultiColumnTreeView(TreeViewState state, MultiColumnHeader multiColumnHeader, TreeModel<MyTreeElement> model) : base(state, multiColumnHeader, model)
+        public MultiColumnTreeView(TreeViewState state, MultiColumnHeader multiColumnHeader, TreeModel<UniFluxTreeElement> model) : base(state, multiColumnHeader, model)
         {
             rowHeight = RowHeight;
             columnIndexForTreeFoldouts = 0;
@@ -32,7 +32,7 @@ namespace UniFlux.Editor
 
         protected override void RowGUI(RowGUIArgs args)
         {
-            var item = (TreeViewItem<MyTreeElement>) args.item;
+            var item = (TreeViewItem<UniFluxTreeElement>) args.item;
 
             for (int i = 0; i < args.GetNumVisibleColumns(); ++i)
             {
@@ -52,7 +52,7 @@ namespace UniFlux.Editor
             }
         }
 
-        private void CellGUI(Rect cellRect, TreeViewItem<MyTreeElement> item, Column column, ref RowGUIArgs args)
+        private void CellGUI(Rect cellRect, TreeViewItem<UniFluxTreeElement> item, Column column, ref RowGUIArgs args)
         {
             TryInitTexture();
             CenterRectUsingSingleLineHeight(ref cellRect);
@@ -91,7 +91,7 @@ namespace UniFlux.Editor
             GUI.Label(area, name);
         }
 
-        private void DrawContracts(TreeViewItem<MyTreeElement> item, Rect rect, string[] contracts)
+        private void DrawContracts(TreeViewItem<UniFluxTreeElement> item, Rect rect, string[] contracts)
         {
             if (contracts == null || contracts.Length == 0 || string.IsNullOrEmpty(contracts[0]))
             {
@@ -120,14 +120,14 @@ namespace UniFlux.Editor
             }
         }
 
-        private void DrawItemIcon(Rect area, TreeViewItem<MyTreeElement> item)
+        private void DrawItemIcon(Rect area, TreeViewItem<UniFluxTreeElement> item)
         {
             area.xMin += GetContentIndent(item);
             area.width = 16;
             GUI.DrawTexture(area, item.Data.Icon, ScaleMode.ScaleToFit);
         }
 
-        private void DrawItemNameColumn(Rect area, TreeViewItem<MyTreeElement> item, ref RowGUIArgs args)
+        private void DrawItemNameColumn(Rect area, TreeViewItem<UniFluxTreeElement> item, ref RowGUIArgs args)
         {
             DrawItemIcon(area, item);
             area.x += 4;

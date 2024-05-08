@@ -12,7 +12,7 @@ using Object = UnityEngine.Object;
 namespace UniFlux.Editor
 {
     [EditorWindowTitle(title = "UniFlux Packages")] 
-    public class UniFluxPackagesWindow : EditorWindow
+    internal class UniFluxPackagesWindow : EditorWindow
     {
         private void OnGUI()
         {

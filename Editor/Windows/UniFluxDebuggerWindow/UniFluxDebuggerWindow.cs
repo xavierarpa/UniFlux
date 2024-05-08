@@ -16,7 +16,7 @@ using UniFlux.Editor;
 namespace UniFlux.Editor
 {
     [EditorWindowTitle(title = "UniFlux")] 
-    public class UniFluxDebuggerWindow : EditorWindow
+    internal class UniFluxDebuggerWindow : EditorWindow
     {
         [NonSerialized] private bool _isInitialized;
         [SerializeField] private TreeViewState _treeViewState; // Serialized in the window layout file so it survives assembly reloading
@@ -84,7 +84,7 @@ namespace UniFlux.Editor
                 if (firstInit)
                     multiColumnHeader.ResizeToFit();
 
-                var treeModel = new TreeModel<MyTreeElement>(GetData());
+                var treeModel = new TreeModel<UniFluxTreeElement>(GetData());
 
                 TreeView = default;
                 TreeView = new MultiColumnTreeView(_treeViewState, multiColumnHeader, treeModel);
@@ -96,9 +96,9 @@ namespace UniFlux.Editor
                 _isInitialized = true;
             }
         }
-        private IList<MyTreeElement> GetData()
+        private IList<UniFluxTreeElement> GetData()
         {
-            IEnumerable<MyTreeElement> data;
+            IEnumerable<UniFluxTreeElement> data;
             // Clears Root childs
             UniFluxDebuggerUtils.ClearRootChilds(UniFluxDebuggerUtils.Root);
 
@@ -123,7 +123,7 @@ namespace UniFlux.Editor
                 UniFluxDebuggerUtils.SetRootChild(UniFluxDebuggerUtils.Root, treeElement);
             }
             //
-            var list = new List<MyTreeElement>();
+            var list = new List<UniFluxTreeElement>();
             TreeElementUtility.TreeToList(UniFluxDebuggerUtils.Root, list);
             return list;
         }

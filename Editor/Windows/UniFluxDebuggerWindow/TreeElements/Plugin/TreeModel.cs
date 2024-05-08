@@ -12,7 +12,7 @@ namespace UniFlux.Editor
     // The first element of the input list is required to have depth == -1 (the hiddenroot) and the rest to have
     // depth >= 0 (otherwise an exception will be thrown)
 
-    public class TreeModel<T> where T : TreeElement
+    internal class TreeModel<T> where T : TreeElement
     {
         private IList<T> _data;
         public  T Root { get; private set; }

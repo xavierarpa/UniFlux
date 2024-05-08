@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace UniFlux.Editor
 {
-	public static class TreeElementUtility
+	internal static class TreeElementUtility
 	{
-		public static void TreeToList<T>(T root, IList<T> result) where T : TreeElement
+		internal static void TreeToList<T>(T root, IList<T> result) where T : TreeElement
 		{
 			if (result == null)
 				throw new NullReferenceException("The input 'IList<T> result' list is null");
@@ -32,7 +32,7 @@ namespace UniFlux.Editor
 		// Returns the root of the tree parsed from the list (always the first element).
 		// Important: the first item and is required to have a depth value of -1. 
 		// The rest of the items should have depth >= 0. 
-		public static T ListToTree<T>(IList<T> list) where T : TreeElement
+		internal static T ListToTree<T>(IList<T> list) where T : TreeElement
 		{
 			// Validate input
 			ValidateDepthValues (list);
@@ -91,7 +91,7 @@ namespace UniFlux.Editor
 		}
 
 		// Check state of input list
-		public static void ValidateDepthValues<T>(IList<T> list) where T : TreeElement
+		internal static void ValidateDepthValues<T>(IList<T> list) where T : TreeElement
 		{
 			if (list.Count == 0)
 				throw new ArgumentException("list should have items, count is 0, check before calling ValidateDepthValues", "list");

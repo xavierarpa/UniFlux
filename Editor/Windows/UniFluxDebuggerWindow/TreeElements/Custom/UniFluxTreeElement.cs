@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 namespace UniFlux.Editor
 {
     [Serializable]
-    internal class MyTreeElement : TreeElement
+    internal class UniFluxTreeElement : TreeElement
     {
         public readonly Func<string> Resolutions;
         public Texture Icon { get; }
@@ -15,22 +14,22 @@ namespace UniFlux.Editor
         public List<CallSite> Callsite { get; }
         public string Kind { get; }
 
-        public MyTreeElement(
+        public UniFluxTreeElement(
             string name,
             int depth,
             int id,
-            string icon,
+            Texture icon,
             Func<string> resolutions,
             string[] contracts,
             string resolutionType,
             List<CallSite> callsite,
-            string kind = ""
+            string kind
             ) : base(name, depth, id)
         {
             Resolutions = resolutions;
             ResolutionType = resolutionType;
             Contracts = contracts;
-            Icon = EditorGUIUtility.IconContent(icon).image;
+            Icon = icon;
             Callsite = callsite;
             Kind = kind;
         }

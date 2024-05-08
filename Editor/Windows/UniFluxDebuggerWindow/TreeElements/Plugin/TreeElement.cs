@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace UniFlux.Editor
 {
     [Serializable]
-    public class TreeElement
+    internal class TreeElement
     {
         public int Id { get; set; }
         public string Name { get; set; }

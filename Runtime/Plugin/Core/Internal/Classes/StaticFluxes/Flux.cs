@@ -28,7 +28,7 @@ namespace UniFlux.Core.Internal
     ///</summary>
     public static class Flux
     {
-        public static HashSet<Type> List_FluxTypes = new HashSet<Type>();
+        public static readonly List<Type> List_FluxTypes = new List<Type>();
         internal static void AddFluxType(Type fluxType)
         {
             List_FluxTypes.Add(fluxType);
