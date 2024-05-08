@@ -20,34 +20,18 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 using System;
-using System.Reflection;
+using System.Collections.Generic;
 namespace UniFlux.Core.Internal
 {
     ///<summary>
-    /// Flux<T> Action<T2>
+    /// static Flux aspects
     ///</summary>
-    internal static class FluxParam<T,T2> // (T, Action<T2>)
+    public static class Flux
     {
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        static FluxParam()
+        public static HashSet<Type> List_FluxTypes = new HashSet<Type>();
+        internal static void AddFluxType(Type fluxType)
         {
-            #if UNIFLUX_DEBUG
-            UniFlux.Core.Internal.Flux.AddFluxType(typeof(FluxParam<T,T2>));
-            #endif
+            List_FluxTypes.Add(fluxType);
         }
-        ///<summary>
-        /// Defines a static instance of ActionParamFlux<T, T2>
-        ///</summary>
-        internal static readonly IFluxParam<T, T2, Action<T2>> flux_action_param = new ActionParamFlux<T,T2>();
-        ///<summary>
-        /// Defines a static method that subscribes an action with a parameter to a key with a condition
-        ///</summary>
-        internal static void Store(in T key, in  Action<T2> action, in  bool condition) => flux_action_param.Store(in condition, key, action);
-        ///<summary>
-        /// Defines a static method that triggers an action with a parameter with a key
-        ///</summary>
-        internal static void Dispatch(in T key,in  T2 @param) => flux_action_param.Dispatch(key, @param);
     }
 }

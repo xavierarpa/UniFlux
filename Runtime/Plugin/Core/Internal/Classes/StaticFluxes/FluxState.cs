@@ -24,6 +24,15 @@ namespace UniFlux.Core.Internal
 {
     internal static class FluxState<T,T2>
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static FluxState()
+        {
+            #if UNIFLUX_DEBUG
+            UniFlux.Core.Internal.Flux.AddFluxType(typeof(FluxState<T,T2>));
+            #endif
+        }
         internal static readonly IFluxParam<T, T2, Action<T2>> flux_action_param = new StateFlux<T,T2>();
         internal static void Store(in T key, in  Action<T2> action, in  bool condition) => flux_action_param.Store(in condition, key, action);
         internal static void Dispatch(in T key,in  T2 @param) => flux_action_param.Dispatch(key, @param);

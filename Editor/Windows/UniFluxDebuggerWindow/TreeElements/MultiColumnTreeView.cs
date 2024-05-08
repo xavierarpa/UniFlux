@@ -13,10 +13,10 @@ namespace UniFlux.Editor
 
         private enum Column
         {
-            Hierarchy,
-            Kind,
-            Lifetime,
-            Calls,
+            Hierarchy
+            // Kind,
+            // Lifetime,
+            // Calls,
         }
 
         public MultiColumnTreeView(TreeViewState state, MultiColumnHeader multiColumnHeader, TreeModel<MyTreeElement> model) : base(state, multiColumnHeader, model)
@@ -73,15 +73,15 @@ namespace UniFlux.Editor
                     }
                     
                     break;
-                case Column.Calls:
-                    GUI.Label(cellRect, item.Data.Resolutions.Invoke());
-                    break;
-                case Column.Kind:
-                    GUI.Label(cellRect, item.Data.Kind);
-                    break;
-                case Column.Lifetime:
-                    GUI.Label(cellRect, item.Data.ResolutionType);
-                    break;
+                // case Column.Calls:
+                //     // GUI.Label(cellRect, item.Data.Resolutions.Invoke());
+                //     break;
+                // case Column.Kind:
+                //     // GUI.Label(cellRect, item.Data.Kind);
+                //     break;
+                // case Column.Lifetime:
+                //     // GUI.Label(cellRect, item.Data.ResolutionType);
+                //     break;
             }
         }
 
@@ -153,38 +153,38 @@ namespace UniFlux.Editor
                     minWidth = 60,
                     autoResize = true,
                     allowToggleVisibility = false
-                },
-                new MultiColumnHeaderState.Column
-                {
-                    canSort = false,
-                    headerContent = new GUIContent(Column.Kind.ToString()),
-                    headerTextAlignment = TextAlignment.Left,
-                    width = 64,
-                    minWidth = 64,
-                    maxWidth = 64,
-                    autoResize = false,
-                    allowToggleVisibility = false
-                },
-                new MultiColumnHeaderState.Column
-                {
-                    canSort = false,
-                    headerContent = new GUIContent(Column.Lifetime.ToString()),
-                    headerTextAlignment = TextAlignment.Left,
-                    width = 64,
-                    minWidth = 64,
-                    maxWidth = 64,
-                    autoResize = false,
-                    allowToggleVisibility = false
-                },
-                new MultiColumnHeaderState.Column
-                {
-                    canSort = false,
-                    headerContent = new GUIContent(Column.Calls.ToString()),
-                    headerTextAlignment = TextAlignment.Left,
-                    width = 38,
-                    minWidth = 38,
-                    autoResize = false
-                },
+                }
+                // new MultiColumnHeaderState.Column
+                // {
+                //     canSort = false,
+                //     headerContent = new GUIContent(Column.Kind.ToString()),
+                //     headerTextAlignment = TextAlignment.Left,
+                //     width = 64,
+                //     minWidth = 64,
+                //     maxWidth = 64,
+                //     autoResize = false,
+                //     allowToggleVisibility = false
+                // },
+                // new MultiColumnHeaderState.Column
+                // {
+                //     canSort = false,
+                //     headerContent = new GUIContent(Column.Lifetime.ToString()),
+                //     headerTextAlignment = TextAlignment.Left,
+                //     width = 64,
+                //     minWidth = 64,
+                //     maxWidth = 64,
+                //     autoResize = false,
+                //     allowToggleVisibility = false
+                // },
+                // new MultiColumnHeaderState.Column
+                // {
+                //     canSort = false,
+                //     headerContent = new GUIContent(Column.Calls.ToString()),
+                //     headerTextAlignment = TextAlignment.Left,
+                //     width = 38,
+                //     minWidth = 38,
+                //     autoResize = false
+                // },
             };
 
             Assert.AreEqual(columns.Length, Enum.GetValues(typeof(Column)).Length, "Number of columns should match number of enum values");

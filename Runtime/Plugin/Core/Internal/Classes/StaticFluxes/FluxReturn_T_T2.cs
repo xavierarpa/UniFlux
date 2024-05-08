@@ -27,6 +27,15 @@ namespace UniFlux.Core.Internal
     ///</summary>
     internal static class FluxReturn<T,T2> //  (T, Func<out T2>)
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static FluxReturn()
+        {
+            #if UNIFLUX_DEBUG
+            UniFlux.Core.Internal.Flux.AddFluxType(typeof(FluxReturn<T,T2>));
+            #endif
+        }
         ///<summary>
         /// Defines a static instance of FuncFlux<T,T2>
         ///</summary>

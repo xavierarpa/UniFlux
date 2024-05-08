@@ -18,15 +18,10 @@ namespace UniFlux.Editor
     [EditorWindowTitle(title = "UniFlux")] 
     public class UniFluxDebuggerWindow : EditorWindow
     {
-        private const string ContainerIcon = "PreMatCylinder"; // d_PrefabModel On Icon, "PreMatCylinder"
-        private const string ResolverIcon = "d_NetworkAnimator Icon"; // "d_eyeDropper.Large", "AnimatorStateTransition Icon", "RelativeJoint2D Icon"
-        private const string InstanceIcon = "d_Prefab Icon"; // "d_Prefab Icon", "d_Prefab On Icon"
-
         [NonSerialized] private bool _isInitialized;
         [SerializeField] private TreeViewState _treeViewState; // Serialized in the window layout file so it survives assembly reloading
         [SerializeField] private MultiColumnHeaderState _multiColumnHeaderState;
 
-        private int _id = -1;
         private SearchField _searchField;
         private Vector2 _bindingStackTraceScrollPosition;
 
@@ -103,82 +98,43 @@ namespace UniFlux.Editor
         }
         private IList<MyTreeElement> GetData()
         {
-            var root = new MyTreeElement("Root", -1, ++_id, ContainerIcon, () => string.Empty, Array.Empty<string>(), string.Empty, null, string.Empty);
+            IEnumerable<MyTreeElement> data;
+            // Clears Root childs
+            UniFluxDebuggerUtils.ClearRootChilds(UniFluxDebuggerUtils.Root);
 
-            #region GENERATE ITEMS IN DA LIST
-            void AddElement(MyTreeElement element)
+            if(UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG"))
             {
-                root.Children.Add(element);
-                element.Parent = root;
+                if(Application.isPlaying)
+                {
+                    data = UniFluxDebuggerUtils.TreeElements_DEBUG;
+                }
+                else
+                {
+                    data = UniFluxDebuggerUtils.TreeElements_NONE;
+                }
             }
-
-            
-            // AddElement(UniFluxDebuggerUtils.Test_GetFluxItem());
-
-            AddElement(
-                new MyTreeElement(
-                    "// this thing still in testing beep boop", 
-                    root.Depth + 1, 
-                    ++_id, 
-                    ContainerIcon, 
-                    () => string.Empty, 
-                    Array.Empty<string>(), 
-                    string.Empty, 
-                    default, 
-                    kind: string.Empty
-                )
-            );
-
-            AddElement(
-                new MyTreeElement(
-                    "ActionFlux<string>",
-                    root.Depth + 1, 
-                    ++_id, 
-                    ContainerIcon, 
-                    () => string.Empty, 
-                    Array.Empty<string>(), 
-                    string.Empty, 
-                    default, 
-                    kind: string.Empty
-                )
-            );
-            AddElement(
-                new MyTreeElement(
-                    "ActionFlux<bool>",
-                    root.Depth + 1, 
-                    ++_id, 
-                    ContainerIcon, 
-                    () => string.Empty, 
-                    Array.Empty<string>(), 
-                    string.Empty, 
-                    default, 
-                    kind: string.Empty
-                )
-            );
-
-            #endregion
-
+            else
+            {
+                data = UniFluxDebuggerUtils.TreeElements_NO_DEBUG;
+            }
+            //
+            foreach (var treeElement in data)
+            {
+                UniFluxDebuggerUtils.SetRootChild(UniFluxDebuggerUtils.Root, treeElement);
+            }
+            //
             var list = new List<MyTreeElement>();
-            TreeElementUtility.TreeToList(root, list);
+            TreeElementUtility.TreeToList(UniFluxDebuggerUtils.Root, list);
             return list;
         }
 
         private void OnGUI()
         {
-            GUI.enabled = Application.isPlaying;
-            //
             Repaint();
             InitIfNeeded();
             //
             PresentDebuggerEnabled();
             //
-            GUI.enabled = true;
-            if(GUILayout.Button("TEST"))
-            {
-                UniFlux.Editor.UniFluxDebuggerUtils.Test();
-            }
-            GUI.enabled = false;
-
             GUILayout.Label("[X] 1 Conocer los objetos creados");
             GUILayout.Label("[X] 2 Conocer los diccionarios de los objetos creados");
             GUILayout.Label("[X] 3 Conocer las suscripciones de los diccionarios creados");
@@ -206,7 +162,6 @@ namespace UniFlux.Editor
             TreeView.OnGUI(rect);
             GUILayoutUtility.GetRect(rect.width, rect.height);
         }
-
         private void PresentDebuggerEnabled()
         {
             SearchBar(SearchBarRect);
@@ -241,15 +196,31 @@ namespace UniFlux.Editor
                 }
                 else
                 {
-                    GUI.enabled = true;
                     GUILayout.Label("This only works in Play mode");
-                    GUI.enabled = false;
+                }
+
+                if(UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG"))
+                {
+
+                }
+                else
+                {
+                    GUILayout.Label("Define 'UNIFLUX_DEBUG'");
                 }
                 GUILayout.FlexibleSpace();
 
+                var icon_debug = EditorGUIUtility.IconContent(
+                    UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG")
+                        ? "d_DebuggerEnabled"
+                        : "d_DebuggerDisabled"
+                );
                 var refreshIcon = EditorGUIUtility.IconContent("d_TreeEditor.Refresh");
                 refreshIcon.tooltip = "Forces Tree View to Refresh";
         
+                if (GUILayout.Button(icon_debug, Styles.StatusBarIcon, GUILayout.Width(25)))
+                {
+                    UnityScriptingDefineSymbols.Toggle("UNIFLUX_DEBUG", EditorUserBuildSettings.selectedBuildTargetGroup);
+                }
                 if (GUILayout.Button(refreshIcon, Styles.StatusBarIcon, GUILayout.Width(25)))
                 {
                     Refresh();

@@ -27,6 +27,15 @@ namespace UniFlux.Core.Internal
     ///</summary>
     internal static class FluxParamReturn<T,T2,T3> // (T, Func<T2, out T3>)
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static FluxParamReturn()
+        {
+            #if UNIFLUX_DEBUG
+            UniFlux.Core.Internal.Flux.AddFluxType(typeof(FluxParamReturn<T,T2, T3>));
+            #endif
+        }
         ///<summary>
         /// Defines a static instance of FuncFluxParam<T, T2, T3>
         ///</summary>

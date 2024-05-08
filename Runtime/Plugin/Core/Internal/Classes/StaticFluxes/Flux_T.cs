@@ -27,6 +27,15 @@ namespace UniFlux.Core.Internal
     ///</summary>
     internal static class Flux<T> //(T, Action)
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        static Flux()
+        {
+            #if UNIFLUX_DEBUG
+            UniFlux.Core.Internal.Flux.AddFluxType(typeof(Flux<T>));
+            #endif
+        }
         ///<summary>
         /// Defines a static instance of ActionFlux<T>
         ///</summary>
