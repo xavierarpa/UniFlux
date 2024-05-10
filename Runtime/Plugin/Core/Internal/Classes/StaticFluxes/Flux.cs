@@ -56,7 +56,7 @@ namespace UniFlux.Core.Internal
         internal static void AddFluxType(Type fluxType)
         {
             List_FluxTypes.Add(fluxType);
-            OnAddFluxType.Invoke();
+            OnAddFluxType?.Invoke();
         }
     }
 }
