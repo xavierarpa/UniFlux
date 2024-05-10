@@ -19,13 +19,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+#pragma warning disable CS0618
+using UniFlux.Core;
 namespace UniFlux
 {
     ///<summary>
     /// Class StateFluxAttribute, is like MethodFluxAttribute but stores the last saved data
     ///</summary>
     [UnityEngine.Scripting.Preserve]
-    public class StateFluxAttribute : MethodFluxAttribute
+    public sealed class StateFluxAttribute : FluxAttribute
     {
         public StateFluxAttribute(object key) : base(key)
         {

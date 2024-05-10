@@ -31,6 +31,9 @@ namespace UniFlux.Editor
 
         private void OnEnable()
         {
+            true.Subscribe(ref UniFlux.Core.Internal.Flux.OnAddFluxType, OnAddFluxType);
+
+            SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneLoaded += OnSceneLoaded;
             SceneManager.sceneUnloaded += OnSceneUnloaded;
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
@@ -38,11 +41,18 @@ namespace UniFlux.Editor
 
         private void OnDisable()
         {
+            false.Subscribe(ref UniFlux.Core.Internal.Flux.OnAddFluxType, OnAddFluxType);
+
             SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneUnloaded -= OnSceneUnloaded;
             EditorApplication.playModeStateChanged -= OnPlayModeStateChanged;
         }
 
+        private async void OnAddFluxType()
+        {
+            await Task.Yield();
+            Refresh();
+        }
         private async void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             await Task.Yield();
@@ -110,7 +120,7 @@ namespace UniFlux.Editor
                 }
                 else
                 {
-                    data = UniFluxDebuggerUtils.TreeElements_NONE;
+                    data = UniFluxDebuggerUtils.TreeElements_NO_DEBUG;
                 }
             }
             else
@@ -135,12 +145,6 @@ namespace UniFlux.Editor
             //
             PresentDebuggerEnabled();
             //
-            GUILayout.Label("[X] 1 Conocer los objetos creados");
-            GUILayout.Label("[X] 2 Conocer los diccionarios de los objetos creados");
-            GUILayout.Label("[X] 3 Conocer las suscripciones de los diccionarios creados");
-            GUILayout.Space(10);
-            GUILayout.Label("[X] 4 Poder ejecutar una clave de un diccionario");
-            GUILayout.Label("[X] 5 Poder ejecutar una suscripción del diccionario");
             GUILayout.FlexibleSpace();
             PresentStatusBar();
         }
@@ -217,10 +221,15 @@ namespace UniFlux.Editor
                 var refreshIcon = EditorGUIUtility.IconContent("d_TreeEditor.Refresh");
                 refreshIcon.tooltip = "Forces Tree View to Refresh";
         
+
+                GUI.enabled = !Application.isPlaying;
                 if (GUILayout.Button(icon_debug, Styles.StatusBarIcon, GUILayout.Width(25)))
                 {
                     UnityScriptingDefineSymbols.Toggle("UNIFLUX_DEBUG", EditorUserBuildSettings.selectedBuildTargetGroup);
                 }
+                GUI.enabled = true;
+
+
                 if (GUILayout.Button(refreshIcon, Styles.StatusBarIcon, GUILayout.Width(25)))
                 {
                     Refresh();

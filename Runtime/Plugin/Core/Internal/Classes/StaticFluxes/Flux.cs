@@ -28,10 +28,35 @@ namespace UniFlux.Core.Internal
     ///</summary>
     public static class Flux
     {
+        public static Type TYPE_Flux_T = typeof(Flux<>);
+        public static Type TYPE_FluxParam_T_T2 = typeof(FluxParam<,>);
+        public static Type TYPE_FluxReturn_T_T2 = typeof(FluxReturn<,>);
+        public static Type TYPE_FluxParamReturn_T_T2_T3 = typeof(FluxParamReturn<,,>);
+        public static Type TYPE_FluxState_T_T2 = typeof(FluxState<,>);
+        
+        public static Dictionary<Type, string> DICTIONARY_Flux_Databases = new Dictionary<Type, string>()
+        {
+            [TYPE_Flux_T] = "flux_action",
+            [TYPE_FluxParam_T_T2] = "flux_action_param",
+            [TYPE_FluxReturn_T_T2] = "flux_func",
+            [TYPE_FluxParamReturn_T_T2_T3] = "flux_func_param",
+            [TYPE_FluxState_T_T2] = "flux_action_param",
+        };
+        public static Dictionary<Type, string> DICTIONARY_Flux_Databases_Dic = new Dictionary<Type, string>()
+        {
+            [TYPE_Flux_T] = "dictionary",
+            [TYPE_FluxParam_T_T2] = "dictionary",
+            [TYPE_FluxReturn_T_T2] = "dictionary",
+            [TYPE_FluxParamReturn_T_T2_T3] = "dictionary",
+            [TYPE_FluxState_T_T2] = "dictionary",
+        };
+
+        public static Action OnAddFluxType;
         public static readonly List<Type> List_FluxTypes = new List<Type>();
         internal static void AddFluxType(Type fluxType)
         {
             List_FluxTypes.Add(fluxType);
+            OnAddFluxType.Invoke();
         }
     }
 }

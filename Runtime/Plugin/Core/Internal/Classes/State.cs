@@ -50,10 +50,6 @@ namespace UniFlux.Core.Internal
             Dispatch(value);
         }
         /// <summary>
-        /// Check if the current state is changed comparing with value
-        /// </summary>
-        private bool IsDifferentState(in TValue value) => !Object.Equals(value, state);
-        /// <summary>
         /// Store or remove the action in actions to being handled by the current state
         /// </summary>
         public void Store(in bool condition, in Action<TValue> action)
@@ -73,10 +69,17 @@ namespace UniFlux.Core.Internal
         /// </summary>
         public void Dispatch(in TValue value)
         {
-            if (IsDifferentState(value))
+            if(Equals(value, state)) // TODO: this generates Garbage (?)
+            {
+                // Do nothing
+            }
+            else
             {
                 state = value;
-                foreach (var item in actions) item.Invoke(value);
+                foreach (var item in actions) // TODO: this generates Garbage
+                {
+                    item.Invoke(value);
+                }
             }
             inited=true;
         }

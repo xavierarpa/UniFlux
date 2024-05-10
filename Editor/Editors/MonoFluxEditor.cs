@@ -114,7 +114,7 @@ namespace UniFlux.Editor
                 // KEY
                 GUILayout.Label( $"<color={key_color}>{atribute.key}</color>", style_title);
                 // Method Name
-                GUILayout.Label($"[{atrbtype.ToString().Replace("UniFlux.","").Replace("Attribute","")}] {item}", EditorStyles.whiteMiniLabel); 
+                GUILayout.Label($"[{atrbtype.GetType().Name}] {item}", EditorStyles.whiteMiniLabel); 
                 
                 if(true)//(Application.isPlaying)
                 {
@@ -151,13 +151,13 @@ namespace UniFlux.Editor
         {
             GUI.enabled = Application.isPlaying;
             // item.GetParameters()[0].Name
-            dic_method_parameters[item] = GUILayouts.SuperField($"Input: {item.GetParameters()[0].ParameterType}", parameters[0].ParameterType, dic_method_parameters[item]);
+            dic_method_parameters[item] = GUILayouts.SuperField($"Input: {item.GetParameters()[0].ParameterType.Name}", parameters[0].ParameterType, dic_method_parameters[item]);
             GUI.enabled = true;
         }
         private void GenerateOutput(MethodInfo item, ParameterInfo[] parameters)
         {
             GUI.enabled = false;
-            dic_method_outputs[item] = GUILayouts.SuperField($"Output: {item.ReturnType}", item.ReturnType, dic_method_outputs[item]);
+            dic_method_outputs[item] = GUILayouts.SuperField($"Output: {item.ReturnType.Name}", item.ReturnType, dic_method_outputs[item]);
             GUI.enabled = true;
         }
 

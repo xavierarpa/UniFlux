@@ -11,10 +11,10 @@ namespace UniFlux.Editor
         {
             EditorWindow.GetWindow<UniFluxDebuggerWindow>(false, "UniFlux Debugger", true);
         }
-        [MenuItem("UniFlux/Open Packages", priority = 0)] private static void Openw_Window_UniFluxPackagesWindow()
-        {
-            EditorWindow.GetWindow<UniFluxPackagesWindow>(false, "UniFlux Packages", true);
-        }
+        // [MenuItem("UniFlux/Open Packages", priority = 0)] private static void Openw_Window_UniFluxPackagesWindow()
+        // {
+        //     EditorWindow.GetWindow<UniFluxPackagesWindow>(false, "UniFlux Packages", true);
+        // }
         [MenuItem("UniFlux/📚 Documentation", priority = 100)] private static void OpenDocumentation()
         {
             Application.OpenURL("https://xavierarpa.gitbook.io/uniflux");
