@@ -21,6 +21,8 @@ SOFTWARE.
 */
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UniFlux.Core.Internal;
 namespace UniFlux.Core
 {
@@ -55,5 +57,9 @@ namespace UniFlux.Core
                 foreach (var item in _actions) item.Invoke(param);
             }
         }
+        internal Dictionary<TKey, List<MethodInfo>> __GetDictOfListMethods() => dictionary.ToDictionary(
+            kvp => kvp.Key,
+            kvp => kvp.Value.Select(a => a.Method).ToList()
+        );
     }
 }

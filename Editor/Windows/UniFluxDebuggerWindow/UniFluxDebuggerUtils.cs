@@ -9,16 +9,38 @@ using UnityEngine;
 using System.Threading.Tasks;
 using UniFlux.Core;
 using UnityEditor;
+using UnityEditorInternal;
 
 namespace UniFlux.Editor
 {
     internal static class UniFluxDebuggerUtils
     {
-        private static readonly Texture Tx_PreviewPackageInUse = GetIcon(PreviewPackageInUse);
-        private static readonly Texture Tx_d_Package_Manager = GetIcon(d_Package_Manager);
+        // d_orangeLight	
+        // d_redLight
+        // d_greenLight	
+
+
+        // Linked
+
+
+        // d_UnityEditor.SceneHierarchyWindow
+        // d_Linked
+        // d_Lighting	
+        private static readonly Texture Tx_cs_Script = GetIcon("cs Script Icon");
+        // private static readonly Texture Tx_d_SignalAsset = GetIcon("d_SignalAsset Icon");
+        private static readonly Texture Tx_Tile_Icon = GetIcon("Tile Icon");
+        // private static readonly Texture Tx_PreviewPackageInUse = GetIcon("PreviewPackageInUse");
+        private static readonly Texture Tx_NetworkIdentity = GetIcon("d_NetworkIdentity Icon");
+        // private static readonly Texture Tx_d_FilterByLabel = GetIcon("d_FilterByLabel");
+        private static readonly Texture Tx_d_NetworkMigrationManager = GetIcon("d_NetworkMigrationManager Icon");
+        private static readonly Texture Tx_d_Package_Manager = GetIcon("d_Package Manager");
         //
-        public const string PreviewPackageInUse = "PreviewPackageInUse"; // Caja Amarilla
-        public const string d_Package_Manager = "d_Package Manager"; // Caja Gris
+        private static readonly Texture Tx_ParticleSystemForceField_Gizmo = GetIcon("ParticleSystemForceField Gizmo");
+        // private static readonly Texture Tx_PreMatQuad = GetIcon("PreMatQuad");
+        // public const string PreMatQuad = "PreMatQuad"; // Cuadrado
+        // public const string PreMatSphere = "PreMatSphere"; // Esfera
+        // public const string PreMatCube = "PreMatCube"; // Cubo
+        // public const string PreMatCylinder = "PreMatCylinder"; // Cylinder
         //
         public static int _id = -1;
         public static UniFluxTreeElement Root = CreateElement("Root", -1, Tx_d_Package_Manager);
@@ -47,27 +69,26 @@ namespace UniFlux.Editor
             child.Parent = root;
             child.Depth = root.Depth+1; 
         }
+        /// <summary>
+        /// - class 1
+        ///     - MethodFlux
+        ///         - KEY
+        ///             - void Method1(string value)
+        ///             - void Method2(string value)
+        ///         - KEY 2
+        ///             - void Method3(string value)
+        ///     - StateFlux
+        ///         - KEY 2
+        ///             - void Method4(string value)
+        /// - class 2
+        ///     - StateFlux
+        ///         - KEY 2
+        ///             - void Method5(string value)
+        /// </summary>
         public static IEnumerable<UniFluxTreeElement> GetTreeElements_NO_DEBUG()
         {
-            /*
-                - class 1
-                    - MethodFlux
-                        - KEY
-                            - void Method1(string value)
-                            - void Method2(string value)
-                        - KEY 2
-                            - void Method3(string value)
-                    - StateFlux
-                        - KEY 2
-                            - void Method4(string value)
-                - class 2
-                    - StateFlux
-                        - KEY 2
-                            - void Method5(string value)
-            */
-            
             var list = new List<UniFluxTreeElement>();
-            var methods = GetAllFluxAttributesMethods();
+            var methods = __NO_DEBUG_GetAllFluxAttributesMethods();
             var declaringTypes = methods
                 .GroupBy(m => m.DeclaringType)
                 .ToDictionary(group => group.Key, group => group.ToList())
@@ -142,25 +163,24 @@ namespace UniFlux.Editor
             }
             return list;
         }
+        /// <summary>
+        /// - ActionFlux<int, string>
+        ///     - KEY
+        ///         - void Method1(string value)
+        ///         - void Method2(string value)
+        ///     - KEY
+        ///         - void Method2(string value)
+        ///     - KEY
+        ///         - void Method4(string value)
+        /// - ActionFlux<string>
+        ///     - KEY
+        ///         - void Method1()
+        ///         - void Method2()
+        ///     - KEY
+        ///         - void Method3()
+        /// </summary>
         public static IEnumerable<UniFluxTreeElement> GetTreeElements_DEBUG()
         {
-            /*
-                - ActionFlux<int, string>
-                    - KEY
-                        - void Method1(string value)
-                        - void Method2(string value)
-                    - KEY
-                        - void Method2(string value)
-                    - KEY
-                        - void Method4(string value)
-                - ActionFlux<string>
-                    - KEY
-                        - void Method1()
-                        - void Method2()
-                    - KEY
-                        - void Method3()
-            */
-
             var list_elements_FluxTypes = new List<UniFluxTreeElement>();
             var list_fluxTypes = UniFlux.Core.Internal.Flux.List_FluxTypes;
 
@@ -181,18 +201,28 @@ namespace UniFlux.Editor
 
                 // Database
                 var database = field_database.GetValue(null); // null == static
+                var database_type = database.GetType();
 
-                var name_database_dic = UniFlux.Core.Internal.Flux.DICTIONARY_Flux_Databases_Dic[fluxType_genericTypeDefinition];
+                // var name_database_dic = UniFlux.Core.Internal.Flux.DICTIONARY_Flux_Databases_Dic[fluxType_genericTypeDefinition];
 
                 // Database Field DIc
-                var field_database_dic  = database.GetType().GetField(name_database_dic, m_bindingflag_all);
-                var database_dic = field_database_dic.GetValue(database);
+                // var field_database_dic  = database_type.GetField(name_database_dic, m_bindingflag_all);
+                // var database_dic = field_database_dic.GetValue(database);
 
                 // IDictionary
-                var dict = database_dic as IDictionary;
+                // var dict = database_dic as IDictionary;
+
+                List<MethodInfo> methods = new List<MethodInfo>(); 
+
+                var dict = database_type
+                    .GetMethod("__GetDictOfListMethods", m_bindingflag_all)
+                    .Invoke(database, null) as IDictionary
+                ;
 
                 if (dict != null)
                 {
+
+
                     foreach (var key in dict.Keys)
                     {
                         // Clave
@@ -200,14 +230,15 @@ namespace UniFlux.Editor
                         // FLUX TYPE -> KEY
                         SetRootChild(element_staticFluxType, _element_key);
 
-                        foreach (var value in dict.Values)
+                        var keyValue = dict[key] as List<MethodInfo>;
+
+
+                        foreach (var method in keyValue)
                         {
-                            var _element_value = CreateElement(value.GetType().Name, 0, Tx_PreviewPackageInUse);
+                            var _element_method = Create_As_Method(method);
                             
                             // KEY -> VALUE
-                            SetRootChild(_element_key, _element_value);
-
-                            // TODO : Change VALUE to List<MethodInfo> like all subscriptions
+                            SetRootChild(_element_key, _element_method);
                         }
                     }
                 }
@@ -222,44 +253,29 @@ namespace UniFlux.Editor
 
         private static UniFluxTreeElement Create_As_DeclaringTypeClass(Type type)
         {
-            var element = CreateElement(type.Name.ToString(), Root.Depth + 1, Tx_d_Package_Manager);
-            return element;
-        }
-        private static UniFluxTreeElement Create_As_Database(object database)
-        {
-            var element = CreateElement(database.GetType().Name.ToString(), Root.Depth + 1, Tx_d_Package_Manager);
-            return element;
-        }
-        private static UniFluxTreeElement Create_As_Field_Database(FieldInfo field)
-        {
-            var element = CreateElement(field.Name.ToString(), Root.Depth + 1, Tx_d_Package_Manager);
+            var element = CreateElement(type.Name.ToString(), Root.Depth + 1, Tx_cs_Script);
             return element;
         }
         private static UniFluxTreeElement Create_As_Method(MethodInfo method)
         {
-            var element = CreateElement(method.ToString(), Root.Depth + 1, Tx_d_Package_Manager);
+            var element = CreateElement(method.ToString(), Root.Depth + 1, Tx_Tile_Icon);
             return element;
         }
         private static UniFluxTreeElement Create_As_FluxAttributeType(Type attribute_type)
         {
-            var element = CreateElement(attribute_type.Name.ToString(), Root.Depth + 1, Tx_d_Package_Manager);
+            var element = CreateElement(attribute_type.Name.ToString(), Root.Depth + 1, Tx_d_NetworkMigrationManager);
             return element;
         }
         private static UniFluxTreeElement Create_As_FluxAttribute_Key(object key)
         {
             string _name = $"({key.GetType().Name}): '{key}'";
 
-            var element = CreateElement(_name, Root.Depth + 1, Tx_d_Package_Manager);
-            return element;
-        }
-        private static UniFluxTreeElement Create_As_FluxAttribute(FluxAttribute attribute)
-        {
-            var element = CreateElement(attribute.GetType().Name.ToString(), Root.Depth + 1, Tx_d_Package_Manager);
+            var element = CreateElement(_name, Root.Depth + 1, Tx_NetworkIdentity);
             return element;
         }
         private static UniFluxTreeElement Create_As_StaticFluxType(Type fluxType)
         {
-            var element = CreateElement(fluxType.Name.ToString(), Root.Depth + 1, Tx_PreviewPackageInUse);
+            var element = CreateElement(fluxType.Name.ToString(), Root.Depth + 1, Tx_ParticleSystemForceField_Gizmo);
             return element;
         }
 
@@ -278,74 +294,11 @@ namespace UniFlux.Editor
                 kind:  string.Empty
             );
         }
-
-
-        // private static UniFluxTreeElement Create_As_StaticFluxType_KEY(Type fluxType)
-        // {
-        //     var element = new UniFluxTreeElement(
-        //         fluxType.ToString(), 
-        //         Root.Depth + 1, 
-        //         ++_id, 
-        //         GetIcon(PreviewPackageInUse),
-        //         () => "RES string.Empty", 
-        //         Array.Empty<string>(), 
-        //         string.Empty, 
-        //         default, 
-        //         kind: "KIND string.Empty"
-        //     );
-        //     return element;
-        // }
-        private static IEnumerable<FluxAttribute> GetAllFluxAttributes() => GetAllFluxAttributesMethods().SelectMany(m => m.GetCustomAttributes<FluxAttribute>());
-        private static IEnumerable<FluxAttribute> GetMonoFluxesFluxAttributes() => GetMonoFluxesMethodsFromFluxAttribute().SelectMany(m => m.GetCustomAttributes<FluxAttribute>());
-        private static IEnumerable<MethodInfo> GetMonoFluxesMethodsFromFluxAttribute() => GetMonoFluxesMethods().Where(m => m.GetCustomAttributes(typeof(FluxAttribute), true).Any());
-        private static IEnumerable<MethodInfo> GetMonoFluxesMethods() => GetMonoFluxesTypes().SelectMany(mt => mt.GetMethods(m_bindingflag_all));
-        private static IEnumerable<Type> GetMonoFluxesTypes() => GetClassTypes().Where(t => t.IsSubclassOf(typeof(MonoFlux)));
-        private static IEnumerable<MethodInfo> GetAllFluxAttributesMethods() => GetClassTypes().SelectMany(mt => mt.GetMethods(m_bindingflag_all)).Where(m => m.GetCustomAttributes(typeof(FluxAttribute), true).Any());
-        private static IEnumerable<Type> GetClassTypes() => GetModules().SelectMany(m => m.GetTypes());
-        private static IEnumerable<Module> GetModules() => GetAssemblies().SelectMany(a => a.Modules);
         private static Assembly[] GetAssemblies() => AppDomain.CurrentDomain.GetAssemblies();
+        private static IEnumerable<Module> GetModules() => GetAssemblies().SelectMany(a => a.Modules);
+        private static IEnumerable<Type> GetClassTypes() => GetModules().SelectMany(m => m.GetTypes());
+        private static IEnumerable<MethodInfo> __NO_DEBUG_GetAllFluxAttributesMethods() => GetClassTypes().SelectMany(mt => mt.GetMethods(m_bindingflag_all)).Where(m => m.GetCustomAttributes(typeof(FluxAttribute), true).Any());
         private static Texture GetIcon(string icon) => EditorGUIUtility.IconContent(icon).image;
     }
 }
-// new MyTreeElement(
-//     m.ToString(), 
-//     Root.Depth + 1, 
-//     ++_id, 
-//     PreviewPackageInUse,
-//     () => "RES string.Empty", 
-//     Array.Empty<string>(), 
-//     string.Empty, 
-//     default, 
-//     kind: "KIND string.Empty"
-// );
-
-
-
-
-// return GetAllFluxAttributesMethods().Select(m => 
-// {
-// // UniFluxDebuggerUtils.SetRootChild(element, TreeElements_Child_Test);
-// return element;
-// });
-
-
-
-// public static MyTreeElement TreeElements_Child_Test = new MyTreeElement(
-//     UniFlux.Core.Internal.Flux.List_FluxTypes.Count.ToString(), 
-//     Root.Depth + 2,
-//     ++_id, 
-//     ParticleSystemForceField_Gizmo,
-//     () => "RES string.Empty", 
-//     Array.Empty<string>(), 
-//     string.Empty, 
-//     default, 
-//     kind: "KIND string.Empty"
-// );
-
-
-
-// public const string ParticleSystemForceField_Gizmo = "ParticleSystemForceField Gizmo";
-// public const string PreMatQuad = "PreMatQuad"; // Cuadrado
-// public const string PreMatSphere = "PreMatSphere"; // Esfera
-// public const string PreMatCube = "PreMatCube"; // Cubo
-// public const string PreMatCylinder = "PreMatCylinder"; // Cylinder
+// Kingdox.UniFlux

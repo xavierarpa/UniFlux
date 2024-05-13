@@ -215,7 +215,7 @@ namespace UniFlux.Editor
 
                 var icon_debug = EditorGUIUtility.IconContent(
                     UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG")
-                        ? "d_DebuggerEnabled"
+                        ? Application.isPlaying ? "d_DebuggerAttached" : "d_DebuggerEnabled"
                         : "d_DebuggerDisabled"
                 );
                 var refreshIcon = EditorGUIUtility.IconContent("d_TreeEditor.Refresh");

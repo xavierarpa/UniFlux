@@ -21,13 +21,14 @@ SOFTWARE.
 */
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 namespace UniFlux.Core.Internal
 {
     /// <summary>
     /// A Class to handle value States, where TValue represents the type of value
     /// </summary>
     /// <typeparam name="TValue"></typeparam>
-    internal sealed class State<TValue>
+    public sealed class State<TValue>
     {
         /// <summary>
         /// Check whether the state was initialized with a value
@@ -40,7 +41,7 @@ namespace UniFlux.Core.Internal
         /// <summary>
         /// The set of actions that need to be cast when the state changes
         /// </summary>
-        private readonly HashSet<Action<TValue>> actions = new HashSet<Action<TValue>>();
+        internal readonly HashSet<Action<TValue>> actions = new HashSet<Action<TValue>>();
         public State(Action<TValue> action)
         {
             Store(true, action);
