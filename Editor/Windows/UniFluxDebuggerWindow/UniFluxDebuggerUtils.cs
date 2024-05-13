@@ -15,38 +15,15 @@ namespace UniFlux.Editor
 {
     internal static class UniFluxDebuggerUtils
     {
-        // d_orangeLight	
-        // d_redLight
-        // d_greenLight	
-
-
-        // Linked
-
-
-        // d_UnityEditor.SceneHierarchyWindow
-        // d_Linked
-        // d_Lighting	
-        // private static readonly Texture Tx_d_SignalAsset = GetIcon("d_SignalAsset Icon");
-        // private static readonly Texture Tx_PreviewPackageInUse = GetIcon("PreviewPackageInUse");
-        // private static readonly Texture Tx_d_FilterByLabel = GetIcon("d_FilterByLabel");
-        // private static readonly Texture Tx_DeclaringType = GetIcon("cs Script Icon");
-        // private static readonly Texture Tx_MethodInfo = GetIcon("Tile Icon");
-        // ParticleSystemForceField Icon	
-        private static readonly Texture Tx_DeclaringType = GetIcon("d_Tilemap Icon"); 
-        private static readonly Texture Tx_Attribute = GetIcon("d_SortingGroup Icon");
-        private static readonly Texture Tx_KEY = GetIcon("d_Tile Icon");
-        private static readonly Texture Tx_MethodInfo = GetIcon("d_NetworkAnimator Icon");
-        private static readonly Texture Tx_d_Package_Manager = GetIcon("d_Package Manager");
-        //
-        private static readonly Texture Tx_ParticleSystemForceField_Gizmo = GetIcon("ParticleSystemForceField Gizmo");
-        // private static readonly Texture Tx_PreMatQuad = GetIcon("PreMatQuad");
-        // public const string PreMatQuad = "PreMatQuad"; // Cuadrado
-        // public const string PreMatSphere = "PreMatSphere"; // Esfera
-        // public const string PreMatCube = "PreMatCube"; // Cubo
-        // public const string PreMatCylinder = "PreMatCylinder"; // Cylinder
+        private static readonly Texture Tx_Root = GetIcon("PreMatCylinder");
+        private static readonly Texture Tx_StaticFluxType = GetIcon("PreviewPackageInUse");
+        private static readonly Texture Tx_DeclaringType = GetIcon("d_Package Manager"); 
+        private static readonly Texture Tx_Attribute = GetIcon("d_PreTexA");
+        private static readonly Texture Tx_KEY = GetIcon("d_FilterByType");
+        private static readonly Texture Tx_MethodInfo = GetIcon("d_PlayButton On");
         //
         public static int _id = -1;
-        public static UniFluxTreeElement Root = CreateElement("Root", -1, Tx_d_Package_Manager);
+        public static UniFluxTreeElement Root = CreateElement("Root", -1, Tx_Root);
         internal static readonly BindingFlags m_bindingflag_all = (BindingFlags)(-1);
         //
         public static IEnumerable<UniFluxTreeElement> TreeElements_NONE = new List<UniFluxTreeElement>();
@@ -278,7 +255,7 @@ namespace UniFlux.Editor
         }
         private static UniFluxTreeElement Create_As_StaticFluxType(Type fluxType)
         {
-            var element = CreateElement(fluxType.Name.ToString(), Root.Depth + 1, Tx_ParticleSystemForceField_Gizmo);
+            var element = CreateElement(fluxType.Name.ToString(), Root.Depth + 1, Tx_StaticFluxType);
             return element;
         }
 
