@@ -1,6 +1,20 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [2.0.0] - 2024-05-14
+
+## Added
+### UniFlux Debugger: 
+now you can: 
+- debug all the current MethodFluxAttribute and StateFluxAttribute and his method suscriptions
+- Define "UNIFLUX_DEBUG" to debug in Playmode all the current actived methods suscribed
+
+### MonoFlux Tool (Inspector Debugger)
+now you can use the inspectior to invoke the methods suscribed with MethodFluxAttribute or StateFluxAttribute. Currently Is not supported all kinds of fields, just commons excluding T[] elements, yet.
+ 
+## Changed
+We modify the namespacing from "namespace Kingdox.UniFlux" to "namespace UniFlux". WARNING THIS MEANS A BREAKING CHANGES
+
 ## [1.3.1] - 2023-04-30
 
 ### Fixed
