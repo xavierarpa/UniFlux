@@ -26,13 +26,16 @@ namespace UniFlux.Editor
         // d_UnityEditor.SceneHierarchyWindow
         // d_Linked
         // d_Lighting	
-        private static readonly Texture Tx_cs_Script = GetIcon("cs Script Icon");
         // private static readonly Texture Tx_d_SignalAsset = GetIcon("d_SignalAsset Icon");
-        private static readonly Texture Tx_Tile_Icon = GetIcon("Tile Icon");
         // private static readonly Texture Tx_PreviewPackageInUse = GetIcon("PreviewPackageInUse");
-        private static readonly Texture Tx_NetworkIdentity = GetIcon("d_NetworkIdentity Icon");
         // private static readonly Texture Tx_d_FilterByLabel = GetIcon("d_FilterByLabel");
-        private static readonly Texture Tx_d_NetworkMigrationManager = GetIcon("d_NetworkMigrationManager Icon");
+        // private static readonly Texture Tx_DeclaringType = GetIcon("cs Script Icon");
+        // private static readonly Texture Tx_MethodInfo = GetIcon("Tile Icon");
+        // ParticleSystemForceField Icon	
+        private static readonly Texture Tx_DeclaringType = GetIcon("d_Tilemap Icon"); 
+        private static readonly Texture Tx_Attribute = GetIcon("d_SortingGroup Icon");
+        private static readonly Texture Tx_KEY = GetIcon("d_Tile Icon");
+        private static readonly Texture Tx_MethodInfo = GetIcon("d_NetworkAnimator Icon");
         private static readonly Texture Tx_d_Package_Manager = GetIcon("d_Package Manager");
         //
         private static readonly Texture Tx_ParticleSystemForceField_Gizmo = GetIcon("ParticleSystemForceField Gizmo");
@@ -253,24 +256,24 @@ namespace UniFlux.Editor
 
         private static UniFluxTreeElement Create_As_DeclaringTypeClass(Type type)
         {
-            var element = CreateElement(type.Name.ToString(), Root.Depth + 1, Tx_cs_Script);
+            var element = CreateElement(type.Name.ToString(), Root.Depth + 1, Tx_DeclaringType);
             return element;
         }
         private static UniFluxTreeElement Create_As_Method(MethodInfo method)
         {
-            var element = CreateElement(method.ToString(), Root.Depth + 1, Tx_Tile_Icon);
+            var element = CreateElement(method.ToString(), Root.Depth + 1, Tx_MethodInfo);
             return element;
         }
         private static UniFluxTreeElement Create_As_FluxAttributeType(Type attribute_type)
         {
-            var element = CreateElement(attribute_type.Name.ToString(), Root.Depth + 1, Tx_d_NetworkMigrationManager);
+            var element = CreateElement(attribute_type.Name.ToString(), Root.Depth + 1, Tx_Attribute);
             return element;
         }
         private static UniFluxTreeElement Create_As_FluxAttribute_Key(object key)
         {
             string _name = $"({key.GetType().Name}): '{key}'";
 
-            var element = CreateElement(_name, Root.Depth + 1, Tx_NetworkIdentity);
+            var element = CreateElement(_name, Root.Depth + 1, Tx_KEY);
             return element;
         }
         private static UniFluxTreeElement Create_As_StaticFluxType(Type fluxType)
