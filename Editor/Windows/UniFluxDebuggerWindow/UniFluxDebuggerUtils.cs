@@ -79,9 +79,6 @@ namespace UniFlux.Editor
                 .GroupBy(attr => attr.GetType())
                 .ToDictionary(group => group.Key, group => group.ToList())
             ;
-            var attributes = methods
-                .ToDictionary(m => m, m2 => m2.GetCustomAttribute<FluxAttribute>(true))
-            ;
             var dt_atb_methods = declaringTypes.ToDictionary(
                 kvp => kvp.Key,
                 kvp => kvp.Value.GroupBy(
@@ -90,15 +87,7 @@ namespace UniFlux.Editor
                     .ToDictionary(group => group.Key, group => group.ToList())
                 )
             ;
-            var dt_atb_keys = declaringTypes.ToDictionary(
-                kvp => kvp.Key,
-                kvp => kvp.Value.GroupBy(
-                    m => m.GetCustomAttribute<FluxAttribute>(true).key,
-                    m => m)
-                    .ToDictionary(group => group.Key, group => group.Where(m => m.GetCustomAttribute<FluxAttribute>(true).key.Equals(group.Key)).ToList())
-                )
-            ;
-
+       
             foreach (var declaringType in declaringTypes)
             {
                 // Clase
@@ -115,7 +104,7 @@ namespace UniFlux.Editor
                         SetRootChild(_element_dt, _element_atb);
                         
                         var key_methods = _dt_atb_methodsList
-                            .GroupBy(m => m.GetCustomAttribute<FluxAttribute>(true).key)
+                            .GroupBy(m => m.GetCustomAttribute<FluxAttribute>(true).key ?? typeof(Nullable)) 
                             .ToDictionary(
                                 group => group.Key, // Usa la clave del atributo FluxAttribute como clave en el diccionario
                                 group => group.ToList() // Convierte cada grupo de métodos en una lista y úsala como valor en el diccionario
@@ -183,15 +172,6 @@ namespace UniFlux.Editor
                 var database = field_database.GetValue(null); // null == static
                 var database_type = database.GetType();
 
-                // var name_database_dic = UniFlux.Core.Internal.Flux.DICTIONARY_Flux_Databases_Dic[fluxType_genericTypeDefinition];
-
-                // Database Field DIc
-                // var field_database_dic  = database_type.GetField(name_database_dic, m_bindingflag_all);
-                // var database_dic = field_database_dic.GetValue(database);
-
-                // IDictionary
-                // var dict = database_dic as IDictionary;
-
                 List<MethodInfo> methods = new List<MethodInfo>(); 
 
                 var dict = database_type
@@ -233,30 +213,28 @@ namespace UniFlux.Editor
 
         private static UniFluxTreeElement Create_As_DeclaringTypeClass(Type type)
         {
-            var element = CreateElement(type.Name.ToString(), Root.Depth + 1, Tx_DeclaringType);
-            return element;
+            return CreateElement($"(Class) \"{type.Name}\"", Root.Depth + 1, Tx_DeclaringType);
+            // return element;
         }
         private static UniFluxTreeElement Create_As_Method(MethodInfo method)
         {
-            var element = CreateElement(method.ToString(), Root.Depth + 1, Tx_MethodInfo);
-            return element;
+            return CreateElement(method.ToString(), Root.Depth + 1, Tx_MethodInfo);
+            // return element;
         }
         private static UniFluxTreeElement Create_As_FluxAttributeType(Type attribute_type)
         {
-            var element = CreateElement(attribute_type.Name.ToString(), Root.Depth + 1, Tx_Attribute);
-            return element;
+            return CreateElement($"[{attribute_type.Name}]", Root.Depth + 1, Tx_Attribute);
+            // return element;
         }
         private static UniFluxTreeElement Create_As_FluxAttribute_Key(object key)
         {
-            string _name = $"({key.GetType().Name}): '{key}'";
-
-            var element = CreateElement(_name, Root.Depth + 1, Tx_KEY);
-            return element;
+            return CreateElement($"({key.GetType().Name}) \"{key}\"", Root.Depth + 1, Tx_KEY);
+            // return element;
         }
         private static UniFluxTreeElement Create_As_StaticFluxType(Type fluxType)
         {
-            var element = CreateElement(fluxType.Name.ToString(), Root.Depth + 1, Tx_StaticFluxType);
-            return element;
+            return CreateElement($"(Class) \"{fluxType.ToString().Replace("UniFlux.Core.Internal.","").Replace("[","<").Replace("]",">").Replace("System.","").Replace("`1","").Replace("`2","").Replace("`3","").Replace(",",", ") }\"", Root.Depth + 1, Tx_StaticFluxType);
+            // return element;
         }
 
 
@@ -275,7 +253,7 @@ namespace UniFlux.Editor
             );
         }
         private static Assembly[] GetAssemblies() => AppDomain.CurrentDomain.GetAssemblies();
-        private static IEnumerable<Module> GetModules() => GetAssemblies().SelectMany(a => a.Modules);
+        private static IEnumerable<Module> GetModules() => GetAssemblies().SelectMany(a => a.Modules).Where(m => !m.Name.Contains("UniFlux")); // I've just ignore UniFlux modules 'cause yes B)
         private static IEnumerable<Type> GetClassTypes() => GetModules().SelectMany(m => m.GetTypes());
         private static IEnumerable<MethodInfo> __NO_DEBUG_GetAllFluxAttributesMethods() => GetClassTypes().SelectMany(mt => mt.GetMethods(m_bindingflag_all)).Where(m => m.GetCustomAttributes(typeof(FluxAttribute), true).Any());
         private static Texture GetIcon(string icon) => EditorGUIUtility.IconContent(icon).image;

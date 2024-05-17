@@ -195,21 +195,13 @@ namespace UniFlux.Editor
         {
             using (new EditorGUILayout.HorizontalScope(Styles.AppToolbar))
             {
-                if(Application.isPlaying)
-                {
-                }
-                else
-                {
-                    GUILayout.Label("This only works in Play mode");
-                }
-
                 if(UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG"))
                 {
 
                 }
                 else
                 {
-                    GUILayout.Label("Define 'UNIFLUX_DEBUG'");
+                    GUILayout.Label("Define 'UNIFLUX_DEBUG' to activate runtime debug mode");
                 }
                 GUILayout.FlexibleSpace();
 
