@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [2.1.1] - 2024-05-14
+
+## Added
+- Added Search Filter Keeping the Hierarchy in UniFluxDebuggerWindow
+- Added UniFluxGeneratorKeyWindow now you can Generate new Extensor types, like bool ( true.Dispatch ) Vector3 ( Vector3.zero.Dispatch )
+
 ## [2.0.0] - 2024-05-14
 
 ## Added
