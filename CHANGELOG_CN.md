@@ -1,5 +1,25 @@
 # 更改日志
 这个软件包的所有显著变化都将记录在这个文件中。
+## [2.1.1] - 2024-05-14
+
+＃＃ 添加
+- 添加了搜索过滤器，在 UniFluxDebuggerWindow 中保留层次结构
+- 添加了 UniFluxGeneratorKeyWindow 现在您可以生成新的 Extensor 类型，例如 bool ( true.Dispatch ) Vector3 ( Vector3.zero.Dispatch )
+
+## [2.0.0] - 2024-05-14
+
+＃＃ 添加
+### UniFlux 调试器：
+现在你可以：
+- 调试所有当前的 MethodFluxAttribute 和 StateFluxAttribute 及其方法订阅
+- 定义“UNIFLUX_DEBUG”以在 Playmode 中调试所有当前激活的方法
+
+### MonoFlux 工具（检查器调试器）
+现在您可以使用检查器来调用 MethodFluxAttribute 或 StateFluxAttribute 订阅的方法。 目前还不支持所有类型的字段，仅支持除 T[] 元素之外的公共字段。
+ 
+## 已更改
+我们将命名空间从“namespace Kingdox.UniFlux”修改为“namespace UniFlux”。 警告这意味着重大更改
+
 ## [1.3.1] - 2023-04-30
 ### 固定
 - 修正了Internal.State在商店中调用的问题, 如果它之前被派发过的话。

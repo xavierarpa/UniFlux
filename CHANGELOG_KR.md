@@ -1,5 +1,24 @@
 # 변경 로그
 이 패키지에 대한 모든 주목할만한 변경 사항은 이 파일에 문서화됩니다.
+## [2.1.1] - 2024-05-14
+
+## 추가됨
+- UniFluxDebuggerWindow에 계층 구조를 유지하는 검색 필터가 추가되었습니다.
+- UniFluxGeneratorKeyWindow가 추가되어 이제 bool( true.Dispatch ) Vector3( Vector3.zero.Dispatch )와 같은 새로운 Extensor 유형을 생성할 수 있습니다.
+
+## [2.0.0] - 2024-05-14
+
+## 추가됨
+### UniFlux 디버거:
+이제 다음을 수행할 수 있습니다.
+- 현재의 모든 MethodFluxAttribute 및 StateFluxAttribute와 그의 메소드 구독을 디버깅합니다.
+- 현재 활성화된 모든 메소드를 Playmode에서 디버깅하려면 "UNIFLUX_DEBUG"를 정의하세요.
+
+### MonoFlux 도구(검사기 디버거)
+이제 Inspector를 사용하여 MethodFluxAttribute 또는 StateFluxAttribute에 등록된 메서드를 호출할 수 있습니다. 현재는 모든 종류의 필드를 지원하지 않으며 T[] 요소를 제외한 공용 필드만 지원합니다.
+ 
+## 변경됨
+네임스페이스를 "Kingdox.UniFlux"에서 "UniFlux"로 수정합니다. 경고 이는 획기적인 변화를 의미합니다
 ## [1.3.1] - 2023-04-30
 ### 수정됨
 - Internal.State가 이전에 디스패치된 경우 스토어에서 호출하도록 수정했습니다.

@@ -1,5 +1,26 @@
 # チャンジェログ
 本パッケージの注目すべき変更点はすべてこのファイルに記載される予定です。
+
+## [2.1.1] - 2024-05-14
+
+＃＃ 追加した
+- UniFluxDebuggerWindow で階層を維持する検索フィルターを追加しました
+- UniFluxGeneratorKeyWindow を追加し、 bool ( true.Dispatch ) Vector3 ( Vector3.zero.Dispatch ) のような新しい Extensor タイプを生成できるようになりました。
+
+## [2.0.0] - 2024-05-14
+
+＃＃ 追加した
+### UniFlux デバッガ:
+次のことができるようになりました。
+- 現在のすべての MethodFluxAttribute と StateFluxAttribute、およびそのメソッド サブスクリプションをデバッグします
+- 「UNIFLUX_DEBUG」を定義して、現在アクティブになっているすべてのメソッドをプレイモードでデバッグします。
+
+### MonoFlux ツール (インスペクター デバッガー)
+これで、インスペクタを使用して、MethodFluxAttribute または StateFluxAttribute でサブスクライブされたメソッドを呼び出すことができるようになりました。 現在、すべての種類のフィールドはサポートされておらず、T[] 要素を除くコモンのみがまだサポートされています。
+ 
+＃＃ かわった
+名前空間を「namespace Kingdox.UniFlux」から「namespace UniFlux」に変更します。 警告 これは重大な変更を意味します
+
 ## [1.3.1] - 2023-04-30
 ### 固定式
 - Internal.Stateが先にディスパッチされた場合、ストアで起動するように修正しました。
