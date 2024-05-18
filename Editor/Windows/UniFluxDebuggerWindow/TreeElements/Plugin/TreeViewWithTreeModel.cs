@@ -5,8 +5,10 @@ using UnityEditor.IMGUI.Controls;
 
 namespace UniFlux.Editor
 {
-    internal class TreeViewWithTreeModel<T> : TreeView where T : TreeElement
+    internal abstract class TreeViewWithTreeModel<T> : TreeView where T : TreeElement
     {
+        protected abstract bool _KeepHierarchyOnSearch {get;}
+        protected abstract string _Searcher {get; }
         private TreeModel<T> _treeModel;
         private readonly List<TreeViewItem> _rows = new List<TreeViewItem>(100);
 
@@ -33,15 +35,17 @@ namespace UniFlux.Editor
 
         protected override IList<TreeViewItem> BuildRows(TreeViewItem root)
         {
-            if (_treeModel.Root == null)
-            {
-                
-            }
-
             _rows.Clear();
-            if (!string.IsNullOrEmpty(searchString))
+            if (!string.IsNullOrEmpty(_Searcher))
             {
-                Search(_treeModel.Root, searchString, _rows);
+                if(_KeepHierarchyOnSearch)
+                {
+                    FilterItemsRecursive(_treeModel.Root, _Searcher, 0, _rows);
+                }
+                else
+                {
+                    Search(_treeModel.Root, _Searcher, _rows);
+                }
             }
             else
             {
@@ -118,6 +122,56 @@ namespace UniFlux.Editor
             }
 
             SortSearchResult(result);
+        }
+        private void FilterItemsRecursive(T parent, string search, int depth, List<TreeViewItem> newRows)
+        {
+            bool IsSearchMatch(TreeElement child)
+            {
+                return child.Name.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0;
+            }
+            bool isSearchMatchOrOneOfHisChildren(TreeElement child)
+            {
+                if(IsSearchMatch(child))
+                {
+                    return true;
+                }
+                else if (child.HasChildren && child.Children.Exists(c => isSearchMatchOrOneOfHisChildren(c)))
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            
+
+            foreach (T child in parent.Children)
+            {
+                // if (child.Name.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0)
+                if (isSearchMatchOrOneOfHisChildren(child))
+                {
+                    var item = new TreeViewItem<T>(child.Id, depth, child.Name, child);
+                    newRows.Add(item);
+
+                    // Add children recursively
+                    if (child.HasChildren)
+                    {
+                        if(IsExpanded(child.Id))
+                        {
+                            FilterItemsRecursive(child, search, depth+1, newRows);
+                        }
+                        else
+                        {
+                            item.children = CreateChildListForCollapsedParent();
+                        }
+                    }
+                    else
+                    {
+                        // Nada..
+                    }
+                }
+            }
         }
 
         private static void SortSearchResult(List<TreeViewItem> rows)

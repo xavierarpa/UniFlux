@@ -6,21 +6,30 @@ using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
 using UniFlux.Core;
 using UnityEditor;
-using UnityEditorInternal;
 
 namespace UniFlux.Editor
 {
     internal static class UniFluxDebuggerUtils
     {
+        internal static bool KeepHierarchyOnSearch
+        {
+            get => PlayerPrefs.GetInt("__UniFlux.Editor.KeepHierarchyOnSearch", default) == 1;
+            set => PlayerPrefs.SetInt("__UniFlux.Editor.KeepHierarchyOnSearch", value ? 1 : 0);
+        }
+        internal static string Seacher
+        {
+            get => PlayerPrefs.GetString("__UniFlux.Editor.Seacher", default);
+            set => PlayerPrefs.SetString("__UniFlux.Editor.Seacher", value );
+        }
+
         private static readonly Texture Tx_Root = GetIcon("PreMatCylinder");
-        private static readonly Texture Tx_StaticFluxType = GetIcon("PreviewPackageInUse");
-        private static readonly Texture Tx_DeclaringType = GetIcon("d_Package Manager"); 
-        private static readonly Texture Tx_Attribute = GetIcon("d_PreTexA");
-        private static readonly Texture Tx_KEY = GetIcon("d_FilterByType");
-        private static readonly Texture Tx_MethodInfo = GetIcon("d_PlayButton On");
+        private static readonly Texture Tx_StaticFluxType = GetIcon("d_Record On@2x");
+        private static readonly Texture Tx_DeclaringType = GetIcon("d_Record Off@2x");
+        private static readonly Texture Tx_Attribute = GetIcon("DotFrame");
+        private static readonly Texture Tx_KEY = GetIcon("DotFrameDotted");
+        private static readonly Texture Tx_MethodInfo = GetIcon("DotFill");
         //
         public static int _id = -1;
         public static UniFluxTreeElement Root = CreateElement("Root", -1, Tx_Root);
@@ -172,8 +181,6 @@ namespace UniFlux.Editor
                 var database = field_database.GetValue(null); // null == static
                 var database_type = database.GetType();
 
-                List<MethodInfo> methods = new List<MethodInfo>(); 
-
                 var dict = database_type
                     .GetMethod("__GetDictOfListMethods", m_bindingflag_all)
                     .Invoke(database, null) as IDictionary
@@ -244,12 +251,7 @@ namespace UniFlux.Editor
                 name:  name,
                 depth:  depth,
                 id:  ++_id,
-                icon:  icon,
-                resolutions:  () => string.Empty,
-                contracts:  Array.Empty<string>(),
-                resolutionType:  string.Empty,
-                callsite:  default,
-                kind:  string.Empty
+                icon:  icon
             );
         }
         private static Assembly[] GetAssemblies() => AppDomain.CurrentDomain.GetAssemblies();

@@ -1,15 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace UniFlux.Editor
 {
-    public static class UniFluxMenuItems
+    internal static class UniFluxMenuItems
     {
         [MenuItem("UniFlux/Open Debugger", priority = 0)] private static void Openw_Window_UniFluxDebuggerWindow()
         {
             EditorWindow.GetWindow<UniFluxDebuggerWindow>(false, "UniFlux Debugger", true);
+        }
+        [MenuItem("UniFlux/Open Generator Key", priority = 1)] public static void GenerateExtensionType()
+        {
+            Rect centerRect = new Rect(
+                Screen.width / 2 - 100, 
+                Screen.height / 2 - 100, 
+                400,
+                150
+            );
+            UniFluxExtensionTypeWindow window = (UniFluxExtensionTypeWindow)EditorWindow.GetWindowWithRect(typeof(UniFluxExtensionTypeWindow), centerRect, true, "Uniflux Generator Key");
+            window.ShowPopup();
         }
         // [MenuItem("UniFlux/Open Packages", priority = 0)] private static void Openw_Window_UniFluxPackagesWindow()
         // {

@@ -3,15 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEditor;
-using UnityEditor.Callbacks;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
-using Object = UnityEngine.Object;
-using System.Linq;
-using UniFlux.Editor;
 
 namespace UniFlux.Editor
 {
@@ -21,11 +14,9 @@ namespace UniFlux.Editor
         [NonSerialized] private bool _isInitialized;
         [SerializeField] private TreeViewState _treeViewState; // Serialized in the window layout file so it survives assembly reloading
         [SerializeField] private MultiColumnHeaderState _multiColumnHeaderState;
-
         private SearchField _searchField;
         private Vector2 _bindingStackTraceScrollPosition;
-
-        private MultiColumnTreeView TreeView { get; set; }
+        private UniFluxTreeView TreeView { get; set; }
         private Rect SearchBarRect => new Rect(20f, 10f, position.width - 40f, 20f);
         private Rect MultiColumnTreeViewRect => new Rect(20, 30, position.width - 40, position.height - 200);
 
@@ -73,6 +64,37 @@ namespace UniFlux.Editor
 
         private void InitIfNeeded()
         {
+            IList<UniFluxTreeElement> GetData()
+            {
+                IEnumerable<UniFluxTreeElement> data;
+                // Clears Root childs
+                UniFluxDebuggerUtils.ClearRootChilds(UniFluxDebuggerUtils.Root);
+
+                if(UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG"))
+                {
+                    if(Application.isPlaying)
+                    {
+                        data = UniFluxDebuggerUtils.TreeElements_DEBUG;
+                    }
+                    else
+                    {
+                        data = UniFluxDebuggerUtils.TreeElements_NO_DEBUG;
+                    }
+                }
+                else
+                {
+                    data = UniFluxDebuggerUtils.TreeElements_NO_DEBUG;
+                }
+                //
+                foreach (var treeElement in data)
+                {
+                    UniFluxDebuggerUtils.SetRootChild(UniFluxDebuggerUtils.Root, treeElement);
+                }
+                //
+                var list = new List<UniFluxTreeElement>();
+                TreeElementUtility.TreeToList(UniFluxDebuggerUtils.Root, list);
+                return list;
+            }
             if (!_isInitialized)
             {
                 // Check if it already exists (deserialized from window layout file or scriptable object)
@@ -80,7 +102,7 @@ namespace UniFlux.Editor
                     _treeViewState = new TreeViewState();
 
                 bool firstInit = _multiColumnHeaderState == null;
-                var headerState = MultiColumnTreeView.CreateDefaultMultiColumnHeaderState();
+                var headerState = UniFluxTreeView.CreateDefaultMultiColumnHeaderState();
                 if (MultiColumnHeaderState.CanOverwriteSerializedFields(_multiColumnHeaderState, headerState))
                     MultiColumnHeaderState.OverwriteSerializedFields(_multiColumnHeaderState, headerState);
                 _multiColumnHeaderState = headerState;
@@ -97,7 +119,7 @@ namespace UniFlux.Editor
                 var treeModel = new TreeModel<UniFluxTreeElement>(GetData());
 
                 TreeView = default;
-                TreeView = new MultiColumnTreeView(_treeViewState, multiColumnHeader, treeModel);
+                TreeView = new UniFluxTreeView(_treeViewState, multiColumnHeader, treeModel);
                 TreeView.ExpandAll();
 
                 _searchField = new SearchField();
@@ -106,38 +128,6 @@ namespace UniFlux.Editor
                 _isInitialized = true;
             }
         }
-        private IList<UniFluxTreeElement> GetData()
-        {
-            IEnumerable<UniFluxTreeElement> data;
-            // Clears Root childs
-            UniFluxDebuggerUtils.ClearRootChilds(UniFluxDebuggerUtils.Root);
-
-            if(UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG"))
-            {
-                if(Application.isPlaying)
-                {
-                    data = UniFluxDebuggerUtils.TreeElements_DEBUG;
-                }
-                else
-                {
-                    data = UniFluxDebuggerUtils.TreeElements_NO_DEBUG;
-                }
-            }
-            else
-            {
-                data = UniFluxDebuggerUtils.TreeElements_NO_DEBUG;
-            }
-            //
-            foreach (var treeElement in data)
-            {
-                UniFluxDebuggerUtils.SetRootChild(UniFluxDebuggerUtils.Root, treeElement);
-            }
-            //
-            var list = new List<UniFluxTreeElement>();
-            TreeElementUtility.TreeToList(UniFluxDebuggerUtils.Root, list);
-            return list;
-        }
-
         private void OnGUI()
         {
             Repaint();
@@ -146,6 +136,7 @@ namespace UniFlux.Editor
             PresentDebuggerEnabled();
             //
             GUILayout.FlexibleSpace();
+            //
             PresentStatusBar();
         }
 
@@ -154,20 +145,30 @@ namespace UniFlux.Editor
             _isInitialized = false;
             InitIfNeeded();
         }
-
-        private void SearchBar(Rect rect)
-        {
-            TreeView.searchString = _searchField.OnGUI(rect, TreeView.searchString);
-            GUILayoutUtility.GetRect(rect.width, rect.height);
-        }
-
-        private void DoTreeView(Rect rect)
-        {
-            TreeView.OnGUI(rect);
-            GUILayoutUtility.GetRect(rect.width, rect.height);
-        }
         private void PresentDebuggerEnabled()
         {
+            void SearchBar(Rect rect)
+            {
+                var _response_searchField_old = UniFluxDebuggerUtils.Seacher;
+                var _response_searchField_new = _searchField.OnGUI(rect, UniFluxDebuggerUtils.Seacher);
+                //
+                UniFluxDebuggerUtils.Seacher = _response_searchField_new;
+                //
+                if(_response_searchField_new != _response_searchField_old)
+                {
+                    // Trick to Update
+                    TreeView.searchString = _response_searchField_new;
+                    TreeView.searchString = null;
+                }
+
+                GUILayoutUtility.GetRect(rect.width, rect.height);
+            }
+            void DoTreeView(Rect rect)
+            {
+                TreeView.OnGUI(rect);
+                GUILayoutUtility.GetRect(rect.width, rect.height);
+            }
+
             SearchBar(SearchBarRect);
             DoTreeView(MultiColumnTreeViewRect);
 
@@ -180,8 +181,6 @@ namespace UniFlux.Editor
                 using (new GUILayout.VerticalScope())
                 {
                     _bindingStackTraceScrollPosition = GUILayout.BeginScrollView(_bindingStackTraceScrollPosition);
-
-                    PresentCallSite();
 
                     GUILayout.EndScrollView();
                     GUILayout.Space(16);
@@ -197,7 +196,7 @@ namespace UniFlux.Editor
             {
                 if(UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG"))
                 {
-
+                    // Nada..
                 }
                 else
                 {
@@ -205,74 +204,34 @@ namespace UniFlux.Editor
                 }
                 GUILayout.FlexibleSpace();
 
-                var icon_debug = EditorGUIUtility.IconContent(
-                    UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG")
-                        ? Application.isPlaying ? "d_DebuggerAttached" : "d_DebuggerEnabled"
-                        : "d_DebuggerDisabled"
-                );
-                var refreshIcon = EditorGUIUtility.IconContent("d_TreeEditor.Refresh");
-                refreshIcon.tooltip = "Forces Tree View to Refresh";
-        
+                var icon_hierarchy = UniFluxDebuggerUtils.KeepHierarchyOnSearch ? EditorGUIUtility.IconContent("d_UnityEditor.SceneHierarchyWindow@2x") : EditorGUIUtility.IconContent("d_Search Icon");
+                icon_hierarchy.tooltip = "Allow Hierarchy when searching";
+                
+                var icon_debug = EditorGUIUtility.IconContent(UnityScriptingDefineSymbols.IsDefined("UNIFLUX_DEBUG") ? Application.isPlaying ? "d_DebuggerAttached" : "d_DebuggerEnabled": "d_DebuggerDisabled");
+                icon_debug.tooltip = "Allow Debug Mode (Runtime Debugging)";
+
+                var icon_refresh = EditorGUIUtility.IconContent("d_TreeEditor.Refresh");
+                icon_refresh.tooltip = "Forces Tree View to Refresh";
+
+                if (GUILayout.Button(icon_hierarchy, Styles.StatusBarIcon, GUILayout.Width(25)))
+                {
+                    UniFluxDebuggerUtils.KeepHierarchyOnSearch = !UniFluxDebuggerUtils.KeepHierarchyOnSearch;
+                    Refresh();
+                }
 
                 GUI.enabled = !Application.isPlaying;
                 if (GUILayout.Button(icon_debug, Styles.StatusBarIcon, GUILayout.Width(25)))
                 {
                     UnityScriptingDefineSymbols.Toggle("UNIFLUX_DEBUG", EditorUserBuildSettings.selectedBuildTargetGroup);
+                    Refresh();
                 }
                 GUI.enabled = true;
 
-
-                if (GUILayout.Button(refreshIcon, Styles.StatusBarIcon, GUILayout.Width(25)))
+                if (GUILayout.Button(icon_refresh, Styles.StatusBarIcon, GUILayout.Width(25)))
                 {
                     Refresh();
                 }
             }
-        }
-
-        private void PresentCallSite()
-        {
-            var selection = TreeView.GetSelection();
-
-            if (selection == null || selection.Count == 0)
-            {
-                return;
-            }
-
-            var item = TreeView.Find(selection.Single());
-
-            if (item == null || item.Callsite == null)
-            {
-                return;
-            }
-
-            foreach (var callSite in item.Callsite)
-            {
-                PresentStackFrame(callSite.ClassName, callSite.FunctionName, callSite.Path, callSite.Line);
-            }
-        }
-
-        private static void PresentStackFrame(string className, string functionName, string path, int line)
-        {
-            using (new GUILayout.HorizontalScope())
-            {
-                GUILayout.Label($"{className}:{functionName}()  →", Styles.StackTrace);
-
-                if (PresentLinkButton($"{path}:{line}"))
-                {
-                    UnityEditorInternal.InternalEditorUtility.OpenFileAtLineExternal(path, line);
-                }
-            }
-        }
-
-        private static bool PresentLinkButton(string label, params GUILayoutOption[] options)
-        {
-            var position = GUILayoutUtility.GetRect(new GUIContent(label), Styles.Hyperlink, options);
-            position.y -= 3;
-            Handles.color = Styles.Hyperlink.normal.textColor;
-            Handles.DrawLine(new Vector3(position.xMin + (float)EditorStyles.linkLabel.padding.left, position.yMax), new Vector3(position.xMax - (float)EditorStyles.linkLabel.padding.right, position.yMax));
-            Handles.color = Color.white;
-            EditorGUIUtility.AddCursorRect(position, MouseCursor.Link);
-            return GUI.Button(position, label, Styles.Hyperlink);
         }
     }
 }

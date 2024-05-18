@@ -1,0 +1,9 @@
+using UniFlux;
+
+namespace Service 
+{
+    public static partial class #SCRIPTNAME#
+    {
+        // public static void Example() => "KEY".Dispatch();
+    }
+}

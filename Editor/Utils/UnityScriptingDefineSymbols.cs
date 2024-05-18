@@ -3,7 +3,7 @@ using UnityEditor;
 
 namespace UniFlux.Editor
 {
-    public static class UnityScriptingDefineSymbols
+    internal static class UnityScriptingDefineSymbols
     {
         public static bool IsDefined(string symbol)
         {
