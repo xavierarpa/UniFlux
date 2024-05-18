@@ -17,7 +17,7 @@ namespace UniFlux.Editor
                 400,
                 150
             );
-            UniFluxExtensionTypeWindow window = (UniFluxExtensionTypeWindow)EditorWindow.GetWindowWithRect(typeof(UniFluxExtensionTypeWindow), centerRect, true, "Uniflux Generator Key");
+            UniFluxGeneratorKeyWindow window = (UniFluxGeneratorKeyWindow)EditorWindow.GetWindowWithRect(typeof(UniFluxGeneratorKeyWindow), centerRect, true, "Uniflux Generator Key");
             window.ShowPopup();
         }
         // [MenuItem("UniFlux/Open Packages", priority = 0)] private static void Openw_Window_UniFluxPackagesWindow()
