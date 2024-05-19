@@ -4,7 +4,11 @@
 
 ## Getting Started
 
-* [What is UniFlux](getting-started/what-is-uniflux.md)
+* [What is UniFlux](getting-started/what-is-uniflux/README.md)
+  * [MonoFlux](getting-started/what-is-uniflux/monoflux.md)
+  * [MethodFluxAttribute](getting-started/what-is-uniflux/methodfluxattribute.md)
+  * [StateFluxAttribute](getting-started/what-is-uniflux/statefluxattribute.md)
+  * [Page 1](getting-started/what-is-uniflux/page-1.md)
 * [Setup](getting-started/setup.md)
 
 ## Tutorials
