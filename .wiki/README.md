@@ -5,7 +5,7 @@ layout:
   description:
     visible: false
   tableOfContents:
-    visible: false
+    visible: true
   outline:
     visible: false
   pagination:
@@ -20,8 +20,8 @@ UniFlux is a tool that facilitates game communication, streamlining development 
 
 ***
 
-{% content-ref url="getting-started.md" %}
-[getting-started.md](getting-started.md)
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
 {% endcontent-ref %}
 
 {% content-ref url="broken-reference" %}
