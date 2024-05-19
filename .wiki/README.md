@@ -6,7 +6,16 @@ UniFlux is a tool that facilitates game communication, streamlining development 
 
 ***
 
+{% content-ref url="getting-started.md" %}
+[getting-started.md](getting-started.md)
+{% endcontent-ref %}
+
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
+
+***
+
 ## Feedback
 
-We want to hear from you. Contact [Xavier Arpa](https://app.gitbook.com/u/92zrX7bufUczs8XfTB2KcRjSSl42 "mention")
-
+We want to hear from you. Contact [here](https://mail.google.com/mail/u/0/?fs=1\&tf=cm\&source=mailto\&to=arpaxavier@gmail.com)
