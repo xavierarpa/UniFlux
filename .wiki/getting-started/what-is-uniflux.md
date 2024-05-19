@@ -36,7 +36,11 @@ But what does this imply? that all the complexity is hidden and you simply have 
 
 <figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
-a
+Exist many ways to propagate states or messages, here a little example when a player takes damage.
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+
+Look, in this example you don't need to communicate directly to each others in any moment, your only dependencies are UniFlux and the keys you made it (in this example i use string as Keys, but you can also made your own key type instead of strings or ints)
 
 ***
 
