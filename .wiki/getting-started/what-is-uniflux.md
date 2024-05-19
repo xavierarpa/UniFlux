@@ -30,15 +30,15 @@ This can make it easier to access and update this information from anywhere in t
 
 Based on how Flux Architecture works we Unified "Dispatcher", "Store" and "Action Creator"
 
-<figure><img src="../../.gitbook/assets/flux-simple.png" alt=""><figcaption><p>From <a href="http://fluxxor.com/what-is-flux.html">http://fluxxor.com/what-is-flux.html</a></p></figcaption></figure>
+<figure><img src="../.gitbook/assets/flux-simple.png" alt=""><figcaption><p>From <a href="http://fluxxor.com/what-is-flux.html">http://fluxxor.com/what-is-flux.html</a></p></figcaption></figure>
 
 But what does this imply? that all the complexity is hidden and you simply have to subscribe and send messages
 
-<figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (4).png" alt=""><figcaption></figcaption></figure>
 
 Exist many ways to propagate states or messages, here a little example when a player takes damage.
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption></figcaption></figure>
 
 Look, in this example you don't need to communicate directly to each others in any moment, your only dependencies are UniFlux and the keys you made it (in this example i use string as Keys, but you can also made your own key type instead of strings or ints)
 

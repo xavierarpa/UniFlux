@@ -34,6 +34,7 @@ MonoFlux Subscribe and unsubscribe methods with attributes in the "OnEnable" or 
 
 In Case you want to make subscriptions without attributes you might override "OnFlux" method
 
+{% code fullWidth="true" %}
 ```csharp
 using UniFlux;
 public sealed class TestFlux : MonoFlux 
@@ -49,3 +50,4 @@ public sealed class TestFlux : MonoFlux
   }
 }
 ```
+{% endcode %}

@@ -28,6 +28,10 @@ UniFlux is a tool that facilitates game communication, streamlining development 
 [Broken link](broken-reference)
 {% endcontent-ref %}
 
+{% content-ref url="broken-reference" %}
+[Broken link](broken-reference)
+{% endcontent-ref %}
+
 ***
 
 ## Feedback

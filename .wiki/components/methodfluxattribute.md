@@ -36,7 +36,7 @@ Here is a simple example
   //string response = "3".Dispatch&#x3C;string>()
   [MethodFlux("3")] private string OnExample_3() 
   {
-    return value.ToString();
+    return "Hello World";
   }
 
   //string response = "4".Dispatch&#x3C;int, string>(42)  
