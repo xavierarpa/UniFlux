@@ -18,6 +18,7 @@ UniFlux - Flexible Event Driven and Flux for Unity
 [![CodeFactor](https://www.codefactor.io/repository/github/xavierarpa/uniflux/badge)](https://www.codefactor.io/repository/github/xavierarpa/uniflux)
 
 [Documentation](https://xavierarpa.gitbook.io/uniflux)
+[Mail Me](mailto:arpaxavier@gmail.com)
 
 <!-- Examples -->
 <details>
@@ -127,20 +128,6 @@ openupm add com.xavierarpa.uniflux
 npm i com.xavierarpa.uniflux
 ```
 </details>
-
-<details>
- <summary><b>Author Info</b></summary>
- 
-[@xavierarpa](https://github.com/xavierarpa/)
-
-For support, email arpaxavier@gmail.com
-
-[![Twitter](https://img.shields.io/twitter/follow/xavier_arpa.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=xavier_arpa)   [![LinkedIn](https://img.shields.io/badge/Linkedin-0af.svg?&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/xavier-arpa-0332301a0/)  
-
-</details>
-
-<details>
- <summary><b>License</b></summary>
  
 [MIT](https://choosealicense.com/licenses/mit/)
 
@@ -167,5 +154,3 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 </pre>
-
-</details>
