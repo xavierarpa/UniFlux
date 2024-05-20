@@ -18,99 +18,10 @@ UniFlux - Flexible Event Driven and Flux for Unity
 [![CodeFactor](https://www.codefactor.io/repository/github/xavierarpa/uniflux/badge)](https://www.codefactor.io/repository/github/xavierarpa/uniflux)
 
 [Documentation](https://xavierarpa.gitbook.io/uniflux)
-[Mail Me](mailto:arpaxavier@gmail.com)
 
-<!-- Examples -->
-<details>
- <summary><b>Examples</b></summary>
+[Contact Me](mailto:arpaxavier@gmail.com)
 
- In this example, we call CastTest via "StarterFlux.CastTest" key
-```csharp
-using UniFlux; // 1
-public sealed class StarterFlux : MonoFlux // 2
-{
-  private void Start() => "StarterFlux.CastTest".Dispatch(); // 3
-}
-//...
-public sealed class TestFlux : MonoFlux 
-{
-  [MethodFlux("StarterFlux.CastTest")] private void CastTest() =>   Debug.Log("Hello World"); // 4
-}
-```
-
-Here we can use a local state and get's a reactive behaviour using "OnChange_Life", also we can call it using "Set_Life" or get the current state with "Get_Life"...
-```cs
-using UniFlux;
-float _life;
-public float Life
-{
-    [MethodFlux("Get_Life")] get => _life;
-    [MethodFlux("Set_Life")] set 
-    {
-      _life = value;
-      "OnChange_Life".Dispatch(value);
-    }
-}
-//...
-  [MethodFlux("OnChange_Life")] private void OnChange_Life(float value)
-  {
-    // ...
-  }
-```
-
-Here are examples of what you can do:
-```cs
-"1".Dispatch(); // - Send a Message
-int _2 = "2".Dispatch<int>(); // - Send a Message and return a value
-"3".Dispatch<int>(42); // - Send a Message with an argument
-int _4 = "4".Dispatch<int,int>(42); // - Send a Message with an argument and return a value
-```
-
-Also we made easily handle IEnumerators, Task and UniTask
-```cs
-"9".IEnumerator();
-"10".Task();
-
-// #define UNIFLUX_UNITASK_SUPPORT
-// To enable UniTask integration from https://github.com/Cysharp/UniTask"
-"123".UniTask();
-```
-
-You can use the KEY type as an TaskAwaiter, calling Task cast implicit !
-```cs
-private static async Task Example()
-{
-  await "KEY"; // Calls "KEY".Task();
-}
-```
-
-Also can create anonimous subscriptions in case you don't want to do a method (not recommended)
-```cs
-"42".Store(()=>{}, true); // Anonimous Subscriptions
-```
-</details>
-
-<!-- Performance -->
-<details>
- <summary><b>Performance</b></summary>
-
-Compared methods of UniFlux
-| Name      | Iterations    | GC    | Time |
-|-----------|--------------:|------:|-----:|
-| UniFlux (Dispatch int )           | 10.000        | 0B        | 0ms    | 
-| UniFlux (Dispatch string )        | 10.000        | 0B        | 1ms    | 
-| UniFlux (Store int  ADD)          | 10.000        | 1.2MB     | ~3ms   |
-| UniFlux (Store string  ADD)       | 10.000        | 1.2MB     | ~3ms   | 
-| UniFlux (Store int  REMOVE)       | 10.000        | 1.2MB     | ~30ms  |
-| UniFlux (Store string  REMOVE)    | 10.000        | 1.2MB     | ~30ms  | 
-
-look how nice work Dispatching interger and string, Storing by design is planned to do it once so there's no problem in performance.
-</details>
- 
- <!-- Instalation -->
-<details>
- <summary><b>Installation</b></summary>
- 
+# Installation
 - You can use the *.unityPackage* in releases
 
 - You can use the *.tzg in releases and add in PackageManager
@@ -127,8 +38,17 @@ openupm add com.xavierarpa.uniflux
 ```bash
 npm i com.xavierarpa.uniflux
 ```
-</details>
- 
+
+# Performance
+| Name      | Iterations    | GC    | Time |
+|-----------|--------------:|------:|-----:|
+| UniFlux (Dispatch string )        | 10.000        | 0B        | 1ms    | 
+| UniFlux (Store string  ADD)       | 10.000        | 1.2MB     | ~3ms   | 
+| UniFlux (Store string  REMOVE)    | 10.000        | 1.2MB     | ~30ms  | 
+
+Note: Storing by design is planned to do it once so there's no problem in performance.
+
+ # License
 [MIT](https://choosealicense.com/licenses/mit/)
 
 <pre>
