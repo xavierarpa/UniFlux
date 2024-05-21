@@ -14,6 +14,10 @@
 * [StateFluxAttribute](components/statefluxattribute.md)
 * [Extension Key](components/extension-key.md)
 
+## Use Cases
+
+* [Using as Locator](use-cases/using-as-locator.md)
+
 ## Tutorials
 
 * [How to use a custom Key?](tutorials/how-to-use-a-custom-key.md)
