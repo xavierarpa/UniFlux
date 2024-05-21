@@ -22,6 +22,9 @@ UniFlux - Flexible Event Driven and Flux for Unity
 [Contact Me](mailto:arpaxavier@gmail.com)
 
 # Installation
+
+- You can Download at [Unity Asset Store](https://assetstore.unity.com/packages/slug/250332)
+
 - You can use the *.unityPackage* in releases
 
 - You can use the *.tzg in releases and add in PackageManager
