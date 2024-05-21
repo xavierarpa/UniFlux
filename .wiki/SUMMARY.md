@@ -16,7 +16,8 @@
 
 ## Use Cases
 
-* [Using as Locator](use-cases/using-as-locator.md)
+* [Service Locator Alternative](use-cases/service-locator-alternative.md)
+* [Singleton Alternative](use-cases/singleton-alternative.md)
 
 ## Tutorials
 
