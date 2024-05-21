@@ -18,6 +18,8 @@
 
 * [Service Locator Alternative](use-cases/service-locator-alternative.md)
 * [Singleton Alternative](use-cases/singleton-alternative.md)
+* [Messaging Alternative](use-cases/messaging-alternative.md)
+* [Avoiding Prop Drilling](use-cases/avoiding-prop-drilling.md)
 
 ## Tutorials
 
