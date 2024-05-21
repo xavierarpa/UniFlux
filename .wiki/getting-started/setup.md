@@ -16,6 +16,7 @@ layout:
 
 ### Install UniFlux
 
+* You can Download at [Unity Asset Store](https://assetstore.unity.com/packages/slug/250332)
 * You can use the _.unityPackage_ in releases
 * You can use the \*.tzg in releases and add in PackageManager
 * You can add in PackageManager ([How to install package from git URL](https://docs.unity3d.com/Manual/upm-ui-giturl.html))
