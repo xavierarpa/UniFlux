@@ -47,6 +47,7 @@ public class Test : MonoFlux
 {
     private void Start()
     {
+        // Allows you to call any method subscribe with "0" Key
         "0".Dispatch();
     }
     [MethodFlux("0")] private void Tester()
@@ -57,6 +58,7 @@ public class Test : MonoFlux
 ```
 {% endcode %}
 
+{% code fullWidth="true" %}
 ```csharp
 using UniFlux;
 using UnityEngine;
@@ -69,6 +71,7 @@ public class Test_2 : MonoFlux
     }
 }
 ```
+{% endcode %}
 
 You can put both in a scene and see if they both receive the event
 
