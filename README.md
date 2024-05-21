@@ -17,7 +17,7 @@ UniFlux - Flexible Event Driven and Flux for Unity
 
 [![CodeFactor](https://www.codefactor.io/repository/github/xavierarpa/uniflux/badge)](https://www.codefactor.io/repository/github/xavierarpa/uniflux)
 
-[Documentation](https://xavierarpa.gitbook.io/uniflux)
+⚠️ Please read [Documentation](https://xavierarpa.gitbook.io/uniflux)
 
 [Contact Me](mailto:arpaxavier@gmail.com)
 
