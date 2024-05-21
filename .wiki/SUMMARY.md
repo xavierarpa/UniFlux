@@ -25,6 +25,7 @@
 
 * [How to use a custom Key?](tutorials/how-to-use-a-custom-key.md)
 * [How To See Subscriptions ?](tutorials/how-to-see-subscriptions.md)
+* [Video Tutorial How to Use UniFlux on Unity](https://www.youtube.com/watch?v=z\_zFrQNPuBk)
 
 ## Links and References
 
