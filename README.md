@@ -45,11 +45,11 @@ npm i com.xavierarpa.uniflux
 # Performance
 | Name      | Iterations    | GC    | Time |
 |-----------|--------------:|------:|-----:|
-| UniFlux (Dispatch string )        | 10.000        | 0B        | 1ms    | 
-| UniFlux (Store string  ADD)       | 10.000        | 1.2MB     | ~3ms   | 
-| UniFlux (Store string  REMOVE)    | 10.000        | 1.2MB     | ~30ms  | 
+| UniFlux (Dispatch<string>)        | 10.000        | 0B        | 1ms    | 
+| UniFlux (ADD Store<string>)       | 10.000        | 1.2MB     | ~3ms   | 
+| UniFlux (REMOVE Store<string>)    | 10.000        | 1.2MB     | ~30ms  | 
 
-Note: Storing by design is planned to do it once so there's no problem in performance.
+Note: Storing (ADD and REMOVE) by design is planned to do it once so there's no problem in performance.
 
  # License
 [MIT](https://choosealicense.com/licenses/mit/)
