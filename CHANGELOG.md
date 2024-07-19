@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [2.1.3] - 2024-07-19
+
+## Added
+- Added Unity.Utils to handle easyly Elements like Button, Slider, Action and UnityAction based on the MonoFlux's OnFlux workflow
+
+## [2.1.2] - 2024-05-14
+
+## Changed
+Modified in asset store the information displayed
+
 ## [2.1.1] - 2024-05-14
 
 ## Added
