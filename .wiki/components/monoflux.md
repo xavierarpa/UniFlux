@@ -51,3 +51,26 @@ public sealed class TestFlux : MonoFlux
 }
 ```
 {% endcode %}
+
+In Case you want to keep using MonoBehaviour as inherit class you can handle it using onEnable and OnDisable
+
+{% code fullWidth="true" %}
+```csharp
+using UniFlux;
+public sealed class TestFlux : MonoBehaviour
+{
+  private void OnEnable() 
+  { 
+      "KEY".Store(true, OnExampleMethodIsCalled)
+  }
+  private void OnDisable() 
+  { 
+      "KEY".Store(false, OnExampleMethodIsCalled)
+  }
+  private void OnExampleMethodIsCalled()
+  {
+    Debug.Log("Hello World");
+  }
+}
+```
+{% endcode %}

@@ -77,3 +77,46 @@ public class Test_2 : MonoFlux
 You can put both in a scene and see if they both receive the event
 
 That's all !
+
+Here another sample making subscriptions manually
+
+{% code fullWidth="true" %}
+```csharp
+using UniFlux;
+public class Test : MonoBehaviour
+{
+  private void Start()
+  {
+    "KEY".Dispatch();
+  }
+  private void OnEnable() 
+  { 
+      "KEY".Store(true, OnExampleMethodIsCalled)
+  }
+  private void OnDisable() 
+  { 
+      "KEY".Store(false, OnExampleMethodIsCalled)
+  }
+  private void OnExampleMethodIsCalled()
+  {
+    Debug.Log("Hello World");
+  }
+}
+
+public class Test_2 : MonoBehaviour
+{
+    private void OnEnable() 
+    { 
+      "KEY".Store(true, Tester_2)
+    }
+    private void OnDisable() 
+    { 
+      "KEY".Store(false, Tester_2)
+    }
+    private void Tester_2()
+    {
+      Debug.Log("Hello world 2");
+    }
+}
+```
+{% endcode %}
