@@ -31,11 +31,11 @@ namespace UniFlux
         /// <summary>
         /// Called when the script instance is being enabled.
         /// </summary>
-        private void OnEnable()  => OnSubscription(true);
+        protected virtual void OnEnable()  => OnSubscription(true);
         /// <summary>
         /// Called when the script instance is being disabled.
         /// </summary>
-        private void OnDisable()  => OnSubscription(false);
+        protected virtual void OnDisable()  => OnSubscription(false);
         /// <summary>
         /// Helper method to subscribe or unsubscribe from the flux state updates.
         /// </summary>
