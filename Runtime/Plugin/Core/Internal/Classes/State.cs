@@ -53,8 +53,14 @@ namespace UniFlux.Core.Internal
         /// <summary>
         /// Store or remove the action in actions to being handled by the current state
         /// </summary>
+        /// <param name="condition">True to add the action, false to remove it</param>
+        /// <param name="action">The action to store or remove</param>
+        /// <exception cref="ArgumentNullException">Thrown when action is null</exception>
         public void Store(in bool condition, in Action<TValue> action)
         {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
             if (condition)
             {
                 actions.Add(action);
@@ -70,19 +76,21 @@ namespace UniFlux.Core.Internal
         /// </summary>
         public void Dispatch(in TValue value)
         {
-            if(Equals(value, state)) // TODO: this generates Garbage (?)
-            {
-                // Do nothing
-            }
-            else
+            // Use EqualityComparer<T>.Default for better performance with value types
+            // and avoid boxing for reference types
+            if(!EqualityComparer<TValue>.Default.Equals(value, state))
             {
                 state = value;
-                foreach (var item in actions) // TODO: this generates Garbage
+                // Use enumerator directly to avoid garbage from foreach
+                using (var enumerator = actions.GetEnumerator())
                 {
-                    item.Invoke(value);
+                    while (enumerator.MoveNext())
+                    {
+                        enumerator.Current.Invoke(value);
+                    }
                 }
             }
-            inited=true;
+            inited = true;
         }
         /// <summary>
         /// retrieve the current state and return wether the state is initialized or not

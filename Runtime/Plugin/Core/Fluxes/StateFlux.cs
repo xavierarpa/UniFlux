@@ -35,23 +35,33 @@ namespace UniFlux.Core
         /// Storage of actions
         /// </summary>
         internal readonly Dictionary<TKey, State<TValue>> dictionary = new Dictionary<TKey, State<TValue>>();
-        ///<summary>
+        /// <summary>
         /// Stores the action 
-        ///</summary>
+        /// </summary>
+        /// <param name="condition">True to add the action, false to remove it</param>
+        /// <param name="key">The key to associate with the action</param>
+        /// <param name="action">The action to store or remove</param>
+        /// <exception cref="ArgumentNullException">Thrown when action is null</exception>
         public void Store(in bool condition, TKey key, Action<TValue> action)
         {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
             if(dictionary.TryGetValue(key, out var state)) 
             {
-                state.Store(condition,action);
+                state.Store(condition, action);
             }
             else if (condition)
             {
                 dictionary.Add(key, new State<TValue>(action));
             }
         }
-        ///<summary>
+        
+        /// <summary>
         /// Dispatch TKey
-        ///</summary>
+        /// </summary>
+        /// <param name="key">The key to dispatch</param>
+        /// <param name="param">The parameter value to dispatch</param>
         public void Dispatch(TKey key, TValue param)
         {
             if(dictionary.TryGetValue(key, out var state)) 

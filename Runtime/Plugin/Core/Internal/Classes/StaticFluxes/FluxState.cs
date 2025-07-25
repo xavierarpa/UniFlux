@@ -38,8 +38,9 @@ namespace UniFlux.Core.Internal
         internal static void Dispatch(in T key,in  T2 @param) => flux_action_param.Dispatch(key, @param);
         internal static bool Get(in T key, out T2 _state)
         {
-            //TODO TEMP
-            if((flux_action_param as StateFlux<T,T2>).dictionary.TryGetValue(key, out var state)) 
+            // Avoid casting by directly accessing the StateFlux dictionary
+            var stateFlux = (StateFlux<T, T2>)flux_action_param;
+            if (stateFlux.dictionary.TryGetValue(key, out var state)) 
             {
                 return state.Get(out _state);
             }
