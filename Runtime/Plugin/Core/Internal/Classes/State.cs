@@ -70,19 +70,21 @@ namespace UniFlux.Core.Internal
         /// </summary>
         public void Dispatch(in TValue value)
         {
-            if(Equals(value, state)) // TODO: this generates Garbage (?)
-            {
-                // Do nothing
-            }
-            else
+            // Use EqualityComparer<T>.Default for better performance with value types
+            // and avoid boxing for reference types
+            if(!EqualityComparer<TValue>.Default.Equals(value, state))
             {
                 state = value;
-                foreach (var item in actions) // TODO: this generates Garbage
+                // Use enumerator directly to avoid garbage from foreach
+                using (var enumerator = actions.GetEnumerator())
                 {
-                    item.Invoke(value);
+                    while (enumerator.MoveNext())
+                    {
+                        enumerator.Current.Invoke(value);
+                    }
                 }
             }
-            inited=true;
+            inited = true;
         }
         /// <summary>
         /// retrieve the current state and return wether the state is initialized or not
