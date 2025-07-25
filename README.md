@@ -46,6 +46,47 @@ openupm add com.xavierarpa.uniflux
 npm i com.xavierarpa.uniflux
 ```
 
+# Development
+
+## Prerequisites
+- Unity 2019.3 or later
+- .NET-compatible IDE (Visual Studio, Rider, VS Code)
+- Git
+
+## Development Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/xavierarpa/UniFlux.git
+   ```
+
+2. Open the project in Unity or your preferred IDE
+
+3. Run tests to verify everything works:
+   - Open Unity's Test Runner window (`Window > General > Test Runner`)
+   - Run tests in `Tests/EditMode/`
+
+## Project Structure
+```
+├── Runtime/               # Core UniFlux code
+│   ├── Plugin/           # Main UniFlux implementation
+│   │   ├── Core/        # Core Flux classes and interfaces
+│   │   ├── Attributes/  # Custom attributes for Flux methods
+│   │   └── Extensions/  # Extension methods
+│   └── Unity/           # Unity-specific implementations
+├── Tests/               # Unit tests
+├── Editor/              # Unity Editor extensions
+├── Samples/             # Usage examples
+├── Benchmark/           # Performance benchmarks
+└── Documentation/       # Additional documentation
+```
+
+## Contributing
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines on:
+- Code style and standards
+- Testing requirements  
+- Performance considerations
+- Pull request process
+
 # Performance
 | Name      | Iterations    | GC    | Time |
 |-----------|--------------:|------:|-----:|

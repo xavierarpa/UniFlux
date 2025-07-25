@@ -53,8 +53,14 @@ namespace UniFlux.Core.Internal
         /// <summary>
         /// Store or remove the action in actions to being handled by the current state
         /// </summary>
+        /// <param name="condition">True to add the action, false to remove it</param>
+        /// <param name="action">The action to store or remove</param>
+        /// <exception cref="ArgumentNullException">Thrown when action is null</exception>
         public void Store(in bool condition, in Action<TValue> action)
         {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
             if (condition)
             {
                 actions.Add(action);
