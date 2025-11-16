@@ -55,6 +55,10 @@ npm i com.xavierarpa.uniflux
 
 Note: Storing (ADD and REMOVE) by design is planned to do it once so there's no problem in performance.
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=xavierarpa/uniflux&type=Date)](https://star-history.com/#xavierarpa/uniflux&Date)
+
  # License
 [MIT](https://choosealicense.com/licenses/mit/)
 
