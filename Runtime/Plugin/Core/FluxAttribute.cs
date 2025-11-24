@@ -22,21 +22,26 @@ SOFTWARE.
 using System;
 namespace UniFlux.Core
 {
-    ///<summary>
-    /// Base class to detect the Target as an Item to being handled
-    /// AllowMultiple is false to keep legibility
-    ///</summary>
-    [Obsolete("Naming has been changed, use instead [MethodFlux]")]
+    /// <summary>
+    /// Base class to detect the Target as an Item to being handled.
+    /// AllowMultiple is false to keep legibility.
+    /// </summary>
+    /// <remarks>
+    /// This attribute has been deprecated in favor of MethodFluxAttribute for better naming clarity.
+    /// </remarks>
+    [Obsolete("FluxAttribute has been renamed to MethodFluxAttribute for better clarity. Use [MethodFlux] instead.")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
     public class FluxAttribute : Attribute
     {
-        ///<summary>
+        /// <summary>
         /// Key provided to handle the subscription
-        ///</summary>
+        /// </summary>
         public readonly object key;
-        ///<summary>
+        
+        /// <summary>
         /// Constructor of the FluxAttribute class that takes a key as a parameter.
-        ///</summary>
+        /// </summary>
+        /// <param name="key">The key to associate with this method</param>
         public FluxAttribute(object key)
         {
             this.key = key;
