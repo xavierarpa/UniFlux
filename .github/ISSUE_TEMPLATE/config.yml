@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discord Community
+    url: https://discord.gg/your-discord-link
+    about: Join our Discord server for questions and discussions
+  - name: 📚 Documentation
+    url: https://xavierarpa.gitbook.io/uniflux
+    about: Check out the full documentation
+  - name: 🛠️ UniFlux Toolkit
+    url: https://github.com/xavierarpa/UniFlux.Toolkit
+    about: Try the UniFlux Toolkit for additional tools
+  - name: ❓ Q&A Discussions
+    url: https://github.com/xavierarpa/UniFlux/discussions
+    about: Ask questions and discuss ideas with the community
