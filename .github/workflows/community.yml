@@ -1,0 +1,95 @@
+name: Community Management
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+jobs:
+  greet-contributor:
+    name: Greet First-Time Contributors
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Greet first-time contributor (Issue)
+        if: github.event_name == 'issues'
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            👋 Hi @${{ github.actor }}! Thanks for opening your first issue in UniFlux! 
+            
+            We appreciate you taking the time to contribute to the project. A maintainer will review your issue and respond as soon as possible.
+            
+            In the meantime, please make sure you've:
+            - [ ] Filled out all relevant sections of the issue template
+            - [ ] Searched for similar issues to avoid duplicates
+            - [ ] Provided enough context for us to understand the problem
+            
+            If you're interested in working on this issue yourself, feel free to comment and we'll help guide you through the process!
+            
+            📚 Check out our [Documentation](https://xavierarpa.gitbook.io/uniflux) and [Contributing Guide](CONTRIBUTING.md) to learn more.
+      
+      - name: Greet first-time contributor (PR)
+        if: github.event_name == 'pull_request_target'
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          pr-message: |
+            🎉 Congratulations on opening your first pull request in UniFlux! 
+            
+            Thank you for contributing @${{ github.actor }}! We're excited to review your changes.
+            
+            A maintainer will review your PR soon. In the meantime, please ensure:
+            - [ ] All CI checks are passing
+            - [ ] You've followed the PR template
+            - [ ] Your code follows the project's coding standards
+            - [ ] You've added/updated tests if necessary
+            - [ ] Documentation has been updated if needed
+            
+            If you have any questions, feel free to ask in the PR comments or reach out to the maintainers.
+            
+            📚 Resources: [Documentation](https://xavierarpa.gitbook.io/uniflux) | [Contributing Guide](CONTRIBUTING.md)
+
+  auto-label:
+    name: Auto Label Issues and PRs
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Label based on content
+        uses: actions/labeler@v4
+        if: github.event_name == 'pull_request_target'
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          configuration-path: .github/labeler.yml
+        continue-on-error: true
+
+  stale-management:
+    name: Manage Stale Issues
+    runs-on: ubuntu-latest
+    if: github.event_name == 'schedule'
+    
+    steps:
+      - name: Mark stale issues and PRs
+        uses: actions/stale@v8
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: |
+            This issue has been automatically marked as stale because it has not had recent activity. 
+            It will be closed if no further activity occurs within the next 7 days.
+            
+            If this issue is still relevant, please comment to keep it open.
+            Thank you for your contributions!
+          stale-pr-message: |
+            This pull request has been automatically marked as stale because it has not had recent activity.
+            It will be closed if no further activity occurs within the next 7 days.
+            
+            If you're still working on this, please comment to keep it open.
+            Thank you for your contributions!
+          days-before-stale: 60
+          days-before-close: 7
+          stale-issue-label: 'stale'
+          stale-pr-label: 'stale'
+          exempt-issue-labels: 'pinned,security,roadmap'
+          exempt-pr-labels: 'pinned,security,work-in-progress'

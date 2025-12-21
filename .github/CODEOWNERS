@@ -1,0 +1,30 @@
+# CODEOWNERS file for UniFlux
+# This file defines who should review pull requests for different parts of the codebase
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owner for everything in the repo
+# This will be requested for review when someone opens a pull request
+*       @xavierarpa
+
+# Documentation
+*.md    @xavierarpa
+/Documentation/  @xavierarpa
+/.wiki/  @xavierarpa
+
+# Core runtime code
+/Runtime/  @xavierarpa
+
+# Editor tools
+/Editor/  @xavierarpa
+
+# Tests
+/Tests/  @xavierarpa
+
+# Samples
+/Samples/  @xavierarpa
+
+# GitHub Actions and workflows
+/.github/  @xavierarpa
+
+# Package configuration
+/package.json  @xavierarpa

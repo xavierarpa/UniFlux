@@ -1,0 +1,51 @@
+# Configuration for automatic PR labeling
+# https://github.com/actions/labeler
+
+# Documentation changes
+documentation:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.md'
+      - 'Documentation/**/*'
+      - '.wiki/**/*'
+
+# Runtime code changes
+runtime:
+  - changed-files:
+    - any-glob-to-any-file: 'Runtime/**/*.cs'
+
+# Editor tools
+editor:
+  - changed-files:
+    - any-glob-to-any-file: 'Editor/**/*.cs'
+
+# Tests
+tests:
+  - changed-files:
+    - any-glob-to-any-file: 'Tests/**/*'
+
+# Samples
+samples:
+  - changed-files:
+    - any-glob-to-any-file: 'Samples/**/*'
+
+# GitHub workflows
+ci/cd:
+  - changed-files:
+    - any-glob-to-any-file: 
+      - '.github/workflows/**'
+      - '.github/actions/**'
+
+# Package configuration
+package:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'package.json'
+      - '*.meta'
+
+# Dependencies
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file:
+      - 'package.json'
+      - 'package-lock.json'
