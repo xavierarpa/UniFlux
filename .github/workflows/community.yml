@@ -10,6 +10,9 @@ jobs:
   greet-contributor:
     name: Greet First-Time Contributors
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     
     steps:
       - name: Greet first-time contributor (Issue)
@@ -55,6 +58,9 @@ jobs:
   auto-label:
     name: Auto Label Issues and PRs
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     
     steps:
       - name: Label based on content
@@ -69,6 +75,10 @@ jobs:
     name: Manage Stale Issues
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule'
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     
     steps:
       - name: Mark stale issues and PRs
