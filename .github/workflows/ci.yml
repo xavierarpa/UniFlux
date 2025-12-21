@@ -1,0 +1,158 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      
+      - name: Check for trailing whitespace
+        run: |
+          if git diff --check HEAD~1; then
+            echo "No trailing whitespace found"
+          else
+            echo "::error::Trailing whitespace detected"
+            exit 1
+          fi
+      
+      - name: Validate JSON files
+        run: |
+          for file in $(find . -name "*.json" -not -path "./node_modules/*" -not -path "./.git/*"); do
+            echo "Validating $file"
+            if ! python3 -m json.tool "$file" > /dev/null 2>&1; then
+              echo "::error::Invalid JSON in $file"
+              exit 1
+            fi
+          done
+      
+      - name: Check for required files
+        run: |
+          required_files=("README.md" "LICENSE" "CHANGELOG.md" "CODE_OF_CONDUCT.md" "SECURITY.md" "CONTRIBUTING.md" "package.json")
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "::error::Required file $file is missing"
+              exit 1
+            fi
+          done
+          echo "All required files are present"
+
+  markdown-lint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Lint markdown files
+        uses: avto-dev/markdown-lint@v1
+        with:
+          config: '.markdownlint.json'
+          args: '.'
+          ignore: 'node_modules'
+        continue-on-error: true
+
+  package-validation:
+    name: Package Validation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Validate package.json
+        run: |
+          echo "Validating package.json structure..."
+          if ! python3 -c "
+          import json
+          import sys
+          
+          with open('package.json', 'r') as f:
+              data = json.load(f)
+          
+          required_fields = ['name', 'version', 'displayName', 'description', 'unity']
+          missing_fields = [field for field in required_fields if field not in data]
+          
+          if missing_fields:
+              print(f'Missing required fields in package.json: {missing_fields}')
+              sys.exit(1)
+          
+          print('package.json validation passed')
+          "; then
+            exit 1
+          fi
+      
+      - name: Check version consistency
+        run: |
+          PACKAGE_VERSION=$(python3 -c "import json; print(json.load(open('package.json'))['version'])")
+          echo "Package version: $PACKAGE_VERSION"
+          
+          # Check if CHANGELOG mentions this version
+          if grep -q "\[$PACKAGE_VERSION\]" CHANGELOG.md; then
+            echo "Version $PACKAGE_VERSION found in CHANGELOG.md"
+          else
+            echo "::warning::Version $PACKAGE_VERSION not found in CHANGELOG.md"
+          fi
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          scan-ref: '.'
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+        continue-on-error: true
+      
+      - name: Upload Trivy results to GitHub Security
+        uses: github/codeql-action/upload-sarif@v2
+        with:
+          sarif_file: 'trivy-results.sarif'
+        continue-on-error: true
+
+  summary:
+    name: CI Summary
+    runs-on: ubuntu-latest
+    needs: [validate, package-validation]
+    if: always()
+    permissions:
+      contents: read
+    
+    steps:
+      - name: Check results
+        run: |
+          if [[ "${{ needs.validate.result }}" == "success" ]] && [[ "${{ needs.package-validation.result }}" == "success" ]]; then
+            echo "✅ All CI checks passed!"
+            exit 0
+          else
+            echo "❌ Some CI checks failed"
+            exit 1
+          fi
