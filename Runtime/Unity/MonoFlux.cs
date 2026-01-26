@@ -39,6 +39,7 @@ namespace UniFlux
     {
         /// <summary>
         /// Cached reference to IMonoFluxLifecycle interface if implemented by derived class.
+        /// Null if not implemented or not yet checked.
         /// </summary>
         private IMonoFluxLifecycle _lifecycleCallbacks;
         
@@ -69,24 +70,12 @@ namespace UniFlux
             Utils.SubscribeAttributes(this, in condition);
             // Call OnFlux method with the new subscription state
             OnFlux(in condition);
-            // Call lifecycle callbacks if implemented
-            InvokeLifecycleCallback(condition);
-        }
-        
-        /// <summary>
-        /// Invokes lifecycle callbacks if the derived class implements IMonoFluxLifecycle.
-        /// </summary>
-        /// <param name="condition">Whether enabling (true) or disabling (false).</param>
-        private void InvokeLifecycleCallback(bool condition)
-        {
-            // Cache the interface reference on first call
+            // Call lifecycle callbacks if implemented (cache check on first call)
             if (!_lifecycleChecked)
             {
                 _lifecycleCallbacks = this as IMonoFluxLifecycle;
                 _lifecycleChecked = true;
             }
-            
-            // Invoke the appropriate callback if interface is implemented
             if (_lifecycleCallbacks != null)
             {
                 if (condition)
