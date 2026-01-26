@@ -43,6 +43,11 @@
       "displayName": "Sample 05 - StoreState and DispatchState",
       "description": "Simplified sample of how to use UniFlux",
       "path": "Samples/UniFlux.Sample.5"
+    },
+    {
+      "displayName": "Sample 06 - Using IMonoFluxLifecycle Interface",
+      "description": "Demonstrates lifecycle callbacks without overriding OnEnable/OnDisable",
+      "path": "Samples/UniFlux.Sample.6"
     }
   ],
   "license": "MIT",
