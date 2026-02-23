@@ -50,7 +50,7 @@ namespace UniFlux.Core
             }
         }
         ///<summary>
-        /// Dispatch TKey
+        /// Dispatch TKey 
         ///</summary>
         public void Dispatch(TKey key, TValue param)
         {
