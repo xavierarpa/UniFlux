@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [2.2.1] - 2026-02-23
+
+## Fixed
+- Fixed `State<TValue>.Dispatch` not notifying subscribers when the dispatched value equals `default(T)` (e.g. `int 0`, `bool false`). The equality check now considers whether the state was previously initialized, so the first dispatch always propagates even if the value matches the type's default. (Issue #4)
+
 ## [2.2.0] - 2026-02-23
 
 ## Added

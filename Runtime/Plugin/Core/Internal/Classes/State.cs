@@ -70,19 +70,18 @@ namespace UniFlux.Core.Internal
         /// </summary>
         public void Dispatch(in TValue value)
         {
-            if(Equals(value, state)) // TODO: this generates Garbage (?)
+            if (inited && Equals(value, state))
             {
-                // Do nothing
+                return; // Mismo valor, no hay cambio real
             }
-            else
+
+            state = value;
+            inited = true;
+
+            foreach (var item in actions) // TODO: this generates Garbage
             {
-                state = value;
-                foreach (var item in actions) // TODO: this generates Garbage
-                {
-                    item.Invoke(value);
-                }
+                item.Invoke(value);
             }
-            inited=true;
         }
         /// <summary>
         /// retrieve the current state and return wether the state is initialized or not
