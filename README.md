@@ -51,7 +51,7 @@ npm i com.xavierarpa.uniflux
 |-----------|--------------:|------:|-----:|
 | UniFlux (Dispatch<string>)        | 10.000        | 0B        | 1ms    | 
 | UniFlux (ADD Store<string>)       | 10.000        | 1.2MB     | ~3ms   | 
-| UniFlux (REMOVE Store<string>)    | 10.000        | 1.2MB     | ~30ms  | 
+| UniFlux (REMOVE Store<string>)    | 10.000        | 1.2MB     | ~3ms  | 
 
 Note: Storing (ADD and REMOVE) by design is planned to do it once so there's no problem in performance.
 

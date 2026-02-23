@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this package will be documented in this file.
 
+## [2.2.0] - 2026-02-23
+
+## Added
+- FluxAttribute discovery now also scans interface method definitions. When a `[MethodFlux]` or `[StateFlux]` attribute is placed on an interface method, `MonoFlux` will automatically bind it to the concrete implementation via `GetInterfaceMap`. This allows declaring flux bindings directly in interfaces.
+
 ## [2.1.3] - 2024-07-19
 
 ## Added

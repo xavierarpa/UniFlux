@@ -74,7 +74,10 @@ namespace UniFlux.Core.Internal
         {
             if (!m_monofluxes.ContainsKey(obj))
             {
-                m_monofluxes.Add(obj,obj.GetType().GetMethods(m_bindingflag_all).Where(method =>
+                var type = obj.GetType();
+
+                // Phase 1: Discover methods with FluxAttribute on the concrete class
+                var discoveredMethods = type.GetMethods(m_bindingflag_all).Where(method =>
                     {
                         #pragma warning disable CS0618
                         if(System.Attribute.GetCustomAttributes(method).FirstOrDefault((_att) => _att is FluxAttribute) is FluxAttribute _attribute)
@@ -85,8 +88,34 @@ namespace UniFlux.Core.Internal
                             return true;
                         } 
                         else return false;
-                    }).ToList()
-                );
+                    }).ToList();
+
+                // Phase 2: Discover FluxAttributes declared on interface method definitions
+                var interfaces = type.GetInterfaces();
+                for (int iIdx = 0; iIdx < interfaces.Length; iIdx++)
+                {
+                    var map = type.GetInterfaceMap(interfaces[iIdx]);
+                    for (int j = 0; j < map.InterfaceMethods.Length; j++)
+                    {
+                        var ifaceMethod = map.InterfaceMethods[j];
+                        #pragma warning disable CS0618
+                        if (System.Attribute.GetCustomAttributes(ifaceMethod).FirstOrDefault(a => a is FluxAttribute) is FluxAttribute attr)
+                        #pragma warning restore CS0618
+                        {
+                            var implMethod = map.TargetMethods[j];
+                            if (!m_methods.ContainsKey(implMethod))
+                            {
+                                m_methods.Add(implMethod, attr);
+                            }
+                            if (!discoveredMethods.Contains(implMethod))
+                            {
+                                discoveredMethods.Add(implMethod);
+                            }
+                        }
+                    }
+                }
+
+                m_monofluxes.Add(obj, discoveredMethods);
             }
             //
             List<MethodInfo> methods = m_monofluxes[obj];
