@@ -35,6 +35,9 @@ namespace UniFlux.Editor
         private MethodInfo[] methods_subscribeAttrb;
         private Dictionary<MethodInfo, object> dic_method_parameters;
         private Dictionary<MethodInfo, object> dic_method_outputs;
+        #pragma warning disable CS0618
+        private Dictionary<MethodInfo, FluxAttribute> dic_method_attributes;
+        #pragma warning restore CS0618
         private static bool ShowMethods
         { 
             get => PlayerPrefs.GetInt("__UniFlux.MonoFluxEditor.ShowBox", default) == default;
@@ -45,7 +48,43 @@ namespace UniFlux.Editor
             Type type = target.GetType();
             var methods = type.GetMethods((BindingFlags)(-1));
             #pragma warning disable CS0618
-            methods_subscribeAttrb = methods.Where(m => m.GetCustomAttributes(typeof(FluxAttribute), true).Length > 0).ToArray();
+            var discoveredMethods = new List<MethodInfo>();
+            dic_method_attributes = new Dictionary<MethodInfo, FluxAttribute>();
+
+            // Phase 1: methods with FluxAttribute on the concrete class
+            foreach (var m in methods)
+            {
+                if (Attribute.GetCustomAttributes(m).FirstOrDefault(a => a is FluxAttribute) is FluxAttribute attr)
+                {
+                    discoveredMethods.Add(m);
+                    dic_method_attributes[m] = attr;
+                }
+            }
+
+            // Phase 2: FluxAttributes declared on interface method definitions
+            var interfaces = type.GetInterfaces();
+            for (int i = 0; i < interfaces.Length; i++)
+            {
+                var map = type.GetInterfaceMap(interfaces[i]);
+                for (int j = 0; j < map.InterfaceMethods.Length; j++)
+                {
+                    var ifaceMethod = map.InterfaceMethods[j];
+                    if (Attribute.GetCustomAttributes(ifaceMethod).FirstOrDefault(a => a is FluxAttribute) is FluxAttribute attr)
+                    {
+                        var implMethod = map.TargetMethods[j];
+                        if (!dic_method_attributes.ContainsKey(implMethod))
+                        {
+                            dic_method_attributes[implMethod] = attr;
+                        }
+                        if (!discoveredMethods.Contains(implMethod))
+                        {
+                            discoveredMethods.Add(implMethod);
+                        }
+                    }
+                }
+            }
+
+            methods_subscribeAttrb = discoveredMethods.ToArray();
             #pragma warning restore CS0618
             dic_method_parameters = methods_subscribeAttrb.Select(m => new { Method = m, Parameters = null as object  }).ToDictionary(mp => mp.Method, mp => mp.Parameters);
             dic_method_outputs = methods_subscribeAttrb.Select(m => new { Method = m, Return = null as object }).ToDictionary(mp => mp.Method, mp => mp.Return);
@@ -88,7 +127,7 @@ namespace UniFlux.Editor
             foreach (var item in methods_subscribeAttrb)
             {
                 #pragma warning disable CS0618
-                var atribute = item.GetCustomAttribute<FluxAttribute>();
+                var atribute = dic_method_attributes[item];
                 #pragma warning restore CS0618
                 var parameters = item.GetParameters();
                 var isParameters = parameters.Length > 0;
@@ -96,9 +135,7 @@ namespace UniFlux.Editor
                 var isErr_static = item.IsStatic;
                 var isError = isErr_static;
                 string key_color =  isError ? "yellow" : "white";
-                #pragma warning disable CS0618
-                var atrbtype = item.GetCustomAttributes(typeof(FluxAttribute), true)[0];
-                #pragma warning restore CS0618
+                var atrbtype = atribute;
 
                 
                 int opt_status = (param: isParameters, rtrn: isReturn) switch

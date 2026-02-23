@@ -55,6 +55,28 @@ npm i com.xavierarpa.uniflux
 
 Note: Storing (ADD and REMOVE) by design is planned to do it once so there's no problem in performance.
 
+# Tip: MethodFlux in Interfaces
+
+You can use `[MethodFlux]` directly in an interface so that implementations are automatically detected. Example:
+
+```csharp
+public interface IService<T>
+{
+    T Service 
+    { 
+        [MethodFlux(0)] get; // attribute lives on the interface
+    }
+}
+
+internal class AudioModule : MonoFlux, IService<IAudioService>
+{
+    IAudioService IService<IAudioService>.Service => this;
+    // ↑ Automatically subscribed — UniFlux reads the attribute from the interface
+}
+```
+
+_Personal recommendation from Xavier!_
+
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=xavierarpa/uniflux&type=Date)](https://star-history.com/#xavierarpa/uniflux&Date)
