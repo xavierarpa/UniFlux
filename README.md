@@ -68,7 +68,7 @@ public interface IService<T>
     }
 }
 
-internal class AudioModule : MonoFlux, IService<IAudioService>
+internal class AudioModule : MonoFlux, IAudioService
 {
     IAudioService IService<IAudioService>.Service => this;
     // ↑ Automatically subscribed — UniFlux reads the attribute from the interface
