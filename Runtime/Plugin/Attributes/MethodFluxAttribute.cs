@@ -28,7 +28,7 @@ namespace UniFlux
     /// AllowMultiple is false to keep legibility
     ///</summary>
     [UnityEngine.Scripting.Preserve]
-    public sealed class MethodFluxAttribute : FluxAttribute
+    public class MethodFluxAttribute : FluxAttribute
     {
         public MethodFluxAttribute(object key) : base(key)
         {

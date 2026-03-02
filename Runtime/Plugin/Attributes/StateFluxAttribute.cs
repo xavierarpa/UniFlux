@@ -27,7 +27,7 @@ namespace UniFlux
     /// Class StateFluxAttribute, is like MethodFluxAttribute but stores the last saved data
     ///</summary>
     [UnityEngine.Scripting.Preserve]
-    public sealed class StateFluxAttribute : FluxAttribute
+    public class StateFluxAttribute : FluxAttribute
     {
         public StateFluxAttribute(object key) : base(key)
         {
