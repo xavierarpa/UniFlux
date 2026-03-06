@@ -26,6 +26,7 @@ namespace UniFlux.Sample
     {
         protected override void OnFlux(in bool condition)
         {
+            base.OnFlux(condition);
             "Sample_2".Store(Method, condition);
         }
         private void Start() 

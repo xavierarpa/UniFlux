@@ -36,7 +36,11 @@ namespace UniFlux.Sample
         {
             history_colors.Clear();
         }
-        protected override void OnFlux(in bool condition) => K_Primary.StoreState<Color>(OnPrimaryChange, condition); // 1 - Subscribe OnPrimaryChange and invokes automatically
+        protected override void OnFlux(in bool condition)
+        {
+            base.OnFlux(condition);
+            K_Primary.StoreState<Color>(OnPrimaryChange, condition); // 1 - Subscribe OnPrimaryChange and invokes automatically
+        }
         private void Start() => K_Primary.DispatchState(color_2); // 2 - Change to secondary color state
         private void OnPrimaryChange(Color color) 
         {
