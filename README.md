@@ -68,6 +68,16 @@ public interface IService<T>
     }
 }
 
+public interface IAudioService : IService<IAudioService> // Implemented getter in IService<T>
+{
+    void PlayMusic(string id);
+    void PlaySound(string id);
+    void SetVolumeMusic(float volume);
+    void SetVolumeSound(float volume);
+    AudioClip GetSound(string id);
+    AudioClip GetMusic(string id);
+}
+
 private class AudioModule : MonoFlux, IAudioService
 {
     IAudioService IService<IAudioService>.Service => this;
@@ -80,6 +90,7 @@ public static class ServiceLocator
 
     private static T GetService<T>() where T : IService<T>
     {
+        // This allows us to use service locator pattern with no GC alloc like using typeof()
         return IService<T>.DEFAULT_KEY.Dispatch<T>();
     }
 }
@@ -89,7 +100,8 @@ public static class ServiceLocator
 private void RandomMethod()
 {
     // then you can use the service without accessing directly.
-    ServiceLocator.Audio.PauseMusic();
+    // Clean to use, Performant
+    ServiceLocator.Audio.SetVolumeMusic(0.5f);
 }
 
 ```
