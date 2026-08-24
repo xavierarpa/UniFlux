@@ -70,12 +70,8 @@ public interface IService<T>
 
 public interface IAudioService : IService<IAudioService> // Implemented getter in IService<T>
 {
-    void PlayMusic(string id);
-    void PlaySound(string id);
     void SetVolumeMusic(float volume);
-    void SetVolumeSound(float volume);
-    AudioClip GetSound(string id);
-    AudioClip GetMusic(string id);
+    //...
 }
 
 private class AudioModule : MonoFlux, IAudioService
