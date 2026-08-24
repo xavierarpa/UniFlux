@@ -73,6 +73,25 @@ internal class AudioModule : MonoFlux, IAudioService
     IAudioService IService<IAudioService>.Service => this;
     // ↑ Automatically subscribed — UniFlux reads the attribute from the interface
 }
+
+public static class ServiceLocator
+{
+    public static IAudioService Audio => GetService<IAudioService>();
+
+    private static T GetService<T>() where T : IService<T>
+    {
+        return IService<T>.DEFAULT_KEY.Dispatch<T>();
+    }
+}
+
+// ...
+
+private void RandomMethod()
+{
+    // then you can use the service without accessing directly.
+    ServiceLocator.Audio.PauseMusic();
+}
+
 ```
 
 _Personal recommendation from Xavier!_
